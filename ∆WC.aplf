@@ -1,0 +1,20 @@
+ {R}←Name ∆WC Props;p;ps;m;name;WC;msg
+ R←Name ⎕WC Props
+
+ p←(≢Props)↑ps←R ⎕WG'Proplist'
+ m←~(2=≢¨Props)∧(name←⊃¨Props)∊ps
+ (m/name)←m/p
+ ((~m)/Props)←2⊃¨(~m)/Props
+
+ WC←⎕NS''
+ WC.WC←⎕NS ''
+ WC.WC.(ID Properties)←Name(⎕NS'')
+ ⍎'WC.WC.Properties.(',(⍕name),')←Props'
+
+ msg←⎕JSON⍠'HighRank' 'Split'⊢WC
+
+ :If CONNECTED
+     CONN w.Send msg
+ :Else
+     ⎕←'SRV:',msg
+ :EndIf

@@ -1,0 +1,7 @@
+Run dummy;rc;msg
+w←wss.New ''
+w.Handler←'Handler'
+w.Port←22322
+⎕←(rc msg)←w.Start
+
+⎕←'w.Stop to end'

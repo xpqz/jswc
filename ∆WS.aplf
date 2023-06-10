@@ -1,0 +1,20 @@
+ {R}←Name ∆WS Props;WS;msg;ws
+:If 2=≢Props
+:AndIf ∨/~(⍴¨Props)∊⊂,2
+    Props←,⊂Props
+:EndIf
+
+ R←Name ⎕WS Props
+
+ WS←⎕NS''
+ ws←WS.WS←⎕NS ''
+ ws.(Name Properties)←Name(⎕NS'')
+ ⍎'ws.Properties.(',(⍕1⊃¨Props),')←2⊃¨Props'
+
+ msg←⎕JSON⍠'HighRank' 'Split'⊢WS
+
+ :If CONNECTED
+     CONN w.Send msg
+ :Else
+     ⎕←'SRV:',msg
+ :EndIf

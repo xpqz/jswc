@@ -1,0 +1,34 @@
+r←con Handler payload;ns;Event;ID;Info;events;fns
+:If payload≡'Initialise'
+    CONN←con
+    CONNECTED←1
+    JSWCDemo 1
+:Else
+    ns←0 ⎕JSON payload
+    :Select ,ns.⎕NL 9
+    :Case 'Event'
+       (Event ID Info)←ns.Event.(EventName ID ({0::⍵ ⋄ Info}⍬))
+       (events fns)←↓⍉↑ID ⎕WG 'Event'
+       :If ~(⊂Event)∊events
+           ⎕←'No callback defined for event ',Event,' on object ',ID
+           →0
+       :EndIf
+
+       :Select Event
+       :Case 'Select'
+           :If (ID ⎕WG 'Type')≡'Combo'
+              ID ⎕WS 'SelItems' (Info=⍳≢ID ⎕WG 'SelItems')
+           :EndIf
+           Info←⍬
+       :Case 'Change'
+           ID ⎕WS 'Value' Info
+           Info←⍬
+       :Else
+          ⎕←'Unsupported event: ',Event ⋄ →0
+       :EndSelect
+
+       (⍎(events⍳⊂Event)⊃fns) (Event ID),Info
+    :Else
+       ⎕←'Invalid message received: ',payload
+    :EndSelect
+:EndIf

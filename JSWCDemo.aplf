@@ -1,0 +1,12 @@
+ JSWCDemo CONNECTED
+ ⎕PW←1000
+
+ n←10
+ f←'×'
+ allf←'+-×÷'
+
+ 'F1'∆WC'Form' 'Function Table'(50 50)(600 800)('Coord' 'Pixel')
+ 'F1.E1'∆WC'Edit' '10'(10 10)(23 100)('FieldType' 'Numeric')('Event' 'Change' 'JSWCUpdate')
+ 'F1.D1'∆WC'Combo'(,¨allf)f(10 120)(23 100)('SelItems'(allf=f))('Event' 'Select' 'JSWCUpdate')
+ 'F1.B1'∆WC'Button' 'Calc'(10 230)(23 100)('Event' 'Select' 'JSWCUpdate')
+ 'F1.G1'∆WC'Grid'(∘.×⍨⍳n)(40 10)(550 780)
