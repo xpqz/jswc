@@ -34,6 +34,6 @@
          :EndSelect
      :Else
          ⎕←'Message processing failed:'
-         ⎕←↑⎕DMX
+         ⎕←↑⎕DMX.DM
      :EndTrap
  :EndIf
