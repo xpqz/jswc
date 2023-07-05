@@ -3,19 +3,28 @@
 
     (⎕IO ⎕ML)←1
 
-    :field public Port←22322        ⍝ this port will be connected
-    :field public LDRC←''           ⍝ set by the server when Conga is initialized
-    :field public RootName←''       ⍝ Conga root name (we maintain unique names in case you run multiple servers) 
-    :field public ServerName←''     ⍝ server name, overrides Conga's 'SRVnnnnnnnn' 
-    :field public WaitTimeout←5000  ⍝ how long DRC.Wait will wait before timing out
-    :field public Handler←''        ⍝ name of the handler function, if any
-    :field public Conx←0 2⍴⊂''      ⍝ table of [;1] connection number, [;2] WebSocket security key
+    :field public Port←22322               ⍝ this port will be connected
+    :field public LDRC←''                  ⍝ set by the server when Conga is initialized
+    :field public RootName←''              ⍝ Conga root name (we maintain unique names in case you run multiple servers)
+    :field public ServerName←''            ⍝ server name, overrides Conga's 'SRVnnnnnnnn'
+    :field public WaitTimeout←5000         ⍝ how long DRC.Wait will wait before timing out
+    :field public Handler←''               ⍝ name of the handler function, if any
+    :field public Conx←0 2⍴⊂''             ⍝ table of [;1] connection number, [;2] WebSocket security key
+    :field public HTMLFolder←''            ⍝ folder name containing HTML to be served
+    :field public DefaultPage←'index.html' ⍝ name of default HTML page
+    :field public ShowHTMLRenderer←1       ⍝ open the HTMLRenderer interface?
 
     :field _stop←0
+
+    ∇ r←Version
+      :Access public shared
+      r←'wss' '1.1.0' '2023-07-05'
+    ∇
 
     if←⍴⍨
     unless←↓⍨
     check←0∘≠⊃
+    deb←{1↓¯1↓{⍵/⍨~'  '⍷⍵}' ',⍵,' '}
 
     ∇ make
       :Access public
@@ -42,6 +51,9 @@
     ∇ (rc msg)←Start;r
       :Access public
       →End if check(rc msg)←CheckConga
+      :If 0∊⍴HTMLFolder
+          HTMLFolder←⊃1 ⎕NPARTS 4⊃5179⌶⊃⊃⎕CLASS ⎕THIS
+      :EndIf
       :If 0≠⊃r←LDRC.Srv ServerName'localhost'Port'http'('Options' 5)
           →0⊣(rc msg)←(⊃r)(1↓⍕1↓r)
       :EndIf
@@ -49,6 +61,7 @@
       ServerName←2⊃r
       {Listen}&0
       (rc msg)←0('Server "',ServerName,'" started on Port ',⍕Port)
+      StartClient
      End:
     ∇
 
@@ -59,6 +72,7 @@
       :Else
           Log'Server "',ServerName,'" is stopping'
           _stop←1
+          ⎕EX'hr' ⍝ close the client
       :EndIf
     ∇
 
@@ -70,7 +84,7 @@
       r←ServerName,'.CON',,'ZI8'⎕FMT conx
     ∇
 
-    ∇ Listen;rc;obj;evt;data;wres;hdrs;conx
+    ∇ Listen;rc;obj;evt;data;wres;hdrs;conx;headers;httpver;url;method
       :While ~_stop
           (rc obj evt data)←4↑wres←LDRC.Wait ServerName WaitTimeout
           :Select rc
@@ -82,17 +96,20 @@
                       Log'Server: DRC.Wait reported error ',(⍕4⊃wres),' on ',(2⊃wres)
                   :EndIf
               :Case 'Connect'
+              :Case 'HTTPHeader'
+                  obj Serve data
               :Case 'WSUpgrade'
                   hdrs←ParseHeaders data
                   Conx⍪←obj(hdrs GetHeader'sec-websocket-key')
               :Case 'WSReceive'
                   :If 0∊⍴Handler
                       Log(Connection obj),' sent:'
-                      Log ⊃data
+                      Log⊃data
                   :Else
                       (Connection obj)(⍎'##.',Handler)⊃data
                   :EndIf
-              :Case 'Close'                
+              :Case 'Close'
+              :Case 'Timeout'
               :EndSelect
           :Case 1010 ⍝ object not found
               :If ~_stop
@@ -106,6 +123,33 @@
       :EndWhile
       {}{0:: ⋄ LDRC.Close ⍵}ServerName
       Log'Server stopped'
+    ∇
+
+    ∇ obj Serve data;method;url;httpver;headers;file;respheaders;rc;msg;status;payload;close
+      (method url httpver headers)←data
+      respheaders←1 2⍴'Server'(deb⍕2↑Version)
+      respheaders⍪←'Date'(2⊃LDRC.GetProp'.' 'HttpDate')
+      :If method≡⍥⎕C'get'
+          :If '/'≡⍥,url
+              url←DefaultPage
+          :EndIf
+          file←HTMLFolder,('/'=⊃url)↓url
+          :If ⎕NEXISTS file
+              respheaders⍪←'content-type'(ContentType file)
+⍝              respheaders⍪←'content-encoding' 'gzip'
+              status←(⊂httpver),'200' 'OK'
+              payload←''file ⍝'gzip'
+              close←0
+          :Else
+              respheaders⍪←'content-length' '0'
+              status←(⊂httpver),'404' 'NOT FOUND'
+              payload←''
+              close←1
+          :EndIf
+          (rc msg)←2↑LDRC.Send obj(status,respheaders payload)close
+      :Else
+          Log'Server: Unhandled HTTP method: ',method
+      :EndIf
     ∇
 
     ∇ (rc msg)←conx Send data
@@ -141,6 +185,24 @@
       r←(hdrs[;1]⍳⊂⎕C,name)⊃hdrs[;2],⊂''
     ∇
 
+    ∇ r←ContentType file;ext
+      :Select ext←⎕C⊃⊢/1 ⎕NPARTS file
+      :CaseList '.html' '.htm'
+          r←'text/html'
+      :CaseList '.jpeg' '.jpg'
+          r←'image/jpeg'
+      :Case '.css'
+          r←'text/css'
+      :Case '.js'
+          r←'text/javascript'
+      :Case '.svg'
+          r←'image/svg+xml'
+      :Else
+          r←''
+      :EndSelect
+    ∇
+
+
     ∇ Log msg
       ⎕←msg
     ∇
@@ -150,6 +212,7 @@
     :section Client
     ∇ StartClient;html
       :Access public
+      →ShowHTMLRenderer↓0
      StartHTML:→EndHTML
      ⍝  <!DOCTYPE html>
      ⍝  <html>
@@ -279,7 +342,7 @@
      ⍝
      ⍝  Click "Open" to create the WebSocket.
      ⍝  To send to APL, type something in the input area and click "Send"
-     ⍝  To send from APL, use the Send method 
+     ⍝  To send from APL, use the Send method
      ⍝       conx instance.Send 'message'
      ⍝  Where:
      ⍝     conx is the integer connection number
