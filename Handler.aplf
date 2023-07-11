@@ -4,7 +4,7 @@
      CONNECTED←1
      JSWCDemo 1
  :Else
-     :Trap 999
+     :Trap 0
          ⎕←payload
          ns←0 ⎕JSON payload
          :Select ,ns.⎕NL 9
