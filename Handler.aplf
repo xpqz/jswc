@@ -4,7 +4,8 @@
      CONNECTED←1
      JSWCDemo 1
  :Else
-     :Trap 0
+     :Trap 999
+         ⎕←payload
          ns←0 ⎕JSON payload
          :Select ,ns.⎕NL 9
          :Case 'Event'

@@ -16,5 +16,5 @@
  :If CONNECTED
      CONN w.Send msg
  :Else
-     ⎕←'SRV:',msg
+     ⎕←'WS:',msg
  :EndIf
