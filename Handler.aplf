@@ -29,7 +29,7 @@
                  ⎕←'Unsupported event: ',Event ⋄ →0
              :EndSelect
 
-             (⍎(events⍳⊂Event)⊃fns)(Event ID),Info
+             (⍎(events⍳⊂Event)⊃fns)(ID Event),Info
          :Else
              ⎕←'Invalid message received: ',payload
          :EndSelect

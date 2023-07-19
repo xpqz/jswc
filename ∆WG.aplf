@@ -1,0 +1,13 @@
+ {R}←Name ∆WG Props;msg;WG;wg;z
+
+ R←Name ⎕WG Props
+ WG←⎕NS''
+ wg←WG.WG←⎕NS''
+ wg.(ID Properties)←Name Props
+ msg←⎕JSON WG
+
+ :If CONNECTED
+     z←CONN w.Send ⎕←msg
+ :Else
+     ⎕←'WG:',msg
+ :EndIf

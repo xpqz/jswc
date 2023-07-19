@@ -9,12 +9,12 @@
  WS←⎕NS''
  ws←WS.WS←⎕NS ''
  ws.(ID Properties)←Name(⎕NS'')
- ⍎'ws.Properties.(',(⍕1⊃¨Props),')←2⊃¨Props'
+ ⍎'ws.Properties.(',(⍕1⊃¨Props),')←',(1≠≢Props)↓'⊃2⊃¨Props'
 
  msg←⎕JSON⍠'HighRank' 'Split'⊢WS
 
  :If CONNECTED
-     CONN w.Send msg
+     z←CONN w.Send ⎕←msg
  :Else
      ⎕←'WS:',msg
  :EndIf

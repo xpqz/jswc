@@ -1,4 +1,4 @@
- {R}←Name ∆WC Props;p;ps;m;name;WC;msg;length;m2;m3
+ {R}←Name ∆WC Props;p;ps;m;name;WC;msg;length;m2;m3;z
  R←Name ⎕WC Props
 
  p←(≢Props)↑ps←R ⎕WG'Proplist'
@@ -17,7 +17,7 @@
  msg←⎕JSON⍠'HighRank' 'Split'⊢WC
 
  :If CONNECTED
-     CONN w.Send msg
+     z←CONN w.Send ⎕←msg
  :Else
      ⎕←'WC:',msg
  :EndIf

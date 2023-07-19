@@ -1,15 +1,22 @@
-JSWCUpdate args;e
+JSWCUpdate args;e;scores
 Event←⎕NS ''
 e←Event.Event←⎕NS ''
 e.(ID EventName Info)←(2↑args),⊂2↓args
 
-:Select 2⊃args
-:Case 'F1.D1' ⍝ Dropdown
-     e.Info←1⍳⍨'F1.D1' ⎕WG 'SelItems'
-     f←e.Info⊃allf
-:Case 'F1.E1' ⍝ Edit
-     n←e.Info←'F1.E1' ⎕WG 'Value'
+:Select 1⊃args
+:Case 'F1.Function' ⍝ Dropdown
+     f←allf[1⍳⍨'F1.Function' ∆WG 'SelItems']
+:Case 'F1.TableSize' ⍝ Edit
+     n←'F1.TableSize' ∆WG 'Value'
+:Case 'F1.Players' ⍝ CellChanged
+     scores←('F1.Players' ∆WG 'Values')[;3]
+     'F1.Average' ∆WS 'Caption' ('Average score:',1⍕+/scores÷≢scores)
+     →0
+:Case 'F1.CalcBtn'
+     f←allf[1⍳⍨'F1.Function' ∆WG 'SelItems']
+     n←'F1.TableSize' ∆WG 'Value'
+:Else
+    ⎕←'Unexpected message: ',args
 :EndSelect
 
-⎕←'CLT:', 1 ⎕JSON Event
-'F1.G1' ∆WS 'Values' (∘.(⍎f)⍨⍳n)
+'F1.Table' ∆WS 'Values' (∘.(⍎f)⍨⍳n)
