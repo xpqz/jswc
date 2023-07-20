@@ -6,6 +6,13 @@
  allf←'+-×÷'
 
  'F1'∆WC'Form' 'Function Table'(50 50)(800 800)('Coord' 'Pixel')
+ 'F1.MB'         ∆WC 'MenuBar'
+ 'F1.MB.File'    ∆WC 'Menu' '&File'
+ 'F1.MB.Col'     ∆WC 'Menu' '&Colours'
+ 'F1.MB.Col.Red' ∆WC 'MenuItem' '&Red'('Event' 'Select' 'JSWCUpdate')
+ 'F1.MB.Col.Blue' ∆WC 'MenuItem' '&Blue'('Event' 'Select' 'JSWCUpdate')
+ 'F1.MB.Col.Green' ∆WC 'MenuItem' '&Green'('Event' 'Select' 'JSWCUpdate')
+
  'F1.Players'∆WC'Grid'('ColTitles'('Name' 'Gender' 'Score' 'Expert'))('Posn'(10 10))('Size'(100 480))('TitleWidth' 0)('ShowInput' 1)('Event' 'CellChanged' 'JSWCUpdate')
  'F1.Players.Name'∆WC'Edit'('Size'(23 100))
  'F1.Players.Gender'∆WC'Combo'('Items'('Male' 'Female'))('Size'(10 100))

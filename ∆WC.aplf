@@ -1,6 +1,6 @@
  {R}←Name ∆WC Props;p;ps;m;name;WC;msg;length;m2;m3;z
  R←Name ⎕WC Props
-
+ Props←,⊆Props
  p←(≢Props)↑ps←R ⎕WG'Proplist'
  m←~((length←≢¨Props)∊2 3)∧(name←⊃¨Props)∊ps
  (m/name)←m/p
