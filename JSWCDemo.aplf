@@ -1,4 +1,4 @@
- JSWCDemo CONNECTED;inputs;n;f;allf;scores
+ JSWCDemo CONNECTED;inputs;scores
  ⎕PW←1000
 
  n←10
