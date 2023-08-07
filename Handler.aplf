@@ -27,7 +27,7 @@
                  Info←⍬
              :Case 'CellChanged'
                  Values←ID ⎕WG 'Values'
-                 Values[ns.Event.Row;ns.Event.Col]←ns.Event.Value
+                 Values[ns.Event.Row;ns.Event.Col]←⊂ns.Event.Value
                  ID ⎕WS 'Values' Values
              :Else
                  ⎕←'Unsupported event: ',Event ⋄ →0
