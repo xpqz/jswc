@@ -1,9 +1,12 @@
-JSWCUpdate args;e;scores;cols;fcol
+JSWCUpdate args;e;scores;cols;fcol;pass
 Event←⎕NS ''
 e←Event.Event←⎕NS ''
 e.(ID EventName Info)←(2↑args),⊂2↓args
 
 :Select 1⊃args
+:Case 'F1.PasswordField' ⍝ Edit
+     pass←'F1.PasswordField' ∆WG 'Value'
+     'F1.Average' ∆WS 'Caption' ('Password is ',pass)
 :Case 'F1.Function' ⍝ Dropdown
      f←allf[1⍳⍨'F1.Function' ∆WG 'SelItems']
 :Case 'F1.TableSize' ⍝ Edit

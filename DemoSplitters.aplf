@@ -1,0 +1,29 @@
+ DemoSplitters connected;inputs;scores;TBL;GRID
+ CONNECTED←connected
+ ⎕PW←1000
+
+ n←10
+ f←'×'
+ allf←'+-×÷'
+
+ 'F1'∆WC'Form' 'Splitters and Groups'(50 50)(800 800)('Coord' 'Pixel')
+
+ 'F1.LEFT'∆WC'SubForm'
+ 'F1.LEFT.COLORS' ∆WC 'List' ('Red' 'Blue' 'Green') (10 10) (100 200)('Border' 1)('SelItems' (0 0 1))
+ 'F1.RIGHT'∆WC'SubForm'
+ 'F1.SPLIT'∆WC'Splitter' 'F1.LEFT' 'F1.RIGHT' ('Posn' (0 200))
+ 'F1.RIGHT.TOP'∆WC'SubForm'
+ 'F1.RIGHT.BOT'∆WC'SubForm'
+ 'F1.RIGHT.SPLIT'∆WC 'Splitter' ('SplitObj1' 'F1.RIGHT.TOP')('SplitObj2' 'F1.RIGHT.BOT') ('Style' 'Horz')('Posn' (300 0))
+ (TBL←'F1.RIGHT.BOT.TABLE') ∆WC 'Group' 'Players'('Posn' (10 10))('Size' (450 550))
+
+ GRID←TBL,'.Players'
+ GRID ∆WC'Grid'('ColTitles'('Name' 'Gender' 'Score' 'Expert'))('Posn'(40 10))('Size'(100 480))('TitleWidth' 0)('ShowInput' 1)('Event' 'CellChanged' 'JSWCUpdateSplit')
+ (GRID,'.Name') ∆WC'Edit'('Size'(23 100))
+ (GRID,'.Gender')∆WC'Combo'('Items'('Male' 'Female'))('Size'(10 100))
+ (GRID,'.Score') ∆WC'Edit'('FieldType' 'Numeric')('Size'(23 50))
+ (GRID,'.Expert') ∆WC'Button'('Style' 'Check')('Size'(23 25))
+ inputs←GRID∘,¨'.Name' '.Gender' '.Score' '.Expert'
+ scores←12 13
+ GRID ∆WS('Values'('Amir' 'Fatima','Male' 'Female',scores,⍪0 1))('CellTypes'(2 4⍴1 2 3 4))('Input'inputs)
+ 'F1.RIGHT.TOP.Average' ∆WC 'Label' ('Average Score:',1⍕+/scores÷≢scores) (115 180)(23 100)

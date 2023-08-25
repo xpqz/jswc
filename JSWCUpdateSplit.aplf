@@ -1,0 +1,12 @@
+JSWCUpdateSplit args;e;scores;cols;fcol;pass
+Event←⎕NS ''
+e←Event.Event←⎕NS ''
+e.(ID EventName Info)←(2↑args),⊂2↓args
+
+:Select 1⊃args
+:Case 'F1.RIGHT.BOT.TABLE.Players' ⍝ CellChanged
+     scores←('F1.RIGHT.BOT.TABLE.Players' ∆WG 'Values')[;3]
+     'F1.RIGHT.TOP.Average' ∆WS 'Caption' ('Average score:',1⍕+/scores÷≢scores)
+:Else
+    ⎕←'Unexpected message: ',args
+:EndSelect

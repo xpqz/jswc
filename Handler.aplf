@@ -1,8 +1,15 @@
- r←con Handler payload;ns;Event;ID;Info;events;fns
- :If (⊂payload)∊'Initialise' 'Initialize'
+ r←con Handler payload;ns;Event;ID;Info;events;fns;fn
+ :If (⊂10↑payload)∊'Initialise' 'Initialize'
      CONN←con
      CONNECTED←1
-     JSWCDemo 1
+
+     fn←(10↓payload)~'()'
+     fn,←(0=≢fn)/'JSWCDemo'
+     :If 3=⎕NC fn
+         (⍎fn) CONNECTED
+     :Else
+         ⎕←'Function not found: ',fn
+     :EndIf
  :Else
      :Trap 0
          ⎕←payload
