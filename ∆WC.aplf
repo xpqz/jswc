@@ -12,7 +12,7 @@
  WC←⎕NS''
  WC.WC←⎕NS ''
  WC.WC.(ID Properties)←Name(⎕NS'')
- ⍎'WC.WC.Properties.(',(⍕name),')←Props'
+ ⍎'WC.WC.Properties.(',(⍕name),')←',(1≠≢name)↓'⊃Props'
 
  msg←⎕JSON⍠'HighRank' 'Split'⊢WC
 
