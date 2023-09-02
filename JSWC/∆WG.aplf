@@ -1,0 +1,24 @@
+{R}←Name ∆WG Props;msg;WG;wg;z;⎕TRAP
+
+ ⎕TRAP←0 'S'
+ WG←⎕NS''
+ wg←WG.WG←⎕NS''
+ wg.(ID Properties)←Name (,⊆Props)
+ msg←⎕JSON WG
+
+ :If CONNECTED
+     z←CONN ##.w.Send ⎕←msg
+ :Else
+     ⎕←msg
+ :EndIf
+
+ :If DUPLICATE
+     R←Name ⎕WG wg.Properties
+     wg.Values←R
+     msg←⎕JSON⍠'HighRank' 'Split'⊢WG
+     ⎕←'Faking client transmission: ',msg
+     msg ⎕TPUT WG_TOKEN
+     ⍝ /// "fake" the response
+ :EndIf
+
+ R←WaitForWG Props

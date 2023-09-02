@@ -1,0 +1,11 @@
+Init;z;i;t
+
+t←'JSWC Synchronisation'
+z←↑⎕TALLOC 0
+:If (≢z)≥i←z[;2]⍳⊂t
+   TOKENRANGE←z[i;1]
+:Else
+   TOKENRANGE←⎕TALLOC 1 t
+:EndIf
+
+WG_TOKEN←TOKENRANGE+0.1

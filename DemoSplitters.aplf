@@ -1,5 +1,5 @@
  DemoSplitters connected;inputs;scores;TBL;GRID
- CONNECTED←connected
+ JSWC.CONNECTED←connected
  ⎕PW←1000
 
  n←10

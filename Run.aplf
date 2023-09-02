@@ -1,6 +1,8 @@
 Run dummy;rc;msg
+InitJSWC ⍝ Sets CONNECTED RECORD DUPLICATE
+
 w←wss.New ''
-w.Handler←'Handler'
+w.Handler←'JSWC.Handler'
 w.Port←22322
 ⎕←(rc msg)←w.Start
 

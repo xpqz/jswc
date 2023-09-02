@@ -1,0 +1,27 @@
+ {R}←Name ∆WS Props;WS;msg;ws;i;z
+ :If 2=≢Props
+ :AndIf ∨/~(⍴¨Props)∊⊂,2
+     Props←,⊂Props
+ :EndIf
+
+ :If DUPLICATE
+     R←Name ⎕WS Props
+ :EndIf
+
+ WS←⎕NS''
+ ws←WS.WS←⎕NS''
+ ws.(ID Properties)←Name(⎕NS'')
+ ⍎'ws.Properties.(',(⍕1⊃¨Props),')←',(1≠≢Props)↓'⊃2⊃¨Props'
+
+ :If RECORD ⍝ Collecting lists
+     ref←⍎'Classes.',Name ⎕WG 'Type'
+     ref.Supported∪←1⊃¨Props
+ :EndIf
+
+ msg←⎕JSON⍠'HighRank' 'Split'⊢WS
+
+ :If CONNECTED
+     z←CONN #.w.Send ⎕←msg
+ :Else
+     ⎕←'WS:',msg
+ :EndIf

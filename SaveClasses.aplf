@@ -1,0 +1,8 @@
+SaveClasses;prop;class
+⍝ Write data recorded with RECORD←1
+
+:For class :In JSWC.Classes.⎕NL -9
+:For prop :In 'Defaults' 'PropList' 'Supported'
+⎕SE.Link.Add ⎕←'JSWC.Classes.',class,'.',prop
+:EndFor
+:EndFor

@@ -1,0 +1,45 @@
+ {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist
+ :If DUPLICATE
+     R←Name ⎕WC Props
+ :EndIf
+ Props←,⊆Props
+ length←≢¨Props
+ propnames←⊃¨Props
+ :If 1=≢type←((length∊2)∧propnames∊⊂'Type')/Props ⍝ Named 'Type' property?
+   type←2⊃type
+ :Else
+   type←⊃Props
+ :EndIf
+ proplist←(Classes⍎type).PropList
+ p←(≢Props)↑proplist
+
+ m←~(length∊2 3)∧propnames∊proplist
+ (m/propnames)←m/p
+ m2←(~m)∧length=2
+ (m2/Props)←2⊃¨m2/Props
+ m3←(~m)∧length=3
+ (m3/Props)←1↓¨m3/Props
+
+ WC←⎕NS''
+ WC.WC←⎕NS''
+ WC.WC.(ID Properties)←Name(⎕NS'')
+ ⍎'WC.WC.Properties.(',(⍕propnames),')←',(1≠≢propnames)↓'⊃Props'
+
+ :If RECORD ⍝ Collecting lists
+     :If ~9=⎕NC class←'Classes.',type←WC.WC.Properties.Type
+         ref←⍎class ⎕NS ''
+         ref.PropList←Name ⎕WG 'PropList'
+         (temp←Name,'_temp') ⎕WC type
+         ref.Defaults←temp ⎕WG ref.PropList
+         ⎕EX temp
+         ref.Supported←propnames
+     :EndIf
+ :EndIf
+
+ msg←⎕JSON⍠'HighRank' 'Split'⊢WC
+
+ :If CONNECTED
+     z←CONN #.w.Send ⎕←msg
+ :Else
+     ⎕←msg
+ :EndIf

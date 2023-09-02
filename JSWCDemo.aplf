@@ -1,5 +1,5 @@
  JSWCDemo connected;inputs;scores
- CONNECTED←connected
+ JSWC.CONNECTED←connected
  ⎕PW←1000
 
  n←10
