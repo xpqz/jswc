@@ -32,8 +32,9 @@
          (temp←Name,'_temp') ⎕WC type
          ref.Defaults←temp ⎕WG ref.PropList
          ⎕EX temp
-         ref.Supported←propnames
      :EndIf
+     ref←⍎class
+     ref.Supported∪←propnames
  :EndIf
 
  msg←⎕JSON⍠'HighRank' 'Split'⊢WC

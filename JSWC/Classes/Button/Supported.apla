@@ -2,4 +2,7 @@
  'Type'
  'Style'
  'Size'
+ 'Caption'
+ 'Posn'
+ 'Event'
 )

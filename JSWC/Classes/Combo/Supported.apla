@@ -2,4 +2,8 @@
  'Type'
  'Items'
  'Size'
+ 'Text'
+ 'Posn'
+ 'SelItems'
+ 'Event'
 )
