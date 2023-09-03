@@ -10,7 +10,7 @@ e.(ID EventName Info)←(2↑args),⊂2↓args
 :Case 'F1.Function' ⍝ Dropdown
      f←allf[1⍳⍨'F1.Function' ∆WG 'SelItems']
 :Case 'F1.TableSize' ⍝ Edit
-     n←'F1.TableSize' ∆WG 'Value'
+     n←⊃'F1.TableSize' ∆WG 'Value'
 :Case 'F1.Players' ⍝ CellChanged
      scores←('F1.Players' ∆WG 'Values')[;3]
      'F1.Average' ∆WS 'Caption' ('Average score:',1⍕+/scores÷≢scores)

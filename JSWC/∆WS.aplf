@@ -1,17 +1,20 @@
- {R}←Name ∆WS Props;WS;msg;ws;i;z
+ {R}←Name ∆WS Props;WS;msg;ws;i;z;ref;expr;caller
+ caller←⊃⎕RSI
  :If 2=≢Props
  :AndIf ∨/~(⍴¨Props)∊⊂,2
      Props←,⊂Props
  :EndIf
 
- :If DUPLICATE
-     R←Name ⎕WS Props
- :EndIf
-
  WS←⎕NS''
  ws←WS.WS←⎕NS''
  ws.(ID Properties)←Name(⎕NS'')
- ⍎'ws.Properties.(',(⍕1⊃¨Props),')←',(1≠≢Props)↓'⊃2⊃¨Props'
+ ⍎'ws.Properties',expr←'.(',(⍕1⊃¨Props),')←',(1≠≢Props)↓'⊃2⊃¨Props'
+
+ :If USEWIN32
+     R←Name ⎕WS Prop
+ :Else
+     ⍎(⍕caller),'.',Name,expr ⍝ Update "server-side DOM"
+ :EndIf
 
  :If RECORD ⍝ Collecting lists
      ref←⍎'Classes.',Name ⎕WG 'Type'

@@ -1,7 +1,12 @@
- {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist
- :If DUPLICATE
-     R←Name ⎕WC Props
+ {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller
+ caller←⊃⎕RSI
+
+ :If USEWIN32
+     R←Name caller.⎕WC Props
+ :Else
+     R←Name caller.⎕NS ''
  :EndIf
+
  Props←,⊆Props
  length←≢¨Props
  propnames←⊃¨Props
@@ -23,15 +28,19 @@
  WC←⎕NS''
  WC.WC←⎕NS''
  WC.WC.(ID Properties)←Name(⎕NS'')
- ⍎'WC.WC.Properties.(',(⍕propnames),')←',(1≠≢propnames)↓'⊃Props'
+ ⍎'WC.WC.Properties',expr←'.(',(⍕propnames),')←',(1≠≢propnames)↓'⊃Props'
+
+ :If ~USEWIN32
+     ⍎(⍕caller),'.',Name,expr ⍝ Set properties in the "server-side DOM"
+ :EndIf
 
  :If RECORD ⍝ Collecting lists
      :If ~9=⎕NC class←'Classes.',type←WC.WC.Properties.Type
          ref←⍎class ⎕NS ''
-         ref.PropList←Name ⎕WG 'PropList'
-         (temp←Name,'_temp') ⎕WC type
-         ref.Defaults←temp ⎕WG ref.PropList
-         ⎕EX temp
+         ref.PropList←Name Caller.⎕WG 'PropList'
+         (temp←Name,'_temp') Caller.⎕WC type
+         ref.Defaults←temp Caller.⎕WG ref.PropList
+         Caller.⎕EX temp
      :EndIf
      ref←⍎class
      ref.Supported∪←propnames
