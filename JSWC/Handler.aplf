@@ -37,6 +37,10 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event
              :Case 'Change'
                  ⍎'#.',ID,'.Value←Info'
                  Info←⍬
+             :Case 'Scroll'
+                 :If (#⍎ID,'.Type')≡'Scroll'
+                     ⍎'#.',ID,'.Thumb←Info[2]'
+                 :EndIf
              :Case 'CellChanged'
                  Values←#⍎ID,'.Values'
                  Values[ns.Event.Row;ns.Event.Col]←⊂ns.Event.Value

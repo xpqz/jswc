@@ -1,9 +1,9 @@
-Run dummy;rc;msg
-InitJSWC ⍝ Sets CONNECTED RECORD USEWIN32
+ Run dummy;rc;msg
+ InitJSWC ⍝ Sets CONNECTED RECORD USEWIN32
 
-w←wss.New ''
-w.Handler←'JSWC.Handler'
-w.Port←22322
-⎕←(rc msg)←w.Start
+ w←wss.New ''
+ w.Handler←'JSWC.Handler'
+ w.Port←22322
+ ⎕←(rc msg)←w.Start
 
-⎕←'w.Stop to end'
+ ⎕←'w.Stop to end'

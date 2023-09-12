@@ -6,7 +6,7 @@
  f←'×'
  allf←'+-×÷'
 
- 'F1'∆WC'Form' 'Splitters and Groups'(50 50)(800 800)('Coord' 'Pixel')
+ 'F1'∆WC'Form' 'Splitters and Groups'(50 50)(800 800)('Coord' 'Pixel')('VScroll' ¯1)('HScroll' ¯1)('BCol' (255 0 0))
 
  'F1.LEFT'∆WC'SubForm'
  'F1.LEFT.COLORS' ∆WC 'List' ('Red' 'Blue' 'Green') (10 10) (100 200)('Border' 1)('SelItems' (0 0 1))

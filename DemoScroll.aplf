@@ -1,0 +1,9 @@
+ DemoScroll connected;inputs;scores;TBL;GRID
+ JSWC.CONNECTED←connected
+ ⎕PW←1000
+ n←10
+
+ 'F1'∆WC'Form' 'Virtual Grid'(50 50)(500 800)('Coord' 'Pixel')
+ 'F1.UPDOWN'∆WC'Scroll'('Align' 'Right')('Event' 'Scroll' 'JSWCUpdateScroll')('Range' 1000)('Thumb' 1)
+ 'F1.LEFTRIGHT'∆WC'Scroll'('Align' 'Bottom')('Event' 'Scroll' 'JSWCUpdateScroll')('Range' 1000)('Thumb' 1)
+ 'F1.VGRID'∆WC'Grid' ('Values' (∘.×⍨⍳n))(150 100) (270 610)('CellWidths' 50)

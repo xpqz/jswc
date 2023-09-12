@@ -1,0 +1,14 @@
+ JSWCUpdateScroll args;e;scores;cols;fcol;pass;top;left
+ Event←⎕NS''
+ e←Event.Event←⎕NS''
+ e.(ID EventName Info)←(2↑args),⊂2↓args
+ ⎕JSON Event
+
+ :Select 1⊃args
+ :CaseList 'F1.UPDOWN' 'F1.LEFTRIGHT' ⍝ Scroll
+     top←'F1.UPDOWN' ∆WG 'THUMB'
+     left←'F1.LEFTRIGHT' ∆WG 'THUMB'
+     'F1.VGRID' ∆WS 'Values' (left+(n×top)+∘.×⍨⍳n)
+ :Else
+     ⎕←'Unexpected message: ',args
+ :EndSelect

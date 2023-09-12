@@ -54,7 +54,8 @@
       :If 0∊⍴HTMLFolder
           HTMLFolder←⊃1 ⎕NPARTS 4⊃5179⌶⊃⊃⎕CLASS ⎕THIS
       :EndIf
-      :If 0≠⊃r←LDRC.Srv ServerName'localhost'Port'http'('Options' 5)
+      ⍝ HTTP options 5: Decode HTTP and auto-upgrade web sockets
+      :If 0≠⊃r←LDRC.Srv ServerName''Port'http'('Options' 5)
           →0⊣(rc msg)←(⊃r)(1↓⍕1↓r)
       :EndIf
       _stop←0
@@ -358,7 +359,11 @@
      EndHTML:
       html←(1↓∊(⎕UCS 13),¨{⍵↓⍨⍵⍳'⍝'}¨StartHTML↓EndHTML↑↓(180⌶)⊃⎕XSI)
       html←∊(⊂⍕Port)@(=∘'⌹')⊢html
-      'hr'⎕WC'HTMLRenderer'('HTML'html)
+      :Trap 10 ⍝ LIMIT ERROR
+          'hr'⎕WC'HTMLRenderer'('HTML'html)
+      :Else
+          ⎕←'Unable to create HTMLRenderer to run debug client'
+      :EndTrap
     ∇
     :endsection
 
