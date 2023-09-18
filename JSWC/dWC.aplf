@@ -4,16 +4,16 @@
  :If USEWIN32
      R←Name caller.⎕WC Props
  :Else
-     R←Name caller.⎕NS ''
+     R←Name caller.⎕NS''
  :EndIf
 
- Props←,⊆Props
+ Props←,⊆ Props
  length←≢¨Props
  propnames←⊃¨Props
  :If 1=≢type←((length∊2)∧propnames∊⊂'Type')/Props ⍝ Named 'Type' property?
-   type←2⊃type
+     type←2⊃type
  :Else
-   type←⊃Props
+     type←⊃Props
  :EndIf
  proplist←(Classes⍎type).PropList
  p←(≢Props)↑proplist
@@ -36,9 +36,9 @@
 
  :If RECORD ⍝ Collecting lists
      :If ~9=⎕NC class←'Classes.',type←WC.WC.Properties.Type
-         ref←⍎class ⎕NS ''
-         ref.PropList←Name Caller.⎕WG 'PropList'
-         (temp←Name,'_temp') Caller.⎕WC type
+         ref←⍎class ⎕NS''
+         ref.PropList←Name Caller.⎕WG'PropList'
+         (temp←Name,'_temp')Caller.⎕WC type
          ref.Defaults←temp Caller.⎕WG ref.PropList
          Caller.⎕EX temp
      :EndIf
@@ -46,7 +46,7 @@
      ref.Supported∪←propnames
  :EndIf
 
- msg←⎕JSON⍠'HighRank' 'Split'⊢WC
+ msg←⎕JSON⍠ 'HighRank' 'Split'⊢WC
 
  :If CONNECTED
      z←CONN #.w.Send ⎕←msg
