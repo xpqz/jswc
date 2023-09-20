@@ -1,4 +1,5 @@
- {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller
+ {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops
+ deprecatedprops←'Font' 'Icon' 'Cursor' 'ImageList' '3D' ⍝ No longer appear in PropList
  caller←⊃⎕RSI
 
  :If USEWIN32
@@ -18,7 +19,7 @@
  proplist←(Classes⍎type).PropList
  p←(≢Props)↑proplist
 
- m←~(length∊2 3)∧propnames∊proplist
+ m←~(length∊2 3)∧propnames∊proplist,deprecatedprops
  (m/propnames)←m/p
  m2←(~m)∧length=2
  (m2/Props)←2⊃¨m2/Props

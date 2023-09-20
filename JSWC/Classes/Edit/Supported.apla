@@ -6,4 +6,6 @@
  'FieldType'
  'Event'
  'Password'
+ 'Style'
+ 'Font'
 )

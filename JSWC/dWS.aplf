@@ -26,5 +26,5 @@
  :If CONNECTED
      z←CONN #.w.Send ⎕←msg
  :Else
-     ⎕←'WS:',msg
+     ⎕←msg
  :EndIf
