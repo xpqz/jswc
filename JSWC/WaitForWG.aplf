@@ -1,11 +1,10 @@
-R←WaitForWG Props;z;j;⎕TRAP;p
+R←WaitForWG Props;j;⎕TRAP;p
 
-z←⎕TGET WG_TOKEN
-j←0 ⎕JSON ⊃z
+j←⎕TGET WG_TOKEN
 
 :If 9=⎕NC 'j.WG'
-:AndIf ∧/(p←,⊆Props)∊j.WG.Properties
-   R←j.WG.Values[j.WG.Properties⍳p]
+:AndIf ∧/(p←,⊆Props)∊j.WG.Properties.⎕NL -2
+   R←j.WG.Properties⍎((1=≢p)/',⊂'),⍕p
    R←j.WG.ID MixTables p R
    :If 1=≡Props
        R←⊃R ⍝ A single simple property

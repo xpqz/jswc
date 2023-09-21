@@ -49,7 +49,9 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event
                  ⎕←'Unsupported event: ',Event ⋄ →0
              :EndSelect
 
-             (##⍎(events⍳⊂Event)⊃fns)(ID Event),Info
+             (##⍎(events⍳⊂Event)⊃fns)&(ID Event),Info
+         :Case 'WG'
+             ns ⎕TPUT WG_TOKEN
          :Else
              ⎕←'Invalid message received: ',payload
          :EndSelect

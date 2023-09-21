@@ -2,7 +2,8 @@
  caller←⊃⎕RSI
  WG←⎕NS''
  wg←WG.WG←⎕NS''
- wg.(ID Properties)←Name(,⊆Props)
+ WGID+←1
+ wg.(WGID ID Properties)←(⍕WGID) Name(,⊆Props)
  msg←⎕JSON WG
 
  :If CONNECTED
@@ -21,10 +22,10 @@
      R←,⊂R
  :EndIf
 
- wg.Values←R
- msg←⎕JSON⍠'HighRank' 'Split'⊢WG
- ⎕←'Faking client transmission: ',msg
- msg ⎕TPUT WG_TOKEN
+ ⍝⍎'wg.Properties.(',(⍕Props),')←',(1≠≢R)↓'⊃R'
+ ⍝msg←⎕JSON⍠'HighRank' 'Split'⊢WG
+ ⍝⎕←'Faking client transmission: ',msg
+ ⍝msg ⎕TPUT WG_TOKEN
  ⍝ /// "fake" the response
 
  R←WaitForWG Props
