@@ -3,6 +3,7 @@
  caller←⊃⎕RSI
 
  :If USEWIN32
+ :AndIf ~'Ribbon'≡⊃Props
      R←Name caller.⎕WC Props
  :Else
      R←Name caller.⎕NS''
