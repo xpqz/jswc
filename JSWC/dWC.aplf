@@ -3,13 +3,13 @@
  caller←⊃⎕RSI
 
  :If USEWIN32
- :AndIf ~'Ribbon'≡⊃Props
+ :AndIf 'Ribbon'≢6↑⊃⊆Props
      R←Name caller.⎕WC Props
  :Else
      R←Name caller.⎕NS''
  :EndIf
 
- Props←,⊆ Props
+ Props←,⊆Props
  length←≢¨Props
  propnames←⊃¨Props
  :If 1=≢type←((length∊2)∧propnames∊⊂'Type')/Props ⍝ Named 'Type' property?

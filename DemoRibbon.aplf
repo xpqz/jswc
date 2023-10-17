@@ -10,13 +10,35 @@
  ribbon←∊(⎕UCS 10),¨ribbon
 
  'F1'∆WC'Form' 'Function Table'(50 50)(800 800)('Coord' 'Pixel')
- 'F1.Ribbon' ∆WC 'Ribbon' ('JS' ribbon)
- 'F1.MB'∆WC'MenuBar'
- 'F1.MB.File'∆WC'Menu' '&File'
- 'F1.MB.Col'∆WC'Menu' '&Colours'
- 'F1.MB.Col.Red'∆WC'MenuItem' '&Red'('Event' 'Select' 'JSWCUpdate')
- 'F1.MB.Col.Blue'∆WC'MenuItem' '&Blue'('Event' 'Select' 'JSWCUpdate')
- 'F1.MB.Col.Green'∆WC'MenuItem' '&Green'('Event' 'Select' 'JSWCUpdate')
+ 'F1.Ribbon' ∆WC 'Ribbon'
+ 'F1.Ribbon.Item1' ∆WC 'RibbonGroup' 'Locks'
+ 'F1.Ribbon.Item2' ∆WC 'RibbonGroup' 'Macros'
+ 'F1.Ribbon.Item3' ∆WC 'RibbonGroup' 'Dashboard'
+ 'F1.Ribbon.Item4' ∆WC 'RibbonGroup' 'Application' ('Size' 6)
+ 'F1.Ribbon.Item5' ∆WC 'RibbonGroup' 'Data Quality' ('Size' 3)
+
+ 'F1.Ribbon.Item1.GroupItem1' ∆WC 'RibbonGroupItem' 12
+ 'F1.Item1.GroupItem1.LockButton' ∆WC 'RibbonButton' 'Access' 'FcLock' 12
+
+ 'F1.Ribbon.Item2.GroupItem1' ∆WC 'RibbonGroupItem' 12
+ 'F1.Item2.GroupItem1.MacrosButton' ∆WC 'RibbonButton' 'Macros' 'FcPlanner' 12
+
+ 'F1.Ribbon.Item3.GroupItem1' ∆WC 'RibbonGroupItem' 12
+ 'F1.Item3.GroupItem1.DashboardButton' ∆WC 'RibbonButton' 'Macros' 'FcHome' 12
+
+ 'F1.Ribbon.Item4.GroupItem1' ∆WC 'RibbonGroupItem' 1
+ 'F1.Ribbon.Item4.GroupItem2' ∆WC 'RibbonGroupItem' 2
+ 'F1.Ribbon.Item4.GroupItem3' ∆WC 'RibbonGroupItem' 1
+
+ ⍝ 'F1.Ribbon.Item4.GroupItem4' ∆WC 'RibbonGroupItem' 3
+ ⍝ 'F1.Ribbon.Item4.GroupItem5' ∆WC 'RibbonGroupItem' 6
+
+ ⍝ 'F1.Item4.GroupItem1.ArchiveButton' ∆WC 'RibbonButton' 'Access' 'FcKindle' 12
+ ⍝ 'F1.Item4.GroupItem2.DateButton' ∆WC 'RibbonButton' 'Date' 'FcCalendar' 12
+ ⍝ 'F1.Item4.GroupItem3.StockExchangeButton' ∆WC 'RibbonButton' 'Stocks' 'Fclibrary' 12
+
+ ⍝ 'F1.Item4.GroupItem4.DateButton' ∆WC 'RibbonButton' 'Date' 'FcCalendar' 12
+ ⍝ 'F1.Item4.GroupItem3.DateButton' ∆WC 'RibbonButton' 'Date' 'FcCalendar' 12
 
  'F1.Players'∆WC'Grid'('ColTitles'('Name' 'Gender' 'Score' 'Expert'))('Posn'(10 10))('Size'(100 480))('TitleWidth' 0)('ShowInput' 1)('Event' 'CellChanged' 'JSWCUpdate')
  'F1.Players.Name'∆WC'Edit'('Size'(23 100))
@@ -36,165 +58,3 @@
  'F1.Table'∆WC'Grid'(∘.×⍨⍳n)(240 10)(550 780)
 
  'F1.PasswordField'∆WC'Edit' 'Password'(210 340)(23 100)('Password' '*')('Event' 'Change' 'JSWCUpdate')
-
-⍝ Ribbon Definition follows
-⍝ [
-⍝  { ID: 'F1', Properties: { Type: 'Ribbon' } },
-⍝  { ID: 'F1.Item1', Properties: { Title: 'Locks', Type: 'RibbonGroup', Size: '1' } },
-⍝  { ID: 'F1.Item2', Properties: { Title: 'Macros', Type: 'RibbonGroup', Size: '1' } },
-⍝  { ID: 'F1.Item3', Properties: { Title: 'Dashboard', Type: 'RibbonGroup', Size: '1' } },
-⍝  { ID: 'F1.Item4', Properties: { Title: 'Application', Type: 'RibbonGroup', Size: '6' } },
-⍝  { ID: 'F1.Item5', Properties: { Title: 'Data Quality', Type: 'RibbonGroup', Size: '3' } },
-⍝
-⍝  // Button for the Lock Access
-⍝  {
-⍝    ID: 'F1.Item1.GroupItem1',
-⍝    Properties: { Type: 'RibbonGroupItem', Size: '12' },
-⍝  },
-⍝  {
-⍝    ID: 'F1.Item1.GroupItem1.LockButton',
-⍝    Properties: { Icon: 'FcLock', Caption: 'Access', Type: 'RibbonButton', Size: '12' },
-⍝  },
-⍝
-⍝  // Button for the Macros
-⍝
-⍝  {
-⍝    ID: 'F1.Item2.GroupItem1',
-⍝    Properties: { Type: 'RibbonGroupItem', Size: '12' },
-⍝  },
-⍝  {
-⍝    ID: 'F1.Item2.GroupItem1.MacrosButton',
-⍝    Properties: { Icon: 'FcPlanner', Caption: 'Macros', Type: 'RibbonButton', Size: '12' },
-⍝  },
-⍝
-⍝  // Button For Dashboard
-⍝
-⍝  {
-⍝    ID: 'F1.Item3.GroupItem1',
-⍝    Properties: { Type: 'RibbonGroupItem', Size: '12' },
-⍝  },
-⍝  {
-⍝    ID: 'F1.Item3.GroupItem1.DashboardButton',
-⍝    Properties: { Icon: 'FcHome', Caption: 'Dashboard', Type: 'RibbonButton', Size: '12' },
-⍝  },
-⍝
-⍝  // Components for the application
-⍝  {
-⍝    ID: 'F1.Item3.GroupItem1',
-⍝    Properties: { Type: 'RibbonGroupItem', Size: '1' },
-⍝  },
-⍝  {
-⍝    ID: 'F1.Item3.GroupItem2',
-⍝    Properties: { Type: 'RibbonGroupItem', Size: '2' },
-⍝  },
-⍝  {
-⍝    ID: 'F1.Item3.GroupItem3',
-⍝    Properties: { Type: 'RibbonGroupItem', Size: '1' },
-⍝  },
-⍝  {
-⍝    ID: 'F1.Item3.GroupItem4',
-⍝    Properties: { Type: 'RibbonGroupItem', Size: '3' },
-⍝  },
-⍝  {
-⍝    ID: 'F1.Item3.GroupItem5',
-⍝    Properties: { Type: 'RibbonGroupItem', Size: '6' },
-⍝  },
-⍝
-⍝  // Archive Button
-⍝  {
-⍝    ID: 'F1.Item3.GroupItem1.ArchiveButton',
-⍝    Properties: {
-⍝      Icon: 'FcKindle',
-⍝      Caption: 'Access',
-⍝      Type: 'RibbonButton',
-⍝      Size: '12',
-⍝      Border: 0,
-⍝    },
-⍝  },
-⍝
-⍝  // Date Button
-⍝
-⍝  {
-⍝    ID: 'F1.Item3.GroupItem2.DateButton',
-⍝    Properties: {
-⍝      Icon: 'FcCalendar',
-⍝      Caption: 'Date',
-⍝      Type: 'RibbonButton',
-⍝      Size: '12',
-⍝      Border: 0,
-⍝    },
-⍝  },
-⍝
-⍝  // Stock Exchange Button
-⍝
-⍝  {
-⍝    ID: 'F1.Item3.GroupItem3.StockExchangeButton',
-⍝    Properties: {
-⍝      Icon: 'FcLibrary',
-⍝      Caption: 'Stock',
-⍝      Type: 'RibbonButton',
-⍝      Size: '12',
-⍝      Border: 0,
-⍝    },
-⍝  },
-⍝
-⍝  {
-⍝    ID: 'F1.Item3.GroupItem4.ButtonGroup1',
-⍝    Properties: {
-⍝      btnData: [
-⍝        {
-⍝          Icons: 'IconName',
-⍝          Caption: 'SomeText',
-⍝        },
-⍝        {
-⍝          Icons: 'IconName',
-⍝          Caption: 'SomeText',
-⍝        },
-⍝      ],
-⍝      Border: 0,
-⍝      Type: 'RibbonButtonGroup',
-⍝    },
-⍝  },
-⍝  {
-⍝    ID: 'F1.Item3.GroupItem5.ButtonGroup2',
-⍝    Properties: {
-⍝      btnData: [
-⍝        {
-⍝          Icons: 'IconName',
-⍝          Caption: 'SomeText',
-⍝        },
-⍝        {
-⍝          Icons: 'IconName',
-⍝          Caption: 'SomeText',
-⍝        },
-⍝      ],
-⍝      Border: 0,
-⍝      Type: 'RibbonButtonGroup',
-⍝    },
-⍝  },
-⍝
-⍝  {
-⍝    ID: 'F1.Item5.GroupItem1',
-⍝    Properties: {
-⍝      Type: 'RibbonGroupItem',
-⍝    },
-⍝  },
-⍝
-⍝  {
-⍝    ID: 'F1.Item5.GroupItem1.ButtonGroup1',
-⍝    Propeties: {
-⍝      btnData: [
-⍝        {
-⍝          Icons: 'IconName',
-⍝          Caption: 'SomeText',
-⍝        },
-⍝        {
-⍝          Icons: 'IconName',
-⍝          Caption: 'SomeText',
-⍝        },
-⍝      ],
-⍝      Border: 0,
-⍝      Type: 'RibbonButtonGroup',
-⍝    },
-⍝  },
-⍝]
