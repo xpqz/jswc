@@ -27,22 +27,21 @@
  'F1.Ribbon.Item3.GroupItem1.DashboardButton' ∆WC 'RibbonButton' 'Macros' 'FcHome' 12
 
  'F1.Ribbon.Item4.GroupItem1' ∆WC 'RibbonGroupItem' 1
- 'F1.Ribbon.Item4.GroupItem2' ∆WC 'RibbonGroupItem' 2
+ 'F1.Ribbon.Item4.GroupItem2' ∆WC 'RibbonGroupItem' 1
  'F1.Ribbon.Item4.GroupItem3' ∆WC 'RibbonGroupItem' 1
  'F1.Ribbon.Item4.GroupItem4' ∆WC 'RibbonGroupItem' 3
  'F1.Ribbon.Item4.GroupItem5' ∆WC 'RibbonGroupItem' 6
 
- 'F1.Ribbon.Item4.GroupItem1.ArchiveButton' ∆WC 'RibbonButton' 'Access' 'FcKindle' 12
+ 'F1.Ribbon.Item4.GroupItem1.ArchiveButton' ∆WC 'RibbonButton' 'Archive' 'FcKindle' 12
  'F1.Ribbon.Item4.GroupItem2.DateButton' ∆WC 'RibbonButton' 'Date' 'FcCalendar' 12
- 'F1.Ribbon.Item4.GroupItem3.StockExchangeButton' ∆WC 'RibbonButton' 'Stocks' 'Fclibrary' 12
+ 'F1.Ribbon.Item4.GroupItem3.StockExchangeButton' ∆WC 'RibbonButton' 'Stock Exchange' 'Fclibrary' 12
  'F1.Ribbon.Item4.GroupItem4.ButtonGroup1' ∆WC 'RibbonButtonGroup' ('Share/option' 'Cooperative Dynamics')('fcShare' 'fcTreeStructure')
  captions←'Black and Scholes' 'Checking prices' 'VAR Analysis' 'Calculate Option Prices'
  icons←'FcPodiumWithSpeaker' 'FcMoneyTransfer' 'FcSearch' 'FcTreeStructure'
  'F1.Ribbon.Item4.GroupItem5.ButtonGroup1' ∆WC 'RibbonButtonGroup' captions icons
 
  'F1.Ribbon.Item5.GroupItem1' ∆WC 'RibbonGroupItem' 1
- 'F1.Ribbon.Item5.GroupItem5.ButtonGroup1' ∆WC 'RibbonButtonGroup' ('Share/option' 'Cooperative Dynamics')('fcShare' 'fcTreeStructure')
- 'F1.Ribbon.Item5.GroupItem5.ButtonGroup1' ∆WC 'RibbonButtonGroup' ('Local Data Quality' 'Overall Data Quality')('fcHighPriority' 'fcHighPriority')
+ 'F1.Ribbon.Item5.GroupItem1.ButtonGroup1' ∆WC 'RibbonButtonGroup' ('Local Data Quality' 'Overall Data Quality')('fcHighPriority' 'fcHighPriority')
 
  'F1.Players'∆WC'Grid'('ColTitles'('Name' 'Gender' 'Score' 'Expert'))('Posn'(210 10))('Size'(100 480))('TitleWidth' 0)('ShowInput' 1)('Event' 'CellChanged' 'JSWCUpdate')
  'F1.Players.Name'∆WC'Edit'('Size'(23 100))
