@@ -18,13 +18,13 @@
  'F1.Ribbon.Item5' ∆WC 'RibbonGroup' 'Data Quality' ('Size' 3)
 
  'F1.Ribbon.Item1.GroupItem1' ∆WC 'RibbonGroupItem' 12
- 'F1.Item1.GroupItem1.LockButton' ∆WC 'RibbonButton' 'Access' 'FcLock' 12
+ 'F1.Ribbon.Item1.GroupItem1.LockButton' ∆WC 'RibbonButton' 'Access' 'FcLock' 12
 
  'F1.Ribbon.Item2.GroupItem1' ∆WC 'RibbonGroupItem' 12
- 'F1.Item2.GroupItem1.MacrosButton' ∆WC 'RibbonButton' 'Macros' 'FcPlanner' 12
+ 'F1.Ribbon.Item2.GroupItem1.MacrosButton' ∆WC 'RibbonButton' 'Macros' 'FcPlanner' 12
 
  'F1.Ribbon.Item3.GroupItem1' ∆WC 'RibbonGroupItem' 12
- 'F1.Item3.GroupItem1.DashboardButton' ∆WC 'RibbonButton' 'Macros' 'FcHome' 12
+ 'F1.Ribbon.Item3.GroupItem1.DashboardButton' ∆WC 'RibbonButton' 'Macros' 'FcHome' 12
 
  'F1.Ribbon.Item4.GroupItem1' ∆WC 'RibbonGroupItem' 1
  'F1.Ribbon.Item4.GroupItem2' ∆WC 'RibbonGroupItem' 2
