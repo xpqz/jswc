@@ -3,7 +3,7 @@
  WG←⎕NS''
  wg←WG.WG←⎕NS''
  WGID+←1
- wg.(WGID ID Properties)←(⍕WGID) Name(,⊆Props)
+ wg.(WGID ID Properties)←(⍕WGID)Name(,⊆Props)
  msg←⎕JSON WG
 
  :If CONNECTED
@@ -16,16 +16,18 @@
      R←Name caller.⎕WG wg.Properties
  :Else
      R←caller⍎Name,'.(',(⍕Props),')'
+     :If 1=≡Props
+         R←,⊂R
+     :EndIf
  :EndIf
 
- :If 1=≡Props
-     R←,⊂R
- :EndIf
 
- ⍝⍎'wg.Properties.(',(⍕Props),')←',(1≠≢R)↓'⊃R'
- ⍝msg←⎕JSON⍠'HighRank' 'Split'⊢WG
- ⍝⎕←'Faking client transmission: ',msg
- ⍝msg ⎕TPUT WG_TOKEN
- ⍝ /// "fake" the response
+ :If USEWIN32∧~CONNECTED
+     wg.Properties←⎕NS''
+     ⍎'wg.Properties.(',(⍕Props),')←',(1≠≢R)↓'⊃R'
+     msg←⎕JSON⍠'HighRank' 'Split'⊢WG
+     ⎕←'Faking client transmission: ',msg
+     (⎕JSON msg)⎕TPUT WG_TOKEN
+ :EndIf
 
  R←WaitForWG Props

@@ -34,7 +34,7 @@
 
  'F1.Ribbon.Item4.GroupItem1.ArchiveButton' ∆WC 'RibbonButton' 'Archive' 'FcKindle' 12
  'F1.Ribbon.Item4.GroupItem2.DateButton' ∆WC 'RibbonButton' 'Date' 'FcCalendar' 12
- 'F1.Ribbon.Item4.GroupItem3.StockExchangeButton' ∆WC 'RibbonButton' 'Stock Exchange' 'Fclibrary' 12
+ 'F1.Ribbon.Item4.GroupItem3.StockExchangeButton' ∆WC 'RibbonButton' 'Stock Exchange' 'FcLibrary' 12
  'F1.Ribbon.Item4.GroupItem4.ButtonGroup1' ∆WC 'RibbonButtonGroup' ('Share/option' 'Cooperative Dynamics')('FcShare' 'FcTreeStructure')
  captions←'Black and Scholes' 'Checking prices' 'VAR Analysis' 'Calculate Option Prices'
  icons←'FcPodiumWithSpeaker' 'FcMoneyTransfer' 'FcSearch' 'FcTreeStructure'
