@@ -42,9 +42,6 @@
              :EndFor
          :EndIf
      :EndIf
-     :If type≡'ImageIndex'
-         ∘∘∘∘
-     :EndIf
  :Else
       R←Name caller.⎕NS''
       ⍎(⍕caller),'.',Name,expr ⍝ Set properties in the "server-side DOM"
