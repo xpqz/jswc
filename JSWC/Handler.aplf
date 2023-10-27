@@ -1,0 +1,62 @@
+r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event
+ ⎕TRAP←0 'S'
+ :If (⊂10↑payload)∊'Initialise' 'Initialize'
+     CONN←con
+     CONNECTED←1
+
+     fn←(10↓payload)~'()'
+     fn,←(0=≢fn)/'JSWCDemo'
+     :If 3=⎕NC '##.',fn
+         (##⍎fn) CONNECTED
+     :Else
+         ⎕←'Function not found: ',fn
+     :EndIf
+ :Else
+     :Trap 999
+         ⎕←'Received: ',payload
+         ns←0 ⎕JSON payload
+         :Select ,ns.⎕NL 9
+         :Case 'Event'
+             (Event ID Info)←ns.Event.(EventName ID({0::⍵ ⋄ Info}⍬))
+             event←#⍎ID,'.Event'
+             :If 2=|≡event ⍝ /// Presumably this should be handled on ∆WS
+                 event←,⊂event
+             :EndIf
+             (events fns)←↓⍉↑event
+             :If ~(⊂Event)∊events
+                 ⎕←'No callback defined for event ',Event,' on object ',ID
+                 →0
+             :EndIf
+
+             :Select Event
+             :Case 'Select'
+                 :If (#⍎ID,'.Type')≡'Combo'
+                     ⍎'#.',ID,'.SelItems←Info=⍳',⍕≢#⍎ID,'.SelItems'
+                 :EndIf
+                 Info←⍬
+             :Case 'Change'
+                 ⍎'#.',ID,'.Value←Info'
+                 Info←⍬
+             :Case 'Scroll'
+                 :If (#⍎ID,'.Type')≡'Scroll'
+                     ⍎'#.',ID,'.Thumb←Info[2]'
+                 :EndIf
+             :Case 'CellChanged'
+                 Values←#⍎ID,'.Values'
+                 Values[ns.Event.Row;ns.Event.Col]←⊂ns.Event.Value
+                 ⍎'#.',ID,'.Values←Values'
+             :Else
+                 ⎕←'Unsupported event: ',Event ⋄ →0
+             :EndSelect
+
+             (##⍎(events⍳⊂Event)⊃fns)&(ID Event),Info
+         :Case 'WG'
+             ns ⎕TPUT WG_TOKEN
+         :Else
+             ⎕←'Invalid message received: ',payload
+         :EndSelect
+     :Else
+         ⎕←'Message processing failed:'
+         ⎕←↑⎕DMX.DM
+     :EndTrap
+ :EndIf

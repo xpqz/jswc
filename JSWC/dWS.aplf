@@ -1,0 +1,30 @@
+ {R}←Name ∆WS Props;WS;msg;ws;i;z;ref;expr;caller
+ caller←⊃⎕RSI
+ :If 2=≢Props
+ :AndIf ∨/~(⍴¨Props)∊⊂,2
+     Props←,⊂Props
+ :EndIf
+
+ WS←⎕NS''
+ ws←WS.WS←⎕NS''
+ ws.(ID Properties)←Name(⎕NS'')
+ ⍎'ws.Properties',expr←'.(',(⍕1⊃¨Props),')←',(1≠≢Props)↓'⊃2⊃¨Props'
+
+ :If USEWIN32
+     R←Name caller.⎕WS Props
+ :Else
+     ⍎(⍕caller),'.',Name,expr ⍝ Update "server-side DOM"
+ :EndIf
+
+ :If RECORD ⍝ Collecting lists
+     ref←⍎'Classes.',Name ⎕WG 'Type'
+     ref.Supported∪←1⊃¨Props
+ :EndIf
+
+ msg←⎕JSON⍠'HighRank' 'Split'⊢WS
+
+ :If CONNECTED
+     z←CONN #.w.Send ⎕←msg
+ :Else
+     ⎕←msg
+ :EndIf
