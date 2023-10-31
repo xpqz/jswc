@@ -7,7 +7,7 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event
      fn←(10↓payload)~'()'
      fn,←(0=≢fn)/'JSWCDemo'
      :If 3=⎕NC '##.',fn
-         (##⍎fn) CONNECTED
+         (##⍎fn)&CONNECTED
      :Else
          ⎕←'Function not found: ',fn
      :EndIf
