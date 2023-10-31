@@ -1,4 +1,4 @@
- JSWCDemo connected;inputs;scores;z;⎕TRAP
+ JSWCDemo connected;inputs;scores
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
@@ -32,9 +32,3 @@
  'F1.Table'∆WC'Grid'(∘.×⍨⍳n)(240 10)(550 780)
 
  'F1.PasswordField'∆WC'Edit' 'Password'(210 340)(23 100)('Password' '*')('Event' 'Change' 'JSWCUpdate')
-
- ⍝ Test ∆WG use of "Dynamic" flags
-  z←'F1.Function' ∆WG 'Event' 'SelItems'
-  :If z≢(,⊂'Select' 'JSWCUpdate') (0 1 0 0)
-      ⎕TRAP←0 'S' ⋄ ∘∘∘
-  :EndIf
