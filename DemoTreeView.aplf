@@ -7,7 +7,7 @@
  allf←'+-×÷'
 
  JSWC.IMAGEFOLDER←⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
- imagefiles←'/images/'∘,¨'Folder-Closed.png' 'Folder-Open.png' 'Price Ticket.png'
+ imagefiles←'/images/'∘,¨'Folder-Closed.png' 'Folder-Open.png' 'Price-Ticket.png'
  'IL'∆WC'ImageList'('Size'(16 16))('Masked' 2)('Files' imagefiles)
 
  'F1'∆WC'Form' 'Function Table'(50 50)(800 800)('Coord' 'Pixel')
