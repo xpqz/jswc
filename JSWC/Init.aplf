@@ -10,3 +10,4 @@ z←↑⎕TALLOC 0
 
 WG_TOKEN←TOKENRANGE+0.1
 WGID←0
+WG_TIMEOUT←5 ⍝ Seconds to wait for response

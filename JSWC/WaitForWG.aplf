@@ -1,14 +1,25 @@
-R←WaitForWG Props;j;⎕TRAP;p
+ R←msg WaitForWG(Props WGID);j;⎕TRAP;p;seqok
 
-j←⎕TGET WG_TOKEN
+AGAIN:
+ j←WG_TIMEOUT ⎕TGET WG_TOKEN
+ :If 0=≢j
+     ⎕←'Client did not respond within ',(⍕WG_TIMEOUT),' seconds.'
+     ⎕←'Request was: ',msg
+     ⎕TRAP←0 'S' ⋄ ∘∘∘
+ :EndIf
 
-:If 9=⎕NC 'j.WG'
-:AndIf ∧/(p←,⊆Props)∊j.WG.Properties.⎕NL -2
-   R←j.WG.Properties⍎((1=≢p)/',⊂'),⍕p
-   R←j.WG.ID MixTables p R
-   :If 1=≡Props
-       R←⊃R ⍝ A single simple property
-   :EndIf
-:Else
-   ∘∘∘ ⍝ Didn't get the expected properties back
-:EndIf
+ :If 9=⎕NC'j.WG'
+ :AndIf seqok←j.WG.{0=⎕NC'WGID':1 ⋄ WGID≡⍵}WGID
+ :AndIf ∧/(p←,⊆Props)∊j.WG.Properties.⎕NL-2
+     R←j.WG.Properties⍎((1=≢p)/',⊂'),⍕p
+     R←j.WG.ID MixTables p R
+     :If 1=≡Props
+         R←⊃R ⍝ A single simple property
+     :EndIf
+ :Else
+     :If ~seqok
+         ⎕←'Ignoring WGID ',j.WG.WGID,' while waiting for ',WGID
+         →AGAIN
+     :EndIf
+     ∘∘∘ ⍝ Didn't get the expected properties back
+ :EndIf

@@ -18,6 +18,10 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event
          :Select ,ns.⎕NL 9
          :Case 'Event'
              (Event ID Info)←ns.Event.(EventName ID({0::⍵ ⋄ Info}⍬))
+             :If (1=≢Event)∧2=≡Event
+                 ⎕←'(Event is incorrectly sent as a list)'
+                 Event←⊃Event
+             :EndIf
              event←#⍎ID,'.Event'
              :If 2=|≡event ⍝ /// Presumably this should be handled on ∆WS
                  event←,⊂event
@@ -28,7 +32,7 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event
                  →0
              :EndIf
 
-             :Select Event
+            :Select Event
              :Case 'Select'
                  :If (#⍎ID,'.Type')≡'Combo'
                      ⍎'#.',ID,'.SelItems←Info=⍳',⍕≢#⍎ID,'.SelItems'
@@ -45,6 +49,8 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event
                  Values←#⍎ID,'.Values'
                  Values[ns.Event.Row;ns.Event.Col]←⊂ns.Event.Value
                  ⍎'#.',ID,'.Values←Values'
+             :CaseList 'Expanding' 'Retracting'
+                 ⍝ Nothing to do
              :Else
                  ⎕←'Unsupported event: ',Event ⋄ →0
              :EndSelect

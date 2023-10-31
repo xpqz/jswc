@@ -1,33 +1,45 @@
- {R}←Name ∆WG Props;msg;WG;wg;z;⎕TRAP;caller
+ {R}←Name ∆WG Props;msg;WG;wg;z;⎕TRAP;caller;p;class;remote;dynamic;r;d
  caller←⊃⎕RSI
  WG←⎕NS''
  wg←WG.WG←⎕NS''
  WGID+←1
- wg.(WGID ID Properties)←(⍕WGID)Name(,⊆Props)
- msg←⎕JSON WG
+ p←,⊆Props
+ class←GetClass caller Name
 
- :If CONNECTED
-     z←CONN ##.w.Send ⎕←msg
- :Else
-     ⎕←msg
+ :If remote←∨/,dynamic←p∊class.Dynamic ⍝ Any reason to ask remote client for values?
+     wg.(WGID ID Properties)←(⍕WGID)Name (d←dynamic/p)
+     msg←⎕JSON WG
+     :If CONNECTED
+         z←CONN ##.w.Send ⎕←msg
+     :Else
+         ⎕←msg
+     :EndIf
  :EndIf
 
  :If USEWIN32
-     R←Name caller.⎕WG wg.Properties
+     R←Name caller.⎕WG p
  :Else
+     ⎕TRAP←0 'S' ⋄ ∘∘∘
      R←caller⍎Name,'.(',(⍕Props),')'
      :If 1=≡Props
          R←,⊂R
      :EndIf
  :EndIf
 
-
- :If USEWIN32∧~CONNECTED
+ :If remote∧USEWIN32∧~CONNECTED
      wg.Properties←⎕NS''
-     ⍎'wg.Properties.(',(⍕Props),')←',(1≠≢R)↓'⊃R'
+     r←dynamic/R
+     ⍎'wg.Properties.(',(⍕d),')←',(1≠≢r)↓'⊃r'
      msg←⎕JSON⍠'HighRank' 'Split'⊢WG
      ⎕←'Faking client transmission: ',msg
      (⎕JSON msg)⎕TPUT WG_TOKEN
  :EndIf
 
- R←WaitForWG Props
+ :If remote
+     r←msg WaitForWG d (⍕WGID)
+     R[p⍳d]←r
+ :EndIf
+
+ :If 1=≡Props
+    R←⊃R
+ :EndIf
