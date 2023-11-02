@@ -1,4 +1,4 @@
- R←msg WaitForWG(Props WGID);j;⎕TRAP;p;seqok
+ R←msg WaitForWG(Props WGID);j;⎕TRAP;p;seqok;nl
 
 AGAIN:
  j←WG_TIMEOUT ⎕TGET WG_TOKEN
@@ -8,9 +8,10 @@ AGAIN:
      ⎕TRAP←0 'S' ⋄ ∘∘∘
  :EndIf
 
+ nl←⍬
  :If 9=⎕NC'j.WG'
  :AndIf seqok←j.WG.{0=⎕NC'WGID':1 ⋄ WGID≡⍵}WGID
- :AndIf ∧/(p←,⊆Props)∊j.WG.Properties.⎕NL-2
+ :AndIf ∧/(p←,⊆Props)∊nl←j.WG.Properties.⎕NL-2
      R←j.WG.Properties⍎((1=≢p)/',⊂'),⍕p
      R←j.WG.ID MixTables p R
      :If 1=≡Props
@@ -21,5 +22,6 @@ AGAIN:
          ⎕←'Ignoring WGID ',j.WG.WGID,' while waiting for ',WGID
          →AGAIN
      :EndIf
-     ∘∘∘ ⍝ Didn't get the expected properties back
+     ⎕←'Did not receive value(s) for:',⍕Props~nl
+     R←(⊂⍬)⍨¨Props
  :EndIf

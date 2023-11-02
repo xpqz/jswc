@@ -39,16 +39,19 @@
 
  ⍝ Test ∆WG
   z←'F1.Function' ∆WG 'Event' 'SelItems'
-  :If z≢(,⊂'Select' 'JSWCUpdate') (0 1 0 0)
-      ⎕TRAP←0 'S' ⋄ ∘∘∘
+  :If z≢(,⊂'Select' 'JSWCUpdate') (0 0 1 0)
+      ⎕←'Unexpected return value for F1.Function Event & SelItems'
+      ⎕←z
   :EndIf
 
   z←'F1.TableSize' ∆WG 'Text' 'Value'
-  :If z≢(,⊂'Select' 'JSWCUpdate') (0 1 0 0)
-      ⎕TRAP←0 'S' ⋄ ∘∘∘
+  :If z≢'10' 10
+      ⎕←'Unexpected return value for F1.TableSize Text & Value'
+      ⎕←z
   :EndIf
 
   z←'F1.Months' ∆WG 'ImageIndex'
-  :If z≢(,⊂'Select' 'JSWCUpdate') (0 1 0 0)
-      ⎕TRAP←0 'S' ⋄ ∘∘∘
+  :If z≢8⍴1 3 3 3
+      ⎕←'Unexpected return value for F1.Months ImageIndex'
+      ⎕←z
   :EndIf

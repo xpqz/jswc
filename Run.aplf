@@ -2,6 +2,7 @@
  InitJSWC ⍝ Sets CONNECTED RECORD USEWIN32
 
  w←wss.New ''
+ w.ShowHTMLRenderer←0
  w.Handler←'JSWC.Handler'
  w.Port←22322
  ⎕←(rc msg)←w.Start
