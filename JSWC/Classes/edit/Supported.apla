@@ -1,6 +1,7 @@
 (
  'Type'
  'Text'
+ 'Value'
  'Posn'
  'Size'
  'FieldType'
