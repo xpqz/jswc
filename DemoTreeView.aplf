@@ -17,6 +17,11 @@
  'F1.MB.Col.Red'∆WC'MenuItem' '&Red'('Event' 'Select' 'JSWCUpdate')
  'F1.MB.Col.Blue'∆WC'MenuItem' '&Blue'('Event' 'Select' 'JSWCUpdate')
  'F1.MB.Col.Green'∆WC'MenuItem' '&Green'('Event' 'Select' 'JSWCUpdate')
+ 'F1.MB.Focus'∆WC'Menu' 'F&ocus'
+ 'F1.MB.Focus.TableSize'∆WC'MenuItem' '&Size'('Event' 'Select' 'JSWCUpdate')
+ 'F1.MB.Focus.Function'∆WC'MenuItem' '&Function'('Event' 'Select' 'JSWCUpdate')
+ 'F1.MB.Focus.Calc'∆WC'MenuItem' '&Calc Button'('Event' 'Select' 'JSWCUpdate')
+ 'F1.MB.Focus.Players'∆WC'MenuItem' '&Player Table'('Event' 'Select' 'JSWCUpdate')
 
  'F1.Players'∆WC'Grid'('ColTitles'('Name' 'Gender' 'Score' 'Expert'))('Posn'(10 10))('Size'(100 480))('TitleWidth' 0)('ShowInput' 1)('Event' 'CellChanged' 'JSWCUpdate')
  'F1.Players.Name'∆WC'Edit'('Size'(23 100))

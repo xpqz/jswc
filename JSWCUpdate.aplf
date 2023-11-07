@@ -1,4 +1,4 @@
-JSWCUpdate args;e;scores;cols;fcol;pass;ii
+JSWCUpdate args;e;scores;cols;fcol;pass;ii;ids;target
 Event←⎕NS ''
 e←Event.Event←⎕NS ''
 e.(ID EventName Info)←(2↑args),⊂2↓args
@@ -25,6 +25,10 @@ e.(ID EventName Info)←(2↑args),⊂2↓args
 :CaseList cols←'F1.MB.Col.'∘,¨'Red' 'Blue' 'Green'
      fcol←(cols⍳args[1])⊃(255 0 0)(0 0 255)(0 255 0)
      'F1.Average' ∆WS 'FCol' fcol
+     →0
+:CaseList cols←'F1.MB.Focus.'∘,¨'TableSize' 'Function' 'Calc' 'Players'
+     target←'F1',{(-(⌽⍵)⍳'.')↑⍵}1⊃args
+     ∆NQ target 'GotFocus'
      →0
 :Else
     ⎕←'Unexpected message: ',args
