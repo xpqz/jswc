@@ -26,7 +26,7 @@ e.(ID EventName Info)←(2↑args),⊂2↓args
      fcol←(cols⍳args[1])⊃(255 0 0)(0 0 255)(0 255 0)
      'F1.Average' ∆WS 'FCol' fcol
      →0
-:CaseList cols←'F1.MB.Focus.'∘,¨'TableSize' 'Function' 'Calc' 'Players'
+:CaseList cols←'F1.MB.Focus.'∘,¨'TableSize' 'Function' 'CalcBtn' 'Players'
      target←'F1',{(-(⌽⍵)⍳'.')↑⍵}1⊃args
      ∆NQ target 'GotFocus'
      →0
