@@ -22,6 +22,6 @@ AGAIN:
          ⎕←'Ignoring WGID ',j.WG.WGID,' while waiting for ',WGID
          →AGAIN
      :EndIf
-     ⎕←'Did not receive value(s) for:',⍕Props~nl
+     ⎕←'*** ∆WG return did not contain values for:',⍕Props~nl
      R←(⊂⍬)⍨¨Props
  :EndIf

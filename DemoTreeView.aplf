@@ -1,4 +1,4 @@
- DemoTreeView connected;inputs;scores;folder;imagefiles;periods;z;⎕TRAP
+ DemoTreeView connected;inputs;scores;folder;imagefiles;periods;z;⎕TRAP;m;f;players
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
@@ -30,7 +30,8 @@
  'F1.Players.Expert'∆WC'Button'('Style' 'Check')('Size'(23 25))
  inputs←'F1.Players.'∘,¨'Name' 'Gender' 'Score' 'Expert'
  scores←12 13
- 'F1.Players'∆WS('Values'('Amir' 'Fatima','Male' 'Female',scores,⍪0 1))('CellTypes'(2 4⍴1 2 3 4))('Input'inputs)
+ players←'Amir' 'Fatima','Male' 'Female',scores,⍪0 1
+ 'F1.Players'∆WS('Values' players)('CellTypes'(2 4⍴1 2 3 4))('Input'inputs)
  'F1.Average'∆WC'Label'('Average Score:',1⍕+/scores÷≢scores)(115 180)(23 100)
  periods←'Q1' 'Jan' 'Feb' 'Mar' 'Q2' 'Apr' 'May' 'Jun'
  'F1.Months'∆WC'TreeView' periods (10 500)(150 200)('Depth'(8⍴0 1 1 1))('ImageListObj' '#.IL')('ImageIndex' (8⍴1 3 3 3))('Event' ('Expanding' 'Retracting') 'JSWCUpdate')
@@ -44,20 +45,26 @@
  ∆NQ 'F1.TableSize' 'GotFocus'
 
  ⍝ Test ∆WG
-  z←'F1.Function' ∆WG 'Event' 'SelItems'
-  :If z≢(,⊂'Select' 'JSWCUpdate') (0 0 1 0)
-      ⎕←'Unexpected return value for F1.Function Event & SelItems'
-      ⎕←z
-  :EndIf
-
-  z←'F1.TableSize' ∆WG 'Text' 'Value'
-  :If z≢'10' 10
-      ⎕←'Unexpected return value for F1.TableSize Text & Value'
-      ⎕←z
-  :EndIf
-
-  z←'F1.Months' ∆WG 'ImageIndex'
+  z←'F1.Months' ∆WG 'ImageIndex' ⍝ Static only
   :If z≢8⍴1 3 3 3
-      ⎕←'Unexpected return value for F1.Months ImageIndex'
+      ⎕←'*** Unexpected return value for F1.Months ImageIndex'
+      ⎕←z
+  :EndIf
+
+  z←'F1.Function' ∆WG f←'Event' 'SelItems' 'Text' ⍝ Mix of Dynamic and Static
+  :If ∨/m←z≢¨(,⊂'Select' 'JSWCUpdate') (0 0 1 0)(,'×')
+      ⎕←'*** Unexpected return value for F1.Function: ',⍕m/f
+      ⎕←z
+  :EndIf
+
+  z←'F1.TableSize' ∆WG f←'Text' 'Value' ⍝ Both Dynamic
+  :If ∨/m←z≢¨'10' 10
+      ⎕←'*** Unexpected return value for F1.TableSize: ',⍕m/f
+      ⎕←z
+  :EndIf
+
+  z←'F1.Players' ∆WG 'Values' ⍝ Dynamic
+  :If z≢players
+      ⎕←'*** Unexpected return value for F1.Players.Values'
       ⎕←z
   :EndIf

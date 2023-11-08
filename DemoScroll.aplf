@@ -1,4 +1,4 @@
- DemoScroll connected;inputs;scores;TBL;GRID
+ DemoScroll connected;inputs;scores;TBL;GRID;z
  JSWC.CONNECTED←connected
  ⎕PW←1000
  n←10
@@ -7,3 +7,9 @@
  'F1.UPDOWN'∆WC'Scroll'('Align' 'Right')('Event' 'Scroll' 'JSWCUpdateScroll')('Range' 1000)('Thumb' 1)
  'F1.LEFTRIGHT'∆WC'Scroll'('Align' 'Bottom')('Event' 'Scroll' 'JSWCUpdateScroll')('Range' 1000)('Thumb' 1)
  'F1.VGRID'∆WC'Grid' ('Values' ((⍕¨⍳n)∘.,'/',¨⍕¨⍳n))(150 100) (270 610)('CellWidths' 50)('RowTitles' ('Row '∘,¨⍕¨⍳n))('ColTitles' (↓'ZI4' ⎕FMT ⍪⍳n))
+
+ z←'F1.UPDOWN' ∆WG 'Thumb' ⍝ Test WG
+  :If z≢1
+      ⎕←'*** Unexpected return value for F1.UPDOWN.Scroll'
+      ⎕←z
+  :EndIf
