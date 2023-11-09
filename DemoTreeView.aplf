@@ -1,4 +1,4 @@
- DemoTreeView connected;inputs;scores;folder;imagefiles;periods;z;⎕TRAP;m;f;players
+ DemoTreeView connected;inputs;scores;folder;imagefiles;periods;z;⎕TRAP;m;f;players;val
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
@@ -67,4 +67,17 @@
   :If z≢players
       ⎕←'*** Unexpected return value for F1.Players.Values'
       ⎕←z
+  :EndIf
+
+  ⍝ Test Edit
+  'F1.TableSize' ∆WS 'Text' '11'
+  val←'F1.TableSize' ∆WG 'Value'
+  :If val≢11
+     ⎕←'*** After setting Text to "11", TableSize.Value is ',⍕val
+  :EndIf
+
+  'F1.TableSize' ∆WS 'Value' 9
+  val←'F1.TableSize' ∆WG 'Text'
+  :If val≢,'9'
+     ⎕←'*** After setting Value to 9, TableSize.Text is ',⍕val
   :EndIf
