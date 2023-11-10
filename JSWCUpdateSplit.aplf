@@ -1,4 +1,4 @@
-JSWCUpdateSplit args;e;scores;cols;fcol;pass;X;Y;H;W;label;f1;left;split;txt
+JSWCUpdateSplit args;e;scores;cols;fcol;pass;X;Y;H;W;label;f1;txt;rs;rp;sp;ss;ls;t
 Event←⎕NS ''
 e←Event.Event←⎕NS ''
 e.(ID EventName Info)←(2↑args),⊂2↓args
@@ -13,9 +13,19 @@ label←'F1.RIGHT.TOP.Average'
      (X Y H W)←4↑e.Info
      txt←,⍕('XYHW',¨':'),¨⍕¨X Y H W
      :If 'F1.SPLIT'≡1⊃args ⍝ Validate move of vertical splitter
-        (f1 left split)←'F1' 'F1.LEFT' 'F1.SPLIT'∆WG¨'Size' 'Size' 'Posn'
-        :If left[2]≠split[2]
-            txt,←' *** splitter Y (',(⍕split[2]),') ≠ form width (',(⍕left[2]),')'
+        (f1 ls)←'F1' 'F1.LEFT' ∆WG¨ 'Size' 'Size'
+        (rs rp)←'F1.RIGHT' ∆WG 'Size' 'Posn'
+        (ss sp)←'F1.SPLIT' ∆WG 'Size' 'Posn'
+        :If ls[2]≠sp[2]
+            txt,←' *** left width (',(⍕ls[2]),') ≠ split pos (',(⍕sp[2]),')'
+        :EndIf
+        :If rp≢⊂⍬
+        :AndIf rp[2]≠sp[2]+ss[2]
+            txt,←' *** right pos (',(⍕rp[2]),') ≠ split pos+width (',(⍕sp[2]+ss[2]),')'
+        :EndIf
+        :If rs≢⊂⍬
+        :AndIf rs[2]≠t←f1[2]-sp[2]+ss[2]
+            txt,←' *** right width (',(⍕rp[2]),') ≠ form-split pos (',(⍕t),')'
         :EndIf
      :EndIf
      label ∆WS 'Caption' txt
