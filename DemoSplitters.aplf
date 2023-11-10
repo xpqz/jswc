@@ -7,8 +7,8 @@
  allf←'+-×÷'
  colors←'Red' 'Blue' 'Green'
 
- 'F1'∆WC'Form' 'Splitters and Groups'(50 50)(800 800)('Coord' 'Pixel')('VScroll' ¯1)('HScroll' ¯1)('BCol' (255 0 0))
-
+ 'F1'∆WC'Form' 'Splitters and Groups'(50 50)(800 800)('Coord' 'Pixel')('BCol' (255 0 0)) ⍝ ('VScroll' ¯1)('HScroll' ¯1)
+ 
  'F1.LEFT'∆WC'SubForm'
  'F1.LEFT.COLORS' ∆WC 'List' colors (10 10) (100 200)('Border' 1)('SelItems' (0 0 1))
  'F1.RIGHT'∆WC'SubForm'
