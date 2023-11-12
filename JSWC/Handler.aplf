@@ -5,7 +5,7 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event
      CONNECTED←1
 
      fn←(10↓payload)~'()'
-     fn,←(0=≢fn)/'JSWCDemo'
+     fn,←(0=≢fn)/'DemoDefault'
      :If 3=⎕NC '##.',fn
          (##⍎fn)&CONNECTED
      :Else

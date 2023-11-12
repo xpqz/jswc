@@ -1,4 +1,4 @@
- JSWCDemo connected;inputs;scores
+ DemoDefault connected;inputs;scores
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
