@@ -32,7 +32,7 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event
                  →0
              :EndIf
 
-⍝            :Select Event
+            :Select Event
 ⍝             :Case 'Select'
 ⍝                 :If (#⍎ID,'.Type')≡'Combo'
 ⍝                     ⍎'#.',ID,'.SelItems←Info=⍳',⍕≢#⍎ID,'.SelItems'
@@ -41,10 +41,10 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event
 ⍝             :Case 'Change'
 ⍝                 ⍎'#.',ID,'.Value←Info'
 ⍝                 Info←⍬
-⍝             :Case 'Scroll'
-⍝                 :If (#⍎ID,'.Type')≡'Scroll'
-⍝                     ⍎'#.',ID,'.Thumb←Info[2]'
-⍝                 :EndIf
+             :Case 'Scroll'
+                 :If (#⍎ID,'.Type')≡'Scroll'
+                     ⍎'#.',ID,'.Thumb←Info[2]'
+                 :EndIf
 ⍝             :Case 'CellChanged'
 ⍝                 Values←#⍎ID,'.Values'
 ⍝                 Values[ns.Event.Row;ns.Event.Col]←⊂ns.Event.Value
@@ -53,7 +53,7 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event
 ⍝                 ⍝ Nothing to do
 ⍝             :Else
 ⍝                 ⎕←'Unsupported event: ',Event ⋄ →0
-⍝            :EndSelect
+            :EndSelect
 ⍝
              (##⍎(events⍳⊂Event)⊃fns)&(ID Event),Info
          :Case 'WG'
