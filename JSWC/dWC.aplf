@@ -1,4 +1,4 @@
- {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn
+ {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn;i
  deprecatedprops←'Font' 'Icon' 'Cursor' 'ImageList' '3D' ⍝ No longer appear in PropList
  caller←⊃⎕RSI
 
@@ -32,6 +32,10 @@
      :If 'ribbon'≢6↑type
          props←(m←(type≢'imagelist')∨~propnames∊⍥⎕C ⊂'files')/Props
          pn←m/propnames
+         :If type≡'bitmap'
+         :AndIf (≢pn)≥i←(⎕C pn)⍳⊂'file'
+            (i⊃props)←IMAGEFOLDER,1↓i⊃props ⍝ Adjust BitMap image file names
+         :EndIf
          R←Name caller.⎕WC ↓pn,⍪props
          :If 'imagelist'≡type
          :AndIf 2=⎕NC 'WC.WC.Properties.Files' ⍝ Simulate the "Files" property in Win32
