@@ -1,4 +1,4 @@
- DemoTreeView connected;inputs;scores;folder;imagefiles;periods;z;⎕TRAP;m;f;players;val
+ DemoTreeView connected;inputs;scores;folder;imagefiles;periods;z;⎕TRAP;m;players;val
  JSWC.CONNECTED←connected
  ⎕PW←1000
 

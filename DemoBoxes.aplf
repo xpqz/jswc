@@ -1,0 +1,28 @@
+ DemoBoxes connected;BY;BX;RY;RX;P;formsize;cols;rows;points;sizes;radii;colours
+ JSWC.CONNECTED←connected
+ ⎕PW←1000
+
+ formsize←600 400
+ (rows cols)←3 2
+ 'F1'∆WC'Form' 'Boxes and Lines'(50 50)(600 400)('Coord' 'Pixel')
+
+⍝ 'F1.BX'∆WC'SubForm'('Posn'(100 10))('Size'(formsize-110 20)) ⍝ To draw boxes in
+
+ 'F1.L1'∆WC'Label' 'Rows'(10 10)
+ 'F1.L2'∆WC'Label' 'Cols'(10 110)
+
+ 'F1.ROWS'∆WC'Edit'(⍕rows)(30 10)(23 50)('FieldType' 'Numeric')('Event' 'Change' 'JSWCUpdateLines')
+ 'F1.COLS'∆WC'Edit'(⍕cols)(30 110)(23 50)('FieldType' 'Numeric')('Event' 'Change' 'JSWCUpdateLines')
+
+ BY←10 10 50 10
+ BX←200+15 65 40 15
+ RY←15 15 40 15
+ RX←200+25 55 40 25
+
+ P←'Poly'((⊂0,formsize[2]-80)+(BY BX)(RY RX))((0 0 255)(255 0 0))
+ P←'Poly'((BY BX)(RY RX))((0 0 255)(255 0 0))
+ 'F1.LOGO'∆WC P,('LWidth'(3 6))('FStyle'(¯1 0))('FillCol'(2⍴⊂0 255 0))
+
+ ⍝ /// This should work: JSWCUpdateLines ⍬
+
+ demoDrawBoxes'F1'(100 10)(formsize-110 20)rows cols

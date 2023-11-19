@@ -4,5 +4,5 @@ r←GetClass (ns name);t;c
 :AndIf 9=⎕NC c←'Classes.',⎕C ns⍎t
     r←⍎c
 :Else
-    ('Not an supported GUI object: ',name) ⎕SIGNAL 6
+    ('Not a supported GUI object: ',name) ⎕SIGNAL 6
 :EndIf

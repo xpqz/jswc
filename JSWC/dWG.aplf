@@ -4,7 +4,11 @@
  wg←WG.WG←⎕NS''
  WGID+←1
  p←,⊆Props
- class←GetClass caller Name
+ :Trap 6
+     class←GetClass caller Name
+ :Else
+     (⊃⎕DMX.DM)⎕SIGNAL ⎕DMX.EN
+ :EndTrap
 
  :If remote←∨/,dynamic←p∊class.Dynamic ⍝ Any reason to ask remote client for values?
      wg.(WGID ID Properties)←(⍕WGID)Name (d←dynamic/p)

@@ -1,4 +1,4 @@
-r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event
+r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z
  ⎕TRAP←0 'S'
  :If (⊂10↑payload)∊'Initialise' 'Initialize'
      CONN←con
@@ -22,7 +22,13 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event
                  ⎕←'(Event is incorrectly sent as a list)'
                  Event←⊃Event
              :EndIf
-             event←#⍎ID,'.Event'
+             :Trap 6
+                 event←#⍎z←ID,'.Event'
+             :Else
+                 ⎕←'Unable to find ',z
+                 →0
+             :EndTrap
+
              :If 2=|≡event ⍝ /// Presumably this should be handled on ∆WS
                  event←,⊂event
              :EndIf
@@ -54,8 +60,12 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event
 ⍝             :Else
 ⍝                 ⎕←'Unsupported event: ',Event ⋄ →0
             :EndSelect
-⍝
-             (##⍎(events⍳⊂Event)⊃fns)&(ID Event),Info
+
+             :If 3≠##.⎕NC fn←(events⍳⊂Event)⊃fns
+                 ⎕←'Callback function not found: ',fn
+             :Else
+                 (##⍎fn)&(ID Event),Info
+             :EndIf
          :Case 'WG'
              ns ⎕TPUT WG_TOKEN
          :Else
