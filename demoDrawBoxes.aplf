@@ -8,4 +8,4 @@
  sizes←n⍴⊂⌊0.9×boxsize
  radii←5 5 ⍝ n⍴⊂5 5
  colours←n⍴⊂0 0 0 ⍝ Black
- ('F1.R1') ∆WC'Rect' (↑starts) (↑sizes) (radii) colours
+ ('F1.R1') ∆WC'Rect' (↓⍉↑starts) (↓⍉↑sizes) (radii) colours
