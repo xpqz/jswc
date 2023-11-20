@@ -6,8 +6,8 @@
  'NO'∆WC'BitMap'('File' '/images/no.bmp')
  'LOGO'∆WC'BitMap'('File' '/images/dyalog-logo.jpg')
 
- 'F'∆WC'Form'('Picture'('BMP' 0))('BCol'(255 255 255))('Coord' 'Pixel')('Size'(500 900))
- 'F.S'∆WC'SubForm'('Picture'('BMP' 1))('Size'(500 500))('Posn'(0 400))
+ 'F'∆WC'Form'('Picture'('LOGO' 0))('BCol'(255 255 255))('Coord' 'Pixel')('Size'(500 900))
+ 'F.S'∆WC'SubForm'('Picture'('LOGO' 1))('Size'(500 500))('Posn'(0 400))
 
  'F.YES'∆WC'Button'('Picture' 'YES')('Size'(40 40))('Posn'(430 25))
  'F.NO'∆WC'Button'('Picture' 'NO')('Size'(40 40))('Posn'(430 65))
