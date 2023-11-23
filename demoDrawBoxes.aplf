@@ -2,7 +2,7 @@
 ⍝ Draw a subform and put boxes in it
 
  sf←form,'.BX'
- sf ∆WC'SubForm' ('Posn' posn)('Size' size)
+⍝ sf ∆WC'SubForm' ('Posn' posn)('Size' size)
  boxsize←size÷rows cols
  n←≢starts←⌊,(¯.95++⍳rows cols)×⊂boxsize
  sizes←n⍴⊂⌊0.9×boxsize

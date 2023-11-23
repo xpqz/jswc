@@ -1,4 +1,4 @@
 JSWCUpdateLines args;rows;cols;size;posn
 (rows cols)←('F1'∘,¨'.ROWS' '.COLS')∆WG¨⊂'Value'
-(posn size)← 'F1.BX' ∆WG 'Posn' 'Size'
+(posn size)← (10 10) ('F1.BX' ∆WG 'Size')
 demoDrawBoxes 'F1' posn size rows cols

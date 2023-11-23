@@ -14,8 +14,8 @@
  'F1.Ribbon.Item1' ∆WC 'RibbonGroup' 'Locks'
  'F1.Ribbon.Item2' ∆WC 'RibbonGroup' 'Macros'
  'F1.Ribbon.Item3' ∆WC 'RibbonGroup' 'Dashboard'
- 'F1.Ribbon.Item4' ∆WC 'RibbonGroup' 'Application' ('Size' 6)
- 'F1.Ribbon.Item5' ∆WC 'RibbonGroup' 'Data Quality' ('Size' 3)
+ 'F1.Ribbon.Item4' ∆WC 'RibbonGroup' 'Application' ('Size' 7)
+ 'F1.Ribbon.Item5' ∆WC 'RibbonGroup' 'Data Quality' ('Size' 2)
 
  'F1.Ribbon.Item1.GroupItem1' ∆WC 'RibbonGroupItem' 12
  'F1.Ribbon.Item1.GroupItem1.LockButton' ∆WC 'RibbonButton' 'Access' 'FcLock' 12
@@ -26,11 +26,11 @@
  'F1.Ribbon.Item3.GroupItem1' ∆WC 'RibbonGroupItem' 12
  'F1.Ribbon.Item3.GroupItem1.DashboardButton' ∆WC 'RibbonButton' 'Macros' 'FcHome' 12
 
- 'F1.Ribbon.Item4.GroupItem1' ∆WC 'RibbonGroupItem' 1
- 'F1.Ribbon.Item4.GroupItem2' ∆WC 'RibbonGroupItem' 1
- 'F1.Ribbon.Item4.GroupItem3' ∆WC 'RibbonGroupItem' 1
- 'F1.Ribbon.Item4.GroupItem4' ∆WC 'RibbonGroupItem' 3
- 'F1.Ribbon.Item4.GroupItem5' ∆WC 'RibbonGroupItem' 6
+ 'F1.Ribbon.Item4.GroupItem1' ∆WC 'RibbonGroupItem' 2
+ 'F1.Ribbon.Item4.GroupItem2' ∆WC 'RibbonGroupItem' 2
+ 'F1.Ribbon.Item4.GroupItem3' ∆WC 'RibbonGroupItem' 2
+ 'F1.Ribbon.Item4.GroupItem4' ∆WC 'RibbonGroupItem' 2
+ 'F1.Ribbon.Item4.GroupItem5' ∆WC 'RibbonGroupItem' 4
 
  'F1.Ribbon.Item4.GroupItem1.ArchiveButton' ∆WC 'RibbonButton' 'Archive' 'FcKindle' 12
  'F1.Ribbon.Item4.GroupItem2.DateButton' ∆WC 'RibbonButton' 'Date' 'FcCalendar' 12
