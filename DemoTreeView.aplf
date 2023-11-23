@@ -3,7 +3,7 @@
  ⎕PW←1000
 
  n←10
- f←'×'
+ f←'+'
  allf←'+-×÷'
 
  imagefiles←'/images/'∘,¨'Folder-Closed.png' 'Folder-Open.png' 'Price-Ticket.png'
@@ -79,4 +79,10 @@
   val←'F1.TableSize' ∆WG 'Text'
   :If val≢,'9'
      ⎕←'*** After setting Value to 9, TableSize.Text is ',⍕val
+  :EndIf
+
+  'F1.Function' ∆WS 'SelItems' (m←allf=f←'×')
+  val←'F1.Function' ∆WG 'Text'
+  :If val≢,f
+     ⎕←'*** After setting SelItems to ',(⍕m),' Function.Text is ',val
   :EndIf
