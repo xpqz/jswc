@@ -2,8 +2,8 @@
  Event←⎕NS''
  e←Event.Event←⎕NS''
  e.(ID EventName Info)←(2↑args),⊂2↓args
- demo←(3⊃args)⊃(⊃args) ∆WG 'Items'
+ demo←'Demo',(3⊃args)⊃(⊃args) ∆WG 'Items'
  :If 3=⎕NC demo
     (⍎demo) JSWC.CONNECTED
- :EndIf
- addDemoMenu 'F1'
+    addDemoMenu 'F1'
+:EndIf

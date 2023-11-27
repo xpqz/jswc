@@ -1,6 +1,6 @@
 addDemoMenu form;fns;size
 
-fns←('D' ⎕NL ¯3)~⊂'DemoMenu'
+fns←(⊂'Pick a Demo'),4↓¨('D' ⎕NL ¯3)~'DemoMenu' 'DemoDefault'
 
 size←form ∆WG 'Size'
-'F1.DEMO '∆WC'Combo' fns '' (0 (¯110+2⊃size))(23 100)('Event' 'Select' 'JSWCRunDemo')
+'F1.DEMO '∆WC'Combo' fns '' (0 (¯100+2⊃size))(23 90)('Event' 'Select' 'JSWCRunDemo')
