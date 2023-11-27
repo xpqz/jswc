@@ -1,0 +1,9 @@
+ JSWCRunDemo args;e;scores;cols;fcol;pass;ii;ids;target;demo
+ Event←⎕NS''
+ e←Event.Event←⎕NS''
+ e.(ID EventName Info)←(2↑args),⊂2↓args
+ demo←(3⊃args)⊃(⊃args) ∆WG 'Items'
+ :If 3=⎕NC demo
+    (⍎demo) JSWC.CONNECTED
+ :EndIf
+ addDemoMenu 'F1'

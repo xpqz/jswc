@@ -9,7 +9,7 @@
  ribbon←1↓1↓¨(⌽∧\⌽'⍝'=⊃¨ribbon)/ribbon
  ribbon←∊(⎕UCS 10),¨ribbon
 
- 'F1'∆WC'Form' 'Function Table'(50 50)(800 800)('Coord' 'Pixel')
+ 'F1'∆WC'Form' 'Function Table'(50 50)(800 600)('Coord' 'Pixel')
  'F1.Ribbon' ∆WC 'Ribbon'
  'F1.Ribbon.Item1' ∆WC 'RibbonGroup' 'Locks'
  'F1.Ribbon.Item2' ∆WC 'RibbonGroup' 'Macros'
