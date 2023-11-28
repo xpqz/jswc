@@ -1,6 +1,12 @@
-addDemoMenu form;fns;size
+addDemoMenu form;fns;size;posn;sf
 
 fns←(⊂'Pick a Demo'),4↓¨('D' ⎕NL ¯3)~'DemoMenu' 'DemoDefault'
 
 size←form ∆WG 'Size'
-'F1.DEMO '∆WC'Combo' fns '' (0 (¯100+2⊃size))(23 90)('Event' 'Select' 'JSWCRunDemo')
+posn←0 (¯100+2⊃size)
+sf←'F1'
+(sf,'.MENU') ∆WC 'Combo' fns '' (posn+0 0)(23 90)('Event' 'Select' 'JSWCRunDemo')
+:If 'Windows'≡7↑⊃'.' ⎕WG 'APLVersion'
+   (sf,'.WIN32LABEL') ∆WC 'Label' 'Use Win32' (posn+25 28)(23 100)
+   (sf,'.USEWIN32') ∆WC 'Button' ('Style' 'Check')(posn+20 0)('State' JSWC.USEWIN32)
+:EndIf

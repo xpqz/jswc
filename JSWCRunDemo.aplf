@@ -1,9 +1,17 @@
- JSWCRunDemo args;e;scores;cols;fcol;pass;ii;ids;target;demo
+ JSWCRunDemo args;e;scores;cols;fcol;pass;ii;ids;target;demo;sf
  Event←⎕NS''
  e←Event.Event←⎕NS''
  e.(ID EventName Info)←(2↑args),⊂2↓args
  demo←'Demo',(3⊃args)⊃(⊃args) ∆WG 'Items'
+ sf←{(1-(⌽⍵)⍳'.')↓⍵}⊃args
+ ⍝ JSWC.USEWIN32←(sf,'USEWIN32') ∆WG 'State'
+ :If 2=⎕NC '#.USEWIN32'
+     JSWC.USEWIN32←#.USEWIN32
+ :EndIf
+
  :If 3=⎕NC demo
+    ⎕←''
+    ⎕←'Running "',demo,'" with',((~JSWC.USEWIN32)/'out'),' Win32'
     (⍎demo) JSWC.CONNECTED
     addDemoMenu 'F1'
 :EndIf

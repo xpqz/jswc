@@ -13,6 +13,7 @@
  :If USEWIN32
      R←Name caller.⎕WS Props
  :Else
+     expr←'.(',(⎕C ⍕1⊃¨Props),')←',(1≠≢Props)↓'⊃2⊃¨Props'
      ⍎(⍕caller),'.',Name,expr ⍝ Update "server-side DOM"
  :EndIf
 

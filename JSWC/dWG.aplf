@@ -1,4 +1,4 @@
- {R}←Name ∆WG Props;msg;WG;wg;z;⎕TRAP;caller;p;class;remote;dynamic;r;d
+ {R}←Name ∆WG Props;msg;WG;wg;z;⎕TRAP;caller;p;class;remote;dynamic;r;d;i
  caller←⊃⎕RSI
  WG←⎕NS''
  wg←WG.WG←⎕NS''
@@ -10,7 +10,7 @@
      (⊃⎕DMX.DM)⎕SIGNAL ⎕DMX.EN
  :EndTrap
 
- :If remote←∨/,dynamic←p∊class.Dynamic ⍝ Any reason to ask remote client for values?
+ :If remote←∨/,dynamic←p∊⍥⎕C class.Dynamic ⍝ Any reason to ask remote client for values?
      wg.(WGID ID Properties)←(⍕WGID)Name (d←dynamic/p)
      msg←⎕JSON WG
      :If CONNECTED
@@ -23,10 +23,9 @@
  :If USEWIN32
      R←Name caller.⎕WG p
  :Else
-     ⎕TRAP←0 'S' ⋄ ∘∘∘
-     R←caller⍎Name,'.(',(⍕Props),')'
-     :If 1=≡Props
-         R←,⊂R
+     R←(≢p)⍴⊂⍬
+     :If 0≠≢i←⍸~dynamic
+        R[i]←caller⍎((1=≢i)/'⊂'),Name,'.(',(⎕C ⍕p[i]),')'
      :EndIf
  :EndIf
 

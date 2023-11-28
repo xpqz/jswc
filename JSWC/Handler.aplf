@@ -19,26 +19,35 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z
          :Case 'Event'
              (Event ID Info)←ns.Event.(EventName ID({0::⍵ ⋄ Info}⍬))
              :If (1=≢Event)∧2=≡Event
-                 ⎕←'(Event is incorrectly sent as a list)'
+                 ⎕←'*** Event is incorrectly sent as a list'
                  Event←⊃Event
              :EndIf
+             :If (2=≢Event)∧2=≡Event
+                 ⎕←'*** Client returned a 2-element event: ',⍕Event
+                 Event←⊃Event
+             :EndIf
+
              :Trap 6
-                 event←#⍎z←ID,'.Event'
+                 event←#⍎z←ID,'.event'
              :Else
-                 ⎕←'Unable to find ',z
+                 ⎕←'*** Unable to find ',z
                  →0
              :EndTrap
 
-             :If 2=|≡event ⍝ /// Presumably this should be handled on ∆WS
-                 event←,⊂event
-             :EndIf
+             ⍝:If 2=|≡event ⍝ /// Presumably this should be handled on ∆WS
+             ⍝    event←,⊂event
+             ⍝:EndIf
              (events fns)←↓⍉↑event
              :If ~(⊂Event)∊events
-                 ⎕←'No callback defined for event ',Event,' on object ',ID
+                 ∘∘∘
+                 ⎕←'*** No callback defined for event ',Event,' on object ',ID
                  →0
              :EndIf
 
-            :Select Event
+
+⍝ ↓↓↓ This Select session has been used to paper over deficiencies in the client
+⍝     Commented out on November 27th 2023, please delete it soon
+⍝            :Select Event
 ⍝             :Case 'Select'
 ⍝                 :If (#⍎ID,'.Type')≡'Combo'
 ⍝                     ⍎'#.',ID,'.SelItems←Info=⍳',⍕≢#⍎ID,'.SelItems'
@@ -47,10 +56,10 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z
 ⍝             :Case 'Change'
 ⍝                 ⍎'#.',ID,'.Value←Info'
 ⍝                 Info←⍬
-             :Case 'Scroll'
-                 :If (#⍎ID,'.Type')≡'Scroll'
-                     ⍎'#.',ID,'.Thumb←Info[2]'
-                 :EndIf
+⍝             :Case 'Scroll'
+⍝                 :If (#⍎ID,'.Type')≡'Scroll'
+⍝                     ⍎'#.',ID,'.Thumb←Info[2]'
+⍝                 :EndIf
 ⍝             :Case 'CellChanged'
 ⍝                 Values←#⍎ID,'.Values'
 ⍝                 Values[ns.Event.Row;ns.Event.Col]←⊂ns.Event.Value
@@ -59,7 +68,7 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z
 ⍝                 ⍝ Nothing to do
 ⍝             :Else
 ⍝                 ⎕←'Unsupported event: ',Event ⋄ →0
-            :EndSelect
+⍝            :EndSelect
 
              :If 3≠##.⎕NC fn←(events⍳⊂Event)⊃fns
                  ⎕←'Callback function not found: ',fn

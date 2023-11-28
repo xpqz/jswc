@@ -1,4 +1,4 @@
- R←msg WaitForWG(Props WGID);j;⎕TRAP;p;seqok;nl
+ R←msg WaitForWG(Props WGID);j;⎕TRAP;p;seqok;nl;nlc
 
 AGAIN:
  j←WG_TIMEOUT ⎕TGET WG_TOKEN
@@ -11,7 +11,8 @@ AGAIN:
  nl←⍬
  :If 9=⎕NC'j.WG'
  :AndIf seqok←j.WG.{0=⎕NC'WGID':1 ⋄ WGID≡⍵}WGID
- :AndIf ∧/(p←,⊆Props)∊nl←j.WG.Properties.⎕NL-2
+ :AndIf ∧/(p←⎕C ,⊆Props)∊nlc←⎕C nl←j.WG.Properties.⎕NL-2
+     p←nl[nlc⍳p] ⍝ /// Should go when everything is lowercase
      R←j.WG.Properties⍎((1=≢p)/',⊂'),⍕p
      R←j.WG.ID MixTables p R
      :If 1=≡Props

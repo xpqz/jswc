@@ -13,3 +13,5 @@ WGID←0
 WG_TIMEOUT←5 ⍝ Seconds to wait for response
 
 IMAGEFOLDER←⊃⎕NPARTS ¯1↓⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
+
+(EVENTNUMS EVENTNAMES)←↓⍉↑2031⌶0

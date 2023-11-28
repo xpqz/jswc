@@ -1,6 +1,6 @@
 r←GetClass (ns name);t;c
 :If 9=⎕NC 'ns'
-:AndIf 0≠ns.⎕NC ⊂t←name,'.Type'
+:AndIf 0≠ns.⎕NC ⊂t←name,'.type'
 :AndIf 9=⎕NC c←'Classes.',⎕C ns⍎t
     r←⍎c
 :Else

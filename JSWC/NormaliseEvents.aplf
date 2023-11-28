@@ -1,0 +1,15 @@
+ r←NormaliseEvents events;i
+
+ :If events[1]∊EVENTNAMES
+     r←,⊂events
+ :ElseIf (≢EVENTNUMS)≥i←EVENTNUMS⍳events[1]
+     r←,⊂(EVENTNAMES[i]),1↓events
+ :ElseIf ∧/(1⊃events)∊EVENTNAMES
+     r←↓(⍪1⊃events),''⍴1↓events
+ :ElseIf ∧/(≢EVENTNUMS)≥i←EVENTNUMS⍳1⊃events
+     r←↓(⍪EVENTNAMES[i]),''¨1↓events
+ :ElseIf ∧/(⊃¨events)∊EVENTNAMES,EVENTNUMS
+     r←⊃,/NormaliseEvents¨events
+ :Else
+     ∘∘∘ ⍝ Unsupported case
+ :EndIf
