@@ -34,9 +34,9 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z
                  →0
              :EndTrap
 
-             ⍝:If 2=|≡event ⍝ /// Presumably this should be handled on ∆WS
-             ⍝    event←,⊂event
-             ⍝:EndIf
+             :If 2=|≡event ⍝ /// Presumably this should be handled on ∆WS
+                 event←,⊂event
+             :EndIf
              (events fns)←↓⍉↑event
              :If ~(⊂Event)∊events
                  ∘∘∘
