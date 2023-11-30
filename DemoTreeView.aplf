@@ -86,3 +86,5 @@
   :If val≢,f
      ⎕←'*** After setting SelItems to ',(⍕m),' Function.Text is ',val
   :EndIf
+
+  val←'F1.Function' ∆WG 'NoSuchProperty'

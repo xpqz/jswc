@@ -10,7 +10,7 @@
      (⊃⎕DMX.DM)⎕SIGNAL ⎕DMX.EN
  :EndTrap
 
- :If remote←∨/,dynamic←p∊⍥⎕C class.Dynamic ⍝ Any reason to ask remote client for values?
+ :If remote←∨/,dynamic←p∊⍥⎕C class.Dynamic,⊂'NoSuchProperty' ⍝ Any reason to ask remote client for values?
      wg.(WGID ID Properties)←(⍕WGID)Name (d←dynamic/p)
      msg←⎕JSON WG
      :If CONNECTED
