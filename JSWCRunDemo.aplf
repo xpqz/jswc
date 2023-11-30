@@ -4,10 +4,7 @@
  e.(ID EventName Info)←(2↑args),⊂2↓args
  demo←'Demo',(3⊃args)⊃(⊃args) ∆WG 'Items'
  sf←{(1-(⌽⍵)⍳'.')↓⍵}⊃args
- ⍝ JSWC.USEWIN32←(sf,'USEWIN32') ∆WG 'State'
- :If 2=⎕NC '#.USEWIN32'
-     JSWC.USEWIN32←#.USEWIN32
- :EndIf
+ JSWC.USEWIN32←0×(sf,'USEWIN32') ∆WG 'State'
 
  :If 3=⎕NC demo
     ⎕←''

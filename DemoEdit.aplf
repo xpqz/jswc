@@ -16,8 +16,8 @@
 
  'F1.Players'∆WC'Grid'('ColTitles'('Name' 'Gender' 'Birthday' 'Score' 'Expert'))('Posn'(10 10))('Size'(100 480))('TitleWidth' 0)('ShowInput' 1)('Event' 'CellChanged' 'JSWCUpdate')
  'F1.Players.Name'∆WC'Edit'('MaxLength' 10)('Size'(23 100))
- 'F1.Players.Gender'∆WC'Combo'('Items'('Male' 'Female'))('Size'(10 100))
- 'F1.Players.DOB'∆WC'Edit'('FieldType' 'Date')('Size'(10 100))⍝('ShowDatePicker' 1)
+ 'F1.Players.Gender'∆WC'Combo'('Items'('Male' 'Female'))('Size'(23 100))
+ 'F1.Players.DOB'∆WC'Edit'('FieldType' 'Date')('Size'(23 100))⍝('ShowDatePicker' 1)
  'F1.Players.Score'∆WC'Edit'('FieldType' 'LongNumeric')('Size'(23 50))
  'F1.Players.Expert'∆WC'Button'('Style' 'Check')('Size'(23 25))
  inputs←'F1.Players.'∘,¨'Name' 'Gender' 'DOB' 'Score' 'Expert'

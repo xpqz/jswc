@@ -34,16 +34,16 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z
                  →0
              :EndTrap
 
-             :If 2=|≡event ⍝ /// Presumably this should be handled on ∆WS
-                 event←,⊂event
-             :EndIf
+ ⍝            :If 2=|≡event ⍝ /// This should now be handled in ∆WS (issue #16), please delete this code when that is verified
+ ⍝                event←,⊂event
+ ⍝            :EndIf
+
              (events fns)←↓⍉↑event
              :If ~(⊂Event)∊events
                  ∘∘∘
                  ⎕←'*** No callback defined for event ',Event,' on object ',ID
                  →0
              :EndIf
-
 
 ⍝ ↓↓↓ This Select session has been used to paper over deficiencies in the client
 ⍝     Commented out on November 27th 2023, please delete it soon
