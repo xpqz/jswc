@@ -1,4 +1,4 @@
- R←msg WaitForWG(Props WGID);j;⎕TRAP;p;seqok;nl;nlc
+ R←msg WaitForWG(Props WGID);j;⎕TRAP;p;seqok;nl;nlc;m;t
 
 AGAIN:
  j←WG_TIMEOUT ⎕TGET WG_TOKEN
@@ -23,6 +23,8 @@ AGAIN:
          ⎕←'Ignoring WGID ',j.WG.WGID,' while waiting for ',WGID
          →AGAIN
      :EndIf
-     ⎕←'*** ∆WG return did not contain values for:',⍕Props~nl
-     R←(⊂⍬)⍨¨Props
+     :If 2=⎕NC 'j.WG.NotSupported'
+     :AndIf ∨/m←(t←Props~nl)∊j.WG.NotSupported
+         ('Property not supported by JSWC: ',⍕m/t) ⎕SIGNAL 6
+     :EndIf
  :EndIf

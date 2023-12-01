@@ -39,8 +39,12 @@
  :EndIf
 
  :If remote
-     r←msg WaitForWG d (⍕WGID)
-     R[p⍳d]←r
+     :Trap 6 ⍝ Request for unsupported property
+        r←msg WaitForWG d (⍕WGID)
+        R[p⍳d]←r
+     :Else
+        ⎕DMX.EM ⎕SIGNAL ⎕DMX.EN
+     :EndTrap
  :EndIf
 
  :If 1=≡Props
