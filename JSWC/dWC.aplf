@@ -23,6 +23,14 @@
  m3←(~m)∧length=3
  (m3/Props)←1↓¨m3/Props
 
+ :If (≢propnames)≥i←propnames⍳⊂'Event'
+     (i⊃Props)←NormaliseEvents i⊃Props
+     :If 1=≢i⊃Props
+         ⍝ ⎕←'*** Working around event limitation ***'
+         ⍝ (i⊃Props)←⊃i⊃Props
+     :EndIf
+ :EndIf
+
  WC←⎕NS''
  WC.WC←⎕NS''
  WC.WC.(ID Properties)←Name(⎕NS'')
@@ -48,6 +56,7 @@
      :EndIf
  :Else
       R←Name caller.⎕NS''
+      expr←'.(',(⎕C ⍕propnames),')←',(1≠≢propnames)↓'⊃Props' ⍝ /// remove when we go all lowercase everywhere
       ⍎(⍕caller),'.',Name,expr ⍝ Set properties in the "server-side DOM"
  :EndIf
 

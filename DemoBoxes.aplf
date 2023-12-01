@@ -16,12 +16,12 @@
  'F1.GO'∆WC'Button' 'Draw Boxes' (30 130)(23 100)('Event' 'Select' 'JSWCUpdateLines')
 
  BY←10 10 50 10
- BX←300+15 65 40 15
+ BX←15 65 40 15
  RY←15 15 40 15
- RX←300+25 55 40 25
+ RX←25 55 40 25
 
- P←'Poly'((⊂0,formsize[2]-80)+(BY BX)(RY RX))((0 0 255)(255 0 0))
- P←'Poly'((BY BX)(RY RX))((0 0 255)(255 0 0))
+ P←'Poly'((⊂30,formsize[2]-80)+(BY BX)(RY RX))((0 0 255)(255 0 0))
+ ⍝ P←'Poly'((BY BX)(RY RX))((0 0 255)(255 0 0))
  'F1.LOGO'∆WC P,('LWidth'(3 6))('FStyle'(¯1 0))('FillCol'(2⍴⊂0 255 0))
 
  JSWCUpdateLines ⍬

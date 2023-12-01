@@ -16,8 +16,8 @@
 
  'F1.Players'∆WC'Grid'('ColTitles'('Name' 'Gender' 'Birthday' 'Score' 'Expert'))('Posn'(10 10))('Size'(100 480))('TitleWidth' 0)('ShowInput' 1)('Event' 'CellChanged' 'JSWCUpdate')
  'F1.Players.Name'∆WC'Edit'('MaxLength' 10)('Size'(23 100))
- 'F1.Players.Gender'∆WC'Combo'('Items'('Male' 'Female'))('Size'(10 100))
- 'F1.Players.DOB'∆WC'Edit'('FieldType' 'Date')('Size'(10 100))⍝('ShowDatePicker' 1)
+ 'F1.Players.Gender'∆WC'Combo'('Items'('Male' 'Female'))('Size'(23 100))
+ 'F1.Players.DOB'∆WC'Edit'('FieldType' 'Date')('Size'(23 100))⍝('ShowDatePicker' 1)
  'F1.Players.Score'∆WC'Edit'('FieldType' 'LongNumeric')('Size'(23 50))
  'F1.Players.Expert'∆WC'Button'('Style' 'Check')('Size'(23 25))
  inputs←'F1.Players.'∘,¨'Name' 'Gender' 'DOB' 'Score' 'Expert'
@@ -26,7 +26,7 @@
  'F1.Players'∆WS('Values'('Amir' 'Fatima','Male' 'Female',dob,scores,⍪0 1))('CellTypes'(2 5⍴1 2 3 4 5))('Input'inputs)
  'F1.Average'∆WC'Label'('Average Score:',1⍕+/scores÷≢scores)(115 180)(23 200)
 
- 'F1.Months'∆WC'TreeView'('Q1' 'Jan' 'Feb' 'Mar' 'Q2' 'Apr' 'May' 'Jun')(10 500)(150 200)('Depth'(8⍴0 1 1 1))
+ 'F1.Months'∆WC'TreeView'('Q1' 'Jan' 'Feb' 'Mar' 'Q2' 'Apr' 'May' 'Jun')(10 500)(150 150)('Depth'(8⍴0 1 1 1))
 
  'F1.TableSize'∆WC'Edit' '10'(210 10)(23 100)('FieldType' 'Numeric')('Decimals' 0)('FCol'(0 0 255))('Event'('Change' 'KeyPress')'JSWCUpdate')
  'F1.Function'∆WC'Combo'(,¨allf)f(210 120)(23 100)('SelItems'(allf=f))('Event' 'Select' 'JSWCUpdate')

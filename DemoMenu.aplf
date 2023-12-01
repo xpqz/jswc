@@ -1,0 +1,7 @@
+ DemoMenu connected;fns
+ JSWC.CONNECTED←connected
+ ⎕PW←1000
+
+ 'F1'∆WC'Form' 'JSWC Demos'(0 0)(50 220)('Coord' 'Pixel')('BCol' (255 255 255))
+ 'F1.L1' ∆WC 'Label' 'Pick a JSWC Demo' (6 5)
+ addDemoMenu'F1'
