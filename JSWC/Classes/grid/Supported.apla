@@ -9,4 +9,6 @@
  'Values'
  'CellTypes'
  'Input'
+ 'Visible'
+ 'CurCell'
 )

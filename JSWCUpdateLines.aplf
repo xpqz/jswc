@@ -1,4 +1,13 @@
-JSWCUpdateLines args;rows;cols;size;posn
-(rows cols)←('F1'∘,¨'.ROWS' '.COLS')∆WG¨⊂'Value'
-(posn size)← (10 10) ('F1.BX' ∆WG 'Size')
-demoDrawBoxes 'F1' posn size rows cols
+ JSWCUpdateLines args;rows;cols;size;posn;viz;obs
+ :Select 1⊃args
+ :Case 'F1.GO'
+     (rows cols)←('F1'∘,¨'.ROWS' '.COLS')∆WG¨⊂'Value'
+     (posn size)←(10 10)(('F1'∆WG'Size')-110 20)
+     demoDrawBoxes'F1'posn size rows cols
+ :Case 'F1.CLR'
+     ∆EX'F1.BX'
+ :Case 'F1.HIDE'
+     viz←~'F1.HIDE' ∆WG 'State'
+     obs←(0=⎕NC 'F1.BX')↓'F1.BX' 'F1.LOGO'
+     obs ∆WS¨⊂'Visible' viz
+ :EndSelect
