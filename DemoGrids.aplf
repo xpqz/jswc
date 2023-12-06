@@ -14,15 +14,16 @@
  'F1.MB.Col.Blue'∆WC'MenuItem' '&Blue'('Event' 'Select' 'JSWCUpdate')
  'F1.MB.Col.Green'∆WC'MenuItem' '&Green'('Event' 'Select' 'JSWCUpdate')
 
- 'F1.Players'∆WC'Grid'('ColTitles'('Name' 'Gender' 'Score' 'Expert'))('Posn'(10 10))('Size'(100 480))('TitleWidth' 0)('ShowInput' 1)('Event' 'CellChanged' 'JSWCUpdate')
- 'F1.Players.Name'∆WC'Edit'('Size'(23 100))
+ 'F1.Players'∆WC'Grid'('ColTitles'('Name' 'Gender' 'Score' 'Expert'))('Posn'(10 10))('Size'(100 480))('TitleWidth' 0)('ShowInput' 1)('Event' ('CellChanged' 'CellMove' 'KeyPress') 'JSWCUpdate')
+ 'F1.Players.Name'∆WC'Edit'('Size'(23 100))('Event' 'KeyPress' 'JSWCUpdate')
  'F1.Players.Gender'∆WC'Combo'('Items'('Male' 'Female'))('Size'(10 100))
  'F1.Players.Score'∆WC'Edit'('FieldType' 'Numeric')('Size'(23 50))
  'F1.Players.Expert'∆WC'Button'('Style' 'Check')('Size'(23 25))
  inputs←'F1.Players.'∘,¨'Name' 'Gender' 'Score' 'Expert'
  scores←12 13
  'F1.Players'∆WS('Values'('Amir' 'Fatima','Male' 'Female',scores,⍪0 1))('CellTypes'(2 4⍴1 2 3 4))('Input'inputs)
- 'F1.Average'∆WC'Label'('Average Score:',1⍕+/scores÷≢scores)(115 180)(23 100)
+ 'F1.Average'∆WC'Label'('Average Score:',1⍕+/scores÷≢scores)(115 180)(23 200)
+ 'F1.Home'∆WC'Button' 'Home'(115 10)(23 100)('Event' 'Select' 'JSWCUpdate')
 
  'F1.Months'∆WC'TreeView'('Q1' 'Jan' 'Feb' 'Mar' 'Q2' 'Apr' 'May' 'Jun')(10 500)(150 150)('Depth'(8⍴0 1 1 1))
 

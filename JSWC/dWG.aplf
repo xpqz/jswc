@@ -34,7 +34,7 @@
      r←dynamic/R
      ⍎'wg.Properties.(',(⍕d),')←',(1≠≢r)↓'⊃r'
      msg←⎕JSON⍠'HighRank' 'Split'⊢WG
-     ⎕←'Faking client transmission: ',msg
+ ⍝   ⎕←'Faking client transmission: ',msg
      (⎕JSON msg)⎕TPUT WG_TOKEN
  :EndIf
 
