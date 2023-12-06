@@ -2,7 +2,7 @@
  :Select 1⊃args
  :Case 'F1.GO'
      (rows cols)←('F1'∘,¨'.ROWS' '.COLS')∆WG¨⊂'Value'
-     (posn size)←(10 10)(('F1'∆WG'Size')-110 20)
+     (posn size)←(100 10)(('F1'∆WG'Size')-110 20)
      demoDrawBoxes'F1'posn size rows cols
  :Case 'F1.CLR'
      ∆EX'F1.BX'
