@@ -1,0 +1,15 @@
+ DemoButtons connected
+ JSWC.CONNECTED←connected
+ ⎕PW←1000
+
+ 'F1'∆WC'Form' 'Buttons'(50 50)(200 300)('Coord' 'Pixel')
+
+ 'F1.FRUIT'∆WC'Group' 'Pick a Fruit'('Posn'(10 10))('Size'(80 280))
+ 'F1.FRUIT.C1'∆WC'Button' 'Apple'(13 10)(23 100)('Style' 'Radio')('Event' 'Select' 'JSWCUpdateButtons')('State' 1)
+ 'F1.FRUIT.C2'∆WC'Button' 'Banana'(33 10)(23 100)('Style' 'Radio')('Event' 'Select' 'JSWCUpdateButtons')
+ 'F1.FRUIT.C3'∆WC'Button' 'Pear'(53 10)(23 100)('Style' 'Radio')('Event' 'Select' 'JSWCUpdateButtons')
+
+ 'F1.ICE'∆WC'Button' 'Ice Cream'(100 10)(23 100)('Style' 'Check')('Event' 'Select' 'JSWCUpdateButtons')('Align' 'Right')
+ 'F1.CHOKO'∆WC'Button' 'Chocolate'(125 10)(23 100)('Style' 'Check')('Event' 'Select' 'JSWCUpdateButtons')('Align' 'Left')
+
+ 'F1.STATUS'∆WC'Label' 'Click on something!'(175 10)(23 300)
