@@ -36,10 +36,10 @@
  'F1.Ribbon.Item4.GroupItem1.ArchiveButton' ∆WC 'RibbonButton' 'Archive' 'FcKindle' 12 sel
  'F1.Ribbon.Item4.GroupItem2.DateButton' ∆WC 'RibbonButton' 'Date' 'FcCalendar' 12 sel
  'F1.Ribbon.Item4.GroupItem3.StockExchangeButton' ∆WC 'RibbonButton' 'Stock Exchange' 'FcLibrary' 12 sel
- 'F1.Ribbon.Item4.GroupItem4.ButtonGroup1' ∆WC 'RibbonButtonGroup' ('Share/option' 'Cooperative Dynamics')('FcShare' 'FcTreeStructure')
+ 'F1.Ribbon.Item4.GroupItem4.ButtonGroup1' ∆WC 'RibbonButtonGroup' ('Share/option' 'Cooperative Dynamics')('FcShare' 'FcTreeStructure') sel
  captions←'Black and Scholes' 'Checking prices' 'VAR Analysis' 'Calculate Option Prices'
  icons←'FcPodiumWithSpeaker' 'FcMoneyTransfer' 'FcSearch' 'FcTreeStructure'
- 'F1.Ribbon.Item4.GroupItem5.ButtonGroup1' ∆WC 'RibbonButtonGroup' captions icons
+ 'F1.Ribbon.Item4.GroupItem5.ButtonGroup1' ∆WC 'RibbonButtonGroup' captions icons sel
 
  'F1.Ribbon.Item5.GroupItem1' ∆WC 'RibbonGroupItem' 12
  'F1.Ribbon.Item5.GroupItem1.ButtonGroup1' ∆WC 'RibbonButtonGroup' ('Local Data Quality' 'Overall Data Quality')('FcHighPriority' 'FcHighPriority') sel
