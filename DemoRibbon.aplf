@@ -1,4 +1,4 @@
- DemoRibbon connected;inputs;scores;ribbon;captions;icons
+ DemoRibbon connected;inputs;scores;ribbon;captions;icons;sel
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
@@ -8,6 +8,7 @@
  ribbon←⎕NR⊃⎕SI
  ribbon←1↓1↓¨(⌽∧\⌽'⍝'=⊃¨ribbon)/ribbon
  ribbon←∊(⎕UCS 10),¨ribbon
+ sel←'Event' 'Select' 'JSWCUpdateRibbon'
 
  'F1'∆WC'Form' 'Function Table'(50 50)(800 800)('Coord' 'Pixel')
  'F1.Ribbon' ∆WC 'Ribbon'
@@ -18,13 +19,13 @@
  'F1.Ribbon.Item5' ∆WC 'RibbonGroup' 'Data Quality' ('Size' 2)
 
  'F1.Ribbon.Item1.GroupItem1' ∆WC 'RibbonGroupItem' 12
- 'F1.Ribbon.Item1.GroupItem1.LockButton' ∆WC 'RibbonButton' 'Access' 'FcLock' 12
+ 'F1.Ribbon.Item1.GroupItem1.LockButton' ∆WC 'RibbonButton' 'Access' 'FcLock' 12 sel
 
  'F1.Ribbon.Item2.GroupItem1' ∆WC 'RibbonGroupItem' 12
- 'F1.Ribbon.Item2.GroupItem1.MacrosButton' ∆WC 'RibbonButton' 'Macros' 'FcPlanner' 12
+ 'F1.Ribbon.Item2.GroupItem1.MacrosButton' ∆WC 'RibbonButton' 'Macros' 'FcPlanner' 12 sel
 
  'F1.Ribbon.Item3.GroupItem1' ∆WC 'RibbonGroupItem' 12
- 'F1.Ribbon.Item3.GroupItem1.DashboardButton' ∆WC 'RibbonButton' 'Macros' 'FcHome' 12
+ 'F1.Ribbon.Item3.GroupItem1.DashboardButton' ∆WC 'RibbonButton' 'Macros' 'FcHome' 12 sel
 
  'F1.Ribbon.Item4.GroupItem1' ∆WC 'RibbonGroupItem' 2
  'F1.Ribbon.Item4.GroupItem2' ∆WC 'RibbonGroupItem' 2
@@ -32,16 +33,16 @@
  'F1.Ribbon.Item4.GroupItem4' ∆WC 'RibbonGroupItem' 2
  'F1.Ribbon.Item4.GroupItem5' ∆WC 'RibbonGroupItem' 4
 
- 'F1.Ribbon.Item4.GroupItem1.ArchiveButton' ∆WC 'RibbonButton' 'Archive' 'FcKindle' 12
- 'F1.Ribbon.Item4.GroupItem2.DateButton' ∆WC 'RibbonButton' 'Date' 'FcCalendar' 12
- 'F1.Ribbon.Item4.GroupItem3.StockExchangeButton' ∆WC 'RibbonButton' 'Stock Exchange' 'FcLibrary' 12
+ 'F1.Ribbon.Item4.GroupItem1.ArchiveButton' ∆WC 'RibbonButton' 'Archive' 'FcKindle' 12 sel
+ 'F1.Ribbon.Item4.GroupItem2.DateButton' ∆WC 'RibbonButton' 'Date' 'FcCalendar' 12 sel
+ 'F1.Ribbon.Item4.GroupItem3.StockExchangeButton' ∆WC 'RibbonButton' 'Stock Exchange' 'FcLibrary' 12 sel
  'F1.Ribbon.Item4.GroupItem4.ButtonGroup1' ∆WC 'RibbonButtonGroup' ('Share/option' 'Cooperative Dynamics')('FcShare' 'FcTreeStructure')
  captions←'Black and Scholes' 'Checking prices' 'VAR Analysis' 'Calculate Option Prices'
  icons←'FcPodiumWithSpeaker' 'FcMoneyTransfer' 'FcSearch' 'FcTreeStructure'
  'F1.Ribbon.Item4.GroupItem5.ButtonGroup1' ∆WC 'RibbonButtonGroup' captions icons
 
  'F1.Ribbon.Item5.GroupItem1' ∆WC 'RibbonGroupItem' 12
- 'F1.Ribbon.Item5.GroupItem1.ButtonGroup1' ∆WC 'RibbonButtonGroup' ('Local Data Quality' 'Overall Data Quality')('FcHighPriority' 'FcHighPriority')
+ 'F1.Ribbon.Item5.GroupItem1.ButtonGroup1' ∆WC 'RibbonButtonGroup' ('Local Data Quality' 'Overall Data Quality')('FcHighPriority' 'FcHighPriority') sel
 
  'F1.Players'∆WC'Grid'('ColTitles'('Name' 'Gender' 'Score' 'Expert'))('Posn'(210 10))('Size'(100 480))('TitleWidth' 0)('ShowInput' 1)('Event' 'CellChanged' 'JSWCUpdate')
  'F1.Players.Name'∆WC'Edit'('Size'(23 100))

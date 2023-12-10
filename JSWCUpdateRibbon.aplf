@@ -1,0 +1,2 @@
+ JSWCUpdateRibbon args
+ ⎕←1⊃args
