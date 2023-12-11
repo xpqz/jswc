@@ -1,0 +1,14 @@
+err←MakeHR (home name);ns;count;maxtries;ok
+ns←home⍎name
+⎕EX 'CONN'
+('HR') ns.⎕WC 'HTMLRenderer' ('Caption' ns.caption) ('URL' 'localhost:22322') ('Size' (40 15+ns.size))('Coord' 'Pixel')('Posn' ns.posn)
+
+count←0 ⋄ maxtries←5
+:Repeat
+    count+←1
+    ⎕Dl 0.1 ⍝ Allow Handler to process connection
+:Until (count>maxtries)∨ok←2=⎕NC 'CONN'
+err←(~ok)/'Unable to initialise HTMLRenderer'
+
+ns.HR.Caption←ns.caption
+ns.HR.ExecuteJavaScript 'document.body.style.overflow = "hidden"'

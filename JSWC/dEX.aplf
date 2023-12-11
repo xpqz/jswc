@@ -11,7 +11,7 @@
  msg←⎕JSON EX
 
  :If CONNECTED
-     z←CONN #.w.Send ⎕←msg
+     z←CONN WSS.Send ⎕←msg
  :Else
      ⎕←msg
  :EndIf

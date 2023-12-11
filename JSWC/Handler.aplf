@@ -5,11 +5,11 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z
      CONNECTED←1
 
      fn←(10↓payload)~'()'
-     fn,←(0=≢fn)/'DemoDefault'
-     :If 3=⎕NC '##.',fn
-         (##⍎fn)&CONNECTED
+     fn,←(0=≢fn)/'Initialise'
+     :If 3=CODELOCATION.⎕NC fn
+         (CODELOCATION⍎fn)&CONNECTED
      :Else
-         ⎕←'Function not found: ',fn
+         ⎕←'Function not found: ',(⍕CODELOCATION),'.',fn
      :EndIf
  :Else
      :Trap 999
@@ -28,15 +28,11 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z
              :EndIf
 
              :Trap 6
-                 event←#⍎z←ID,'.event'
+                 event←CODELOCATION⍎z←ID,'.event'
              :Else
                  ⎕←'*** Unable to find ',z
                  →0
              :EndTrap
-
- ⍝            :If 2=|≡event ⍝ /// This should now be handled in ∆WS (issue #16), please delete this code when that is verified
- ⍝                event←,⊂event
- ⍝            :EndIf
 
              (events fns)←↓⍉↑event
              :If ~(⊂Event)∊events
@@ -45,35 +41,10 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z
                  →0
              :EndIf
 
-⍝ ↓↓↓ This Select session has been used to paper over deficiencies in the client
-⍝     Commented out on November 27th 2023, please delete it soon
-⍝            :Select Event
-⍝             :Case 'Select'
-⍝                 :If (#⍎ID,'.Type')≡'Combo'
-⍝                     ⍎'#.',ID,'.SelItems←Info=⍳',⍕≢#⍎ID,'.SelItems'
-⍝                 :EndIf
-⍝                 Info←⍬
-⍝             :Case 'Change'
-⍝                 ⍎'#.',ID,'.Value←Info'
-⍝                 Info←⍬
-⍝             :Case 'Scroll'
-⍝                 :If (#⍎ID,'.Type')≡'Scroll'
-⍝                     ⍎'#.',ID,'.Thumb←Info[2]'
-⍝                 :EndIf
-⍝             :Case 'CellChanged'
-⍝                 Values←#⍎ID,'.Values'
-⍝                 Values[ns.Event.Row;ns.Event.Col]←⊂ns.Event.Value
-⍝                 ⍎'#.',ID,'.Values←Values'
-⍝             :CaseList 'Expanding' 'Retracting'
-⍝                 ⍝ Nothing to do
-⍝             :Else
-⍝                 ⎕←'Unsupported event: ',Event ⋄ →0
-⍝            :EndSelect
-
-             :If 3≠##.⎕NC fn←(events⍳⊂Event)⊃fns
+             :If 3≠CODELOCATION.⎕NC fn←(events⍳⊂Event)⊃fns
                  ⎕←'Callback function not found: ',fn
              :Else
-                 (##⍎fn)&(ID Event),Info
+                 (CODELOCATION⍎fn)&(ID Event),Info
              :EndIf
          :Case 'WG'
              ns ⎕TPUT WG_TOKEN

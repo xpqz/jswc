@@ -1,0 +1,11 @@
+ Run;rc;msg
+ ⍝ Initialise the Demo application
+
+ JSWC←##.JSWC
+ '∆' JSWC.Init ⎕THIS
+
+ IMAGEFOLDER←JSWC.JSWCFolder,'server/images' ⍝ ⊃⎕NPARTS ¯1↓⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
+ JSWC.USEHR←1
+ DemoMenu 1
+
+ ⎕←⍪'' 'To show CEF developer tools, type:' '' '      demo.ShowDevTools'

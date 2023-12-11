@@ -1,4 +1,5 @@
  {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn;i
+ 'NO CLIENT DETECTED' ⎕SIGNAL (USEHR∨2=⎕NC 'CONN')↓11
  deprecatedprops←'Font' 'Icon' 'Cursor' 'ImageList' '3D' ⍝ No longer appear in PropList
  caller←⊃⎕RSI
 
@@ -13,7 +14,7 @@
  :EndIf
  type←⎕C type
 
- proplist←(Classes⍎type).PropList
+ proplist←(classes⍎type).PropList
  p←(≢Props)↑proplist
 
  m←~(length∊2 3)∧propnames∊proplist,deprecatedprops
@@ -60,6 +61,13 @@
       ⍎(⍕caller),'.',Name,expr ⍝ Set properties in the "server-side DOM"
  :EndIf
 
+ :If USEHR∧type≡'form'
+     :If 0≠≢z←MakeHR caller Name
+         z ⎕SIGNAL 11
+     :EndIf
+      WC.WC.Properties.Posn←0 0 ⍝ Form will be at posn 0 0 within the HTLRenderer
+ :EndIf
+
  :If RECORD ⍝ Collecting lists
      :If ~9=⎕NC class←'Classes.',type←WC.WC.Properties.Type
          ref←⍎class ⎕NS''
@@ -75,7 +83,7 @@
  msg←⎕JSON⍠'HighRank' 'Split'⊢WC
 
  :If CONNECTED
-     z←CONN #.w.Send ⎕←msg
+     z←CONN WSS.Send ⎕←msg
  :Else
      ⎕←msg
  :EndIf

@@ -14,7 +14,7 @@
      wg.(WGID ID Properties)←(⍕WGID)Name (d←dynamic/p)
      msg←⎕JSON WG
      :If CONNECTED
-         z←CONN ##.w.Send ⎕←msg
+         z←CONN WSS.Send ⎕←msg
      :Else
          ⎕←msg
      :EndIf

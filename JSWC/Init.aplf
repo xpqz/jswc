@@ -1,4 +1,37 @@
-Init;z;i;t
+{prefix} Init code;z;i;t;fn
+
+:Trap 0
+    :If 2=⎕NC 'code'
+        code←⍎code
+    :EndIf
+    z←1÷code≡⍎⍕code ⍝ Will DOMAIN ERROR if not OK
+:Else
+    'Code location must be a properly named namespace' ⎕SIGNAL 11
+:EndTrap
+
+:If 0=⎕NC 'prefix'
+  prefix←'∆'
+:EndIf
+
+⍝ Establish API in calling space
+:For fn :In 'WC' 'WS' 'WG' 'WN' 'NQ' 'EX'
+    ⍎(⍕code),'.',prefix,fn,'←',(⍕⎕THIS),'.∆',fn
+:EndFor
+
+CONNECTED←1 ⍝ /// This should go
+USEHR←1
+RECORD←0
+USEWIN32←0
+
+JSWCFolder←⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
+CODELOCATION←code
+
+WSS←wss.New ''
+WSS.ShowHTMLRenderer←0
+WSS.HTMLFolder←JSWCFolder,'server/'
+WSS.Handler←'Handler'
+
+WSS.Port←22322
 
 t←'JSWC Synchronisation'
 z←↑⎕TALLOC 0
@@ -12,6 +45,6 @@ WG_TOKEN←TOKENRANGE+0.1
 WGID←0
 WG_TIMEOUT←5 ⍝ Seconds to wait for response
 
-IMAGEFOLDER←⊃⎕NPARTS ¯1↓⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
-
 (EVENTNUMS EVENTNAMES)←↓⍉↑2031⌶0
+
+WSS.Start 0
