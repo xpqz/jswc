@@ -112,6 +112,7 @@
               :Case 'Close'
               :Case 'Timeout'
               :EndSelect
+          :Case 100  ⍝ Timeout
           :Case 1010 ⍝ object not found
               :If ~_stop
                   Log'Server: Object "',ServerName,'" has been closed - shutting down'

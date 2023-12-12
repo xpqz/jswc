@@ -1,4 +1,8 @@
  {R}←Name ∆WS Props;WS;msg;ws;i;z;ref;expr;caller
+ :If (⊂,Name)∊,¨'⎕SE' '#' '.' ⍝ Pass WS of System properties through
+     →0 ⊣ R←Name ⎕WS Props
+ :EndIf
+
  caller←⊃⎕RSI
  :If 2=≢Props
  :AndIf ∨/~(⍴¨Props)∊⊂,2

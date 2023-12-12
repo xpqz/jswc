@@ -1,6 +1,10 @@
  {R}←{Mode}∆NQ Event;caller;NQ;nq;msg;z
  caller←⊃⎕RSI
  :If 0=⎕NC'Mode' ⋄ Mode←0 ⋄ :EndIf
+ :If (,¨1↑Event)∊,¨'.' '#' '⎕SE' ⍝ Pass NQ to system objects through
+     →0 ⊣ R←Mode ⎕NQ Event
+ :EndIf
+
  'Mode=0 only at this point'⎕SIGNAL(Mode≠0)/11
 
  NQ←⎕NS''
