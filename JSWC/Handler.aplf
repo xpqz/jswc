@@ -1,19 +1,25 @@
-r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z
+r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn
  ⎕TRAP←0 'S'
+ ⎕←'Received: ',payload
  :If (⊂10↑payload)∊'Initialise' 'Initialize'
      CONN←con
+     :If 2=⎕NC 'IGNORE1Init'
+     :AndIf IGNORE1Init≠0
+         IGNORE1Init←0
+         ⎕←'Ignoring one Initialise'
+         :Return
+     :EndIf
+     SendSettings CONN
      CONNECTED←1
-
-     fn←(10↓payload)~'()'
+     fn←reqfn←(10↓payload)~'()'
      fn,←(0=≢fn)/'Initialise'
      :If 3=CODELOCATION.⎕NC fn
          (CODELOCATION⍎fn)&CONNECTED
-     :Else
+     :ElseIf 0≠≢reqfn ⍝ Explicit function requested
          ⎕←'Function not found: ',(⍕CODELOCATION),'.',fn
      :EndIf
  :Else
      :Trap 999
-         ⎕←'Received: ',payload
          ns←0 ⎕JSON payload
          :Select ,ns.⎕NL 9
          :Case 'Event'
@@ -28,7 +34,7 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z
              :EndIf
 
              :Trap 6
-                 event←CODELOCATION⍎z←ID,'.event'
+                 event←CODELOCATION⍎z←ID,'.Event'
              :Else
                  ⎕←'*** Unable to find ',z
                  →0

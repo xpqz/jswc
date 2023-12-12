@@ -1,2 +1,12 @@
- JSWCUpdateRibbon args
- ⎕←'    Ribbon clicked on: ',⍕args
+ JSWCUpdateRibbon args;cap;info
+
+ :Select (⊃args) ∆WG 'Type'
+ :Case 'RibbonButton'
+     cap←(⊃args) ∆WG 'Caption'
+ :Case 'RibbonButtonGroup'
+     cap←(⊃3⊃args)⊃(⊃args) ∆WG 'Captions'
+ :Else
+     ∘∘∘
+ :EndSelect
+
+ 'F1.Average' ∆WS 'Caption' ('Ribbon selection: ',cap)

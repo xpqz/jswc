@@ -6,10 +6,10 @@
  f←'+'
  allf←'+-×÷'
 
+ 'F1'∆WC'Form' 'Function Table'(50 50)(800 800)('Coord' 'Pixel')
  imagefiles←'/images/'∘,¨'Folder-Closed.png' 'Folder-Open.png' 'Price-Ticket.png'
  'IL'∆WC'ImageList'('Size'(16 16))('Masked' 2)('Files' imagefiles)
 
- 'F1'∆WC'Form' 'Function Table'(50 50)(800 800)('Coord' 'Pixel')
  'F1.MB'∆WC'MenuBar'
  'F1.MB.File'∆WC'Menu' '&File'
  'F1.MB.Col'∆WC'Menu' '&Colours'
@@ -75,10 +75,10 @@
      ⎕←'*** After setting Text to "11", TableSize.Value is ',⍕val
   :EndIf
 
-  'F1.TableSize' ∆WS 'Value' 9
+  'F1.TableSize' ∆WS 'Value' 10
   val←'F1.TableSize' ∆WG 'Text'
-  :If val≢,'9'
-     ⎕←'*** After setting Value to 9, TableSize.Text is ',⍕val
+  :If val≢,'10'
+     ⎕←'*** After setting Value to 10, TableSize.Text is ',⍕val
   :EndIf
 
   'F1.Function' ∆WS 'SelItems' (m←allf=f←'×')

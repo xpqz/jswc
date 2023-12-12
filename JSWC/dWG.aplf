@@ -25,7 +25,7 @@
  :Else
      R←(≢p)⍴⊂⍬
      :If 0≠≢i←⍸~dynamic
-        R[i]←caller⍎((1=≢i)/'⊂'),Name,'.(',(⎕C ⍕p[i]),')'
+        R[i]←caller⍎((1=≢i)/'⊂'),Name,'.(',(⍕p[i]),')'
      :EndIf
  :EndIf
 

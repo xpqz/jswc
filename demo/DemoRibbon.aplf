@@ -52,7 +52,7 @@
  inputs←'F1.Players.'∘,¨'Name' 'Gender' 'Score' 'Expert'
  scores←12 13
  'F1.Players'∆WS('Values'('Jack' 'Jill','Male' 'Female',scores,⍪0 1))('CellTypes'(2 4⍴1 2 3 4))('Input'inputs)
- 'F1.Average'∆WC'Label'('Average Score:',1⍕+/scores÷≢scores)(315 180)(23 100)
+ 'F1.Average'∆WC'Label'('Average Score:',1⍕+/scores÷≢scores)(315 180)(23 200)
 
  'F1.Months'∆WC'TreeView'('Q1' 'Jan' 'Feb' 'Mar' 'Q2' 'Apr' 'May' 'Jun')(210 500)(150 200)('Depth'(8⍴0 1 1 1))
 

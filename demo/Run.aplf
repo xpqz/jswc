@@ -6,6 +6,7 @@
 
  IMAGEFOLDER←JSWC.JSWCFolder,'server/images' ⍝ ⊃⎕NPARTS ¯1↓⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
  JSWC.USEHR←1
- DemoMenu 1
+ Initialise 1
 
  ⎕←⍪'' 'To show CEF developer tools, type:' '' '      demo.ShowDevTools'
+ ⎕←⍪'' 'To switch to using browser:' '' '      JSWC.USEHR←0'

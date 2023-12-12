@@ -15,7 +15,7 @@
  'F1.COLS'∆WC'Edit'(⍕cols)(30 70)(23 50)('FieldType' 'Numeric')
  'F1.GO'∆WC'Button' 'Draw Boxes' (30 140)(23 80)('Event' 'Select' 'JSWCUpdateLines')
  'F1.CLR'∆WC'Button' 'Clear' (30 225)(23 50)('Event' 'Select' 'JSWCUpdateLines')
- 'F1.HIDE' ∆WC 'Button' 'Hide Graphics' (55 130)(23 23)('Style' 'Check')('Event' 'Select' 'JSWCUpdateLines')
+ 'F1.HIDE' ∆WC 'Button' 'Hide Graphics' (55 130)(23 110)('Style' 'Check')('Event' 'Select' 'JSWCUpdateLines')
 
  BY←10 10 50 10
  BX←15 65 40 15
@@ -26,4 +26,3 @@
  'F1.LOGO'∆WC P,('LWidth'(3 6))('FStyle'(¯1 0))('FillCol'(2⍴⊂0 255 0))
 
  JSWCUpdateLines ,⊂'F1.GO'
-

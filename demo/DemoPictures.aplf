@@ -2,11 +2,13 @@
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
+ 'F1'∆WC'Form'('BCol'(255 255 255))('Coord' 'Pixel')('Size'(500 900))
+
  'YES'∆WC'BitMap'('File' '/images/yes.bmp')
  'NO'∆WC'BitMap'('File' '/images/no.bmp')
  'LOGO'∆WC'BitMap'('File' '/images/dyalog-logo.jpg')
 
- 'F1'∆WC'Form'('Picture'('LOGO' 0))('BCol'(255 255 255))('Coord' 'Pixel')('Size'(500 900))
+ ⍝ 'F1' ∆WS 'Picture'('LOGO' 0)
  'F1.S'∆WC'SubForm'('Picture'('LOGO' 1))('Size'(500 500))('Posn'(0 400))
 
  'F1.YES'∆WC'Button'('Picture' 'YES')('Size'(40 40))('Posn'(430 25))

@@ -1,0 +1,7 @@
+SendSettings CONN;S;z
+⍝ Send contents of "settings" namespace
+⍝ For valid settings, see https://day.js.org/docs/en/display/format
+
+S←⎕NS ''
+S.Settings←settings
+z←CONN WSS.Send ⎕←⎕JSON S

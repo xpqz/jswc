@@ -1,4 +1,4 @@
- {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn;i
+ {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn;i;ns;okprops
  'NO CLIENT DETECTED' ⎕SIGNAL (USEHR∨2=⎕NC 'CONN')↓11
  deprecatedprops←'Font' 'Icon' 'Cursor' 'ImageList' '3D' ⍝ No longer appear in PropList
  caller←⊃⎕RSI
@@ -13,6 +13,10 @@
      type←⊃Props
  :EndIf
  type←⎕C type
+
+:If ~9=classes.⎕NC type
+    ('Unsupported class: ',type) ⎕SIGNAL 11
+:EndIf
 
  proplist←(classes⍎type).PropList
  p←(≢Props)↑proplist
@@ -57,11 +61,22 @@
      :EndIf
  :Else
       R←Name caller.⎕NS''
-      expr←'.(',(⎕C ⍕propnames),')←',(1≠≢propnames)↓'⊃Props' ⍝ /// remove when we go all lowercase everywhere
+      okprops←proplist,objProps
+      :If ∨/m←(≢okprops)<i←okprops⍳propnames
+          ('Unsupported properties: ',⍕m/propnames) ⎕SIGNAL 11
+      :EndIf
+      m←~proplist∊propnames
+      expr←'.(',(⍕okprops[i],m/proplist),')←Props,m/classes.',type,'.Defaults' ⍝ /// remove when we go all lowercase everywhere
       ⍎(⍕caller),'.',Name,expr ⍝ Set properties in the "server-side DOM"
  :EndIf
 
  :If USEHR∧type≡'form'
+     ns←caller⍎Name
+     :If 'inherit'≡⎕C ns.Coord
+         ns.Coord←'Pixel'
+     :EndIf
+
+     IGNORE1Init←1 ⍝ Make Handler ignore the next Initialise call
      :If 0≠≢z←MakeHR caller Name
          z ⎕SIGNAL 11
      :EndIf
