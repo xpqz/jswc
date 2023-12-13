@@ -2,4 +2,7 @@
  'Type'
  'TabObj'
  'Visible'
+ 'Picture'
+ 'Size'
+ 'Posn'
 )

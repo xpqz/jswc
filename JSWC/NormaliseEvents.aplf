@@ -11,5 +11,7 @@
  :ElseIf ∧/(⊃¨events)∊EVENTNAMES,EVENTNUMS
      r←⊃,/NormaliseEvents¨events
  :Else
-     ∘∘∘ ⍝ Unsupported case
+     ⎕←'Unsupported event setting at ',showCallStack
+     ⎕←'    ' events
+     r←⍬
  :EndIf

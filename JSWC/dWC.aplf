@@ -1,36 +1,43 @@
- {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn;i;ns;okprops
+ {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn;i;ns;okprops;⎕TRAP;depth;valid;values;lcp;pi;ix;PropList;allprops;AllProps
+ ⎕TRAP←0 'S'
  'NO CLIENT DETECTED' ⎕SIGNAL (USEHR∨2=⎕NC 'CONN')↓11
- deprecatedprops←'Font' 'Icon' 'Cursor' 'ImageList' '3D' ⍝ No longer appear in PropList
+ deprecatedprops←,⊂'3D' ⍝ No longer appear in PropList
  caller←⊃⎕RSI
 
  Props←,⊆Props
  length←≢¨Props
- propnames←⊃¨Props
-
- :If 1=≢type←((length∊2)∧propnames∊⊂'Type')/Props ⍝ Named 'Type' property?
-     type←2⊃type
- :Else
-     type←⊃Props
- :EndIf
+ depth←|≡¨Props
+ propnames←⎕C (depth>1)/¨⊃¨Props
+ type←(i←⌊/propnames⍳'' 'type')⊃Props
+ :If 2=i⊃depth ⋄ type←2⊃type ⋄ :EndIf
  type←⎕C type
+ :If (⊂type)∊⎕C nativeClasses ⍝ Timers and other
+     →0 ⊣ R←Name caller.⎕WC Props
+ :EndIf
 
 :If ~9=classes.⎕NC type
-    ('Unsupported class: ',type) ⎕SIGNAL 11
+    Warning 'Unsupported class: ',type
+    Name caller.⎕NS ''
+    (caller⍎Name).Type←type
+    →0
 :EndIf
 
- proplist←(classes⍎type).PropList
- p←(≢Props)↑proplist
-
- m←~(length∊2 3)∧propnames∊proplist,deprecatedprops
- (m/propnames)←m/p ⍝ Add default prop names
- m2←(~m)∧length=2
- (m2/Props)←2⊃¨m2/Props ⍝ Extract property values
- m3←(~m)∧length=3
- (m3/Props)←1↓¨m3/Props
+ class←classes⍎type
+ proplist←⎕C PropList←class.PropList
+ valid←(lcp←⎕C propnames)∊allprops←⎕C AllProps←PropList,objProps,deprecatedprops
+ values←valid↓¨Props
+ ix←⍸valid∧length=2      ⍝ Prop name found, followed by 1 thing
+ values[ix]←⊃¨values[ix]
+ ix←⍸0=pi←(1+≢allprops)|allprops⍳lcp
+ i←propIndices pi
+ propnames[ix]←allprops[i[ix]]
+ ix←⍸(lcp←⎕C propnames)∊allprops
+ propnames[ix]←AllProps[allprops⍳lcp[ix]] ⍝ Properly cased names
+ valid[ix]←1
 
  :If (≢propnames)≥i←propnames⍳⊂'Event'
-     (i⊃Props)←NormaliseEvents i⊃Props
-     :If 1=≢i⊃Props
+     (i⊃values)←NormaliseEvents i⊃values
+     :If 1=≢i⊃values
          ⍝ ⎕←'*** Working around event limitation ***'
          ⍝ (i⊃Props)←⊃i⊃Props
      :EndIf
@@ -39,17 +46,17 @@
  WC←⎕NS''
  WC.WC←⎕NS''
  WC.WC.(ID Properties)←Name(⎕NS'')
- ⍎'WC.WC.Properties',expr←'.(',(⍕propnames),')←',(1≠≢propnames)↓'⊃Props'
+ ⍎'WC.WC.Properties',expr←'.(',(⍕propnames),')←',(1≠≢propnames)↓'⊃values'
 
  :If USEWIN32
      :If 'ribbon'≢6↑type
-         props←(m←(type≢'imagelist')∨~propnames∊⍥⎕C ⊂'files')/Props
+         values←(m←(type≢'imagelist')∨~propnames∊⍥⎕C ⊂'files')/values
          pn←m/propnames
          :If type≡'bitmap'
          :AndIf (≢pn)≥i←(⎕C pn)⍳⊂'file'
             (i⊃props)←IMAGEFOLDER,1↓i⊃props ⍝ Adjust BitMap image file names
          :EndIf
-         R←Name caller.⎕WC ↓pn,⍪props
+         R←Name caller.⎕WC ↓pn,⍪values
          :If 'imagelist'≡type
          :AndIf 2=⎕NC 'WC.WC.Properties.Files' ⍝ Simulate the "Files" property in Win32
              :For f :In WC.WC.Properties.Files
@@ -61,12 +68,12 @@
      :EndIf
  :Else
       R←Name caller.⎕NS''
-      okprops←proplist,objProps
-      :If ∨/m←(≢okprops)<i←okprops⍳propnames
-          ('Unsupported properties: ',⍕m/propnames) ⎕SIGNAL 11
+      okprops←PropList,objProps
+      :If ∨/m←(≢class.Supported)<i←class.Supported⍳propnames
+          Warning 'Unsupported on ',type,': ',⍕m/propnames
       :EndIf
-      m←~proplist∊propnames
-      expr←'.(',(⍕okprops[i],m/proplist),')←Props,m/classes.',type,'.Defaults' ⍝ /// remove when we go all lowercase everywhere
+      m←~PropList∊propnames
+      expr←'.(',(⍕propnames,m/PropList),')←values,m/class.Defaults'
       ⍎(⍕caller),'.',Name,expr ⍝ Set properties in the "server-side DOM"
  :EndIf
 

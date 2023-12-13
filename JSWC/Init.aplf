@@ -18,7 +18,7 @@
      ⍎(⍕code),'.',prefix,fn,'←',(⍕⎕THIS),'.∆',fn
  :EndFor
 
- CONNECTED←1 ⍝ /// This should go
+ CONNECTED←0 ⍝ /// This should go
  USEHR←1
  RECORD←0
  USEWIN32←0

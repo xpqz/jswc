@@ -6,4 +6,7 @@
  'Posn'
  'Event'
  'Visible'
+ 'Picture'
+ 'State'
+ 'Align'
 )

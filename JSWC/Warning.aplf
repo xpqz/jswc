@@ -1,0 +1,3 @@
+Warning msg
+⎕←'JSWC Warning: at ',showCallStack
+⎕←'   ',msg

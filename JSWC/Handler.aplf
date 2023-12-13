@@ -3,6 +3,7 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn
  ⎕←'Received: ',payload
  :If (⊂10↑payload)∊'Initialise' 'Initialize'
      CONN←con
+     CONNECTED←1
      :If 2=⎕NC 'IGNORE1Init'
      :AndIf IGNORE1Init≠0
          IGNORE1Init←0
@@ -10,7 +11,6 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn
          :Return
      :EndIf
      SendSettings CONN
-     CONNECTED←1
      fn←reqfn←(10↓payload)~'()'
      fn,←(0=≢fn)/'Initialise'
      :If 3=CODELOCATION.⎕NC fn

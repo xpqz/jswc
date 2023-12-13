@@ -1,23 +1,48 @@
- {R}←Name ∆WS Props;WS;msg;ws;i;z;ref;expr;caller
+ {R}←Name ∆WS Props;WS;msg;ws;i;z;ref;expr;caller;⎕TRAP;proplist;pname;names;values;PropList;m;class;type;ix
+  ⎕TRAP←0 'S'
  :If (⊂,Name)∊,¨'⎕SE' '#' '.' ⍝ Pass WS of System properties through
      →0 ⊣ R←Name ⎕WS Props
  :EndIf
 
  caller←⊃⎕RSI
- :If 2=≢Props
- :AndIf ∨/~(⍴¨Props)∊⊂,2
-     Props←,⊂Props
+ class←classes⍎⎕C type←caller⍎Name,'.Type'
+ proplist←⎕C PropList←class.PropList,objProps
+ :If (names←⎕C 1↑Props)∊proplist
+     values←,⊂1↓Props
+ :Else
+    :If ∧/(names←⎕C ⊃¨Props)∊proplist
+        values←1↓¨Props
+    :EndIf
  :EndIf
+
+ :If ~∧/m←(≢proplist)≥proplist⍳names
+      Warning 'Unknown properties: ',(~m)/names
+     (names values)←m∘/¨names values
+ :EndIf
+
+ :If 0≠≢ix←⍸1=≢¨values
+     values[ix]←⊃¨values[ix]
+ :EndIf
+
+ names←PropList[proplist⍳names] ⍝ Correct case
+
+ :If ~∧/m←names∊class.Supported
+     Warning 'Unsupported properties for type ',type,': ',(~m)/names
+     (names values)←m∘/¨names values
+ :EndIf
+
 
  WS←⎕NS''
  ws←WS.WS←⎕NS''
  ws.(ID Properties)←Name(⎕NS'')
- ⍎'ws.Properties',expr←'.(',(⍕1⊃¨Props),')←',(1≠≢Props)↓'⊃2⊃¨Props'
+ :If 0≠≢names
+    ⍎'ws.Properties',expr←'.(',(⍕names),')←',(1≠≢values)↓'⊃values'
+ :EndIf
 
  :If USEWIN32
      R←Name caller.⎕WS Props
- :Else
-     expr←'.(',(⎕C ⍕1⊃¨Props),')←',(1≠≢Props)↓'⊃2⊃¨Props'
+ :ElseIf 0≠≢names
+     expr←'.(',(⍕⎕C names),')←',(1≠≢values)↓'⊃values'
      ⍎(⍕caller),'.',Name,expr ⍝ Update "server-side DOM"
  :EndIf
 
@@ -31,5 +56,5 @@
  :If CONNECTED
      z←CONN WSS.Send ⎕←msg
  :Else
-     ⎕←msg
+     Warning 'Not connected, need to send: ',msg
  :EndIf

@@ -1,4 +1,5 @@
- {R}←{Mode}∆NQ Event;caller;NQ;nq;msg;z
+ {R}←{Mode}∆NQ Event;caller;NQ;nq;msg;z;⎕TRAP
+ ⎕TRAP←0 'S'
  caller←⊃⎕RSI
  :If 0=⎕NC'Mode' ⋄ Mode←0 ⋄ :EndIf
  :If (,¨1↑Event)∊,¨'.' '#' '⎕SE' ⍝ Pass NQ to system objects through
