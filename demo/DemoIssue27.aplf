@@ -42,5 +42,5 @@
  'F1.CalcBtn'∆WC'Button' 'A button'(210 200)(23 100)
 
  'F1.s'∆WC'SubForm'('Posn'(210 0))('Size'(500 200))
- 'F1.s.Months'∆WC'TreeView'('Q1' 'Jan' 'Feb' 'Mar' 'Q2' 'Apr' 'May' 'Jun')(210 500)(150 150)('Depth'(8⍴0 1 1 1))
+ 'F1.s.Months'∆WC'TreeView'('Q1' 'Jan' 'Feb' 'Mar' 'Q2' 'Apr' 'May' 'Jun')(40 0)(150 150)('Depth'(8⍴0 1 1 1))
  'F1.s.CalcBtn'∆WC'Button' 'A button'(0 0)(23 100)
