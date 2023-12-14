@@ -1,4 +1,4 @@
- {R}←Name ∆WG Props;msg;WG;wg;z;caller;p;class;remote;dynamic;r;d;i;⎕TRAP
+ {R}←Name ∆WG Props;msg;WG;wg;z;caller;p;class;remote;dynamic;r;d;i;⎕TRAP;proplist;PropList;m;ix
  ⎕TRAP←0 'S'
  Name←⍕Name
  :If (⊂,Name)∊,¨'⎕SE' '#' '.' ⍝ Pass WG of System properties through
@@ -16,6 +16,12 @@
  :Else
      (⊃⎕DMX.DM)⎕SIGNAL ⎕DMX.EN
  :EndTrap
+
+ proplist←⎕C PropList←class.PropList,objProps
+ :If ∨/m←(≢proplist)<i←proplist⍳⎕C p
+     Warning 'Unsupported on ',class,': ',⍕m/p
+ :EndIf
+ p[ix]←PropList[i[ix←⍸~m]]
 
  :If remote←∨/,dynamic←p∊⍥⎕C class.Dynamic,⊂'NoSuchProperty' ⍝ Any reason to ask remote client for values?
      wg.(WGID ID Properties)←(⍕WGID)Name (d←dynamic/p)

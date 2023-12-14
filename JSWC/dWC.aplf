@@ -54,7 +54,7 @@
          pn←m/propnames
          :If type≡'bitmap'
          :AndIf (≢pn)≥i←(⎕C pn)⍳⊂'file'
-            (i⊃props)←IMAGEFOLDER,1↓i⊃props ⍝ Adjust BitMap image file names
+            (i⊃values)←IMAGEFOLDER,1↓i⊃values ⍝ Adjust BitMap image file names
          :EndIf
          R←Name caller.⎕WC ↓pn,⍪values
          :If 'imagelist'≡type

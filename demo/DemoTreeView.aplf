@@ -56,7 +56,7 @@
       ⎕←z
   :EndIf
 
-  z←'F1.TableSize' ∆WG f←'Text' 'Value' ⍝ Both Dynamic
+  z←'F1.TableSize' ∆WG f←'text' 'VALUE' ⍝ Both Dynamic
   :If ∨/m←z≢¨'10' 10
       ⎕←'*** Unexpected return value for F1.TableSize: ',⍕m/f
       ⎕←z
