@@ -1,4 +1,4 @@
- {R}←Name ∆WS Props;WS;msg;ws;i;z;ref;expr;caller;⎕TRAP;proplist;pname;names;values;PropList;m;class;type;ix
+ {R}←Name ∆WS Props;WS;msg;ws;i;z;ref;expr;caller;⎕TRAP;proplist;pname;names;values;PropList;m;class;type;ix;HR
   ⎕TRAP←0 'S'
  :If (⊂,Name)∊,¨'⎕SE' '#' '.' ⍝ Pass WS of System properties through
      →0 ⊣ R←Name ⎕WS Props
@@ -31,6 +31,12 @@
      (names values)←m∘/¨names values
  :EndIf
 
+ :If type≡'Form'
+ :AndIf (≢names)≥i←names⍳⊂'Posn'
+ :AndIf 1=≢HR←'HTMLRenderer' ⎕WN caller⍎Name
+     (⊃HR) ⎕WS 'Posn' (i⊃values) ⍝ Move the HTMLRenderer instead
+     (names values)←(i≠⍳≢names)∘/¨names values
+ :EndIf
 
  WS←⎕NS''
  ws←WS.WS←⎕NS''
@@ -52,6 +58,10 @@
  :EndIf
 
  msg←⎕JSON⍠'HighRank' 'Split'⊢WS
+ :If 0=≢names
+     Warning 'Not sending empty WS message: ',msg
+     →0
+ :EndIf
 
  :If CONNECTED
      z←CONN WSS.Send ⎕←msg
