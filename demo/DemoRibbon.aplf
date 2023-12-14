@@ -5,9 +5,7 @@
  n←10
  f←'×'
  allf←'+-×÷'
- ribbon←⎕NR⊃⎕SI
- ribbon←1↓1↓¨(⌽∧\⌽'⍝'=⊃¨ribbon)/ribbon
- ribbon←∊(⎕UCS 10),¨ribbon
+
  sel←'Event' 'Select' 'JSWCUpdateRibbon'
 
  'F1'∆WC'Form' 'Function Table'(50 50)(800 800)('Coord' 'Pixel')
