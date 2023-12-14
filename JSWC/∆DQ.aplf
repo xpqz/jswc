@@ -1,0 +1,9 @@
+ {R}←∆DQ names;⎕TRAP;caller;class;Name;type;HR
+ ⎕TRAP←0 'S'
+
+ Name←1⊃names←,⊆names
+ caller←⊃⎕RSI
+ class←classes⍎⎕C type←caller⍎Name,'.Type'
+ 'JSWC IS ONLY ABLE TO HANDLE ONE FORM'⎕SIGNAL((1=≢names)∧type≡'Form')↓11
+ 'HTMLRENDERER NOT FOUND'⎕SIGNAL(1=≢HR←'HTMLRenderer'⎕WN(ref←caller⍎Name))↓11
+ R←⎕DQ⊃HR

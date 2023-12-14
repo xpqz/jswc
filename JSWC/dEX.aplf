@@ -1,12 +1,12 @@
- {R}←∆EX names;caller;msg;ex;EX;z;⎕TRAP
+ {R}←∆EX names;caller;msg;ex;EX;z;⎕TRAP;cn;n
  ⎕TRAP←0 'S'
- caller←⊃⎕RSI
- :If 0=⎕NC'Mode' ⋄ Mode←0 ⋄ :EndIf
- 'Mode=0 only at this point'⎕SIGNAL(Mode≠0)/11
+ names←,⊆names
+ n←≢cn←⍕caller←⊃⎕RSI~⎕THIS
+ names←((1+n)×(n↑¨names)∊⊂cn)↓¨names
 
  EX←⎕NS''
  ex←EX.EX←⎕NS''
- ex.ID←,⊆names
+ ex.ID←names
 
  R←caller.⎕EX names
  msg←⎕JSON EX

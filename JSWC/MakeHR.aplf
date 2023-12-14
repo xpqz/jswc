@@ -1,7 +1,8 @@
-err←MakeHR (home name);ns;count;maxtries;ok
+err←MakeHR (home name);ns;count;maxtries;ok;cb
 ns←home⍎name
 ⎕EX 'CONN'
-('HR') ns.⎕WC 'HTMLRenderer' ('Caption' ns.Caption) ('URL' 'localhost:22322') ('Size' (40 17+ns.Size))('Coord' 'Pixel')('Posn' ns.Posn)
+cb←(⍕⎕THIS),'.DestroyHR'
+('HR') ns.⎕WC 'HTMLRenderer' ('Caption' ns.Caption) ('URL' 'localhost:22322') ('Size' (40 17+ns.Size))('Coord' 'Pixel')('Posn' ns.Posn)('Event' 'Close' cb)
 
 count←0 ⋄ maxtries←100
 :Repeat

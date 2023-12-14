@@ -1,4 +1,4 @@
- {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn;i;ns;okprops;⎕TRAP;depth;valid;values;lcp;pi;ix;PropList;allprops;AllProps;n;cp
+ {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn;i;ns;okprops;⎕TRAP;depth;valid;values;lcp;pi;ix;PropList;allprops;AllProps;n;cp;v
  ⎕TRAP←0 'S'
  'NO CLIENT DETECTED' ⎕SIGNAL (USEHR∨2=⎕NC 'CONN')↓11
  deprecatedprops←,⊂'3D' ⍝ No longer appear in PropList
@@ -75,7 +75,8 @@
           Warning 'Unsupported on ',type,': ',⍕m/propnames
       :EndIf
       m←~PropList∊propnames
-      expr←'.(',(⍕propnames,m/PropList),')←values,m/class.Defaults'
+      v←values,m/class.Defaults
+      expr←'.(',(⍕propnames,m/PropList),')←',(1≠≢v)↓'⊃v'
       ⍎(⍕caller),'.',Name,expr ⍝ Set properties in the "server-side DOM"
  :EndIf
 
