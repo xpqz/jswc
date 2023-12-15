@@ -49,6 +49,9 @@
  WC.WC←⎕NS''
  WC.WC.(ID Properties)←Name(⎕NS'')
  ⍎'WC.WC.Properties',expr←'.(',(⍕propnames),')←',(1≠≢propnames)↓'⊃values'
+ :If 2=class.⎕NC 'TypeName' ⍝ /// This test should go when all classes have TypeName
+     values[propnames⍳⊂'Type']←⊂WC.WC.Properties.Type←class.TypeName
+ :EndIf
 
  :If USEWIN32
      :If 'ribbon'≢6↑type
