@@ -1,4 +1,10 @@
- r←NormaliseEvents events;i
+ r←normaliseEvents events;i
+
+ :If 1≠≢events
+     events←,⊂events
+ :Else
+     events←⊃events
+ :EndIf
 
  :If events[1]∊EVENTNAMES
      r←,⊂events
@@ -12,6 +18,8 @@
      r←⊃,/NormaliseEvents¨events
  :Else
      ⎕←'Unsupported event setting at ',showCallStack
-     ⎕←'    ' events
+     ⎕←'    'events
      r←⍬
  :EndIf
+
+ r←⊂r

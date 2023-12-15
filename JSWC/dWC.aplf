@@ -37,13 +37,7 @@
  propnames[ix]←AllProps[allprops⍳lcp[ix]] ⍝ Properly cased names
  valid[ix]←1
 
- :If (≢propnames)≥i←propnames⍳⊂'Event'
-     (i⊃values)←NormaliseEvents i⊃values
-     :If 1=≢i⊃values
-         ⍝ ⎕←'*** Working around event limitation ***'
-         ⍝ (i⊃Props)←⊃i⊃Props
-     :EndIf
- :EndIf
+ values←propnames (type fixUpProps) values       ⍝ Regularise things for the poor JS code
 
  WC←⎕NS''
  WC.WC←⎕NS''

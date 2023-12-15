@@ -2,7 +2,7 @@
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
- F←'F000'
+ F←'F1'
  F ∆WC'Form' 'Buttons'(50 50)(200 300)('Coord' 'Pixel')
 
  (F,'.FRUIT')∆WC'Group' 'Pick a Fruit'('Posn'(10 10))('Size'(80 280))

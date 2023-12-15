@@ -8,4 +8,4 @@
 
  'F1.s'∆WC'SubForm'('Posn'(100 10))('Size'(formsize-110 20)) ⍝ To draw boxes in
  'F1.s.B1'∆WC'Button' 'A button'(0 0)(23 100)
- 'F1.s.R2'∆WC'Rect'(100 0)(40 40)
+ 'F1.s.R2'∆WC'Rect'(100 0)(40 40)⍝('FCol' (255 0 0))('LStyle' 5)('Radius' (0 0))
