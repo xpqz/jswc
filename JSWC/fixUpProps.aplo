@@ -13,7 +13,7 @@
      :Select ⊃n
      :Case 'Event'
          values[ix]←normaliseEvents values[ix]
-     :CaseList 'Points' 'Radius' 'Size' 'LWidth' 'LStyle' 'FStyle'
+     :CaseList 'Points' 'Radius' 'Size'
          :If 2=⍴⍴val←ix⊃values
              (ix⊃values)←↓val
          :Else
@@ -21,5 +21,7 @@
          :EndIf
      :CaseList 'BCol' 'FCol' 'FillCol'
          (ix⊃values)←,⊆ix⊃values
+     :CaseList 'LStyle' 'FStyle' 'LWidth'
+         ⍝ Do nothing?
      :EndSelect
  :EndFor
