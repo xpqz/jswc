@@ -9,7 +9,7 @@
  sel←'Event' 'Select' 'JSWCUpdateRibbon'
 
  'F1'∆WC'Form' 'Function Table'(50 50)(716 1190)('Coord' 'Pixel')
- 'F1.Ribbon' ∆WC 'Ribbon'
+ 'F1.Ribbon' ∆WC 'Ribbon'('Size' (150 1190))
  'F1.Ribbon.Item1' ∆WC 'RibbonGroup' 'Locks'
  'F1.Ribbon.Item2' ∆WC 'RibbonGroup' 'Macros'
  'F1.Ribbon.Item3' ∆WC 'RibbonGroup' 'Dashboard'

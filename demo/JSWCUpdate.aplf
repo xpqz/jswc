@@ -35,10 +35,10 @@
  :Case 'F1.CalcBtn'
      f←allf[1⍳⍨'F1.Function'∆WG'SelItems']
      n←'F1.TableSize'∆WG'Value'
- :Case 'F1.Months' ⍝ Treeview
-     ii←'F1.Months'∆WG'ImageIndex'
+ :CaseList 'F1.Months' 'F1.LEFT.Months' ⍝ Treeview
+     ii←(1⊃args)∆WG'ImageIndex'
      ii[3⊃args]←1+'Expanding'≡2⊃args ⍝ Set Image Index to open or closed
-     'F1.Months'∆WS'ImageIndex'ii
+     (1⊃args)∆WS'ImageIndex'ii
  :CaseList cols←'F1.MB.Col.'∘,¨'Red' 'Blue' 'Green'
      fcol←(cols⍳args[1])⊃(255 0 0)(0 0 255)(0 255 0)
      'F1.Average'∆WS'FCol'fcol
@@ -51,4 +51,6 @@
      ⎕←'Unexpected message: ',args
  :EndSelect
 
- 'F1.Table'∆WS'Values'(∘.(⍎f)⍨⍳n)
+ :If 0≠⎕NC 'F1.Table'
+     'F1.Table'∆WS'Values'(∘.(⍎f)⍨⍳n)
+ :EndIf
