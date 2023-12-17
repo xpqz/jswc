@@ -1,2 +1,5 @@
 JSWC/server/index.html
 JSWC/server/assets/*
+JSWC/server/bitmaps16/*
+JSWC/server/bitmaps32/*
+JSWC/server/images/GamaWaterMark.png

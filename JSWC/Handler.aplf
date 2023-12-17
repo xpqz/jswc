@@ -42,7 +42,6 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn
 
              (events fns)←↓⍉↑event
              :If ~(⊂Event)∊events
-                 ∘∘∘
                  ⎕←'*** No callback defined for event ',Event,' on object ',ID
                  →0
              :EndIf

@@ -8,8 +8,10 @@
  'YES'∆WC'BitMap'('File' '/images/yes.bmp')
  'NO'∆WC'BitMap'('File' '/images/no.bmp')
 
- ⍝ 'F1' ∆WS 'Picture'('LOGO' 0)
- 'F1.S'∆WC'SubForm'('Picture'('LOGO' 1))('Size'(500 500))('Posn'(0 400))
+ 'F1.TILE'∆WC'SubForm'('Picture'('LOGO' 1))('Size'(250 500))('Posn'(0 400))
+ 'F1.SCALE'∆WC'SubForm'('Picture'('LOGO' 2))('Size'(250 400))('Posn'(250 0))
+ 'F1.CENTER'∆WC'SubForm'('Size'(250 500))('Posn'(250 400))
+ 'F1.CENTER'∆WS 'Picture'('LOGO' 3)
 
- 'F1.YES'∆WC'Button'('Picture' 'YES')('Size'(40 40))('Posn'(430 25))
- 'F1.NO'∆WC'Button'('Picture' 'NO')('Size'(40 40))('Posn'(430 65))
+ 'F1.YES'∆WC'Button'('Picture' 'YES')('Size'(40 40))('Posn'(10 250))
+ 'F1.NO'∆WC'Button'('Picture' 'NO')('Size'(40 40))('Posn'(50 250))

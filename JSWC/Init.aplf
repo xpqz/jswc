@@ -12,6 +12,9 @@
  :If 0=⎕NC'prefix'
      prefix←'∆'
  :EndIf
+ :If 0=⎕NC 'RESOURCES'
+     RESOURCES←1 2⍴⊂''
+ :EndIf
 
 ⍝ Establish API in calling space
  :For fn :In 'WC' 'WS' 'WG' 'WN' 'NQ' 'EX' 'DQ'
@@ -32,6 +35,12 @@
  :EndIf
  WSS.ShowHTMLRenderer←0
  WSS.HTMLFolder←JSWCFolder,'server/'
+ WSS.Aliases←RESOURCES
+ WSS.OnConnect←'onConnect'
+ WSS.OnWSUpgrade←'onWSUpgrade'
+ WSS.OnTimeout←'onTimeout'
+ WSS.OnWSReceive←'Handler'
+ WSS.OnClose←'onClose'
  WSS.Handler←'Handler'
  WSS.Port←22322
 

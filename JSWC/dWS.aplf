@@ -38,6 +38,8 @@
      (names values)←(i≠⍳≢names)∘/¨names values
  :EndIf
 
+ values←names (type fixUpProps) values       ⍝ Regularise things for the poor JS code
+
  WS←⎕NS''
  ws←WS.WS←⎕NS''
  ws.(ID Properties)←Name(⎕NS'')
