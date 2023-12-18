@@ -59,14 +59,4 @@
      ref.Supported∪←1⊃¨Props
  :EndIf
 
- msg←⎕JSON⍠'HighRank' 'Split'⊢WS
- :If 0=≢names
-     Warning 'Not sending empty WS message: ',msg
-     →0
- :EndIf
-
- :If CONNECTED
-     z←CONN WSS.Send ⎕←msg
- :Else
-     Warning 'Not connected, need to send: ',msg
- :EndIf
+ sendObject WS

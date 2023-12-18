@@ -1,0 +1,25 @@
+ Replay;rc;msg;tn;log;z;form;sendlog
+ ⍝ Initialise the Demo application
+
+ form←2 ⎕NQ '.' 'GetEnvironment' 'Form'
+ sendlog←2 ⎕NQ '.' 'GetEnvironment' 'SendLog'
+
+ JSWC←##.JSWC
+ JSWC.PORT←12345
+ JSWC.RESOURCES←1 2⍴'images' 'c:\devt\jswc\demo\images'
+ '∆'JSWC.Init ⎕THIS
+
+ IMAGEFOLDER←JSWC.JSWCFolder,'server/images'
+ JSWC.USEHR←1
+ JSWC.IGNORE1Init←1 ⍝ Make Handler ignore the next Initialise call
+
+ form ∆WC 'Form' ('Size' (768 1200))
+
+ tn←sendlog ⎕FSTIE 0
+ log←⎕FREAD tn 1
+ ⎕FUNTIE 1
+
+ :For msg :In log
+     z←JSWC.CONN JSWC.WSS.Send ⎕←msg
+     ⎕DL 0.1
+ :EndFor

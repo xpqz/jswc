@@ -87,7 +87,10 @@
 
     ∇ Listen;rc;obj;evt;data;wres;hdrs;conx;headers;httpver;url;method
       :While ~_stop
-          (rc obj evt data)←4↑wres←LDRC.Wait ServerName WaitTimeout
+          (rc obj evt data)←4↑wres←LDRC.Wait ServerName WaitTimeout 
+          :If 'Timeout'≢evt
+              ⎕←wres           
+          :EndIf
           :Select rc
           :Case 0
               :Select evt
@@ -101,7 +104,8 @@
                   obj Serve data
               :Case 'WSUpgrade'
                   hdrs←ParseHeaders data
-                  Conx⍪←obj(hdrs GetHeader'sec-websocket-key')
+                  Conx⍪←obj(hdrs GetHeader'sec-websocket-key') 
+                  ⎕←Conx
               :Case 'WSReceive'
                   :If 0∊⍴Handler
                       Log(Connection obj),' sent:'
