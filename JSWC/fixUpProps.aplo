@@ -1,7 +1,7 @@
  values←names(type fixUpProps)values;special;i;ixs;ns;n;ix;val
 ⍝ Massage properties that can have multiple formats into regular structures for JS
 
- special←'Event' 'Points' 'Radius' 'LWidth' 'LStyle' 'FStyle' 'Visible'
+ special←'Event' 'Points' 'Radius' 'LWidth' 'LStyle' 'FStyle' 'Visible' 'File' 'FileNames' 'Picture'
  :If (⊂type)∊'rect' 'circle' 'ellipse' 'poly'
      special,←'FCol' 'BCol' 'FillCol' 'ArcMode' 'Start' 'End' 'Size'
  :EndIf
@@ -25,5 +25,9 @@
          ⍝ Do nothing?
      :Case 'Visible'
          (ix⊃values)←⊃ix⊃values ⍝ Must be scalar
+     :Case 'Picture'
+         (ix⊃values)←2↑(,⊆ix⊃values),0 ⍝ Default to top left
+     :CaseList 'File' 'FileNames'
+         (ix⊃values)←(' ' ⎕R '_')ix⊃values
      :EndSelect
  :EndFor

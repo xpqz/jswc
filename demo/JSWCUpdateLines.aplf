@@ -1,13 +1,15 @@
- JSWCUpdateLines args;rows;cols;size;posn;viz;obs
- :Select 1⊃args
- :Case 'F1.GO'
-     (rows cols)←('F1'∘,¨'.ROWS' '.COLS')∆WG¨⊂'Value'
-     (posn size)←(100 10)(('F1'∆WG'Size')-110 20)
-     demoDrawBoxes'F1'posn size rows cols
- :Case 'F1.CLR'
-     ∆EX'F1.BX'
- :Case 'F1.HIDE'
-     viz←~'F1.HIDE' ∆WG 'State'
-     obs←(0=⎕NC 'F1.BX')↓'F1.BX' 'F1.LOGO'
+ JSWCUpdateLines args;rows;cols;size;posn;viz;obs;form;ctl
+ (form ctl)←'.'(≠⊆⊢)⊃args
+
+ :Select ctl
+ :Case 'GO'
+     (rows cols)←(form∘,¨'.ROWS' '.COLS')∆WG¨⊂'Value'
+     (posn size)←(100 10)((form ∆WG'Size')-110 20)
+     demoDrawBoxes form posn size rows cols
+ :Case 'CLR'
+     ∆EX form,'.BX'
+ :Case 'HIDE'
+     viz←~(form,'.HIDE') ∆WG 'State'
+     obs←form∘,¨(0=⎕NC form,'.BX')↓'.BX' '.LOGO'
      obs ∆WS¨⊂'Visible' viz
  :EndSelect

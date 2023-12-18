@@ -1,0 +1,22 @@
+ AddFormResources caller;ress;res;r;msg;WC;expr;class;propnames
+⍝ Add resources which need to  be re-created in the new container
+
+ ress←'BitMap' 'ImageList' 'Font'∆WN caller
+
+ :For res :In ress
+     r←caller⍎res
+     class←classes⍎⎕C r.Type
+     :Select r.Type
+
+     :CaseList 'BitMap' 'ImageList'
+         propnames←class.Supported
+     :Case 'Font'
+         ∘∘∘
+     :EndSelect
+
+     WC←⎕NS''
+     WC.WC←⎕NS''
+     WC.WC.(ID Properties)←res (⎕NS'')
+     ⍎'WC.WC.Properties',expr←'.(',(⍕propnames),')←r.(',(⍕propnames),')'
+     sendObject WC
+ :EndFor

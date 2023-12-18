@@ -12,8 +12,12 @@
  :If 0=⎕NC'prefix'
      prefix←'∆'
  :EndIf
+
  :If 0=⎕NC 'RESOURCES'
      RESOURCES←1 2⍴⊂''
+ :EndIf
+ :If 0=⎕NC 'PORT'
+     PORT←22322
  :EndIf
 
 ⍝ Establish API in calling space
@@ -42,7 +46,7 @@
  WSS.OnWSReceive←'Handler'
  WSS.OnClose←'onClose'
  WSS.Handler←'Handler'
- WSS.Port←22322
+ WSS.Port←PORT
 
  t←'JSWC Synchronisation'
 
@@ -63,4 +67,7 @@
 
  (EVENTNUMS EVENTNAMES)←↓⍉↑2031⌶0
 
- WSS.Start 0
+ z←WSS.Start 0
+ :If 0≠⊃⊃z
+     (⍕z) ⎕SIGNAL 11
+ :EndIf

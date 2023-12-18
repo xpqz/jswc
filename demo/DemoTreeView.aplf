@@ -6,9 +6,9 @@
  f←'+'
  allf←'+-×÷'
 
- 'F1'∆WC'Form' 'Function Table'(50 50)(800 800)('Coord' 'Pixel')
  imagefiles←'/images/'∘,¨'Folder-Closed.png' 'Folder-Open.png' 'Price-Ticket.png'
  'IL'∆WC'ImageList'('Size'(16 16))('Masked' 2)('Files' imagefiles)
+ 'F1'∆WC'Form' 'Function Table'(50 50)(800 800)('Coord' 'Pixel')
 
  'F1.MB'∆WC'MenuBar'
  'F1.MB.File'∆WC'Menu' '&File'

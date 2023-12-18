@@ -13,5 +13,5 @@
  'F1.CENTER'∆WC'SubForm'('Size'(250 500))('Posn'(250 400))
  'F1.CENTER'∆WS 'Picture'('LOGO' 3)
 
- 'F1.YES'∆WC'Button'('Picture' 'YES')('Size'(40 40))('Posn'(10 250))
+ 'F1.YES'∆WC'Button'('Picture' ('YES' 3))('Size'(40 40))('Posn'(10 250))
  'F1.NO'∆WC'Button'('Picture' 'NO')('Size'(40 40))('Posn'(50 250))

@@ -1,0 +1,14 @@
+ Demo_Issue37 connected;inputs;scores;TBL;GRID;z;colors;imagefiles;periods;items;parent
+ JSWC.CONNECTED←connected
+ ⎕PW←1000
+
+ ∘∘∘
+ 'F1'∆WC'Form' 'Buttons with Pictures'(50 50)(500 500)('Coord' 'Pixel')
+ 'F1.s'∆WC'SubForm' ''(0 0)(500 200)
+ parent←'F1'
+
+ (parent,'.s.B1')∆WC'BitMap'('File' '/bitmaps16/Tree_View-Add.png') ⍝ ...expanded
+ (parent,'.s.B2')∆WC'BitMap'('File' '/bitmaps16/Tree_View-Delete.png') ⍝ ...collapsed
+
+ (parent,'.s.Exp')∆WC'Button' ''(5 150)(22 22)('Picture'(parent,'.s.B1')3)('Accelerator'(187 2))('Attach' 'Top' 'Right' 'Top' 'Right')('Event' 'Select' 'TreeXmlLook' 3)('Event' 'MouseDblClick' 'TreeXmlLook' 1)
+ (parent,'.s.Rep')∆WC'Button' ''(5 174)(22 22)('Picture'(parent,'.s.B2')3)('Accelerator'(189 2))('Attach' 'Top' 'Right' 'Top' 'Right')('Event' 'Select' 'TreeXmlLook' 4)('Event' 'MouseDblClick' 'TreeXmlLook' 2)

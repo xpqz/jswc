@@ -53,7 +53,8 @@
          pn←m/propnames
          :If type≡'bitmap'
          :AndIf (≢pn)≥i←(⎕C pn)⍳⊂'file'
-            (i⊃values)←IMAGEFOLDER,1↓i⊃values ⍝ Adjust BitMap image file names
+         :AndIf 2=⎕NC 'IMAGEFOLDER'
+            (i⊃values)←IMAGEFOLDER,1↓i⊃values  ⍝ Adjust BitMap image file names
          :EndIf
          R←Name caller.⎕WC ↓pn,⍪values
          :If 'imagelist'≡type
@@ -78,16 +79,9 @@
  :EndIf
 
  :If USEHR∧type≡'form'
-     ns←caller⍎Name
-     :If 'inherit'≡⎕C ns.Coord
-         ns.Coord←'Pixel'
-     :EndIf
-
-     IGNORE1Init←1 ⍝ Make Handler ignore the next Initialise call
-     :If 0≠≢z←MakeHR caller Name
+     :If 0≠≢z←MakeForm
          z ⎕SIGNAL 11
      :EndIf
-      WC.WC.Properties.Posn←0 0 ⍝ Form will be at posn 0 0 within the HTLRenderer
  :EndIf
 
  :If RECORD ⍝ Collecting lists
@@ -102,10 +96,9 @@
      ref.Supported∪←propnames
  :EndIf
 
- msg←⎕JSON⍠'HighRank' 'Split'⊢WC
+ sendObject WC
 
- :If CONNECTED
-     z←CONN WSS.Send ⎕←msg
- :Else
-     ⎕←msg
+
+ :If USEHR∧type≡'form'
+     AddFormResources caller
  :EndIf
