@@ -2,7 +2,7 @@
  ⍝ Initialise the Demo application
 
  JSWC←##.JSWC
- JSWC.PORT←12345
+ JSWC.PORT←22322
  JSWC.RESOURCES←1 2⍴'images' 'c:\devt\jswc\demo\images' 'videos' 'd:\vidlib'
  '∆' JSWC.Init ⎕THIS
 
