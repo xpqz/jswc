@@ -88,7 +88,7 @@
     ∇ Listen;rc;obj;evt;data;wres;hdrs;conx;headers;httpver;url;method
       :While ~_stop
           (rc obj evt data)←4↑wres←LDRC.Wait ServerName WaitTimeout 
-          :If 'Timeout'≢evt
+          :If 0∧'Timeout'≢evt
               ⎕←wres           
           :EndIf
           :Select rc

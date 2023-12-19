@@ -69,7 +69,7 @@
  :Else
       R←Name caller.⎕NS''
       okprops←PropList,objProps
-      :If ∨/m←(≢class.Supported)<i←class.Supported⍳propnames
+      :If ∨/m←((≢class.Supported)<i←class.Supported⍳propnames)∧~propnames∊'Event' 'Data'
           Warning 'Unsupported on ',type,': ',⍕m/propnames
       :EndIf
       m←~PropList∊propnames

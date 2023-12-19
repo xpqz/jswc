@@ -1,16 +1,15 @@
- r←normaliseEvents events;i;num
- :If 1=≢events
-     events←⊃events
- :EndIf
+ r←normaliseEvents events;i;num;n
+⍝ :If 1=n←≢events
+⍝     events←⊃events
+⍝ :EndIf
 
  :If ∧/eventOK 1⊃events ⍝ Multiple event names
      r←↓(⍪⊆1⊃events),⊂1↓events
  :ElseIf ∧/eventOK ⊃¨events
      r←⊃,/normaliseEvents¨events
+     r←((¯1+≢events)⍴⊂⍬),⊂r
  :Else
      ⎕←'Unsupported event setting at ',showCallStack
      ⎕←'    'events
      r←⍬
  :EndIf
-
- r←⊂r

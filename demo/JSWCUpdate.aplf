@@ -25,7 +25,7 @@
          'F1.Average'∆WS'Caption'('CellMove to Row: ',(⍕row),' Col: ',(⍕col))
          →0
      :EndSelect
-     scores←('F1.Players'∆WG'Values')[;3]
+     scores←('F1.Players'∆WG'Values')[;F1.Players.ColTitles⍳⊂'Score']
      'F1.Average'∆WS'Caption'('Average score:',1⍕+/scores÷≢scores)
      →0
  :Case 'F1.Players.Name' ⍝ KeyPress

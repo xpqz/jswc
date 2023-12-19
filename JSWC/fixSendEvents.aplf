@@ -2,10 +2,12 @@
 ⍝ props is an object about to be sent to the client
 ⍝ do not send numeric events or Close
 
+ props.⎕EX 'Data' ⍝ Never send Data to JS client
  →(0=props.⎕NC'Event')⍴0
  event←⊃¨props.Event
  :If ∨/m←~((10|⎕DR¨event)∊1 3)∨event∊⊂'Close'
      props.Event←m/props.Event
+     (2⊃¨props.Event)←⊂'' ⍝ blank out extra info - will soon delete this completely
  :Else
      props.⎕EX'Event'
  :EndIf
