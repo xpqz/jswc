@@ -19,13 +19,14 @@
  :Repeat
    ⎕DL 1
  :Until 0≠⎕NC 'JSWC.CONN'
- ⎕Dl 5
 
  tn←sendlog ⎕FSTIE 0
  log←⎕FREAD tn 1
  ⎕FUNTIE 1
 
  :For msg :In log
+     ⍞←'Hit enter to send next message...'
+     z←⍞
      z←JSWC.CONN JSWC.WSS.Send ⎕←msg
      ⎕DL 2
  :EndFor
