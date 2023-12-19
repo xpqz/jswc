@@ -31,7 +31,7 @@
  scores←12 13
  players←'Amir' 'Fatima','Male' 'Female',scores,⍪0 1
  'F1.Players'∆WS('Values' players)('CellTypes'(2 4⍴1 2 3 4))('Input'inputs)
- 'F1.Average'∆WC'Label'('Average Score:',1⍕+/scores÷≢scores)(115 180)(23 100)
+ 'F1.Average'∆WC'Label'('Average Score:',1⍕+/scores÷≢scores)(115 180)(23 300)
  periods←'Q1' 'Jan' 'Feb' 'Mar' 'Q2' 'Apr' 'May' 'Jun'
  'F1.Months'∆WC'TreeView' periods (10 500)(150 150)('Depth'(8⍴0 1 1 1))('ImageListObj' '#.IL')('ImageIndex' (8⍴1 3 3 3))('Event' ('Expanding' 'Retracting' 'KeyPress' 'ItemDown' 'MouseUp') 'JSWCUpdate')
 
