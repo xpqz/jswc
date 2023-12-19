@@ -1,0 +1,11 @@
+ fixSendEvents props;event;m
+⍝ props is an object about to be sent to the client
+⍝ do not send numeric events or Close
+
+ →(0=props.⎕NC'Event')⍴0
+ event←⊃¨props.Event
+ :If ∨/m←~((10|⎕DR¨event)∊1 3)∨event∊⊂'Close'
+     props.Event←m/props.Event
+ :Else
+     props.⎕EX'Event'
+ :EndIf

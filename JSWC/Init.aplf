@@ -66,6 +66,7 @@
  WG_TIMEOUT←5 ⍝ Seconds to wait for response
 
  (EVENTNUMS EVENTNAMES)←↓⍉↑2031⌶0
+ eventNames←⎕C EVENTNAMES
 
  z←WSS.Start 0
  :If 0≠⊃⊃z

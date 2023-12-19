@@ -36,6 +36,7 @@
      f←allf[1⍳⍨'F1.Function'∆WG'SelItems']
      n←'F1.TableSize'∆WG'Value'
  :CaseList 'F1.Months' 'F1.LEFT.Months' ⍝ Treeview
+     ⎕←args
      ii←(1⊃args)∆WG'ImageIndex'
      ii[3⊃args]←1+'Expanding'≡2⊃args ⍝ Set Image Index to open or closed
      (1⊃args)∆WS'ImageIndex'ii

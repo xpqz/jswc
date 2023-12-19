@@ -1,0 +1,3 @@
+r←eventOK events
+⍝ Do these look like usable event ids?
+r←∧/((10|⎕DR¨events)∊1 3)∨(⎕C ⊆events)∊eventNames

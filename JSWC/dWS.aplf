@@ -59,4 +59,5 @@
      ref.Supported∪←1⊃¨Props
  :EndIf
 
- sendObject WS
+  fixSendEvents WS.WS.Properties
+  sendObject WS

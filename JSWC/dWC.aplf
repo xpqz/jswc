@@ -96,8 +96,8 @@
      ref.Supported∪←propnames
  :EndIf
 
+ fixSendEvents WC.WC.Properties
  sendObject WC
-
 
  :If USEHR∧type≡'form'
      AddFormResources caller

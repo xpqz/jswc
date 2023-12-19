@@ -1,4 +1,4 @@
-r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn
+r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn;info
  ⎕TRAP←0 'S'
  ⎕←'Received: ',payload
  :If (⊂10↑payload)∊'Initialise' 'Initialize'
@@ -46,10 +46,14 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn
                  →0
              :EndIf
 
-             :If 3≠CODELOCATION.⎕NC fn←(events⍳⊂Event)⊃fns
+             :If 3≠CODELOCATION.⎕NC fn←⊃info←(events⍳⊂Event)⊃fns
                  ⎕←'Callback function not found: ',fn
-             :Else
+             :ElseIf 1=≢info
                  (CODELOCATION⍎fn)&(ID Event),Info
+             :ElseIf 2=≢info
+                 (2⊃info) (CODELOCATION⍎fn)&(ID Event),Info
+             :Else
+                ⎕←'*** Ill-formed event: ',⍕event
              :EndIf
          :Case 'WG'
              ns ⎕TPUT WG_TOKEN

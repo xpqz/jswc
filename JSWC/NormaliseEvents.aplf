@@ -1,21 +1,12 @@
- r←normaliseEvents events;i
-
- :If 1≠≢events
-     events←,⊂events
- :Else
+ r←normaliseEvents events;i;num
+ :If 1=≢events
      events←⊃events
  :EndIf
 
- :If events[1]∊EVENTNAMES
-     r←,⊂events
- :ElseIf (≢EVENTNUMS)≥i←EVENTNUMS⍳events[1]
-     r←,⊂(EVENTNAMES[i]),1↓events
- :ElseIf ∧/(1⊃events)∊EVENTNAMES
-     r←↓(⍪1⊃events),''⍴1↓events
- :ElseIf ∧/(≢EVENTNUMS)≥i←EVENTNUMS⍳1⊃events
-     r←↓(⍪EVENTNAMES[i]),''¨1↓events
- :ElseIf ∧/(⊃¨events)∊EVENTNAMES,EVENTNUMS
-     r←⊃,/NormaliseEvents¨events
+ :If ∧/eventOK 1⊃events ⍝ Multiple event names
+     r←↓(⍪⊆1⊃events),⊂1↓events
+ :ElseIf ∧/eventOK ⊃¨events
+     r←⊃,/normaliseEvents¨events
  :Else
      ⎕←'Unsupported event setting at ',showCallStack
      ⎕←'    'events

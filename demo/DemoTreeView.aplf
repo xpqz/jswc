@@ -33,7 +33,7 @@
  'F1.Players'∆WS('Values' players)('CellTypes'(2 4⍴1 2 3 4))('Input'inputs)
  'F1.Average'∆WC'Label'('Average Score:',1⍕+/scores÷≢scores)(115 180)(23 100)
  periods←'Q1' 'Jan' 'Feb' 'Mar' 'Q2' 'Apr' 'May' 'Jun'
- 'F1.Months'∆WC'TreeView' periods (10 500)(150 150)('Depth'(8⍴0 1 1 1))('ImageListObj' '#.IL')('ImageIndex' (8⍴1 3 3 3))('Event' ('Expanding' 'Retracting') 'JSWCUpdate')
+ 'F1.Months'∆WC'TreeView' periods (10 500)(150 150)('Depth'(8⍴0 1 1 1))('ImageListObj' '#.IL')('ImageIndex' (8⍴1 3 3 3))('Event' ('Expanding' 'Retracting' 'KeyPress' 'ItemDown' 'MouseUp') 'JSWCUpdate')
 
  'F1.TableSize'∆WC'Edit' '10'(210 10)(23 100)('FieldType' 'Numeric')('Event' 'Change' 'JSWCUpdate')
  'F1.Function'∆WC'Combo'(,¨allf)f(210 120)(23 100)('SelItems'(allf=f))('Event' 'Select' 'JSWCUpdate')
