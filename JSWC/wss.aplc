@@ -140,7 +140,8 @@
               url←DefaultPage
           :EndIf
           file←HTMLFolder,('/'=⊃url)↓url
-          :If ⎕NEXISTS file
+          :If ⎕NEXISTS file     
+              ⎕←⍕method url httpver
               respheaders⍪←'content-type'(ContentType file)
 ⍝              respheaders⍪←'content-encoding' 'gzip'
               status←(⊂httpver),'200' 'OK'
