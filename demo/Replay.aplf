@@ -5,7 +5,7 @@
  sendlog←2 ⎕NQ '.' 'GetEnvironment' 'SendLog'
 
  JSWC←##.JSWC
- JSWC.PORT←12345
+ JSWC.PORT←22322
  JSWC.RESOURCES←1 2⍴'images' 'c:\devt\jswc\demo\images'
  '∆'JSWC.Init ⎕THIS
 
