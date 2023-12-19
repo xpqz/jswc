@@ -1,6 +1,6 @@
  {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn;i;ns;okprops;⎕TRAP;depth;valid;values;lcp;pi;ix;PropList;allprops;AllProps;n;cp;v
  ⎕TRAP←0 'S'
- 'NO CLIENT DETECTED' ⎕SIGNAL (USEHR∨2=⎕NC 'CONN')↓11
+ 'NO CLIENT DETECTED'⎕SIGNAL(USEWIN32∨USEHR∨2=⎕NC'CONN')↓11
  deprecatedprops←,⊂'3D' ⍝ No longer appear in PropList
 
  n←≢cp←'.',⍨⍕caller←⊃⎕RSI
@@ -9,20 +9,20 @@
  Props←,⊆Props
  length←≢¨Props
  depth←|≡¨Props
- propnames←⎕C (depth>1)/¨⊃¨Props
+ propnames←⎕C(depth>1)/¨⊃¨Props
  type←(i←⌊/propnames⍳'' 'type')⊃Props
  :If 2=i⊃depth ⋄ type←2⊃type ⋄ :EndIf
  type←⎕C type
  :If (⊂type)∊⎕C nativeClasses ⍝ Timers and other
-     →0 ⊣ R←Name caller.⎕WC Props
+     →0⊣R←Name caller.⎕WC Props
  :EndIf
 
-:If ~9=classes.⎕NC type
-    Warning 'Unsupported class: ',type
-    Name caller.⎕NS ''
-    (caller⍎Name).Type←type
-    →0
-:EndIf
+ :If ~9=classes.⎕NC type
+     Warning'Unsupported class: ',type
+     Name caller.⎕NS''
+     (caller⍎Name).Type←type
+     →0
+ :EndIf
 
  class←classes⍎type
  proplist←⎕C PropList←class.PropList
@@ -37,45 +37,48 @@
  propnames[ix]←AllProps[allprops⍳lcp[ix]] ⍝ Properly cased names
  valid[ix]←1
 
- values←propnames (type fixUpProps) values       ⍝ Regularise things for the poor JS code
+ values←propnames(type fixUpProps)values       ⍝ Regularise things for the poor JS code
 
  WC←⎕NS''
  WC.WC←⎕NS''
  WC.WC.(ID Properties)←Name(⎕NS'')
  ⍎'WC.WC.Properties',expr←'.(',(⍕propnames),')←',(1≠≢propnames)↓'⊃values'
- :If 2=class.⎕NC 'TypeName' ⍝ /// This test should go when all classes have TypeName
+ :If 2=class.⎕NC'TypeName' ⍝ /// This test should go when all classes have TypeName
      values[propnames⍳⊂'Type']←⊂WC.WC.Properties.Type←class.TypeName
  :EndIf
 
  :If USEWIN32
      :If 'ribbon'≢6↑type
-         values←(m←(type≢'imagelist')∨~propnames∊⍥⎕C ⊂'files')/values
+         values←(m←(type≢'imagelist')∨~propnames∊⍥⎕C⊂'files')/values
          pn←m/propnames
          :If type≡'bitmap'
          :AndIf (≢pn)≥i←(⎕C pn)⍳⊂'file'
-         :AndIf 2=⎕NC 'IMAGEFOLDER'
-            (i⊃values)←IMAGEFOLDER,1↓i⊃values  ⍝ Adjust BitMap image file names
+         :AndIf 2=⎕NC'IMAGEFOLDER'
+             (i⊃values)←IMAGEFOLDER,1↓i⊃values  ⍝ Adjust BitMap image file names
          :EndIf
-         R←Name caller.⎕WC ↓pn,⍪values
+         :If (≢pn)≥i←pn⍳⊂'Event'
+             (i⊃values)←{⍵[1],⊃⍵[2]}¨i⊃values
+         :EndIf
+         R←Name caller.⎕WC↓pn,⍪values
          :If 'imagelist'≡type
-         :AndIf 2=⎕NC 'WC.WC.Properties.Files' ⍝ Simulate the "Files" property in Win32
+         :AndIf 2=⎕NC'WC.WC.Properties.Files' ⍝ Simulate the "Files" property in Win32
              :For f :In WC.WC.Properties.Files
-                 tn←(IMAGEFOLDER,1↓f) ⎕NTIE 0
-                 (R,'.') (2032⌶) ⎕NREAD tn 83 (⎕NSIZE tn) 0
+                 tn←(IMAGEFOLDER,1↓f)⎕NTIE 0
+                 (R,'.')(2032⌶)⎕NREAD tn 83(⎕NSIZE tn)0
                  ⎕NUNTIE tn
              :EndFor
          :EndIf
      :EndIf
  :Else
-      R←Name caller.⎕NS''
-      okprops←PropList,objProps
-      :If ∨/m←((≢class.Supported)<i←class.Supported⍳propnames)∧~propnames∊'Event' 'Data'
-          Warning 'Unsupported on ',type,': ',⍕m/propnames
-      :EndIf
-      m←~PropList∊propnames
-      v←values,m/class.Defaults
-      expr←'.(',(⍕propnames,m/PropList),')←',(1≠≢v)↓'⊃v'
-      ⍎(⍕caller),'.',Name,expr ⍝ Set properties in the "server-side DOM"
+     R←Name caller.⎕NS''
+     okprops←PropList,objProps
+     :If ∨/m←((≢class.Supported)<i←class.Supported⍳propnames)∧~propnames∊'Event' 'Data'
+         Warning'Unsupported on ',type,': ',⍕m/propnames
+     :EndIf
+     m←~PropList∊propnames
+     v←values,m/class.Defaults
+     expr←'.(',(⍕propnames,m/PropList),')←',(1≠≢v)↓'⊃v'
+     ⍎(⍕caller),'.',Name,expr ⍝ Set properties in the "server-side DOM"
  :EndIf
 
  :If USEHR∧type≡'form'

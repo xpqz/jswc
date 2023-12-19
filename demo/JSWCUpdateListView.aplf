@@ -1,0 +1,17 @@
+ JSWCUpdateListView args;e;view
+ Event←⎕NS''
+ e←Event.Event←⎕NS''
+ e.(ID EventName Info)←(2↑args),⊂2↓args
+ ⎕←⎕JSON e
+
+ :Select 1⊃args
+ :Case 'F1.LEFT.VIEW'
+     view←(1⊃args)∆WG'Text'
+     'F1.LEFT.LV'∆WS'View'view
+ :Case 'F1.LEFT.LV'
+     ⎕←30⍴'-'
+     ⎕←'ListView event: ',⍕args
+     ⎕←'ListView selitems: ',⍕'F1.LEFT.LV' ∆WG 'SelItems'
+ :Else
+     ⎕←'Unexpected message: ',args
+ :EndSelect

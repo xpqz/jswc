@@ -6,7 +6,7 @@
  JSWC.RESOURCES←1 2⍴'images' 'c:\devt\jswc\demo\images' 'videos' 'd:\vidlib'
  '∆' JSWC.Init ⎕THIS
 
- IMAGEFOLDER←JSWC.JSWCFolder,'server/images'
+ JSWC.IMAGEFOLDER←JSWC.JSWCFolder,'server/images'
  JSWC.USEHR←1
  Initialise 1
 

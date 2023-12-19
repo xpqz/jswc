@@ -39,6 +39,13 @@
      txt←(2⊃args),' on'
      :Select 2⊃args
      :Case 'ItemDown'
+         :Trap 6
+             sel←(1⊃args) ∆WG 'SelItems'
+             txt,←' (WG SelItems OK)'
+         :Else
+             txt,←' (WG SelItems FAILED)'
+         :EndTrap
+
          txt,←' node #',(⍕3⊃args),' ',((4⊃args)⊃'left' 'right' '' 'center')' button ',((1 2 4⍳5⊃args)⊃'shift' 'ctrl' 'alt' 'no'),' key '
      :Case 'MouseUp'
         txt,←,' ',⍕2↓args

@@ -5,7 +5,7 @@ AGAIN:
  :If 0=≢j
      ⎕←'Client did not respond within ',(⍕WG_TIMEOUT),' seconds.'
      ⎕←'Request was: ',msg
-     ⎕TRAP←0 'S' ⋄ ∘∘∘
+     ⎕SIGNAL 6
  :EndIf
 
  nl←⍬

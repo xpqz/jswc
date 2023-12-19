@@ -1,9 +1,8 @@
  r←normaliseEvents events;i;num;n
-⍝ :If 1=n←≢events
-⍝     events←⊃events
-⍝ :EndIf
-
- :If ∧/eventOK 1⊃events ⍝ Multiple event names
+ :If 1=n←≢events
+ :AndIf ∧/eventOK ⊃¨⊃events ⍝ Single element with multiple events
+     r←,/normaliseEvents¨⊃events
+ :ElseIf ∧/eventOK 1⊃events ⍝ Multiple event names
      r←↓(⍪⊆1⊃events),⊂1↓events
  :ElseIf ∧/eventOK ⊃¨events
      r←⊃,/normaliseEvents¨events
