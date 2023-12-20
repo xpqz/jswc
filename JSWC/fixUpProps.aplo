@@ -26,7 +26,7 @@
      :Case 'Visible'
          (ix⊃values)←⊃ix⊃values ⍝ Must be scalar
      :Case 'Picture'
-⍝         (ix⊃values)←2↑(,⊆ix⊃values),0 ⍝ Default to top left
+         (ix⊃values)←2↑(,⊆ix⊃values),0 ⍝ Default to top left
      :CaseList 'File' 'FileNames'
          (ix⊃values)←(' ' ⎕R '_')ix⊃values
      :EndSelect
