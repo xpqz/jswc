@@ -24,7 +24,7 @@
  p[ix]←PropList[i[ix←⍸~m]]
 
  :If remote←∨/,dynamic←p∊⍥⎕C class.Dynamic,⊂'NoSuchProperty' ⍝ Any reason to ask remote client for values?
-     wg.(WGID ID Properties)←(⍕WGID)Name (d←dynamic/p)
+     wg.(WGID ID Properties)←(⍕WGID) ((2×'#.'≡2↑Name)↓Name) (d←dynamic/p)
      msg←⎕JSON WG
      :If CONNECTED
          z←CONN WSS.Send ⎕←msg

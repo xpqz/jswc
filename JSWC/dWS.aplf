@@ -69,6 +69,7 @@
      ref.Supported∪←1⊃¨Props
  :EndIf
 
+ WS.WS.ID←{(2×'#.'≡2↑⍵)↓⍵}WS.WS.ID
  fixSendEvents WS.WS.Properties
  :If ~0=⍴WS.WS.Properties.⎕NL -2
      sendObject WS

@@ -1,0 +1,7 @@
+ Demo_Issue49 connected
+ JSWC.CONNECTED←connected
+ ⎕PW←1000
+
+ 'F1'∆WC'Form' 'Issue 49 '(50 50)(600 400)('Coord' 'Pixel')
+ 'F1.E1'∆WC'Edit'('Posn' 30 10)('Size' 23 50)
+ z←'F1.E1'∆WG'Text'
