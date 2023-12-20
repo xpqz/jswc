@@ -26,7 +26,11 @@
  :EndFor
 
  CONNECTED←0 ⍝ /// This should go
- USEHR←1
+ :If 0=⎕NC 'USEHR' ⋄ USEHR←1 ⋄ :EndIf
+ :If USEHR
+     'TIMER' ⎕WC 'Timer' ('Active' 0)('Event' 1001 'makeHRMain') ⍝ Invoked by MakeHR
+ :EndIf
+
  RECORD←0
  USEWIN32←0
 

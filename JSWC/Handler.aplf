@@ -10,7 +10,6 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn;info
          ⎕←'Ignoring one Initialise'
          :Return
      :EndIf
-     SendSettings CONN
      fn←reqfn←(10↓payload)~'()'
      fn,←(0=≢fn)/'Initialise'
      :If 3=CODELOCATION.⎕NC fn

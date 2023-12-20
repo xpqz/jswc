@@ -87,6 +87,10 @@
      :EndIf
  :EndIf
 
+ :If type≡'form'
+     SendSettings CONN
+ :EndIf
+
  :If RECORD ⍝ Collecting lists
      :If ~9=⎕NC class←'Classes.',type←WC.WC.Properties.Type
          ref←⍎class ⎕NS''

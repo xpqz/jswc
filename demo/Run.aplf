@@ -4,10 +4,10 @@
  JSWC←##.JSWC
  JSWC.PORT←22322
  JSWC.RESOURCES←1 2⍴'images' 'c:\devt\jswc\demo\images' 'videos' 'd:\vidlib'
+ JSWC.USEHR←1
  '∆' JSWC.Init ⎕THIS
 
  JSWC.IMAGEFOLDER←JSWC.JSWCFolder,'server/images'
- JSWC.USEHR←1
  Initialise 1
 
  ⎕←⍪'' 'To show CEF developer tools, type:' '' '      demo.ShowDevTools'
