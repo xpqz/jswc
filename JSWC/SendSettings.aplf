@@ -3,5 +3,7 @@ SendSettings CONN;S;z
 ⍝ For valid settings, see https://day.js.org/docs/en/display/format
 
 S←⎕NS ''
-S.Settings←settings
+S.Options←⎕NS ''
+S.Options.ID←'Locale'
+S.Options.Properties←settings.Locale
 z←CONN WSS.Send ⎕←⎕JSON S
