@@ -17,10 +17,11 @@
      →0⊣R←Name caller.⎕WC Props
  :EndIf
 
- :If ~9=classes.⎕NC type
+ :If 9≠classes.⎕NC type
      Warning'Unsupported class: ',type
      Name caller.⎕NS''
      (caller⍎Name).Type←type
+     ⎕←Props
      →0
  :EndIf
 

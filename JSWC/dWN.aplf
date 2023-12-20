@@ -1,5 +1,5 @@
 r←{X} ∆WN Y;⎕TRAP;caller
-caller←⊃⎕RSI
+caller←⊃⎕RSI~⎕THIS
 
 :If Y∧.=' '
     →0 ⊣ r←⍬
@@ -15,3 +15,5 @@ caller←⊃⎕RSI
 :AndIf 2=⎕NC 'X'
    r←((Y.⍎¨r,¨⊂'.Type')∊⊆X)/r
 :EndIf
+
+r←((⍕Y),'.')∘,¨r

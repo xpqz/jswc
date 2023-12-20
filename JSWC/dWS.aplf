@@ -1,22 +1,28 @@
  {R}←Name ∆WS Props;WS;msg;ws;i;z;ref;expr;caller;⎕TRAP;proplist;pname;names;values;PropList;m;class;type;ix;HR
-  ⎕TRAP←0 'S'
+ ⎕TRAP←0 'S'
  :If (⊂,Name)∊,¨'⎕SE' '#' '.' ⍝ Pass WS of System properties through
-     →0 ⊣ R←Name ⎕WS Props
+     →0⊣R←Name ⎕WS Props
  :EndIf
 
  caller←⊃⎕RSI
- class←classes⍎⎕C type←caller⍎Name,'.Type'
+ type←caller⍎Name,'.Type'
+ :If 9≠classes.⎕NC ⎕C type
+     Warning 'Unsupported class: ',type
+     ⎕←Props
+     →0
+ :EndIf
+ class←classes⍎⎕C type
  proplist←⎕C PropList←class.PropList,objProps
  :If (names←⎕C 1↑Props)∊proplist
      values←,⊂1↓Props
  :Else
-    :If ∧/(names←⎕C ⊃¨Props)∊proplist
-        values←1↓¨Props
-    :EndIf
+     :If ∧/(names←⎕C⊃¨Props)∊proplist
+         values←1↓¨Props
+     :EndIf
  :EndIf
 
  :If ~∧/m←(≢proplist)≥proplist⍳names
-      Warning 'Unknown properties: ',(~m)/names
+     Warning'Unknown properties: ',(~m)/names
      (names values)←m∘/¨names values
  :EndIf
 
@@ -27,24 +33,28 @@
  names←PropList[proplist⍳names] ⍝ Correct case
 
  :If ~∧/m←names∊class.Supported,'Event' 'Data'
-     Warning 'Unsupported properties for type ',type,': ',(~m)/names
+     Warning'Unsupported properties for type ',type,': ',(~m)/names
      (names values)←m∘/¨names values
  :EndIf
 
  :If type≡'Form'
- :AndIf (≢names)≥i←names⍳⊂'Posn'
- :AndIf 1=≢HR←'HTMLRenderer' ⎕WN caller⍎Name
-     (⊃HR) ⎕WS 'Posn' (i⊃values) ⍝ Move the HTMLRenderer instead
-     (names values)←(i≠⍳≢names)∘/¨names values
+ :AndIf 1=≢HR←'HTMLRenderer'⎕WN caller⍎Name
+     :If (≢names)≥i←names⍳⊂'Posn'
+         (⊃HR)⎕WS'Posn'(i⊃values) ⍝ Move the HTMLRenderer instead
+         (names values)←(i≠⍳≢names)∘/¨names values
+     :EndIf
+     :If (≢names)≥i←names⍳⊂'Caption'
+         (⊃HR)⎕WS 'Caption' (i⊃values)
+     :EndIf
  :EndIf
 
- values←names (type fixUpProps) values       ⍝ Regularise things for the poor JS code
+ values←names(type fixUpProps)values       ⍝ Regularise things for the poor JS code
 
  WS←⎕NS''
  ws←WS.WS←⎕NS''
  ws.(ID Properties)←Name(⎕NS'')
  :If 0≠≢names
-    ⍎'ws.Properties',expr←'.(',(⍕names),')←',(1≠≢values)↓'⊃values'
+     ⍎'ws.Properties',expr←'.(',(⍕names),')←',(1≠≢values)↓'⊃values'
  :EndIf
 
  :If USEWIN32
@@ -55,9 +65,11 @@
  :EndIf
 
  :If RECORD ⍝ Collecting lists
-     ref←⍎'Classes.',Name ⎕WG 'Type'
+     ref←⍎'Classes.',Name ⎕WG'Type'
      ref.Supported∪←1⊃¨Props
  :EndIf
 
-  fixSendEvents WS.WS.Properties
-  sendObject WS
+ fixSendEvents WS.WS.Properties
+ :If ~0=⍴WS.WS.Properties.⎕NL -2
+     sendObject WS
+ :EndIf
