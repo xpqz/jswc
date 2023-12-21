@@ -1,7 +1,7 @@
  sendObject obj;msg;z
 
  msg←⎕JSON⍠'HighRank' 'Split'⊢obj
- ⎕←((200⌊≢msg)↑msg),(200<≢msg)/'...'
+ ⎕←((500⌊≢msg)↑msg),(500<≢msg)/'...'
 
  :If CONNECTED
      z←CONN WSS.Send msg

@@ -16,6 +16,7 @@
 
      WC←⎕NS''
      WC.WC←⎕NS''
+     res←((⍕caller),'.'){((≢⍺)×⍺≡(≢⍺)↑⍵)↓⍵}res
      WC.WC.(ID Properties)←res (⎕NS'')
      ⍎'WC.WC.Properties',expr←'.(',(⍕propnames),')←r.(',(⍕propnames),')'
      sendObject WC
