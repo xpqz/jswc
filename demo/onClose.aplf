@@ -1,0 +1,2 @@
+ onClose arg
+ (⊃⎕SI)arg

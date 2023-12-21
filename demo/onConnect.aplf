@@ -1,0 +1,2 @@
+ onConnectZ arg
+ (⊃⎕SI)arg

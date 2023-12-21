@@ -45,7 +45,10 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn;info
                  →0
              :EndIf
 
-             :If 3≠CODELOCATION.⎕NC fn←⊃info←(events⍳⊂Event)⊃fns
+             fn←⊃info←(events⍳⊂Event)⊃fns
+             :If fn≡1
+                 ⎕←'Unable to process event code 1 on object ',ID
+             :ElseIf 3≠CODELOCATION.⎕NC fn
                  ⎕←'Callback function not found: ',fn
              :ElseIf 1=≢info
                  (CODELOCATION⍎fn)&(ID Event),Info

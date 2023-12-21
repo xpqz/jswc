@@ -3,9 +3,13 @@
 
  JSWC←##.JSWC
  JSWC.PORT←22322
- JSWC.RESOURCES←1 2⍴'images' 'c:\devt\jswc\demo\images' 'videos' 'd:\vidlib'
+ :If 'brian'≡⎕AN
+     JSWC.RESOURCES←1 2⍴'images' 'c:\git\jswc\demo\images'
+ :Else
+     JSWC.RESOURCES←1 2⍴'images' 'c:\devt\jswc\demo\images'
+ :EndIf
  JSWC.USEHR←1
- '∆' JSWC.Init ⎕THIS
+ '∆'JSWC.Init ⎕THIS
 
  JSWC.IMAGEFOLDER←JSWC.JSWCFolder,'server/images'
  Initialise 1

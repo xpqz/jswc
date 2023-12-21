@@ -1,3 +1,2 @@
 Warning msg
-⎕←'JSWC Warning: at ',showCallStack
-⎕←'   ',msg
+⎕←'    *** JSWC Warning: at ',(⍕1↑showCallStack),' - ',msg

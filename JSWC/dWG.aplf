@@ -11,7 +11,7 @@
  wg←WG.WG←⎕NS''
  WGID+←1
  p←,⊆Props
- :Trap 6
+ :Trap 2 6
      class←GetClass caller Name
  :Else
      (⊃⎕DMX.DM)⎕SIGNAL ⎕DMX.EN

@@ -13,10 +13,10 @@
      prefix←'∆'
  :EndIf
 
- :If 0=⎕NC 'RESOURCES'
+ :If 0=⎕NC'RESOURCES'
      RESOURCES←1 2⍴⊂''
  :EndIf
- :If 0=⎕NC 'PORT'
+ :If 0=⎕NC'PORT'
      PORT←22322
  :EndIf
 
@@ -26,9 +26,9 @@
  :EndFor
 
  CONNECTED←0 ⍝ /// This should go
- :If 0=⎕NC 'USEHR' ⋄ USEHR←1 ⋄ :EndIf
+ :If 0=⎕NC'USEHR' ⋄ USEHR←1 ⋄ :EndIf
  :If USEHR
-     'TIMER' ⎕WC 'Timer' ('Active' 0)('Event' 1001 'makeHRMain') ⍝ Invoked by MakeHR
+     'TIMER'⎕WC'Timer'('Active' 0)('Event' 1001 'makeHRMain') ⍝ Invoked by MakeHR
  :EndIf
 
  RECORD←0
@@ -38,17 +38,17 @@
  CODELOCATION←code
 
  WSS←wss.New''
- :If 9=⎕NC '#.DRC'
+ :If 9=⎕NC'#.DRC'
      WSS.LDRC←#.DRC
  :EndIf
  WSS.ShowHTMLRenderer←0
  WSS.HTMLFolder←JSWCFolder,'server/'
  WSS.Aliases←RESOURCES
- WSS.OnConnect←'onConnect'
- WSS.OnWSUpgrade←'onWSUpgrade'
- WSS.OnTimeout←'onTimeout'
- WSS.OnWSReceive←'Handler'
- WSS.OnClose←'onClose'
+ WSS.OnConnect←''
+ WSS.OnWSUpgrade←''
+ WSS.OnHTTPHeader←''
+ WSS.OnWSReceive←''
+ WSS.OnClose←''
  WSS.Handler←'Handler'
  WSS.Port←PORT
 
@@ -72,7 +72,7 @@
  (EVENTNUMS EVENTNAMES)←↓⍉↑2031⌶0
  eventNames←⎕C EVENTNAMES
 
- ⎕←z←WSS.Start 0
+ z←WSS.Start 0
  :If 0≠⊃⊃z
-     (⍕z) ⎕SIGNAL 11
+     (⍕z)⎕SIGNAL 11
  :EndIf
