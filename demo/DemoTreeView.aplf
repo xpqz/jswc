@@ -1,4 +1,4 @@
- DemoTreeView connected;inputs;scores;folder;imagefiles;periods;z;⎕TRAP;m;players;val
+ DemoTreeView connected;inputs;scores;folder;imagefiles;periods;z;⎕TRAP;m;players;val;i;s
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
@@ -44,9 +44,14 @@
  ∆NQ 'F1.TableSize' 'GotFocus'
 
  ⍝ Test ∆WG
-  z←'F1.Months' ∆WG 'ImageIndex' ⍝ Static only
-  :If z≢8⍴1 3 3 3
+
+  (s i)←'F1.Months' ∆WG 'SelItems' 'ImageIndex' ⍝ Static only
+  :If i≢8⍴1 3 3 3
       ⎕←'*** Unexpected return value for F1.Months ImageIndex'
+      ⎕←z
+  :EndIf
+  :If s≢8⍴0
+      ⎕←'*** Unexpected return value for F1.Months SelItems'
       ⎕←z
   :EndIf
 

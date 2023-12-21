@@ -11,8 +11,8 @@
  'F1.L1'∆WC'Label' 'Rows'(10 10)
  'F1.L2'∆WC'Label' 'Cols'(10 70)
 
- 'F1.ROWS'∆WC'Edit'(⍕rows)(30 10)(23 50)('FieldType' 'Numeric')
- 'F1.COLS'∆WC'Edit'(⍕cols)(30 70)(23 50)('FieldType' 'Numeric')
+ 'F1.ROWS'∆WC'Edit'(⍕rows)(30 10)(23 50)('FieldType' 'Numeric') ('Event' 'GotFocus' 'JSWCEchoGotFocus')
+ 'F1.COLS'∆WC'Edit'(⍕cols)(30 70)(23 50)('FieldType' 'Numeric') ('Event' 'GotFocus' 'JSWCEchoGotFocus')
  'F1.GO'∆WC'Button' 'Draw Boxes' (30 140)(23 80)('Event' 'Select' 'JSWCUpdateLines')
  'F1.CLR'∆WC'Button' 'Clear' (30 225)(23 50)('Event' 'Select' 'JSWCUpdateLines')
  'F1.HIDE' ∆WC 'Button' 'Hide Graphics' (55 130)(23 110)('Style' 'Check')('Event' 'Select' 'JSWCUpdateLines')
