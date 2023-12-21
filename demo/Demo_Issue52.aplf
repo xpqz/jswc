@@ -1,0 +1,12 @@
+ Demo_Issue52 connected;uAppW;size;sp
+ JSWC.CONNECTED←connected
+ ⎕PW←1000
+
+ uAppW←'Form∆.'
+ size←300 600
+ sp←('Size'size)('Posn'(0 0))
+
+ (¯1↓uAppW)∆WC'Form' 'Issue 52'(50 50)size('Coord' 'Pixel')
+ (uAppW,'B31003')∆WC('Type' 'Edit')('Posn' 72 112)('Size' 16 120)⍝('Style' 'Single')('Border' 0)('Active' 0)('VScroll' 0)('HScroll' ¯1)('FontObj' 'FntSys')('FCol' ¯18)('Tip' 'B31003')('MaxLength' 18)('EdgeStyle' 'Ridge')
+ (uAppW,'Z31003')∆WC('Type' 'Text')('Text'(,⊂'Workstation:'))('Points'(74 112-1 73))('FCol' ¯18)('FontObj' 'FntSys')
+ (uAppW,'Z31004')∆WC('Type' 'Rect')('Points'(74 112-1 73))('Size'(15 70))
