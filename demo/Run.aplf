@@ -13,6 +13,7 @@
 
  JSWC.IMAGEFOLDER←JSWC.JSWCFolder,'server/images'
  Initialise 1
+ r←∆DQ 'F1'
 
  ⎕←⍪'' 'To show CEF developer tools, type:' '' '      demo.ShowDevTools'
  ⎕←⍪'' 'To switch to using browser:' '' '      JSWC.USEHR←0'

@@ -1,0 +1,40 @@
+ end←processEvent ns;Info;ID;Event;event;events;fns;info;fn;z;async
+
+ (Event ID Info)←ns.Event.(EventName ID({0::⍵ ⋄ Info}⍬))
+
+ :Trap 6
+     event←CODELOCATION⍎z←ID,'.Event'
+ :Else
+     ⎕←'*** Unable to find ',z
+     →0
+ :EndTrap
+
+ (events fns)←↓⍉↑event
+ :If ~(⊂Event)∊events
+     ⎕←'*** No callback defined for event ',Event,' on object ',ID
+     →0
+ :EndIf
+
+ fn←⊃info←(events⍳⊂Event)⊃fns
+ →(end←fn≡1)⍴0
+
+ async←'&'=¯1↑fn
+ fn←(-async)↓fn
+
+ :If 3≠CODELOCATION.⎕NC fn
+     ⎕←'Callback function not found: ',fn
+ :ElseIf 1=≢info
+     :If async
+     (CODELOCATION⍎fn)&(ID Event),Info
+     :Else
+     (CODELOCATION⍎fn)(ID Event),Info
+     :EndIf
+ :ElseIf 2=≢info
+     :If async
+     (2⊃info)(CODELOCATION⍎fn)&(ID Event),Info
+     :Else
+     (2⊃info)(CODELOCATION⍎fn)(ID Event),Info
+     :EndIf
+ :Else
+     ⎕←'*** Ill-formed event: ',⍕event
+ :EndIf

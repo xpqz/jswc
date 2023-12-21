@@ -22,40 +22,10 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn;info
          ns←0 ⎕JSON payload
          :Select ,ns.⎕NL 9
          :Case 'Event'
-             (Event ID Info)←ns.Event.(EventName ID({0::⍵ ⋄ Info}⍬))
-             :If (1=≢Event)∧2=≡Event
-                 ⎕←'*** Event is incorrectly sent as a list'
-                 Event←⊃Event
-             :EndIf
-             :If (2=≢Event)∧2=≡Event
-                 ⎕←'*** Client returned a 2-element event: ',⍕Event
-                 Event←⊃Event
-             :EndIf
-
-             :Trap 6
-                 event←CODELOCATION⍎z←ID,'.Event'
+             :If 0≠≢DEQUEUEING
+                 ns ⎕TPUT DQ_TOKEN
              :Else
-                 ⎕←'*** Unable to find ',z
-                 →0
-             :EndTrap
-
-             (events fns)←↓⍉↑event
-             :If ~(⊂Event)∊events
-                 ⎕←'*** No callback defined for event ',Event,' on object ',ID
-                 →0
-             :EndIf
-
-             fn←⊃info←(events⍳⊂Event)⊃fns
-             :If fn≡1
-                 ⎕←'Unable to process event code 1 on object ',ID
-             :ElseIf 3≠CODELOCATION.⎕NC fn
-                 ⎕←'Callback function not found: ',fn
-             :ElseIf 1=≢info
-                 (CODELOCATION⍎fn)&(ID Event),Info
-             :ElseIf 2=≢info
-                 (2⊃info) (CODELOCATION⍎fn)&(ID Event),Info
-             :Else
-                ⎕←'*** Ill-formed event: ',⍕event
+                 ∘∘∘ ⍝ No DQ in process
              :EndIf
          :Case 'WG'
              ns ⎕TPUT WG_TOKEN

@@ -1,0 +1,2 @@
+JSWCEchoGotFocus msg
+⎕←'GotFocus: ',(⊃msg),' coming from ',3⊃msg

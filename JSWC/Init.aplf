@@ -52,19 +52,7 @@
  WSS.Handler←'Handler'
  WSS.Port←PORT
 
- t←'JSWC Synchronisation'
-
- :Trap 2 ⍝ SYNTAX ERROR in v18.2
-     z←↑⎕TALLOC 0
-     :If (≢z)≥i←z[;2]⍳⊂t
-         TOKENRANGE←z[i;1]
-     :Else
-         TOKENRANGE←⎕TALLOC 1 t
-     :EndIf
-     WG_TOKEN←TOKENRANGE+0.1
- :Else
-     WG_TOKEN←1818
- :EndTrap
+ allocateTokens
 
  WGID←0
  WG_TIMEOUT←5 ⍝ Seconds to wait for response

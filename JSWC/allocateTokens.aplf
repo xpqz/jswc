@@ -1,4 +1,6 @@
-allocateTokens;z
+allocateTokens;z;t
+
+t←'JSWC Synchronisation'
 
 :Trap 2 ⍝ SYNTAX ERROR in v18.2
      z←↑⎕TALLOC 0
@@ -7,7 +9,9 @@ allocateTokens;z
      :Else
          TOKENRANGE←⎕TALLOC 1 t
      :EndIf
-     WG_TOKEN←TOKENRANGE+0.1
+     (WG_TOKEN DQ_TOKEN)←TOKENRANGE+0.1 0.2
  :Else
-     WG_TOKEN←1818
+     (WG_TOKEN DQ_TOKEN)←0 1+30⊥⎕A⍳'JSWC' ⍝ Think of a number
  :EndTrap
+
+DEQUEUEING←⍬
