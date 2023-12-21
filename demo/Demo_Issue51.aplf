@@ -1,4 +1,4 @@
- Demo_Issue50 connected;uAppW;GetColor;ltov;ltom;size;sp
+ Demo_Issue51 connected;uAppW;GetColor;ltov;ltom;size;sp
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
