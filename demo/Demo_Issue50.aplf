@@ -1,0 +1,42 @@
+ Demo_Issue50 connected;uAppW;GetColor;ltov;ltom;size;sp
+ JSWC.CONNECTED←connected
+ ⎕PW←1000
+
+ GetColor←{(0 0 0)(0 0 0)}
+ ltom←{
+     ⍺←⎕UCS 13
+     ↑⍺ ltov ⍵
+ }
+
+ ltov←{⎕ML←0                             ⍝ Lines to nested vector.
+     ⍺←{0::⍬⍴3↓⎕AV ⋄ ⍎'⎕UCS 13 133'}⍬    ⍝ version-proof newlines.           <V>
+     1↓¨⍺{                               ⍝ remove leading separators.
+         (⍵∊⍺)⊂⍵                         ⍝ split at separator.
+     }¯1⌽⍵,(~(¯1↑⍵)∊⍺)/1↑⍺               ⍝ ensure trailing separator.
+ }
+
+ uAppW←'Form1.'
+ size←300 600
+ sp←('Size' size)('Posn' (0 0))
+
+ (¯1↓uAppW)∆WC'Form' 'Issue 50'(50 50) size ('Coord' 'Pixel')
+ (uAppW,'Pp1')∆WC sp,('Type' 'SubForm') ('Visible' 1)⍝ ('Border' 0)('BCol'(⊃GetColor'SubForm'))('AutoConf' 1)('EdgeStyle' 'Groove')
+⍝ (uAppW,'PP1.X1')∆WC ('Type' 'Group')('Caption' '')('Posn' 10 10)('Size' 45 45)('Border' 0)('FontObj' 'FntSys')('FCol'(2⊃GetColor'Group'))('BCol'(⊃GetColor'Group'))('Picture'('#.Y844901')3)('AutoConf' 0)('Tip' 'WS')
+ (uAppW,'Pp1.B31003')∆WC('Type' 'Edit')('Posn' 72 112)('Size' 16 120)⍝('Style' 'Single')('Border' 0)('Active' 0)('VScroll' 0)('HScroll' ¯1)('FontObj' 'FntSys')('FCol' ¯18)('Tip' 'B31003')('MaxLength' 18)('EdgeStyle' 'Ridge')
+ (uAppW,'Pp1.Z31003')∆WC('Type' 'Text')('Text'((⎕UCS 8743)ltom'Workstation:'))('Points'(74 112-1 73))('FCol' ¯18)('FontObj' 'FntSys')
+→0
+
+ (uAppW,'PP1.B31002')∆WC('Type' 'Edit')('Posn' 96 112)('Size' 16 120)('Style' 'Single')('Border' 0)('VScroll' 0)('HScroll' ¯1)('FontObj' 'FntSys')('FCol'(2⊃GetColor'Edit'))('Tip' 'B31002')('MaxLength' 8)('EdgeStyle' 'Ridge')
+ (uAppW,'PP1.Z31002')∆WC('Type' 'Text')('Text'((⎕UCS 8743)ltom'User Code:'))('Points'(98 112-1 62))('FCol'(2⊃GetColor'Label'))('FontObj' 'FntSys')
+ (uAppW,'PP1.B31001')∆WC('Type' 'Edit')('Posn' 120 112)('Size' 16 120)('Style' 'Single')('Border' 0)('VScroll' 0)('HScroll' ¯1)('FontObj' 'FntSys')('FCol'(2⊃GetColor'Edit'))('Tip' 'B31001')('MaxLength' 18)('Password' '*')('EdgeStyle' 'Ridge')
+ (uAppW,'PP1.Z31001')∆WC('Type' 'Text')('Text'((⎕UCS 8743)ltom'Password:'))('Points'(122 112-1 58))('FCol'(2⊃GetColor'Label'))('FontObj' 'FntSys')
+ (uAppW,'PP1.B31005')∆WC('Type' 'Edit')('Posn' 96 112)('Size' 18 119)('Style' 'Single')('Border' 0)('Active' 0)('VScroll' 0)('HScroll' ¯1)('FontObj' 'FntSys')('FCol' ¯18)('Tip' 'B31005')('MaxLength' 8)('EdgeStyle' 'Ridge')
+ (uAppW,'PP1.Z31005')∆WC('Type' 'Text')('Text'((⎕UCS 8743)ltom'User Code:'))('Points'(98 112-1 62))('FCol' ¯18)('FontObj' 'FntSys')
+ (uAppW,'PP1.H31004')∆WC('Type' 'Text')('Text'(1 1⍴' '))('Points' 9 72)('FCol'(2⊃GetColor'Label'))('FontObj' 'FntSys')
+ (uAppW,'PP1.Z31004')∆WC('Type' 'Text')('Text'((⎕UCS 8743)ltom'Enter your password for GAMA.'))('Points'(10 72+(22+2),0))('FCol'(2⊃GetColor'Label'))('FontObj' 'FntSys')
+ (uAppW,'PP1.I99')∆WC'Button'('Caption' '&OK')('FCol'(2⊃GetColor'Button'))('BCol'(⊃GetColor'Button'))('Posn' 18 248)('Size' 21 70)('Default' 1)('Accelerator' 79 4)
+ (uAppW,'PP1.I0')∆WC'Button'('Caption' '&Quit')('FCol'(2⊃GetColor'Button'))('BCol'(⊃GetColor'Button'))('Posn' 48 248)('Size' 21 70)('Accelerator' 81 4)
+ (uAppW,'PP1.I1')∆WC'Button'('Caption' '&Help')('FCol'(2⊃GetColor'Button'))('BCol'(⊃GetColor'Button'))('Posn' 90 248)('Size' 21 70)('Accelerator' 72 4)
+ (uAppW,'PP1.I999')∆WC'Button'('Caption' '&Tools...')('FCol'(2⊃GetColor'Button'))('BCol'(⊃GetColor'Button'))('Posn' 240 352)('Size' 21 80)('Accelerator' 84 4)
+ (uAppW,'PP1.B31003')(uAppW,'∆PP1.B31002')(uAppW,'∆PP1.B31001')(uAppW,'∆PP1.B31005')∆WS¨⊂('Event' 'Change' 'onChange')('Event' 'KeyPress' 'onKeyPress')('Event' 'GotFocus' 'onGotFocus')('Event' 'LostFocus' 'onLostFocus')('Event' 'MouseDown' 'onMouseDown' 1)('Event' 'ContextMenu' 'FixFormPopupMenu' 'B')
+ (uAppW,'PP1.I99')(uAppW,'∆PP1.I1')(uAppW,'∆PP1.I999')(uAppW,'∆PP1.I0')∆WS¨⊂('Event' 'Select' 'onISelect')('Event' 'KeyPress' 'onKeyPress')('Event' 'MouseUp' 'LastMouseClick' 4)
