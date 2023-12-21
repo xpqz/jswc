@@ -17,11 +17,10 @@
 
  uAppW←'F1.'
  size←300 600
- sp←('Size' (size-20))('Posn' (10 10))
 
  (¯1↓uAppW)∆WC'Form' 'Issue 51'(50 50) size ('Coord' 'Pixel')
  (uAppW,'Pp1')∆WC ('Type' 'SubForm') ('Visible' 1)('Border' 0)('BCol'(⊃GetColor'SubForm'))('AutoConf' 1)('EdgeStyle' 'Groove')
-⍝ (uAppW,'PP1.X1')∆WC ('Type' 'Group')('Caption' '')('Posn' 10 10)('Size' 45 45)('Border' 0)('FontObj' 'FntSys')('FCol'(2⊃GetColor'Group'))('BCol'(⊃GetColor'Group'))('Picture'('#.Y844901')3)('AutoConf' 0)('Tip' 'WS')
+ (uAppW,'PP1.X1')∆WC ('Type' 'Group')('Caption' '')('Posn' 10 10)('Size' 45 45)('Border' 0)('FontObj' 'FntSys')('FCol'(2⊃GetColor'Group'))('BCol'(⊃GetColor'Group'))('Picture'('#.Y844901')3)('AutoConf' 0)('Tip' 'WS')
  (uAppW,'Pp1.B31003')∆WC('Type' 'Edit')('Posn' 72 112)('Size' 16 120)⍝('Style' 'Single')('Border' 0)('Active' 0)('VScroll' 0)('HScroll' ¯1)('FontObj' 'FntSys')('FCol' ¯18)('Tip' 'B31003')('MaxLength' 18)('EdgeStyle' 'Ridge')
  (uAppW,'Pp1.Z31003')∆WC('Type' 'Text')('Text'((⎕UCS 8743)ltom'Workstation:'))('Points'(74 112-1 73))('FCol' (0 0 0))('FontObj' 'FntSys')
  (uAppW,'Pp1.B31002')∆WC('Type' 'Edit')('Posn' 96 112)('Size' 16 120)('Style' 'Single')('Border' 0)('VScroll' 0)('HScroll' ¯1)('FontObj' 'FntSys')('FCol'(2⊃GetColor'Edit'))('Tip' 'B31002')('MaxLength' 8)('EdgeStyle' 'Ridge')
