@@ -35,5 +35,7 @@
     DEQUEUEING←⍬
  :EndHold
 
- R←R.Event.(ID EventName)
+ :If 0≠≢R
+     R←R.Event.(ID EventName)
+ :EndIf
  'INTERRUPT' ⎕SIGNAL interrupt/999

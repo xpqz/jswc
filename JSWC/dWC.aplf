@@ -38,6 +38,8 @@
  propnames[ix]←AllProps[allprops⍳lcp[ix]] ⍝ Properly cased names
  valid[ix]←1
 
+ m←(propnames∊⊂'event')∨{⌽(⍳≢⍵)=⍵⍳⍵}⌽propnames ⍝ Last occurrence of each name (except for Event)
+ (values propnames)←m∘/¨values propnames
  values←propnames(type fixUpProps)values       ⍝ Regularise things for the poor JS code
 
  WC←⎕NS''
