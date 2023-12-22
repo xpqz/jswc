@@ -25,7 +25,7 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn;info
              :If 0≠≢DEQUEUEING
                  ns ⎕TPUT DQ_TOKEN
              :Else
-                 ∘∘∘ ⍝ No DQ in process
+                 processEvent ns
              :EndIf
          :Case 'WG'
              ns ⎕TPUT WG_TOKEN

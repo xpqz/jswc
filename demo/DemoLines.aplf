@@ -13,3 +13,4 @@
  'F1.L1'∆WC P,('LWidth' (3 6))('FStyle' (¯1 0))('FillCol'(2⍴⊂0 255 0))
  'F1.R1'∆WC'Rect'((0 50)(0 100))((220 30)(220 50))(5 10)((255 0 0)(0 255 0))
  'F1.T1'∆WC'Text' ('RED' 'GREEN' 'BLUE')((120 140 160)(20 30 40))('FCol' (255 0 0)(0 255 0)(0 0 255))
+ 'F1.TM'∆WC'Timer' 1000 1 ('Event' 'Timer' 'JSWCTimer')('FireOnce' 2)

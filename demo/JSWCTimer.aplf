@@ -1,0 +1,3 @@
+JSWCTimer args
+⍝ Rotate the colours
+'F1.T1' ∆WS 'FCol' (1⌽'F1.T1' ∆WG 'FCol')

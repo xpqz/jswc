@@ -1,5 +1,7 @@
- Run;rc;msg
+ Run;rc;msg;web
  ⍝ Initialise the Demo application
+
+ web←(⊂'RunWeb')∊⎕SI
 
  JSWC←##.JSWC
  JSWC.PORT←22322
@@ -8,12 +10,13 @@
  :Else
      JSWC.RESOURCES←1 2⍴'images' 'c:\devt\jswc\demo\images'
  :EndIf
- JSWC.USEHR←1
+
+ JSWC.USEHR←~web
  '∆'JSWC.Init ⎕THIS
 
  JSWC.IMAGEFOLDER←JSWC.JSWCFolder,'server/images'
+
+ →web⍴0
  Initialise 1
  r←∆DQ 'F1'
-
- ⎕←⍪'' 'To show CEF developer tools, type:' '' '      demo.ShowDevTools'
- ⎕←⍪'' 'To switch to using browser:' '' '      JSWC.USEHR←0'
+ ⎕EX 'F1'

@@ -1,5 +1,6 @@
  {R}←{Mode}∆NQ Event;caller;NQ;nq;msg;z;⎕TRAP
  ⎕TRAP←0 'S'
+ R←⍬
  caller←⊃⎕RSI
 
  :If 0=⎕NC'Mode' ⋄ Mode←0 ⋄ :EndIf
@@ -13,6 +14,13 @@
 
  :If USEWIN32
      R←Mode caller.⎕NQ Event
+ :EndIf
+
+ :If (⊂nq.Event)∊⊂'Close' ⍝ /// This needs to become a configurable list
+    nq.EventName←2⊃Event
+    nq.⎕EX 'Event'
+    NQ.Event←nq
+    →0 ⊣ NQ ⎕TPUT DQ_TOKEN
  :EndIf
 
  msg←⎕JSON⍠'HighRank' 'Split'⊢NQ

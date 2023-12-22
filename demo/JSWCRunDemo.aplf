@@ -1,10 +1,16 @@
- JSWCRunDemo args;e;scores;cols;fcol;pass;ii;ids;target;demo;sf
+ JSWCRunDemo args;e;scores;cols;fcol;pass;ii;ids;target;demo;sf;f
  Event←⎕NS''
  e←Event.Event←⎕NS''
  e.(ID EventName Info)←(2↑args),⊂2↓args
- demo←'Demo',(3⊃args)⊃(⊃args) ∆WG 'Items'
  sf←{(1-(⌽⍵)⍳'.')↓⍵}⊃args
+ f←{(-(⌽⍵)⍳'.')↓⍵}sf
  JSWC.USEWIN32←0×(sf,'USEWIN32') ∆WG 'State'
+
+ :If (sf,'STOP')≡1⊃args
+     →0 ⊣ ∆NQ f 'Close'
+ :EndIf
+
+ demo←'Demo',(3⊃args)⊃(⊃args) ∆WG 'Items'
 
  :If 3=⎕NC demo
     ⎕←''

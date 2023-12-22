@@ -11,6 +11,7 @@
 
  (events fns)←↓⍉↑event
  :If ~(⊂Event)∊events
+     ∘∘∘
      ⎕←'*** No callback defined for event ',Event,' on object ',ID
      →0
  :EndIf

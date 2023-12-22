@@ -1,11 +1,13 @@
- {R}←∆DQ names;⎕TRAP;caller;class;Name;type;HR;timers;event;done
+ {R}←∆DQ names;⎕TRAP;caller;class;Name;type;HR;timers;event;done;interrupt
 
  ⎕←'   JSWC DQ : ',⍕names
  ⎕TRAP←0 'S'
 
  Name←1⊃names←,⊆names
  caller←⊃⎕RSI
+ :If ~names∊'.' '#'
  ⎕SIGNAL (2≠caller.⎕NC ⍕Name,'.Type')/11
+ :EndIf
 
  :Hold 'JSWC DQ'
      :If 0≠≢DEQUEUEING
@@ -15,16 +17,23 @@
      :EndIf
  :EndHold
 
- done←0
+ done←interrupt←0
+ :Trap 1000
  :Repeat
-    :If 0≠≢event←5 ⎕TGET DQ_TOKEN
+    :If 0≠≢R←5 ⎕TGET DQ_TOKEN
 
-    processEvent event
+    done←processEvent R
     :Else
         ⍝ Timeout
     :EndIf
  :Until done
+ :Else
+     interrupt←1
+ :EndTrap
 
  :Hold 'JSWC DQ'
-    DEQUEUEING←names
+    DEQUEUEING←⍬
  :EndHold
+
+ R←R.Event.(ID EventName)
+ 'INTERRUPT' ⎕SIGNAL interrupt/999
