@@ -1,3 +1,15 @@
-JSWCTimer args
+JSWCTimer args;state;f1
 ⍝ Rotate the colours
-'F1.T1' ∆WS 'FCol' (1⌽'F1.T1' ∆WG 'FCol')
+
+
+:Select ⊃args
+:Case 'F1.TM' ⍝ Timer
+   'F1.T1' ∆WS 'FCol' (1⌽'F1.T1' ∆WG 'FCol')
+⍝   ⎕←'FireOnce: ',⍕f1←'F1.TM' ∆WG 'FireOnce'
+⍝   'F1.F1' ∆WS 'State' (f1=1)
+:Case 'F1.AC' ⍝ Active
+   state←'F1.AC' ∆WG 'State'
+   'F1.TM' ∆WS 'Active' state
+:Case 'F1.F1' ⍝ Fire once
+   'F1.TM' ∆WS 'FireOnce' ('F1.F1' ∆WG 'State')
+:EndSelect

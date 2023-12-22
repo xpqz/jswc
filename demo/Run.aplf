@@ -20,3 +20,4 @@
  Initialise 1
  r←∆DQ 'F1'
  ⎕EX 'F1'
+ JSWC.Stop
