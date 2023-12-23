@@ -3,6 +3,8 @@
  R←⍬
  caller←⊃⎕RSI
 
+ (⊃Event)←(2×'#.'≡2↑⊃Event)↓⊃Event
+
  :If 0=⎕NC'Mode' ⋄ Mode←0 ⋄ :EndIf
  :If (,¨1↑Event)∊,¨'.' '#' '⎕SE' ⍝ Pass NQ to system objects through
      →0 ⊣ R←Mode ⎕NQ Event
@@ -16,7 +18,7 @@
      R←Mode caller.⎕NQ Event
  :EndIf
 
- :If (⊂nq.Event)∊⊂'Close' ⍝ /// This needs to become a configurable list
+ :If (~isChar nq.Event)∨(⊂nq.Event)∊⊂'Close' ⍝ /// This needs to become a configurable list
     nq.EventName←2⊃Event
     nq.⎕EX 'Event'
     NQ.Event←nq

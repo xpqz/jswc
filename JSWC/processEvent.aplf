@@ -1,5 +1,6 @@
  end←processEvent ns;Info;ID;Event;event;events;fns;info;fn;z;async
 
+ end←0
  (Event ID Info)←ns.Event.(EventName ID({0::⍵ ⋄ Info}⍬))
 
  :Trap 6
@@ -11,7 +12,6 @@
 
  (events fns)←↓⍉↑event
  :If ~(⊂Event)∊events
-     ∘∘∘
      ⎕←'*** No callback defined for event ',Event,' on object ',ID
      →0
  :EndIf

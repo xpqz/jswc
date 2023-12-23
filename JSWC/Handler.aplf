@@ -1,6 +1,7 @@
 r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn;info
  ⎕TRAP←0 'S'
  ⎕←'Received: ',payload
+
  :If (⊂10↑payload)∊'Initialise' 'Initialize'
      CONN←con
      CONNECTED←1
@@ -22,11 +23,8 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn;info
          ns←0 ⎕JSON payload
          :Select ,ns.⎕NL 9
          :Case 'Event'
-             :If 0≠≢DEQUEUEING
-                 ns ⎕TPUT DQ_TOKEN
-             :Else
-                 processEvent ns
-             :EndIf
+             ⍝ /// Maybe use a "proper" queue
+             ns ⎕TPUT DQ_TOKEN
          :Case 'WG'
              ns ⎕TPUT WG_TOKEN
          :Else
