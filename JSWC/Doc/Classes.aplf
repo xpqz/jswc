@@ -1,6 +1,9 @@
-r←Classes;names;n
-r←'JSWC has some degree of support for the following classes:' ''
-names←'   '∘,¨##.classes.(⍎¨⎕NL -9).ClassName
-r,←4 foldCols names
+r←Classes;names;n;m
+r←'JSWC has some degree of support for the following ⎕WC classes:' ''
+names←##.classes.(⍎¨⎕NL -9).ClassName
+m←(6↑¨names)∊⊂'Ribbon'
+r,←4 foldCols '   '∘,¨(~m)/names
+r,←'' 'In addition, JSWC adds the following classes not supported by ⎕WC:' ''
+r,←4 foldCols '   '∘,¨m/names
 r,←'' 'See JSWC.Doc.Details ''classname'' for more details'
 r←⍪r

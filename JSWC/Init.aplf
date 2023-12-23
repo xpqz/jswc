@@ -1,4 +1,4 @@
- {prefix}Init web;z;i;t;fn;code
+ {prefix}Init web;z;i;t;fn;code;folder
 
  USEHR←~web
 
@@ -8,6 +8,17 @@
  :Else
      'JSWC can only be used from a named namespace' ⎕SIGNAL 11
  :EndTrap
+
+ JSWCFolder←⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
+ CODELOCATION←code
+
+ :If 0=⎕NC 'HTMLFolder'
+    :If ⎕NEXISTS folder←'jswc-client/dist/',⍨{⊃⎕NPARTS ¯1↓⍵}⍣2⊢ JSWCFolder
+        HTMLFolder←folder
+    :Else
+        'Unable to locate JSWC Client' ⎕SIGNAL 11
+    :EndIf
+ :EndIf
 
  :If 0=⎕NC'prefix'
      prefix←'∆'
@@ -29,15 +40,12 @@
  RECORD←0
  USEWIN32←0
 
- JSWCFolder←⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
- CODELOCATION←code
-
  WSS←wss.New''
  :If 9=⎕NC'#.DRC'
      WSS.LDRC←#.DRC
  :EndIf
+ WSS.HTMLFolder←HTMLFolder
  WSS.ShowHTMLRenderer←0
- WSS.HTMLFolder←JSWCFolder,'server/'
  WSS.Aliases←RESOURCES
  WSS.OnConnect←''
  WSS.OnWSUpgrade←''

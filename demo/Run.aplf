@@ -8,7 +8,6 @@
  JSWC.PORT←22322
  JSWC.RESOURCES←1 2⍴'images'(⎕SE.Link.LaunchDir,'/demo/images')
  'e'JSWC.Init web
- JSWC.IMAGEFOLDER←JSWC.JSWCFolder,'server/images'
 
  :If web
      ⎕←'Connect Browser now...'
