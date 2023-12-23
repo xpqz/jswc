@@ -1,0 +1,9 @@
+(
+ 'General Limitations'
+ '-------------------'
+ ''
+ '* Setting properties must be done using ⎕WC and ⎕WS, assignment is not supported.                                                    '
+ '* Up-to-date property values must be retrieved using ⎕WG - variables in namespaces are not updated.'
+ '* Coord must be "Pixel"'
+ ''
+)

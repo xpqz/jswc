@@ -6,12 +6,12 @@
 
  :Select 1⊃args
  :Case 'F1.LEFT.VIEW'
-     view←(1⊃args)∆WG'Text'
-     'F1.LEFT.LV'∆WS'View'view
+     view←(1⊃args)eWG'Text'
+     'F1.LEFT.LV'eWS'View'view
  :Case 'F1.LEFT.LV'
      ⎕←30⍴'-'
      ⎕←'ListView event: ',⍕args
-     ⎕←'ListView selitems: ',⍕'F1.LEFT.LV' ∆WG 'SelItems'
+     ⎕←'ListView selitems: ',⍕'F1.LEFT.LV' eWG 'SelItems'
  :Else
      ⎕←'Unexpected message: ',args
  :EndSelect

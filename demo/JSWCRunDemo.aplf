@@ -4,13 +4,13 @@
  e.(ID EventName Info)←(2↑args),⊂2↓args
  sf←{(1-(⌽⍵)⍳'.')↓⍵}⊃args
  f←{(-(⌽⍵)⍳'.')↓⍵}sf
- JSWC.USEWIN32←0×(sf,'USEWIN32') ∆WG 'State'
+ JSWC.USEWIN32←0×(sf,'USEWIN32') eWG 'State'
 
  :If (sf,'STOP')≡1⊃args
-     →0 ⊣ ∆NQ f 'Close'
+     →0 ⊣ eNQ f 'Close'
  :EndIf
 
- demo←'Demo',(3⊃args)⊃(⊃args) ∆WG 'Items'
+ demo←'Demo',(3⊃args)⊃(⊃args) eWG 'Items'
 
  :If 3=⎕NC demo
     ⎕←''

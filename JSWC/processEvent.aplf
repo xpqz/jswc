@@ -1,4 +1,4 @@
- end←processEvent ns;Info;ID;Event;event;events;fns;info;fn;z;async
+ end←processEvent ns;Info;ID;Event;event;events;fns;info;fn;z;async;class;e
 
  end←0
  (Event ID Info)←ns.Event.(EventName ID({0::⍵ ⋄ Info}⍬))
@@ -9,6 +9,12 @@
      ⎕←'*** Unable to find ',z
      →0
  :EndTrap
+
+ :If 2=≢Event
+ :AndIf 'Select'≡⊃Event
+    ⎕←'*** Working around issue #61 - wrong MenuItem Select event format'
+    Event←⊃Event
+ :EndIf
 
  (events fns)←↓⍉↑event
  :If ~(⊂Event)∊events
@@ -26,16 +32,27 @@
      ⎕←'Callback function not found: ',fn
  :ElseIf 1=≢info
      :If async
-     (CODELOCATION⍎fn)&(ID Event),Info
+         (CODELOCATION⍎fn)&(ID Event),Info
      :Else
-     (CODELOCATION⍎fn)(ID Event),Info
+         (CODELOCATION⍎fn)(ID Event),Info
      :EndIf
  :ElseIf 2=≢info
      :If async
-     (2⊃info)(CODELOCATION⍎fn)&(ID Event),Info
+         (2⊃info)(CODELOCATION⍎fn)&(ID Event),Info
      :Else
-     (2⊃info)(CODELOCATION⍎fn)(ID Event),Info
+         (2⊃info)(CODELOCATION⍎fn)(ID Event),Info
      :EndIf
  :Else
      ⎕←'*** Ill-formed event: ',⍕event
+ :EndIf
+
+ :If 1 ⍝ Recording events
+ :AndIf 9=⎕NC class←'classes.',⎕C caller⍎ID,'.Type'
+     class←⍎class
+     e←{0::⍵ ⋄ class.SupportedEvents}''
+     :If ~(⊂Event)∊e
+        ⎕←'Adding event ',Event,,' to ',⍕class
+        class.SupportedEvents←∪e,⊂Event
+        ⎕SE.Link.Add (⍕class),'.SupportedEvents'
+     :EndIf
  :EndIf

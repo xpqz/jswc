@@ -2,7 +2,7 @@
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
- 'F1'∆WC'Form' 'JSWC Demos'(20 20)(50 220)('Coord' 'Pixel')('BCol' (255 255 255))
- 'F1.L1' ∆WC 'Label' 'Pick a JSWC Demo' (6 5)
+ 'F1'eWC'Form' 'JSWC Demos'(20 20)(50 220)('Coord' 'Pixel')('BCol' (255 255 255))
+ 'F1.L1' eWC 'Label' 'Pick a JSWC Demo' (6 5)
 
  addDemoMenu ''

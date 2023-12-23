@@ -89,6 +89,9 @@ values[propnames⍳⊂'Type']←⊂WC.WC.Properties.Type←class.ClassName ⍝ C
  :EndIf
 
  :If type≡'form'
+     :If (caller⍎Name,'.Coord')≢'Pixel'
+         'Coord must be Pixel' ⎕SIGNAL 11
+     :EndIf
      SendSettings CONN
  :EndIf
 

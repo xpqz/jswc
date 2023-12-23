@@ -1,0 +1,6 @@
+r←Classes;names;n
+r←'JSWC has some degree of support for the following classes:' ''
+names←'   '∘,¨##.classes.(⍎¨⎕NL -9).ClassName
+r,←4 foldCols names
+r,←'' 'See JSWC.Doc.Details ''classname'' for more details'
+r←⍪r

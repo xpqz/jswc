@@ -6,8 +6,8 @@
 
  :Select 1⊃args
  :Case 'F1.VIEW'
-     view←(1⊃args)∆WG'Text'
-     'F1.LV'∆WS'View'view
+     view←(1⊃args)eWG'Text'
+     'F1.LV'eWS'View'view
  :Else
      ⎕←'Unexpected message: ',args
  :EndSelect

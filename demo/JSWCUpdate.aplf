@@ -6,15 +6,15 @@
 
  :Select 1⊃args
  :Case 'F1.Home'
-     ∆NQ'F1.Players' 'CellMove' 1 1
+     eNQ'F1.Players' 'CellMove' 1 1
  :Case 'F1.PasswordField' ⍝ Edit
-     pass←'F1.PasswordField'∆WG'Value'
-     'F1.Average'∆WS'Caption'('Password is ',pass)
+     pass←'F1.PasswordField'eWG'Value'
+     'F1.Average'eWS'Caption'('Password is ',pass)
  :Case 'F1.Function' ⍝ Dropdown
-     f←allf[1⍳⍨'F1.Function'∆WG'SelItems']
+     f←allf[1⍳⍨'F1.Function'eWG'SelItems']
  :Case 'F1.TableSize' ⍝ Edit
-     f←allf[1⍳⍨'F1.Function'∆WG'SelItems']
-     n←⊃'F1.TableSize'∆WG'Value'
+     f←allf[1⍳⍨'F1.Function'eWG'SelItems']
+     n←⊃'F1.TableSize'eWG'Value'
      :If 'KeyPress'≡2⊃args
          ⎕←args
      :EndIf
@@ -22,25 +22,25 @@
      :Select 2⊃args
      :Case 'CellMove'
          (row col scroll sel mouse changed newval)←7↑2↓args
-         'F1.Average'∆WS'Caption'('CellMove to Row: ',(⍕row),' Col: ',(⍕col))
+         'F1.Average'eWS'Caption'('CellMove to Row: ',(⍕row),' Col: ',(⍕col))
          →0
      :EndSelect
-     scores←('F1.Players'∆WG'Values')[;F1.Players.ColTitles⍳⊂'Score']
-     'F1.Average'∆WS'Caption'('Average score:',1⍕+/scores÷≢scores)
+     scores←('F1.Players'eWG'Values')[;F1.Players.ColTitles⍳⊂'Score']
+     'F1.Average'eWS'Caption'('Average score:',1⍕+/scores÷≢scores)
      →0
  :Case 'F1.Players.Name' ⍝ KeyPress
      :If 'KeyPress'≡2⊃args
-         'F1.Average'∆WS'Caption'('KeyPress: ''',(3⊃args),''', code: ',(⍕4⊃args),', shift: ',(⍕6⊃args))
+         'F1.Average'eWS'Caption'('KeyPress: ''',(3⊃args),''', code: ',(⍕4⊃args),', shift: ',(⍕6⊃args))
      :EndIf
  :Case 'F1.CalcBtn'
-     f←allf[1⍳⍨'F1.Function'∆WG'SelItems']
-     n←'F1.TableSize'∆WG'Value'
+     f←allf[1⍳⍨'F1.Function'eWG'SelItems']
+     n←'F1.TableSize'eWG'Value'
  :CaseList 'F1.Months' 'F1.LEFT.Months' ⍝ Treeview
      txt←(2⊃args),' on'
      :Select 2⊃args
      :Case 'ItemDown'
          :Trap 6
-             sel←(1⊃args) ∆WG 'SelItems'
+             sel←(1⊃args) eWG 'SelItems'
              txt,←' (WG SelItems OK)'
          :Else
              txt,←' (WG SelItems FAILED)'
@@ -51,23 +51,23 @@
         txt,←,' ',⍕2↓args
      :CaseList 'Expanding' 'Retracting'
          txt,←' node #',⍕3⊃args
-         ii←(1⊃args)∆WG'ImageIndex'
+         ii←(1⊃args)eWG'ImageIndex'
          ii[3⊃args]←1+'Expanding'≡2⊃args ⍝ Set Image Index to open or closed
-         (1⊃args)∆WS'ImageIndex'ii
+         (1⊃args)eWS'ImageIndex'ii
      :EndSelect
-     'F1.Average' ∆WS 'Caption' txt
+     'F1.Average' eWS 'Caption' txt
  :CaseList cols←'F1.MB.Col.'∘,¨'Red' 'Blue' 'Green'
      fcol←(cols⍳args[1])⊃(255 0 0)(0 0 255)(0 255 0)
-     'F1.Average'∆WS'FCol'fcol
+     'F1.Average'eWS'FCol'fcol
      →0
  :CaseList cols←'F1.MB.Focus.'∘,¨'TableSize' 'Function' 'CalcBtn' 'Players'
      target←'F1',{(-(⌽⍵)⍳'.')↑⍵}1⊃args
-     ∆NQ target'GotFocus'
+     eNQ target'GotFocus'
      →0
  :Else
      ⎕←'Unexpected message: ',args
  :EndSelect
 
  :If 0≠⎕NC'F1.Table'
-     'F1.Table'∆WS'Values'(∘.(⍎f)⍨⍳n)
+     'F1.Table'eWS'Values'(∘.(⍎f)⍨⍳n)
  :EndIf

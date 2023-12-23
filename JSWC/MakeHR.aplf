@@ -2,8 +2,7 @@ err←MakeHR (home name);ns;count;maxtries;ok;cb
 ns←home⍎name
 ⎕EX 'CONN'
 cb←(⍕⎕THIS),'.DestroyHR'
-⍝ 1 ⎕NQ '#.JSWC.TIMER'
-'HR' ns.⎕WC 'HTMLRenderer' ('Caption' ns.Caption) ('URL' ('localhost:',⍕PORT)) ('Size' (40 17+ns.Size))('Coord' 'Pixel')('Posn' ns.Posn)('Event' 'Close' cb)
+'HR' ns.⎕WC 'HTMLRenderer' ('Caption' ns.Caption) ('URL' ('localhost:',⍕PORT)) ('Size' (63 17+ns.Size))('Coord' 'Pixel')('Posn' ns.Posn)('Event' 'Close' cb)
 
 count←0 ⋄ maxtries←100
 :Repeat

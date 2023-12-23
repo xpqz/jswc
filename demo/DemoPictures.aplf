@@ -2,16 +2,16 @@
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
- 'F1'∆WC'Form'('BCol'(255 255 255))('Coord' 'Pixel')('Size'(500 900))('Picture'('LOGO' 0))
- 'LOGO'∆WC'BitMap'('File' '/images/dyalog-logo.jpg')
+ 'F1'eWC'Form'('BCol'(255 255 255))('Coord' 'Pixel')('Size'(500 900))('Picture'('LOGO' 0))
+ 'LOGO'eWC'BitMap'('File' '/images/dyalog-logo.jpg')
 
- 'YES'∆WC'BitMap'('File' '/images/yes.bmp')
- 'NO'∆WC'BitMap'('File' '/images/no.bmp')
+ 'YES'eWC'BitMap'('File' '/images/yes.bmp')
+ 'NO'eWC'BitMap'('File' '/images/no.bmp')
 
- 'F1.TILE'∆WC'SubForm'('Picture'('LOGO' 1))('Size'(250 500))('Posn'(0 400))
- 'F1.SCALE'∆WC'SubForm'('Picture'('LOGO' 2))('Size'(250 400))('Posn'(250 0))
- 'F1.CENTER'∆WC'SubForm'('Size'(250 500))('Posn'(250 400))
- 'F1.CENTER'∆WS 'Picture'('LOGO' 3)
+ 'F1.TILE'eWC'SubForm'('Picture'('LOGO' 1))('Size'(250 500))('Posn'(0 400))
+ 'F1.SCALE'eWC'SubForm'('Picture'('LOGO' 2))('Size'(250 400))('Posn'(250 0))
+ 'F1.CENTER'eWC'SubForm'('Size'(250 500))('Posn'(250 400))
+ 'F1.CENTER'eWS 'Picture'('LOGO' 3)
 
- 'F1.YES'∆WC'Button'('Picture' ('YES' 3))('Size'(40 40))('Posn'(10 250))
- 'F1.NO'∆WC'Button'('Picture' 'NO')('Size'(40 40))('Posn'(50 250))
+ 'F1.YES'eWC'Button'('Picture' ('YES' 3))('Size'(40 40))('Posn'(10 250))
+ 'F1.NO'eWC'Button'('Picture' 'NO')('Size'(40 40))('Posn'(50 250))

@@ -1,12 +1,12 @@
- {prefix}Init code;z;i;t;fn
+ {prefix}Init web;z;i;t;fn;code
 
+ USEHR←~web
+
+ code←⊃⎕RSI
  :Trap 0
-     :If 2=⎕NC'code'
-         code←⍎code
-     :EndIf
      z←1÷code≡⍎⍕code ⍝ Will DOMAIN ERROR if not OK
  :Else
-     'Code location must be a properly named namespace'⎕SIGNAL 11
+     'JSWC can only be used from a named namespace' ⎕SIGNAL 11
  :EndTrap
 
  :If 0=⎕NC'prefix'
@@ -26,11 +26,6 @@
  :EndFor
 
  CONNECTED←0 ⍝ /// This should go
- :If 0=⎕NC'USEHR' ⋄ USEHR←1 ⋄ :EndIf
- :If USEHR
-     'TIMER'⎕WC'Timer'('Active' 0)('Event' 1001 'makeHRMain') ⍝ Invoked by MakeHR
- :EndIf
-
  RECORD←0
  USEWIN32←0
 

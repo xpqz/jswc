@@ -5,7 +5,7 @@
 
  Name←1⊃names←,⊆names
  caller←⊃⎕RSI
- :If ~(⊂names)∊'.' '#'
+ :If ~∧/names∊'.' '#'
  ⎕SIGNAL (2≠caller.⎕NC ⍕Name,'.Type')/11
  :EndIf
 

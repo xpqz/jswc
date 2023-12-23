@@ -1,9 +1,0 @@
-RunWeb
-Run
-⎕←'Connect Browser now...'
-⎕←r←∆DQ '.'
-:If r≡'F1' 'Close'
-    ⎕←'Bye bye...'
-    ⎕DL 3
-    ⎕OFF
-:EndIf

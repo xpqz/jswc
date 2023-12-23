@@ -6,7 +6,7 @@
 
  :If 'F1.TC.T'≡7↑1⊃args
      f←(⊃2⊃⎕VFI 7↓1⊃args)⊃fonts
-     'F1.L1' ∆WS ('Caption' ('Caption: ',f))('Font' (f 15))
+     'F1.L1' eWS ('Caption' ('Caption: ',f))('Font' (f 15))
  :Else
      ⎕←'Unexpected message: ',args
  :EndIf
