@@ -1,20 +1,33 @@
- {R}←Name ∆WG Props;msg;WG;wg;z;⎕TRAP;caller;p;class;remote;dynamic;r;d;i
+ {R}←Name ∆WG Props;msg;WG;wg;z;caller;p;class;remote;dynamic;r;d;i;⎕TRAP;proplist;PropList;m;ix
+ ⎕TRAP←0 'S'
+ Name←⍕Name
+ :If (⊂,Name)∊,¨'⎕SE' '#' '.' ⍝ Pass WG of System properties through
+     →0 ⊣ R←Name ⎕WG Props
+ :EndIf
+
+
  caller←⊃⎕RSI
  WG←⎕NS''
  wg←WG.WG←⎕NS''
  WGID+←1
  p←,⊆Props
- :Trap 6
+ :Trap 2 6
      class←GetClass caller Name
  :Else
      (⊃⎕DMX.DM)⎕SIGNAL ⎕DMX.EN
  :EndTrap
 
+ proplist←⎕C PropList←class.PropList,objProps
+ :If ∨/m←(≢proplist)<i←proplist⍳⎕C p
+     Warning 'Unsupported on ',class,': ',⍕m/p
+ :EndIf
+ p[ix]←PropList[i[ix←⍸~m]]
+
  :If remote←∨/,dynamic←p∊⍥⎕C class.Dynamic,⊂'NoSuchProperty' ⍝ Any reason to ask remote client for values?
-     wg.(WGID ID Properties)←(⍕WGID)Name (d←dynamic/p)
+     wg.(WGID ID Properties)←(⍕WGID) ((2×'#.'≡2↑Name)↓Name) (d←dynamic/p)
      msg←⎕JSON WG
      :If CONNECTED
-         z←CONN ##.w.Send ⎕←msg
+         z←CONN WSS.Send ⎕←msg
      :Else
          ⎕←msg
      :EndIf
@@ -25,7 +38,7 @@
  :Else
      R←(≢p)⍴⊂⍬
      :If 0≠≢i←⍸~dynamic
-        R[i]←caller⍎((1=≢i)/'⊂'),Name,'.(',(⎕C ⍕p[i]),')'
+        R[i]←caller⍎((1=≢i)/'⊂'),Name,'.(',(⍕p[i]),')'
      :EndIf
  :EndIf
 
@@ -34,7 +47,7 @@
      r←dynamic/R
      ⍎'wg.Properties.(',(⍕d),')←',(1≠≢r)↓'⊃r'
      msg←⎕JSON⍠'HighRank' 'Split'⊢WG
-     ⎕←'Faking client transmission: ',msg
+ ⍝   ⎕←'Faking client transmission: ',msg
      (⎕JSON msg)⎕TPUT WG_TOKEN
  :EndIf
 

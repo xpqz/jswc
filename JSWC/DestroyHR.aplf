@@ -1,0 +1,2 @@
+{r}←DestroyHR args
+∆EX ¯3↓⊃args ⍝ Redirect to the Form

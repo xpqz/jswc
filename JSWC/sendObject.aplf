@@ -1,0 +1,12 @@
+ sendObject obj;msg;z
+
+ msg←⎕JSON⍠'HighRank' 'Split'⊢obj
+ ⎕←((500⌊≢msg)↑msg),(500<≢msg)/'...'
+
+ :If CONNECTED
+     z←CONN WSS.Send msg
+ :EndIf
+
+ :If 2=⎕NC 'SENDLOG'
+     SENDLOG,←⊂msg
+ :EndIf

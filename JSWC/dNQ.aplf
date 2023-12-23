@@ -1,7 +1,14 @@
- {R}←{Mode}∆NQ Event;caller;NQ;nq;msg;z
+ {R}←{Mode}∆NQ Event;caller;NQ;nq;msg;z;⎕TRAP
+ ⎕TRAP←0 'S'
+ R←⍬
  caller←⊃⎕RSI
+
+ (⊃Event)←(2×'#.'≡2↑⊃Event)↓⊃Event
+
  :If 0=⎕NC'Mode' ⋄ Mode←0 ⋄ :EndIf
- 'Mode=0 only at this point'⎕SIGNAL(Mode≠0)/11
+ :If (,¨1↑Event)∊,¨'.' '#' '⎕SE' ⍝ Pass NQ to system objects through
+     →0 ⊣ R←Mode ⎕NQ Event
+ :EndIf
 
  NQ←⎕NS''
  nq←NQ.NQ←⎕NS''
@@ -11,10 +18,17 @@
      R←Mode caller.⎕NQ Event
  :EndIf
 
+ :If (~isChar nq.Event)∨(⊂nq.Event)∊⊂'Close' ⍝ /// This needs to become a configurable list
+    nq.EventName←2⊃Event
+    nq.⎕EX 'Event'
+    NQ.Event←nq
+    →0 ⊣ NQ ⎕TPUT DQ_TOKEN
+ :EndIf
+
  msg←⎕JSON⍠'HighRank' 'Split'⊢NQ
 
  :If CONNECTED
-     z←CONN #.w.Send ⎕←msg
+     z←CONN WSS.Send ⎕←msg
  :Else
      ⎕←msg
  :EndIf

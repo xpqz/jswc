@@ -1,0 +1,18 @@
+ {R}←∆EX names;caller;msg;ex;EX;z;⎕TRAP;cn;n
+ ⎕TRAP←0 'S'
+ names←,⊆names
+ n←≢cn←⍕caller←⊃⎕RSI~⎕THIS
+ names←((1+n)×(n↑¨names)∊⊂cn)↓¨names
+
+ EX←⎕NS''
+ ex←EX.EX←⎕NS''
+ ex.ID←names
+
+ R←caller.⎕EX names
+ msg←⎕JSON EX
+
+ :If CONNECTED
+     z←CONN WSS.Send ⎕←msg
+ :Else
+     ⎕←msg
+ :EndIf

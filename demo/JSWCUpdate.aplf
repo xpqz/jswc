@@ -1,0 +1,73 @@
+ JSWCUpdate args;e;scores;cols;fcol;pass;ii;ids;target;row;col;scroll;sel;mouse;changed;newval;txt
+ Event←⎕NS''
+ e←Event.Event←⎕NS''
+ e.(ID EventName Info)←(2↑args),⊂2↓args
+ ⎕←'JSWCUpdate: ',⎕JSON Event
+
+ :Select 1⊃args
+ :Case 'F1.Home'
+     eNQ'F1.Players' 'CellMove' 1 1
+ :Case 'F1.PasswordField' ⍝ Edit
+     pass←'F1.PasswordField'eWG'Value'
+     'F1.Average'eWS'Caption'('Password is ',pass)
+ :Case 'F1.Function' ⍝ Dropdown
+     f←allf[1⍳⍨'F1.Function'eWG'SelItems']
+ :Case 'F1.TableSize' ⍝ Edit
+     f←allf[1⍳⍨'F1.Function'eWG'SelItems']
+     n←⊃'F1.TableSize'eWG'Value'
+     :If 'KeyPress'≡2⊃args
+         ⎕←args
+     :EndIf
+ :Case 'F1.Players'
+     :Select 2⊃args
+     :Case 'CellMove'
+         (row col scroll sel mouse changed newval)←7↑2↓args
+         'F1.Average'eWS'Caption'('CellMove to Row: ',(⍕row),' Col: ',(⍕col))
+         →0
+     :EndSelect
+     scores←('F1.Players'eWG'Values')[;F1.Players.ColTitles⍳⊂'Score']
+     'F1.Average'eWS'Caption'('Average score:',1⍕+/scores÷≢scores)
+     →0
+ :Case 'F1.Players.Name' ⍝ KeyPress
+     :If 'KeyPress'≡2⊃args
+         'F1.Average'eWS'Caption'('KeyPress: ''',(3⊃args),''', code: ',(⍕4⊃args),', shift: ',(⍕6⊃args))
+     :EndIf
+ :Case 'F1.CalcBtn'
+     f←allf[1⍳⍨'F1.Function'eWG'SelItems']
+     n←'F1.TableSize'eWG'Value'
+ :CaseList 'F1.Months' 'F1.LEFT.Months' ⍝ Treeview
+     txt←(2⊃args),' on'
+     :Select 2⊃args
+     :Case 'ItemDown'
+         :Trap 6
+             sel←(1⊃args) eWG 'SelItems'
+             txt,←' (WG SelItems OK)'
+         :Else
+             txt,←' (WG SelItems FAILED)'
+         :EndTrap
+
+         txt,←' node #',(⍕3⊃args),' ',((4⊃args)⊃'left' 'right' '' 'center')' button ',((1 2 4⍳5⊃args)⊃'shift' 'ctrl' 'alt' 'no'),' key '
+     :Case 'MouseUp'
+        txt,←,' ',⍕2↓args
+     :CaseList 'Expanding' 'Retracting'
+         txt,←' node #',⍕3⊃args
+         ii←(1⊃args)eWG'ImageIndex'
+         ii[3⊃args]←1+'Expanding'≡2⊃args ⍝ Set Image Index to open or closed
+         (1⊃args)eWS'ImageIndex'ii
+     :EndSelect
+     'F1.Average' eWS 'Caption' txt
+ :CaseList cols←'F1.MB.Col.'∘,¨'Red' 'Blue' 'Green'
+     fcol←(cols⍳args[1])⊃(255 0 0)(0 0 255)(0 255 0)
+     'F1.Average'eWS'FCol'fcol
+     →0
+ :CaseList cols←'F1.MB.Focus.'∘,¨'TableSize' 'Function' 'CalcBtn' 'Players'
+     target←'F1',{(-(⌽⍵)⍳'.')↑⍵}1⊃args
+     eNQ target'GotFocus'
+     →0
+ :Else
+     ⎕←'Unexpected message: ',args
+ :EndSelect
+
+ :If 0≠⎕NC'F1.Table'
+     'F1.Table'eWS'Values'(∘.(⍎f)⍨⍳n)
+ :EndIf

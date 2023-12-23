@@ -1,63 +1,98 @@
- {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn;i
- deprecatedprops←'Font' 'Icon' 'Cursor' 'ImageList' '3D' ⍝ No longer appear in PropList
- caller←⊃⎕RSI
+ {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn;i;ns;okprops;⎕TRAP;depth;valid;values;lcp;pi;ix;PropList;allprops;AllProps;n;cp;v
+ ⎕TRAP←0 'S'
+ 'NO CLIENT DETECTED'⎕SIGNAL(USEWIN32∨USEHR∨2=⎕NC'CONN')↓11
+ deprecatedprops←,⊂'3D' ⍝ No longer appear in PropList
+
+ n←≢cp←'.',⍨⍕caller←⊃⎕RSI
+ Name←(n×cp≡n↑Name)↓Name
 
  Props←,⊆Props
  length←≢¨Props
- propnames←⊃¨Props
-
- :If 1=≢type←((length∊2)∧propnames∊⊂'Type')/Props ⍝ Named 'Type' property?
-     type←2⊃type
- :Else
-     type←⊃Props
- :EndIf
+ depth←|≡¨Props
+ propnames←⎕C(depth>1)/¨⊃¨Props
+ type←(i←⌊/propnames⍳'' 'type')⊃Props
+ :If 2=i⊃depth ⋄ type←2⊃type ⋄ :EndIf
  type←⎕C type
-
- proplist←(Classes⍎type).PropList
- p←(≢Props)↑proplist
-
- m←~(length∊2 3)∧propnames∊proplist,deprecatedprops
- (m/propnames)←m/p ⍝ Add default prop names
- m2←(~m)∧length=2
- (m2/Props)←2⊃¨m2/Props ⍝ Extract property values
- m3←(~m)∧length=3
- (m3/Props)←1↓¨m3/Props
-
- :If (≢propnames)≥i←propnames⍳⊂'Event'
-     (i⊃Props)←NormaliseEvents i⊃Props
-     :If 1=≢i⊃Props
-         ⍝ ⎕←'*** Working around event limitation ***'
-         ⍝ (i⊃Props)←⊃i⊃Props
-     :EndIf
+ :If (⊂type)∊⎕C nativeClasses ⍝ Timers and other
+     →0⊣R←Name caller.⎕WC Props
  :EndIf
+
+ :If 9≠classes.⎕NC type
+     Warning'Unsupported class: ',type
+     Name caller.⎕NS''
+     (caller⍎Name).Type←type
+     ⎕←Props
+     →0
+ :EndIf
+
+ class←classes⍎type
+ proplist←⎕C PropList←class.PropList
+ valid←(lcp←⎕C propnames)∊allprops←⎕C AllProps←PropList,objProps,deprecatedprops
+ values←valid↓¨Props
+ ix←⍸valid∧length=2      ⍝ Prop name found, followed by 1 thing
+ values[ix]←⊃¨values[ix]
+ ix←⍸0=pi←(1+≢allprops)|allprops⍳lcp
+ i←propIndices pi
+ propnames[ix]←allprops[i[ix]]
+ ix←⍸(lcp←⎕C propnames)∊allprops
+ propnames[ix]←AllProps[allprops⍳lcp[ix]] ⍝ Properly cased names
+ valid[ix]←1
+
+ m←(propnames∊⊂'event')∨{⌽(⍳≢⍵)=⍵⍳⍵}⌽propnames ⍝ Last occurrence of each name (except for Event)
+ (values propnames)←m∘/¨values propnames
+ values←propnames(type fixUpProps)values       ⍝ Regularise things for the poor JS code
 
  WC←⎕NS''
  WC.WC←⎕NS''
  WC.WC.(ID Properties)←Name(⎕NS'')
- ⍎'WC.WC.Properties',expr←'.(',(⍕propnames),')←',(1≠≢propnames)↓'⊃Props'
+ ⍎'WC.WC.Properties',expr←'.(',(⍕propnames),')←',(1≠≢propnames)↓'⊃values'
+values[propnames⍳⊂'Type']←⊂WC.WC.Properties.Type←class.ClassName ⍝ Correct Case
 
  :If USEWIN32
      :If 'ribbon'≢6↑type
-         props←(m←(type≢'imagelist')∨~propnames∊⍥⎕C ⊂'files')/Props
+         values←(m←(type≢'imagelist')∨~propnames∊⍥⎕C⊂'files')/values
          pn←m/propnames
          :If type≡'bitmap'
          :AndIf (≢pn)≥i←(⎕C pn)⍳⊂'file'
-            (i⊃props)←IMAGEFOLDER,1↓i⊃props ⍝ Adjust BitMap image file names
+         :AndIf 2=⎕NC'IMAGEFOLDER'
+             (i⊃values)←IMAGEFOLDER,1↓i⊃values  ⍝ Adjust BitMap image file names
          :EndIf
-         R←Name caller.⎕WC ↓pn,⍪props
+         :If (≢pn)≥i←pn⍳⊂'Event'
+             (i⊃values)←{⍵[1],⊃⍵[2]}¨i⊃values
+         :EndIf
+         R←Name caller.⎕WC↓pn,⍪values
          :If 'imagelist'≡type
-         :AndIf 2=⎕NC 'WC.WC.Properties.Files' ⍝ Simulate the "Files" property in Win32
+         :AndIf 2=⎕NC'WC.WC.Properties.Files' ⍝ Simulate the "Files" property in Win32
              :For f :In WC.WC.Properties.Files
-                 tn←(IMAGEFOLDER,1↓f) ⎕NTIE 0
-                 (R,'.') (2032⌶) ⎕NREAD tn 83 (⎕NSIZE tn) 0
+                 tn←(IMAGEFOLDER,1↓f)⎕NTIE 0
+                 (R,'.')(2032⌶)⎕NREAD tn 83(⎕NSIZE tn)0
                  ⎕NUNTIE tn
              :EndFor
          :EndIf
      :EndIf
  :Else
-      R←Name caller.⎕NS''
-      expr←'.(',(⎕C ⍕propnames),')←',(1≠≢propnames)↓'⊃Props' ⍝ /// remove when we go all lowercase everywhere
-      ⍎(⍕caller),'.',Name,expr ⍝ Set properties in the "server-side DOM"
+     R←Name caller.⎕NS''
+     okprops←PropList,objProps
+     :If ∨/m←((≢class.Supported)<i←class.Supported⍳propnames)∧~propnames∊'Event' 'Data'
+         Warning'Unsupported on ',type,': ',⍕m/propnames
+     :EndIf
+     m←~PropList∊propnames
+     v←values,m/class.Defaults
+     expr←'.(',(⍕propnames,m/PropList),')←',(1≠≢v)↓'⊃v'
+     ⍎(⍕caller),'.',Name,expr ⍝ Set properties in the "server-side DOM"
+ :EndIf
+
+ :If USEHR∧type≡'form'
+     :If 0≠≢z←MakeForm
+         z ⎕SIGNAL 11
+     :EndIf
+ :EndIf
+
+ :If type≡'form'
+     :If (caller⍎Name,'.Coord')≢'Pixel'
+         'Coord must be Pixel' ⎕SIGNAL 11
+     :EndIf
+     SendSettings CONN
  :EndIf
 
  :If RECORD ⍝ Collecting lists
@@ -72,10 +107,9 @@
      ref.Supported∪←propnames
  :EndIf
 
- msg←⎕JSON⍠'HighRank' 'Split'⊢WC
+ fixSendEvents WC.WC.Properties
+ sendObject WC
 
- :If CONNECTED
-     z←CONN #.w.Send ⎕←msg
- :Else
-     ⎕←msg
+ :If USEHR∧type≡'form'
+     AddFormResources caller
  :EndIf

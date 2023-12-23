@@ -1,0 +1,2 @@
+JSWCEchoCB args
+⎕←'   Event received:' args

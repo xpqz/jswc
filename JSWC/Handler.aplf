@@ -1,80 +1,30 @@
-r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z
+r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn;info
  ⎕TRAP←0 'S'
+ ⎕←'Received: ',payload
+
  :If (⊂10↑payload)∊'Initialise' 'Initialize'
      CONN←con
      CONNECTED←1
-
-     fn←(10↓payload)~'()'
-     fn,←(0=≢fn)/'DemoDefault'
-     :If 3=⎕NC '##.',fn
-         (##⍎fn)&CONNECTED
-     :Else
-         ⎕←'Function not found: ',fn
+     :If 2=⎕NC 'IGNORE1Init'
+     :AndIf IGNORE1Init≠0
+         IGNORE1Init←0
+         ⎕←'Ignoring one Initialise'
+         :Return
+     :EndIf
+     fn←reqfn←(10↓payload)~'()'
+     fn,←(0=≢fn)/'Initialise'
+     :If 3=CODELOCATION.⎕NC fn
+         (CODELOCATION⍎fn)&CONNECTED
+     :ElseIf 0≠≢reqfn ⍝ Explicit function requested
+         ⎕←'Function not found: ',(⍕CODELOCATION),'.',fn
      :EndIf
  :Else
      :Trap 999
-         ⎕←'Received: ',payload
          ns←0 ⎕JSON payload
          :Select ,ns.⎕NL 9
          :Case 'Event'
-             (Event ID Info)←ns.Event.(EventName ID({0::⍵ ⋄ Info}⍬))
-             :If (1=≢Event)∧2=≡Event
-                 ⎕←'*** Event is incorrectly sent as a list'
-                 Event←⊃Event
-             :EndIf
-             :If (2=≢Event)∧2=≡Event
-                 ⎕←'*** Client returned a 2-element event: ',⍕Event
-                 Event←⊃Event
-             :EndIf
-
-             :Trap 6
-                 event←#⍎z←ID,'.event'
-             :Else
-                 ⎕←'*** Unable to find ',z
-                 →0
-             :EndTrap
-
- ⍝            :If 2=|≡event ⍝ /// This should now be handled in ∆WS (issue #16), please delete this code when that is verified
- ⍝                event←,⊂event
- ⍝            :EndIf
-
-             (events fns)←↓⍉↑event
-             :If ~(⊂Event)∊events
-                 ∘∘∘
-                 ⎕←'*** No callback defined for event ',Event,' on object ',ID
-                 →0
-             :EndIf
-
-⍝ ↓↓↓ This Select session has been used to paper over deficiencies in the client
-⍝     Commented out on November 27th 2023, please delete it soon
-⍝            :Select Event
-⍝             :Case 'Select'
-⍝                 :If (#⍎ID,'.Type')≡'Combo'
-⍝                     ⍎'#.',ID,'.SelItems←Info=⍳',⍕≢#⍎ID,'.SelItems'
-⍝                 :EndIf
-⍝                 Info←⍬
-⍝             :Case 'Change'
-⍝                 ⍎'#.',ID,'.Value←Info'
-⍝                 Info←⍬
-⍝             :Case 'Scroll'
-⍝                 :If (#⍎ID,'.Type')≡'Scroll'
-⍝                     ⍎'#.',ID,'.Thumb←Info[2]'
-⍝                 :EndIf
-⍝             :Case 'CellChanged'
-⍝                 Values←#⍎ID,'.Values'
-⍝                 Values[ns.Event.Row;ns.Event.Col]←⊂ns.Event.Value
-⍝                 ⍎'#.',ID,'.Values←Values'
-⍝             :CaseList 'Expanding' 'Retracting'
-⍝                 ⍝ Nothing to do
-⍝             :Else
-⍝                 ⎕←'Unsupported event: ',Event ⋄ →0
-⍝            :EndSelect
-
-             :If 3≠##.⎕NC fn←(events⍳⊂Event)⊃fns
-                 ⎕←'Callback function not found: ',fn
-             :Else
-                 (##⍎fn)&(ID Event),Info
-             :EndIf
+             ⍝ /// Maybe use a "proper" queue
+             ns ⎕TPUT DQ_TOKEN
          :Case 'WG'
              ns ⎕TPUT WG_TOKEN
          :Else

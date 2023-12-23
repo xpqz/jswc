@@ -1,17 +1,69 @@
-Init;z;i;t
+ {prefix}Init web;z;i;t;fn;code;folder
 
-t←'JSWC Synchronisation'
-z←↑⎕TALLOC 0
-:If (≢z)≥i←z[;2]⍳⊂t
-   TOKENRANGE←z[i;1]
-:Else
-   TOKENRANGE←⎕TALLOC 1 t
-:EndIf
+ USEHR←~web
 
-WG_TOKEN←TOKENRANGE+0.1
-WGID←0
-WG_TIMEOUT←5 ⍝ Seconds to wait for response
+ code←⊃⎕RSI
+ :Trap 0
+     z←1÷code≡⍎⍕code ⍝ Will DOMAIN ERROR if not OK
+ :Else
+     'JSWC can only be used from a named namespace' ⎕SIGNAL 11
+ :EndTrap
 
-IMAGEFOLDER←⊃⎕NPARTS ¯1↓⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
+ JSWCFolder←⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
+ CODELOCATION←code
 
-(EVENTNUMS EVENTNAMES)←↓⍉↑2031⌶0
+ :If 0=⎕NC 'HTMLFolder'
+    :If ⎕NEXISTS folder←'jswc-client/dist/',⍨{⊃⎕NPARTS ¯1↓⍵}⍣2⊢ JSWCFolder
+        HTMLFolder←folder
+    :Else
+        'Unable to locate JSWC Client' ⎕SIGNAL 11
+    :EndIf
+ :EndIf
+
+ :If 0=⎕NC'prefix'
+     prefix←'∆'
+ :EndIf
+
+ :If 0=⎕NC'RESOURCES'
+     RESOURCES←1 2⍴⊂''
+ :EndIf
+ :If 0=⎕NC'PORT'
+     PORT←22322
+ :EndIf
+
+⍝ Establish API in calling space
+ :For fn :In 'WC' 'WS' 'WG' 'WN' 'NQ' 'EX' 'DQ'
+     ⍎(⍕code),'.',prefix,fn,'←',(⍕⎕THIS),'.∆',fn
+ :EndFor
+
+ CONNECTED←0 ⍝ /// This should go
+ RECORD←0
+ USEWIN32←0
+
+ WSS←wss.New''
+ :If 9=⎕NC'#.DRC'
+     WSS.LDRC←#.DRC
+ :EndIf
+ WSS.HTMLFolder←HTMLFolder
+ WSS.ShowHTMLRenderer←0
+ WSS.Aliases←RESOURCES
+ WSS.OnConnect←''
+ WSS.OnWSUpgrade←''
+ WSS.OnHTTPHeader←''
+ WSS.OnWSReceive←''
+ WSS.OnClose←''
+ WSS.Handler←'Handler'
+ WSS.Port←PORT
+
+ allocateTokens
+
+ WGID←0
+ WG_TIMEOUT←5 ⍝ Seconds to wait for response
+
+ (EVENTNUMS EVENTNAMES)←↓⍉↑2031⌶0
+ eventNames←⎕C EVENTNAMES
+
+ z←WSS.Start 0
+ :If 0≠⊃⊃z
+     (⍕z)⎕SIGNAL 11
+ :EndIf

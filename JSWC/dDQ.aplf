@@ -1,0 +1,41 @@
+ {R}←∆DQ names;⎕TRAP;caller;class;Name;type;HR;timers;event;done;interrupt
+
+ ⎕←'   JSWC DQ : ',⍕names
+ ⎕TRAP←0 'S'
+
+ Name←1⊃names←,⊆names
+ caller←⊃⎕RSI
+ :If ~∧/names∊'.' '#'
+ ⎕SIGNAL (2≠caller.⎕NC ⍕Name,'.Type')/11
+ :EndIf
+
+ :Hold 'JSWC DQ'
+     :If 0≠≢DEQUEUEING
+         ('DQ already in progress on ',⍕DEQUEUEING) ⎕SIGNAL 11 ⍝ /// Need to support more
+     :Else
+         DEQUEUEING←names
+     :EndIf
+ :EndHold
+
+ done←interrupt←0
+ :Trap 1000
+ :Repeat
+    :If 0≠≢R←5 ⎕TGET DQ_TOKEN
+
+    done←processEvent R
+    :Else
+        ⍝ Timeout
+    :EndIf
+ :Until done
+ :Else
+     interrupt←1
+ :EndTrap
+
+ :Hold 'JSWC DQ'
+    DEQUEUEING←⍬
+ :EndHold
+
+ :If 0≠≢R
+     R←R.Event.(ID EventName)
+ :EndIf
+ 'INTERRUPT' ⎕SIGNAL interrupt/999
