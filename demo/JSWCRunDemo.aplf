@@ -4,7 +4,7 @@
  e.(ID EventName Info)←(2↑args),⊂2↓args
  sf←{(1-(⌽⍵)⍳'.')↓⍵}⊃args
  f←{(-(⌽⍵)⍳'.')↓⍵}sf
- JSWC.USEWIN32←0×(sf,'USEWIN32') eWG 'State'
+ JSWC.USEWIN32←0 ⍝ ×(sf,'USEWIN32') eWG 'State'
 
  :If (sf,'STOP')≡1⊃args
      →0 ⊣ eNQ f 'Close'

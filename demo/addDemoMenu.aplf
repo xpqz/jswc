@@ -8,7 +8,7 @@ sf←form
 e←form eWG 'Event'
 form eWS 'Event' ((e~0),⊂'Close' 1)
 (sf,'.MENU') eWC 'Combo' fns '' (posn+0 0)(23 90)('Event' 'Select' 'JSWCRunDemo')
-:If 'Windows'≡7↑⊃'.' ⎕WG 'APLVersion'
+:If 0∧'Windows'≡7↑⊃'.' ⎕WG 'APLVersion'
    (sf,'.USEWIN32') eWC 'Button' 'Win32' (posn+22 0)(23 50)('State' JSWC.USEWIN32)('Style' 'Check')
 :EndIf
 (sf,'.STOP')eWC 'Button' 'Stop' (posn+22 55)(18 28)('Event' 'Select' 'JSWCRunDemo')
