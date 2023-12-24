@@ -1,0 +1,7 @@
+dqTimer args;R;done
+⍝ Handle one Timer event for interactive operation
+⍝ /// Maybe check if a DQ is running?
+
+:If 0≠≢R←5 ⎕TGET DQ_TOKEN
+    done←processEvent R
+:EndIf

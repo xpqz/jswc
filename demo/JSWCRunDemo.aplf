@@ -7,14 +7,20 @@
  JSWC.USEWIN32←0 ⍝ ×(sf,'USEWIN32') eWG 'State'
 
  :If (sf,'STOP')≡1⊃args
-     →0 ⊣ eNQ f 'Close'
+     :If (⊂'∆DQ')∊⎕SI
+         eNQ'F1' 'Close'
+     :Else
+         eEX f
+         JSWC.Stop
+     :EndIf
+     →0
  :EndIf
 
- demo←'Demo',(3⊃args)⊃(⊃args) eWG 'Items'
+ demo←'Demo',(3⊃args)⊃(⊃args)eWG'Items'
 
  :If 3=⎕NC demo
-    ⎕←''
-    ⎕←'Running "',demo,'" with',((~JSWC.USEWIN32)/'out'),' Win32'
-    (⍎demo) JSWC.CONNECTED
-    addDemoMenu 'F1'
-:EndIf
+     ⎕←''
+     ⎕←'Running "',demo,'" with',((~JSWC.USEWIN32)/'out'),' Win32'
+     (⍎demo)JSWC.CONNECTED
+     addDemoMenu'F1'
+ :EndIf

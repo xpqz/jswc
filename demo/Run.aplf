@@ -21,7 +21,7 @@
  :Else
      ⎕SE.Posn←200 300
      Initialise 1
-     r←eDQ'F1'
-     ⎕EX'F1'
-     JSWC.Stop
+     ⍝ r←eDQ'F1'
+     ⍝ ⎕EX'F1'
+     ⍝ JSWC.Stop
  :EndIf

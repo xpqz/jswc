@@ -4,4 +4,5 @@
      WSS.Stop
      ⎕DL 1
      ⎕EX'WSS'
+     CODELOCATION.⎕EX 'JSWCTIMER'
  :EndIf

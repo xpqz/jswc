@@ -25,6 +25,11 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn;info
          :Case 'Event'
              ⍝ /// Maybe use a "proper" queue
              ns ⎕TPUT DQ_TOKEN
+             ⍝ /// Need something better than this from JD
+             :If '*'∊1↓⎕STACK[;2] ⍝ A suspension in the client app
+             :AndIf 9=CODELOCATION.⎕NC 'JSWCTIMER'
+                  CODELOCATION.⎕NQ 'JSWCTIMER' 1001 ⍝ Wake it up
+             :EndIf
          :Case 'WG'
              ns ⎕TPUT WG_TOKEN
          :Else

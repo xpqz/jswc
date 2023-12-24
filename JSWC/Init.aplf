@@ -1,5 +1,10 @@
  {prefix}Init web;z;i;t;fn;code;folder
 
+ :If ~web∊0 1
+    web←¯1+'desktop' 'browser'⍳⊂⎕C mode
+    'Right argument should be one of 0, 1, Desktop or Browser' ⎕SIGNAL (web=2)/11
+ :EndIf
+
  USEHR←~web
 
  code←⊃⎕RSI
@@ -39,6 +44,8 @@
  CONNECTED←0 ⍝ /// This should go
  RECORD←0
  USEWIN32←0
+
+ 'JSWCTIMER' code.⎕WC 'Timer' ('Event' 1001 '#.JSWC.dqTimer')
 
  WSS←wss.New''
  :If 9=⎕NC'#.DRC'

@@ -47,7 +47,8 @@
  :EndIf
 
  :If 1 ⍝ Recording events
- :AndIf 9=⎕NC class←'classes.',⎕C caller⍎ID,'.Type'
+ :AndIf 9=⎕NC (⍕CODELOCATION),'.',ID
+ :AndIf 9=⎕NC class←'classes.',⎕C CODELOCATION⍎ID,'.Type'
      class←⍎class
      e←{0::⍵ ⋄ class.SupportedEvents}''
      :If ~(⊂Event)∊e
