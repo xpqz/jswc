@@ -2,9 +2,8 @@
 
  msg←⎕JSON⍠'HighRank' 'Split'⊢obj
  ⎕←((500⌊≢msg)↑msg),(500<≢msg)/'...'
-
- :If CONNECTED
-     z←CONN WSS.Send msg
+ :If 2=⎕NC 'CODELOCATION._JSWC.conn'
+     z←CODELOCATION._JSWC.conn WSS.Send msg
  :EndIf
 
  :If 2=⎕NC 'SENDLOG'

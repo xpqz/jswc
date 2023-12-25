@@ -20,8 +20,7 @@
  done←interrupt←0
  :Trap 1000
  :Repeat
-    :If 0≠≢R←5 ⎕TGET DQ_TOKEN
-
+    :If 0≠≢R←5 ⎕TGET DQ_TOKENBASE+TOKENSTEP×CODELOCATION._JSWC.ID
     done←processEvent R
     :Else
         ⍝ Timeout

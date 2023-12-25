@@ -1,0 +1,3 @@
+r←endSession args;⎕TRAP
+⎕TRAP←0 'S'
+∘∘∘

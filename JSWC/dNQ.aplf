@@ -22,13 +22,13 @@
     nq.EventName←2⊃Event
     nq.⎕EX 'Event'
     NQ.Event←nq
-    →0 ⊣ NQ ⎕TPUT DQ_TOKEN
+    →0 ⊣ NQ ⎕TPUT DQ_TOKENBASE+TOKENSTEP×CODELOCATION._JSWC.ID
  :EndIf
 
  msg←⎕JSON⍠'HighRank' 'Split'⊢NQ
 
  :If CONNECTED
-     z←CONN WSS.Send ⎕←msg
+     z←CODELOCATION._JSWC.ID WSS.Send ⎕←msg
  :Else
      ⎕←msg
  :EndIf

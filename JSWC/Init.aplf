@@ -1,6 +1,6 @@
- {prefix}Init args;mode;z;i;t;fn;folder
-
- :Select ≢args
+ {prefix}Init args;mode;z;i;t;fn;folder;⎕trap
+ ⎕trap←0 'S'
+ :Select ≢args←,⊆args
  :Case 1 ⋄ mode←⊃args ⋄ CODELOCATION←⊃⎕RSI
  :Case 2 ⋄ (mode CODELOCATION)←args
  :Else
@@ -11,9 +11,9 @@
      prefix←'∆'
  :EndIf
 
- :If ~mode∊0 1 2
+ :If ~(⊂mode)∊0 1 2
      mode←¯1+'desktop' 'browser' 'multi'⍳⊂⎕C mode
-     'Mode argument should be one of Desktop/0, Browser/1 or Multi/2'⎕SIGNAL(web=2)/11
+     'Mode argument should be one of Desktop/0, Browser/1 or Multi/2'⎕SIGNAL(mode=2)/11
  :EndIf
 
  USEHR←mode=0
@@ -41,6 +41,9 @@
  :If 0=⎕NC'PORT'
      PORT←22322
  :EndIf
+ :If 0=⎕NC 'MAXSESSIONS'
+     MAXSESSIONS←100
+ :EndIf
 
 ⍝ Establish API in calling space unless prefix≡''
  :If 0≠≢prefix
@@ -53,7 +56,9 @@
  RECORD←0
  USEWIN32←0
 
- 'JSWCTIMER' CODELOCATION.⎕WC'Timer'('Event' 1001 '#.JSWC.dqTimer')
+ :If MODE≠2 ⍝ Only going to have 1 instance of codelocation
+     make_JSWC CODELOCATION ⍝ So create the timer here
+ :EndIf
 
  WSS←wss.New''
  :If 9=⎕NC'#.DRC'
@@ -66,7 +71,7 @@
  WSS.OnWSUpgrade←(⍕⎕THIS),'.newSession'
  WSS.OnHTTPHeader←''
  WSS.OnWSReceive←''
- WSS.OnClose←''
+ WSS.OnClose←(⍕⎕THIS),'.endSession'
  WSS.Handler←'Handler'
  WSS.Port←PORT
 

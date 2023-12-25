@@ -1,7 +1,8 @@
- R←msg WaitForWG(Props WGID);j;⎕TRAP;p;seqok;nl;nlc;m;t
+ R←msg WaitForWG(Props WGID);j;⎕TRAP;p;seqok;nl;nlc;m;t;token
 
+ token←WG_TOKENBASE+TOKENSTEP×CODELOCATION._JSWC.ID
 AGAIN:
- j←WG_TIMEOUT ⎕TGET WG_TOKEN
+ j←WG_TIMEOUT ⎕TGET token
  :If 0=≢j
      ⎕←'Client did not respond within ',(⍕WG_TIMEOUT),' seconds.'
      ⎕←'Request was: ',msg

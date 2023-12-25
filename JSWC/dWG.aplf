@@ -48,7 +48,7 @@
      ⍎'wg.Properties.(',(⍕d),')←',(1≠≢r)↓'⊃r'
      msg←⎕JSON⍠'HighRank' 'Split'⊢WG
  ⍝   ⎕←'Faking client transmission: ',msg
-     (⎕JSON msg)⎕TPUT WG_TOKEN
+     (⎕JSON msg)⎕TPUT WG_TOKENBASE+TOKENSTEP×CODELOCATION._JSWC.ID
  :EndIf
 
  :If remote

@@ -9,9 +9,11 @@ t←'JSWC Synchronisation'
      :Else
          TOKENRANGE←⎕TALLOC 1 t
      :EndIf
-     (WG_TOKEN DQ_TOKEN)←TOKENRANGE+0.1 0.2
+     TOKENSTEP←10*-⌈10⍟MAXSESSIONS+1
+     (WG_TOKENBASE DQ_TOKENBASE)←TOKENRANGE+0.1 0.2
  :Else
-     (WG_TOKEN DQ_TOKEN)←0 1+30⊥⎕A⍳'JSWC' ⍝ Think of a number
+     TOKENSTEP←1
+     (WG_TOKENBASE DQ_TOKENBASE)←(0 1×1+MAXSESSIONS)+30⊥⎕A⍳'JSWC' ⍝ Think of a number
  :EndTrap
 
 DEQUEUEING←⍬

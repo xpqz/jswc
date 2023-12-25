@@ -2,6 +2,6 @@ dqTimer args;R;done
 ⍝ Handle one Timer event for interactive operation
 ⍝ /// Maybe check if a DQ is running?
 
-:If 0≠≢R←5 ⎕TGET DQ_TOKEN
+:If 0≠≢R←5 ⎕TGET DQ_TOKENBASE+TOKENSTEP×CODELOCATION._JSWC.ID
     done←processEvent R
 :EndIf

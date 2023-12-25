@@ -8,7 +8,7 @@
  :Trap 0
      'e'JSWC.Init web
  :Else
-     (⊃⎕DMX.DM) ⎕SIGNAL ⊃⎕DMX.EN
+     (⊃⎕DMX.DM)⎕SIGNAL⊃⎕DMX.EN
  :EndTrap
 
  :If JSWC.MODE=0 ⍝ Desktop
@@ -20,11 +20,19 @@
 
  :Else
      ⎕←'Connect Browser now...'
-     ⎕←r←eDQ'.'
-     :If r≡'F1' 'Close'
-         ⎕←'Bye bye...'
-         ⎕DL 3
-         ⎕OFF
+     :Repeat
+        ⍞←'.'
+        ⎕DL 1
+     :Until 2=⎕NC '_JSWC.ID'
+     ⎕←''
+
+     :If 'Run 1'≡¯5↑2 ⎕NQ'.' 'GetEnvironment' 'LX'
+         ⎕←r←eDQ'.'
+         :If r≡'F1' 'Close'
+             ⎕←'Bye bye...'
+             ⎕DL 3
+             ⎕OFF
+         :EndIf
+         ∘∘∘ ⍝ Abnormal web termination
      :EndIf
-     ∘∘∘ ⍝ Abnormal web termination
  :EndIf
