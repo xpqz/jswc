@@ -2,14 +2,23 @@
  ⍝ Initialise the Demo application
  ⍝ web=1 for browser use, web=0 for desktop
 
- web←(⊂web)∊1 'web' 'browser'
-
  JSWC←##.JSWC
  JSWC.PORT←22322
  JSWC.RESOURCES←1 2⍴'images'(⎕SE.Link.LaunchDir,'/demo/images')
- 'e'JSWC.Init web
+ :Trap 0
+     'e'JSWC.Init web
+ :Else
+     (⊃⎕DMX.DM) ⎕SIGNAL ⊃⎕DMX.EN
+ :EndTrap
 
- :If web
+ :If JSWC.MODE=0 ⍝ Desktop
+     ⎕SE.Posn←200 300
+     DemoMenu 1
+     ⍝ r←eDQ'F1'
+     ⍝ ⎕EX'F1'
+     ⍝ JSWC.Stop
+
+ :Else
      ⎕←'Connect Browser now...'
      ⎕←r←eDQ'.'
      :If r≡'F1' 'Close'
@@ -18,10 +27,4 @@
          ⎕OFF
      :EndIf
      ∘∘∘ ⍝ Abnormal web termination
- :Else
-     ⎕SE.Posn←200 300
-     Initialise 1
-     ⍝ r←eDQ'F1'
-     ⍝ ⎕EX'F1'
-     ⍝ JSWC.Stop
  :EndIf

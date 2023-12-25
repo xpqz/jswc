@@ -1,0 +1,28 @@
+ rc←newSession args;hdrs;event;obj;rc;sess;msg
+ rc←1 ⍝ Fail
+ (rc obj event hdrs)←4↑args
+ hdrs←WSS.ParseHeaders hdrs
+ sess←⎕NS'' ⍝ Create a session container
+ sess.addr←WSS.LDRC.GetProp obj'PeerAddr'
+ sess.cert←WSS.LDRC.GetProp obj'PeerCert' ⍝ /// We'll use this later
+ sess.conn←obj
+
+ :If MODE=2 ⍝ Multi
+     'sess.code'⎕NS CODELOCATION ⍝ Clone the application namespace
+ :Else
+     sess.code←CODELOCATION      ⍝ If single user, just make a ref
+ :EndIf
+
+ msg←(⍕CODELOCATION),'.Init not found'
+ :If 3=⎕NC'sess.code.Init'
+ :AndIf 0=≢msg←sess.code.Init sess
+     SESSIONCOUNTER+←1
+     sess.ID←SESSIONCOUNTER
+     (1⊃SESSIONS),←SESSIONCOUNTER
+     SESSIONS,←sess
+     rc←0
+     ⎕←'Session ',(⍕sess.ID),' created, connected from ',sess.addr
+ :Else
+   ∘∘∘
+     ⎕←'Unable to Init session from ',sess.addr,': ',msg
+ :EndIf

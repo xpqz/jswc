@@ -1,0 +1,6 @@
+ msg←Init sess;r
+ msg←'' ⍝ Success
+ :If JSWC.MODE≠0 ⍝ Desktop will Init itself
+     JSWC.CONN←⊃2⊃⎕VFI ¯8↑sess.conn
+     DemoMenu 1
+ :EndIf

@@ -1,32 +1,38 @@
- {prefix}Init web;z;i;t;fn;code;folder
+ {prefix}Init args;mode;z;i;t;fn;folder
 
- :If ~web∊0 1
-    web←¯1+'desktop' 'browser'⍳⊂⎕C mode
-    'Right argument should be one of 0, 1, Desktop or Browser' ⎕SIGNAL (web=2)/11
- :EndIf
-
- USEHR←~web
-
- code←⊃⎕RSI
- :Trap 0
-     z←1÷code≡⍎⍕code ⍝ Will DOMAIN ERROR if not OK
+ :Select ≢args
+ :Case 1 ⋄ mode←⊃args ⋄ CODELOCATION←⊃⎕RSI
+ :Case 2 ⋄ (mode CODELOCATION)←args
  :Else
-     'JSWC can only be used from a named namespace' ⎕SIGNAL 11
- :EndTrap
-
- JSWCFolder←⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
- CODELOCATION←code
-
- :If 0=⎕NC 'HTMLFolder'
-    :If ⎕NEXISTS folder←'jswc-client/dist/',⍨{⊃⎕NPARTS ¯1↓⍵}⍣2⊢ JSWCFolder
-        HTMLFolder←folder
-    :Else
-        'Unable to locate JSWC Client' ⎕SIGNAL 11
-    :EndIf
- :EndIf
+     'Right agument: mode [codelocation]'⎕SIGNAL 5
+ :EndSelect
 
  :If 0=⎕NC'prefix'
      prefix←'∆'
+ :EndIf
+
+ :If ~mode∊0 1 2
+     mode←¯1+'desktop' 'browser' 'multi'⍳⊂⎕C mode
+     'Mode argument should be one of Desktop/0, Browser/1 or Multi/2'⎕SIGNAL(web=2)/11
+ :EndIf
+
+ USEHR←mode=0
+ MODE←mode
+
+ :Trap 0
+     z←1÷CODELOCATION ⎕THIS≡⍎⍕CODELOCATION ⎕THIS ⍝ Will DOMAIN ERROR if not OK
+ :Else
+     'JSWC only works with named namespaces'⎕SIGNAL 11
+ :EndTrap
+
+ JSWCFolder←⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
+
+ :If 0=⎕NC'JSClientFolder'
+     :If ⎕NEXISTS folder←'jswc-client/dist/',⍨{⊃⎕NPARTS ¯1↓⍵}⍣2⊢JSWCFolder
+         JSClientFolder←folder
+     :Else
+         'Unable to locate JSWC Client'⎕SIGNAL 11
+     :EndIf
  :EndIf
 
  :If 0=⎕NC'RESOURCES'
@@ -36,26 +42,28 @@
      PORT←22322
  :EndIf
 
-⍝ Establish API in calling space
- :For fn :In 'WC' 'WS' 'WG' 'WN' 'NQ' 'EX' 'DQ'
-     ⍎(⍕code),'.',prefix,fn,'←',(⍕⎕THIS),'.∆',fn
- :EndFor
+⍝ Establish API in calling space unless prefix≡''
+ :If 0≠≢prefix
+     :For fn :In 'WC' 'WS' 'WG' 'WN' 'NQ' 'EX' 'DQ'
+         ⍎(⍕CODELOCATION),'.',prefix,fn,'←',(⍕⎕THIS),'.∆',fn
+     :EndFor
+ :EndIf
 
  CONNECTED←0 ⍝ /// This should go
  RECORD←0
  USEWIN32←0
 
- 'JSWCTIMER' code.⎕WC 'Timer' ('Event' 1001 '#.JSWC.dqTimer')
+ 'JSWCTIMER' CODELOCATION.⎕WC'Timer'('Event' 1001 '#.JSWC.dqTimer')
 
  WSS←wss.New''
  :If 9=⎕NC'#.DRC'
      WSS.LDRC←#.DRC
  :EndIf
- WSS.HTMLFolder←HTMLFolder
+ WSS.HTMLFolder←JSClientFolder
  WSS.ShowHTMLRenderer←0
  WSS.Aliases←RESOURCES
  WSS.OnConnect←''
- WSS.OnWSUpgrade←''
+ WSS.OnWSUpgrade←(⍕⎕THIS),'.newSession'
  WSS.OnHTTPHeader←''
  WSS.OnWSReceive←''
  WSS.OnClose←''
@@ -65,7 +73,9 @@
  allocateTokens
 
  WGID←0
+ SESSIONCOUNTER←0
  WG_TIMEOUT←5 ⍝ Seconds to wait for response
+ SESSIONS←,⊂⍬ ⍝ (IDs, SessionData)
 
  (EVENTNUMS EVENTNAMES)←↓⍉↑2031⌶0
  eventNames←⎕C EVENTNAMES
