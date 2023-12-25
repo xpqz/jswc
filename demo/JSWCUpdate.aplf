@@ -68,6 +68,6 @@
      ⎕←'Unexpected message: ',args
  :EndSelect
 
- :If 0≠⎕NC'F1.Table'
+ :If 0∧.≠⎕NC'F1.Table' 'f' 'n'
      'F1.Table'eWS'Values'(∘.(⍎f)⍨⍳n)
  :EndIf
