@@ -48,9 +48,11 @@
  ''
  '* Coord must be (and defaults to) "Pixel"  '
  (' '⋄)
- '* Setting properties must be done using ⎕WC and ⎕WS, assignment is not supported.'
+ '* Setting properties must be done using ⎕WC and ⎕WS, assignment is not supported. This is on the ToDo list.'
  '                                                    '
- '* Up-to-date property values must be retrieved using ⎕WG - variables in namespaces are kept up-to-date.'
+ '* Up-to-date property values must be retrieved using ⎕WG. There are variables in the spaces that correspond to'
+ '  GUI objects, but values are not kept up-to-date when the user manipulates the GUI. This is expected to'
+ '  change soon.'
  ''
  '* There is very experimental support for processing callbacks when at immediate execution mode, this '
  '  creates a Timer object in the namespace which called JSWC.Init, called JSWCTIMER.'

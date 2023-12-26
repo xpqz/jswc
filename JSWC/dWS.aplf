@@ -5,12 +5,18 @@
  :EndIf
 
  caller←⊃⎕RSI
- type←caller⍎Name,'.Type'
- :If 9≠classes.⎕NC ⎕C type
-     Warning 'Unsupported class: ',type
-     ⎕←Props
-     →0
- :EndIf
+
+ :Trap 0
+     type←caller⍎Name,'.Type'
+     :If 9≠classes.⎕NC ⎕C type
+         Warning'Unsupported class: ',type
+         ⎕←Props
+         →0
+     :EndIf
+ :Else
+     ('Not a JSWC object: ',(⍕caller),'.',Name)⎕SIGNAL 11
+ :EndTrap
+
  class←classes⍎⎕C type
  proplist←⎕C PropList←class.PropList,objProps
  :If (names←⎕C 1↑Props)∊proplist
@@ -44,7 +50,7 @@
          (names values)←(i≠⍳≢names)∘/¨names values
      :EndIf
      :If (≢names)≥i←names⍳⊂'Caption'
-         (⊃HR)⎕WS 'Caption' (i⊃values)
+         (⊃HR)⎕WS'Caption'(i⊃values)
      :EndIf
  :EndIf
 
@@ -71,6 +77,6 @@
 
  WS.WS.ID←{(2×'#.'≡2↑⍵)↓⍵}WS.WS.ID
  fixSendEvents WS.WS.Properties
- :If ~0=⍴WS.WS.Properties.⎕NL -2
+ :If ~0=⍴WS.WS.Properties.⎕NL-2
      sendObject WS
  :EndIf

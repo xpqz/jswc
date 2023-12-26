@@ -2,7 +2,7 @@ Trigger args;⎕TRAP;rsi;obj
 ⎕TRAP←0 'S'
 
 :If 3≤≢rsi←⎕RSI
-:AndIf #.JSWC≡3⊃rsi
+:AndIf #.JSWC∊rsi
    →0 ⍝ Avoid infinite loop
 :EndIf
 

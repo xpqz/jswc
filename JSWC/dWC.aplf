@@ -79,6 +79,7 @@ values[propnames⍳⊂'Type']←⊂WC.WC.Properties.Type←class.ClassName ⍝ C
      v←values,m/class.Defaults
      expr←'.(',(⍕propnames,m/PropList),')←',(1≠≢v)↓'⊃v'
      ⍎(⍕caller),'.',Name,expr ⍝ Set properties in the "server-side DOM"
+     ⍝ (⍎R).⎕FX _trigger_ ⍝ Define trigger function
  :EndIf
 
  :If USEHR∧type≡'form'

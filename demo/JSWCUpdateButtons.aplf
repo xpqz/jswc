@@ -11,3 +11,4 @@
  :EndIf
 
  'F1.STATUS'eWS'Caption'txt
+ ⍝ F1.STATUS.Caption←txt
