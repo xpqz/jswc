@@ -1,8 +1,9 @@
- {R}←∆EX names;caller;msg;ex;EX;z;⎕TRAP;cn;n
+ {R}←∆EX names;caller;msg;ex;EX;z;⎕TRAP;cn;n;ID;conn
  ⎕TRAP←0 'S'
  names←,⊆names
  n←≢cn←⍕caller←⊃⎕RSI~⎕THIS
  names←((1+n)×(n↑¨names)∊⊂cn)↓¨names
+ (ID conn)←getConnection caller
 
  EX←⎕NS''
  ex←EX.EX←⎕NS''
@@ -12,7 +13,7 @@
  msg←⎕JSON EX
 
  :If CONNECTED
-     z←CONN WSS.Send ⎕←msg
+     z←conn WSS.Send ⎕←msg
  :Else
      ⎕←msg
  :EndIf

@@ -1,5 +1,11 @@
  msg←Init sess;r
  msg←'' ⍝ Success
- :If JSWC.MODE≠0 ⍝ Desktop will Init itself
+
+ :Select JSWC.MODE
+ :Case 0 ⍝ Desktop will Init itself
+ :Case 1 ⍝ Single User Web
      DemoMenu 1
- :EndIf
+ :Case 2 ⍝ Multi-User Web
+     DemoMenu 1
+     eDQ&'F1'
+ :EndSelect

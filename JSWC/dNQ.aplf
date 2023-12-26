@@ -1,7 +1,8 @@
- {R}←{Mode}∆NQ Event;caller;NQ;nq;msg;z;⎕TRAP
+ {R}←{Mode}∆NQ Event;caller;NQ;nq;msg;z;⎕TRAP;ID;conn
  ⎕TRAP←0 'S'
  R←⍬
  caller←⊃⎕RSI
+ (ID conn)←getConnection caller
 
  (⊃Event)←(2×'#.'≡2↑⊃Event)↓⊃Event
 
@@ -22,13 +23,13 @@
     nq.EventName←2⊃Event
     nq.⎕EX 'Event'
     NQ.Event←nq
-    →0 ⊣ NQ ⎕TPUT DQ_TOKENBASE+TOKENSTEP×CODELOCATION._JSWC.ID
+    →0 ⊣ NQ ⎕TPUT DQ_TOKENBASE+TOKENSTEP×ID
  :EndIf
 
  msg←⎕JSON⍠'HighRank' 'Split'⊢NQ
 
  :If CONNECTED
-     z←CODELOCATION._JSWC.ID WSS.Send ⎕←msg
+     z←conn WSS.Send ⎕←msg
  :Else
      ⎕←msg
  :EndIf

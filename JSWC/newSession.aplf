@@ -1,5 +1,4 @@
- rc←newSession args;hdrs;event;obj;rc;msg;s;ns;code;CONN
-⍝ ∘∘∘
+ rc←newSession args;hdrs;event;obj;rc;msg;s;ns;code;CONN;conn;max
  rc←1 ⍝ Fail
  (rc obj event hdrs)←4↑args
  hdrs←WSS.ParseHeaders hdrs
@@ -7,18 +6,19 @@
  msg←(⍕CODELOCATION),'.Init not found'
  :Hold 'JSWCSESSIONS'
      SESSIONID←⊃(⍳1+≢s)~s←⊃SESSIONS
-     :If SESSIONID>MAXSESSIONS
-         ⎕←'Unable to create more than ',(⍕MAXSESSIONS),' sessions'
+     max←MAXSESSIONS
+     :If SESSIONID>max
+         ⎕←'Unable to create more than ',(⍕max),' session',(max≠1)/'s'
          →0
      :EndIf
      :If MODE=2 ⍝ Multi
-         code←⍎((⍕CODELOCATION),'_'⍕SESSIONID)⎕NS CODELOCATION ⍝ Clone the application namespace
+         code←⍎((⍕CODELOCATION),'_',⍕SESSIONID)⎕NS CODELOCATION ⍝ Clone the application namespace
          make_JSWC code
-         ∘∘∘
      :Else
          code←CODELOCATION      ⍝ If single user, just make a ref
      :EndIf
-     (1⊃SESSIONS),←SESSIONCOUNTER
+     (1⊃SESSIONS),←SESSIONID
+     (2⊃SESSIONS),←conn←⊃2⊃⎕VFI ¯8↑obj
      SESSIONS,←code
      rc←0
  :EndHold
@@ -27,7 +27,7 @@
  CONN←ns.ID←SESSIONID
  ns.addr←WSS.LDRC.GetProp obj'PeerAddr'
  ns.cert←WSS.LDRC.GetProp obj'PeerCert' ⍝ /// We'll use this later
- ns.conn←⊃2⊃⎕VFI ¯8↑obj
+ ns.conn←conn
 
  :If 3=⎕NC'code.Init'
  :AndIf 0=≢msg←code.Init ns

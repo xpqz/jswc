@@ -1,10 +1,14 @@
-r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn;info;sns
+r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn;info;sns;i;code
  ⎕TRAP←0 'S'
- ⎕←'Received: ',payload
+ ⎕←'Rcv #',(⍕con),': ',payload
+ i←(2⊃SESSIONS)⍳con
+ :If i>≢1⊃SESSIONS
+     ⎕←'Message received from closed session #',⍕con
+     →0
+ :EndIf
+ code←(2+i)⊃SESSIONS
 
  :If (⊂10↑payload)∊'Initialise' 'Initialize'
-     CONN←con
-     CONNECTED←1
      :If 2=⎕NC 'IGNORE1Init'
      :AndIf IGNORE1Init≠0
          IGNORE1Init←0
@@ -13,14 +17,14 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn;info;sns
      :EndIf
      fn←reqfn←(10↓payload)~'()'
      fn,←(0=≢fn)/'Initialise'
-     :If 3=CODELOCATION.⎕NC fn
-         (CODELOCATION⍎fn)&CONNECTED
+     :If 3=code.⎕NC fn
+         (code⍎fn)&CONNECTED
      :ElseIf 0≠≢reqfn ⍝ Explicit function requested
-         ⎕←'Function not found: ',(⍕CODELOCATION),'.',fn
+         ⎕←'Function not found: ',(⍕code),'.',fn
      :EndIf
  :Else
      :Trap 999
-         sns←CODELOCATION._JSWC ⍝ Session Namespace
+         sns←code._JSWC ⍝ Session Namespace
          ns←0 ⎕JSON payload
          :Select ,ns.⎕NL 9
          :Case 'Event'

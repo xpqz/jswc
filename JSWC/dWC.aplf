@@ -1,9 +1,8 @@
- {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn;i;ns;okprops;⎕TRAP;depth;valid;values;lcp;pi;ix;PropList;allprops;AllProps;n;cp;v
+ {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn;i;ns;okprops;⎕TRAP;depth;valid;values;lcp;pi;ix;PropList;allprops;AllProps;n;cp;v;conn
  ⎕TRAP←0 'S'
- 'NO CLIENT DETECTED'⎕SIGNAL(USEWIN32∨USEHR∨2=⎕NC'CONN')↓11
  deprecatedprops←,⊂'3D' ⍝ No longer appear in PropList
-
  n←≢cp←'.',⍨⍕caller←⊃⎕RSI
+
  Name←(n×cp≡n↑Name)↓Name
 
  Props←,⊆Props
@@ -92,7 +91,7 @@ values[propnames⍳⊂'Type']←⊂WC.WC.Properties.Type←class.ClassName ⍝ C
      :If (caller⍎Name,'.Coord')≢'Pixel'
          'Coord must be Pixel' ⎕SIGNAL 11
      :EndIf
-     SendSettings CONN
+     SendSettings 2⊃getConnection caller
  :EndIf
 
  :If RECORD ⍝ Collecting lists

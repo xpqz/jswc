@@ -4,5 +4,4 @@
      WSS.Stop
      ⎕DL 1
      ⎕EX'WSS'
-     CODELOCATION.⎕EX '_JSWC' ⍝ Kill the timer
  :EndIf

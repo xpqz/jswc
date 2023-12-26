@@ -1,12 +1,19 @@
- end←processEvent ns;Info;ID;Event;event;events;fns;info;fn;z;async;class;e
+ end←processEvent ns;Info;ID;Event;event;events;fns;info;fn;z;async;class;e;code
+
+ :If 2=ns.⎕NC 'CodeLocation'
+     code←⍎ns.CodeLocation
+ :Else
+     code←CODELOCATION
+ :EndIf
 
  end←0
  (Event ID Info)←ns.Event.(EventName ID({0::⍵ ⋄ Info}⍬))
 
  :Trap 6
-     event←CODELOCATION⍎z←ID,'.Event'
+     event←code⍎z←ID,'.Event'
  :Else
      ⎕←'*** Unable to find ',z
+     ∘∘∘
      →0
  :EndTrap
 
@@ -28,27 +35,27 @@
  async←'&'=¯1↑fn
  fn←(-async)↓fn
 
- :If 3≠CODELOCATION.⎕NC fn
+ :If 3≠code.⎕NC fn
      ⎕←'Callback function not found: ',fn
  :ElseIf 1=≢info
      :If async
-         (CODELOCATION⍎fn)&(ID Event),Info
+         (code⍎fn)&(ID Event),Info
      :Else
-         (CODELOCATION⍎fn)(ID Event),Info
+         (code⍎fn)(ID Event),Info
      :EndIf
  :ElseIf 2=≢info
      :If async
-         (2⊃info)(CODELOCATION⍎fn)&(ID Event),Info
+         (2⊃info)(code⍎fn)&(ID Event),Info
      :Else
-         (2⊃info)(CODELOCATION⍎fn)(ID Event),Info
+         (2⊃info)(code⍎fn)(ID Event),Info
      :EndIf
  :Else
      ⎕←'*** Ill-formed event: ',⍕event
  :EndIf
 
  :If 1 ⍝ Recording events
- :AndIf 9=⎕NC (⍕CODELOCATION),'.',ID
- :AndIf 9=⎕NC class←'classes.',⎕C CODELOCATION⍎ID,'.Type'
+ :AndIf 9=⎕NC (⍕code),'.',ID
+ :AndIf 9=⎕NC class←'classes.',⎕C code⍎ID,'.Type'
      class←⍎class
      e←{0::⍵ ⋄ class.SupportedEvents}''
      :If ~(⊂Event)∊e

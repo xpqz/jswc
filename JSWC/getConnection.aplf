@@ -1,0 +1,15 @@
+r←getConnection caller
+
+:If MODE=2 ⍝ Multi
+     :If 9=caller.⎕NC '_JSWC'
+         r←caller._JSWC.(ID conn)
+     :Else
+         ∘∘∘ ⍝ Unable to locate app session
+     :EndIf
+ :Else
+     :If 2=⎕NC 'CODELOCATION._JSWC.ID' ⍝ Check it has been initialised
+         r←CODELOCATION._JSWC.(ID conn)
+     :Else
+         r←0 0
+     :EndIf
+ :EndIf

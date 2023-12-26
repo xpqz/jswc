@@ -1,12 +1,12 @@
- {R}←Name ∆WG Props;msg;WG;wg;z;caller;p;class;remote;dynamic;r;d;i;⎕TRAP;proplist;PropList;m;ix
+ {R}←Name ∆WG Props;msg;WG;wg;z;caller;p;class;remote;dynamic;r;d;i;⎕TRAP;proplist;PropList;m;ix;ID;conn
  ⎕TRAP←0 'S'
  Name←⍕Name
  :If (⊂,Name)∊,¨'⎕SE' '#' '.' ⍝ Pass WG of System properties through
      →0 ⊣ R←Name ⎕WG Props
  :EndIf
 
-
  caller←⊃⎕RSI
+ (ID conn)←getConnection caller
  WG←⎕NS''
  wg←WG.WG←⎕NS''
  WGID+←1
@@ -27,7 +27,7 @@
      wg.(WGID ID Properties)←(⍕WGID) ((2×'#.'≡2↑Name)↓Name) (d←dynamic/p)
      msg←⎕JSON WG
      :If CONNECTED
-         z←CONN WSS.Send ⎕←msg
+         z←conn WSS.Send ⎕←msg
      :Else
          ⎕←msg
      :EndIf
@@ -48,12 +48,12 @@
      ⍎'wg.Properties.(',(⍕d),')←',(1≠≢r)↓'⊃r'
      msg←⎕JSON⍠'HighRank' 'Split'⊢WG
  ⍝   ⎕←'Faking client transmission: ',msg
-     (⎕JSON msg)⎕TPUT WG_TOKENBASE+TOKENSTEP×CODELOCATION._JSWC.ID
+     (⎕JSON msg)⎕TPUT WG_TOKENBASE+TOKENSTEP×ID
  :EndIf
 
  :If remote
      :Trap 6 ⍝ Request for unsupported property
-        r←msg WaitForWG d (⍕WGID)
+        r←msg WaitForWG d ID (⍕WGID)
         R[p⍳d]←r
      :Else
         ⎕DMX.EM ⎕SIGNAL ⎕DMX.EN

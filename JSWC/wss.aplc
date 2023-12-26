@@ -135,7 +135,7 @@
                   obj Serve data
      
               :Case 'WSUpgrade'
-                  :If 0≠evt RunHandler wres
+                  :If 0≠evt RunHandler wres  
                       :Leave
                   :EndIf
                   hdrs←ParseHeaders data

@@ -1,6 +1,5 @@
- {R}←∆DQ names;⎕TRAP;caller;class;Name;type;HR;timers;event;done;interrupt
+ {R}←∆DQ names;⎕TRAP;caller;class;Name;type;HR;timers;event;done;interrupt;conn;ID
 
- ⎕←'   JSWC DQ : ',⍕names
  ⎕TRAP←0 'S'
 
  Name←1⊃names←,⊆names
@@ -9,30 +8,37 @@
  ⎕SIGNAL (2≠caller.⎕NC ⍕Name,'.Type')/11
  :EndIf
 
- :Hold 'JSWC DQ'
-     :If 0≠≢DEQUEUEING
-         ('DQ already in progress on ',⍕DEQUEUEING) ⎕SIGNAL 11 ⍝ /// Need to support more
-     :Else
-         DEQUEUEING←names
-     :EndIf
- :EndHold
+ (ID conn)←getConnection caller
+ ⎕←'   JSWC DQ Session #',(⍕ID),': ',⍕names
+
+ ⍝ :Hold 'JSWC DQ'
+ ⍝    :If 0≠≢DEQUEUEING
+ ⍝        ('DQ already in progress on ',⍕DEQUEUEING) ⎕SIGNAL 11 ⍝ /// Need to support more
+ ⍝    :Else
+ ⍝        DEQUEUEING←names
+ ⍝    :EndIf
+ ⍝:EndHold
 
  done←interrupt←0
  :Trap 1000
  :Repeat
-    :If 0≠≢R←5 ⎕TGET DQ_TOKENBASE+TOKENSTEP×CODELOCATION._JSWC.ID
+    :If 0≠≢R←2 ⎕TGET DQ_TOKENBASE+TOKENSTEP×ID
+    :If MODE=2
+        R.CodeLocation←⍕caller
+    :EndIf
     done←processEvent R
-    :Else
-        ⍝ Timeout
+    :Else ⍝ Timeout
+        :If done←0=caller.⎕NC Name
+        :EndIf
     :EndIf
  :Until done
  :Else
      interrupt←1
  :EndTrap
 
- :Hold 'JSWC DQ'
-    DEQUEUEING←⍬
- :EndHold
+ ⍝:Hold 'JSWC DQ'
+ ⍝   DEQUEUEING←⍬
+ ⍝:EndHold
 
  :If 0≠≢R
      R←R.Event.(ID EventName)

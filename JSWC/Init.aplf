@@ -1,5 +1,5 @@
- {prefix}Init args;mode;z;i;t;fn;folder;⎕trap
- ⎕trap←0 'S'
+ {prefix}Init args;mode;z;i;t;fn;folder;⎕TRAP
+ ⎕TRAP←0 'S'
  :Select ≢args←,⊆args
  :Case 1 ⋄ mode←⊃args ⋄ CODELOCATION←⊃⎕RSI
  :Case 2 ⋄ (mode CODELOCATION)←args
@@ -13,7 +13,7 @@
 
  :If ~(⊂mode)∊0 1 2
      mode←¯1+'desktop' 'browser' 'multi'⍳⊂⎕C mode
-     'Mode argument should be one of Desktop/0, Browser/1 or Multi/2'⎕SIGNAL(mode=2)/11
+     'Mode argument should be one of Desktop/0, Browser/1 or Multi/2'⎕SIGNAL(mode=3)/11
  :EndIf
 
  USEHR←mode=0
@@ -24,6 +24,14 @@
  :Else
      'JSWC only works with named namespaces'⎕SIGNAL 11
  :EndTrap
+
+ :If mode=2
+     :If CODELOCATION∊# ⎕SE
+     :OrIf 3≠CODELOCATION.⎕NC'Init'
+         'Multi-mode must be initialised from a namespace containing a function Init'⎕SIGNAL 11
+     :EndIf
+ :EndIf
+
 
  JSWCFolder←⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
 
@@ -41,7 +49,7 @@
  :If 0=⎕NC'PORT'
      PORT←22322
  :EndIf
- :If 0=⎕NC 'MAXSESSIONS'
+ :If 0=⎕NC'MAXSESSIONS'
      MAXSESSIONS←100
  :EndIf
 
@@ -72,15 +80,15 @@
  WSS.OnHTTPHeader←''
  WSS.OnWSReceive←''
  WSS.OnClose←(⍕⎕THIS),'.endSession'
+ WSS.OnTimeout←(⍕⎕THIS),'.onTimeout'
  WSS.Handler←'Handler'
  WSS.Port←PORT
 
  allocateTokens
 
  WGID←0
- SESSIONCOUNTER←0
  WG_TIMEOUT←5 ⍝ Seconds to wait for response
- SESSIONS←,⊂⍬ ⍝ (IDs, SessionData)
+ SESSIONS←⍬ ⍬ ⍝ (IDs, Connections, SessionData)
 
  (EVENTNUMS EVENTNAMES)←↓⍉↑2031⌶0
  eventNames←⎕C EVENTNAMES

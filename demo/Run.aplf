@@ -11,14 +11,15 @@
      (⊃⎕DMX.DM)⎕SIGNAL⊃⎕DMX.EN
  :EndTrap
 
- :If JSWC.MODE=0 ⍝ Desktop
+ :Select JSWC.MODE
+ :Case 0 ⍝ Desktop
      ⎕SE.Posn←200 300
      DemoMenu 1
      ⍝ r←eDQ'F1'
      ⍝ ⎕EX'F1'
      ⍝ JSWC.Stop
 
- :Else
+ :Case 1 ⍝ Browser
      ⎕←'Connect Browser now...'
      :Repeat
         ⍞←'.'
@@ -26,7 +27,7 @@
      :Until 2=⎕NC '_JSWC.ID'
      ⎕←''
 
-     :If 'Run 1'≡¯5↑2 ⎕NQ'.' 'GetEnvironment' 'LX'
+     :If '''Browser'''≡¯5↑2 ⎕NQ'.' 'GetEnvironment' 'LX'
          ⎕←r←eDQ'.'
          :If r≡'F1' 'Close'
              ⎕←'Bye bye...'
@@ -35,4 +36,7 @@
          :EndIf
          ∘∘∘ ⍝ Abnormal web termination
      :EndIf
- :EndIf
+
+  :Case 2 ⍝ Multi
+     ⎕←'Running in Multi mode'
+  :EndSelect

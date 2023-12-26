@@ -7,12 +7,7 @@
  JSWC.USEWIN32←0 ⍝ ×(sf,'USEWIN32') eWG 'State'
 
  :If (sf,'STOP')≡1⊃args
-     :If (⊂'∆DQ')∊⎕SI
-         eNQ'F1' 'Close'
-     :Else
-         eEX f
-         JSWC.Stop
-     :EndIf
+     eEX f
      →0
  :EndIf
 

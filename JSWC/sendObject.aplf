@@ -1,11 +1,12 @@
- sendObject obj;msg;z
+ sendObject obj;msg;z;conn;ID
 
  msg←⎕JSON⍠'HighRank' 'Split'⊢obj
- ⎕←((500⌊≢msg)↑msg),(500<≢msg)/'...'
- :If 2=⎕NC 'CODELOCATION._JSWC.conn'
-     z←CODELOCATION._JSWC.conn WSS.Send msg
+ (ID conn)←getConnection caller
+ :If conn≠0
+     ⎕←'Send #',(⍕conn),': ',((500⌊≢msg)↑msg),(500<≢msg)/'...'
+     z←conn WSS.Send msg
  :EndIf
 
- :If 2=⎕NC 'SENDLOG'
+ :If 2=⎕NC'SENDLOG'
      SENDLOG,←⊂msg
  :EndIf
