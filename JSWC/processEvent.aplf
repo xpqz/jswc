@@ -1,4 +1,4 @@
- end←processEvent ns;Info;ID;Event;event;events;fns;info;fn;z;async;class;e;code
+ {end}←processEvent ns;Info;ID;Event;event;events;fns;info;fn;z;async;class;e;code
 
  :If 2=ns.⎕NC 'CodeLocation'
      code←⍎ns.CodeLocation

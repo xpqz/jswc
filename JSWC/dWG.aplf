@@ -27,7 +27,8 @@
      wg.(WGID ID Properties)←(⍕WGID) ((2×'#.'≡2↑Name)↓Name) (d←dynamic/p)
      msg←⎕JSON WG
      :If CONNECTED
-         z←conn WSS.Send ⎕←msg
+         ⎕←(,'ZI2,<:>,ZI2,<.>,ZI3' ⎕FMT 1 3⍴¯3↑⎕TS),' Send #',(⍕conn),': ',msg
+         z←conn WSS.Send msg
      :Else
          ⎕←msg
      :EndIf

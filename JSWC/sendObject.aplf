@@ -3,7 +3,7 @@
  msg←⎕JSON⍠'HighRank' 'Split'⊢obj
  (ID conn)←getConnection caller
  :If conn≠0
-     ⎕←'Send #',(⍕conn),': ',((500⌊≢msg)↑msg),(500<≢msg)/'...'
+     ⎕←(,'ZI2,<:>,ZI2,<.>,ZI3' ⎕FMT 1 3⍴¯3↑⎕TS),' Send #',(⍕conn),': ',((500⌊≢msg)↑msg),(500<≢msg)/'...'
      z←conn WSS.Send msg
  :EndIf
 
