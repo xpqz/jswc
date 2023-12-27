@@ -4,16 +4,16 @@
 
  'F1'eWC'Form' 'ListView'(50 50)(800 800)('Coord' 'Pixel')
 
- imagefiles←'/images/'∘,¨'Folder-Closed.png' 'Folder-Open.png' 'Price-Ticket.png'
- 'IL'eWC'ImageList'('Size'(16 16))('Masked' 2)('Files'imagefiles)
- imagefiles←'/images/32/'∘,¨'Folder-Closed.png' 'Folder-Open.png' 'Price-Ticket.png'
+ imagefiles←'/images/flags16/'∘,¨'dk.png' 'uk.png' 'us.png'
+ 'IL16'eWC'ImageList'('Size'(16 16))('Masked' 2)('Files'imagefiles)
+ imagefiles←'/images/flags32/'∘,¨'dk.png' 'uk.png' 'us.png'
  'IL32'eWC'ImageList'('Size'(32 32))('Masked' 2)('Files'imagefiles)
 
  'F1.LEFT'eWC'SubForm'('Posn'(0 0))('Size'(800 400))
  'F1.LEFT.VIEW'eWC'Combo'('Items'('Icon' 'SmallIcon' 'List' 'Report'))('Size'(23 100))('Posn'(170 20))('Event' 'Select' 'JSWCUpdateListView')('SelItems' (1 0 0 0))
- 'F1.LEFT.LV'eWC'ListView'('View' 'Icon')('Border' 1)('Items'('Closed' 'Open' 'Ticket'))('Size' (200 360))('Posn' 200 20)
- 'F1.LEFT.LV'eWS('ImageListObj' 'IL32' 'IL') ('ImageIndex' (1 2 3))
- 'F1.LEFT.LV' eWS ('ColTitles'('Description' 'Index'))('ReportInfo'('A closed folder' 'An open folder' 'A price ticket',⍪1 2 3))
+ 'F1.LEFT.LV'eWC'ListView'('View' 'Icon')('Border' 1)('Items'('DK' 'UK' 'USA'))('Size' (200 360))('Posn' 200 20)
+ 'F1.LEFT.LV'eWS('ImageListObj' 'IL32' 'IL16') ('ImageIndex' (1 2 3))
+ 'F1.LEFT.LV' eWS ('ColTitles'('Description' 'Index'))('ReportInfo'('Denmark' 'United Kingdom' 'USA',⍪1 2 3))
  'F1.LEFT.LV'eWS 'Event' ('Select' 'ItemDown' 'KeyPress') 'JSWCUpdateListView'
 
  'F1.RIGHT'eWC'SubForm'('Visible' 1)('Posn'(0 400))('Size'(800 400))('Attach'('Top' 'Left' 'Bottom' 'Right'))('BCol'(240 240 240))('EdgeStyle' 'None')

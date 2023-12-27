@@ -13,7 +13,6 @@
      event←code⍎z←ID,'.Event'
  :Else
      ⎕←'*** Unable to find ',z
-     ∘∘∘
      →0
  :EndTrap
 

@@ -60,7 +60,7 @@
      :EndFor
  :EndIf
 
- CONNECTED←0 ⍝ /// This should go
+ CONNECTED←1 ⍝ /// This should go
  RECORD←0
  USEWIN32←0
 
