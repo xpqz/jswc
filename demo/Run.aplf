@@ -1,10 +1,11 @@
- Run web;rc;msg;r
+ Run web;rc;msg;r;root
  ⍝ Initialise the Demo application
  ⍝ web=1 for browser use, web=0 for desktop
 
  JSWC←##.JSWC
  JSWC.PORT←22322
- JSWC.RESOURCES←1 2⍴'images'(⎕SE.Link.LaunchDir,'/demo/images')
+ root←{⊃⎕NPARTS ¯1↓⍵}⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
+ JSWC.RESOURCES←1 2⍴'images'(root,'/demo/images')
  :Trap 0
      'e'JSWC.Init web
  :Else
