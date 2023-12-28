@@ -13,7 +13,7 @@
  'F1.LEFT.VIEW'eWC'Combo'('Items'('Icon' 'SmallIcon' 'List' 'Report'))('Size'(23 100))('Posn'(170 20))('Event' 'Select' 'JSWCUpdateListView')('SelItems' (1 0 0 0))
  'F1.LEFT.LV'eWC'ListView'('View' 'Icon')('Border' 1)('Items'('DK' 'UK' 'USA'))('Size' (200 360))('Posn' 200 20)
  'F1.LEFT.LV'eWS('ImageListObj' 'IL32' 'IL16') ('ImageIndex' (1 2 3))
- 'F1.LEFT.LV' eWS ('ColTitles'('Description' 'Index'))('ReportInfo'('Denmark' 'United Kingdom' 'USA',⍪1 2 3))
+ 'F1.LEFT.LV' eWS ('ColTitles'('Flag' 'Country' 'Index'))('ReportInfo'('Denmark' 'United Kingdom' 'USA',⍪1 2 3))
  'F1.LEFT.LV'eWS 'Event' ('Select' 'ItemDown' 'KeyPress') 'JSWCUpdateListView'
 
  'F1.RIGHT'eWC'SubForm'('Visible' 1)('Posn'(0 400))('Size'(800 400))('Attach'('Top' 'Left' 'Bottom' 'Right'))('BCol'(240 240 240))('EdgeStyle' 'None')
