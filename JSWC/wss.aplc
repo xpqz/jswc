@@ -202,7 +202,6 @@
       respheaders←1 2⍴'Server'(deb⍕2↑Version)
       respheaders⍪←'Date'(2⊃LDRC.GetProp'.' 'HttpDate')
       :If method≡⍥⎕C'get' 
-          ⎕←'get ',url
           :If '/'≡⍥,url
               url←DefaultPage
           :EndIf
@@ -213,7 +212,6 @@
           :Else
               file←HTMLFolder,url
           :EndIf
-          ⎕←'  mapped to ',file
           :If ⎕NEXISTS file
               respheaders⍪←'content-type'(ContentType file)
 ⍝              respheaders⍪←'content-encoding' 'gzip'
@@ -224,8 +222,7 @@
               respheaders⍪←'content-length' '0'
               status←(⊂httpver),'404' 'NOT FOUND'
               payload←''
-              close←1          
-              ⎕←'  (not found)'
+              close←1
           :EndIf
           (rc msg)←2↑LDRC.Send obj(status,respheaders payload)close
       :Else
