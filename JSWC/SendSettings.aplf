@@ -7,3 +7,8 @@ S.Options←⎕NS ''
 S.Options.ID←'Locale'
 S.Options.Properties←settings.Locale
 z←CONN WSS.Send ⎕←⎕JSON S
+
+S.Options.ID←'Colors'
+S.Options.Properties←⎕NS ''
+S.Options.Properties.Standard←↓{(⍵[;1]<0)⌿⍵}settings.Colors.Standard
+z←CONN WSS.Send ⎕←⎕JSON S
