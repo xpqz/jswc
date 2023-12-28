@@ -2,7 +2,7 @@
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
- sF_Main←'F0000'
+ sF_Main←'F1'
  size←300 600
  sp←('Size'size)('Posn'(0 0))
 
