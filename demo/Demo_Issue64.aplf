@@ -1,4 +1,4 @@
- Demo_Issue64 connected;size;sp;sF_Main;Sz
+ Demo_Issue64 connected;size;sp;sF_Main;Sz;sub
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
@@ -8,12 +8,19 @@
 
  eEX 'LOGO'
  sF_Main eWC'Form' 'Issue 64'('Coord' 'Pixel'),sp
-⍝ (sF_Main,'.Tit')eWC'SubForm'('Visible' 1),sp
- (sF_Main,'.Tits')eWC'SubForm'('Visible' 1),sp
- (sF_Main,'.Tits.Lbl')eWC'Label' 'Hello'(1 1)('Size' 26 200)
- (sF_Main,'.Tits.List') eWC'ListView'('View' 'Icon')('Border' 0)('Items' 'One' 'Two' 'Three')
+ (sF_Main,'.Tree')eWC'SubForm'('Posn' (0 0))('Size' (300 197))
+ (sF_Main,'.Tree.T')eWC'TreeView'('Posn' (10 10))('Size' (280 150))('Items' (⍕¨⍳12))('Depth' (12⍴0 1 1 1))
+ (sF_Main,'.G1')eWC'Group' ('Posn' (0 197))('Size' (300 3))
+ sp←('Size'(size-0 200))('Posn'(0 200))
+ (sF_Main,'.Tit')eWC'SubForm'('Visible' 1),sp
+ sub←sF_Main,'.Tits'
+ (sF_Main,'.Tits')eWC'SubForm'('Visible' 0)('BCol' ¯5),sp
+ (sub,'.Lbl')eWC'Label' 'Hello'(1 1)('Size' 26 200)
+ (sub,'.List') eWC'ListView'('View' 'Icon')('Border' 0)('Items' 'One' 'Two' 'Three')('Posn' (50 0))('Size' (200 400))
  Sz←¯28 ¯2+(sF_Main,'.Tits') eWG 'Size'
- (sF_Main,'.Tits.List') eWS('Size'Sz)('Posn' 28 1)
+ (sub,'.List') eWS('Size'Sz)('Posn' 28 1)
+ (sF_Main,'.Tits') eWS 'Visible' 0
+ (sF_Main,'.Tits') eWS 'Visible' 1
  →0
 
 ⍝ Original app code follows

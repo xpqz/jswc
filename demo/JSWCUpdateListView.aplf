@@ -1,4 +1,4 @@
- JSWCUpdateListView args;e;view
+ JSWCUpdateListView args;e;view;sel
  Event←⎕NS''
  e←Event.Event←⎕NS''
  e.(ID EventName Info)←(2↑args),⊂2↓args
@@ -9,9 +9,8 @@
      view←(1⊃args)eWG'Text'
      'F1.LEFT.LV'eWS'View'view
  :Case 'F1.LEFT.LV'
-     ⎕←30⍴'-'
-     ⎕←'ListView event: ',⍕args
-     ⎕←'ListView selitems: ',⍕'F1.LEFT.LV' eWG 'SelItems'
+     sel←'F1.LEFT.LV' eWG 'SelItems'
+     'F1.RIGHT.TOP.Average' eWS 'Caption' ((2⊃args),' on item #',⍕sel⍳1)
  :Else
      ⎕←'Unexpected message: ',args
  :EndSelect
