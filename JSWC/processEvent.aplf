@@ -16,10 +16,9 @@
      →0
  :EndTrap
 
- :If 2=≢Event
- :AndIf 'Select'≡⊃Event
-    ⎕←'*** Working around issue #61 - wrong MenuItem Select event format'
-    Event←⊃Event
+ :If Event≡'EndSplit' ''
+     ⎕←'*** Issue #65 is still not resolved'
+     Event←⊃Event
  :EndIf
 
  (events fns)←↓⍉↑event

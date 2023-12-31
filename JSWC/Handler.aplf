@@ -12,7 +12,6 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn;info;sns;i;
      :If 2=⎕NC 'IGNORE1Init'
      :AndIf IGNORE1Init≠0
          IGNORE1Init←0
-         ⎕←'Ignoring one Initialise'
          :Return
      :EndIf
      fn←reqfn←(10↓payload)~'()'
