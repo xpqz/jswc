@@ -4,7 +4,7 @@
 
  'F1'eWC'Form'('BCol'(255 255 255))('Coord' 'Pixel')('Size'(500 900))('Picture'('LOGO' 0))
  'LOGO'eWC'BitMap'('File' '/images/dyalog-logo.jpg')
-
+ 'ICON'eWC'Icon'('File' '/images/dyalog-logo.ico')
  'YES'eWC'BitMap'('File' '/images/yes.bmp')
  'NO'eWC'BitMap'('File' '/images/no.bmp')
 
@@ -15,3 +15,4 @@
 
  'F1.YES'eWC'Button'('Picture' ('YES' 3))('Size'(40 40))('Posn'(10 250))
  'F1.NO'eWC'Button'('Picture' 'NO')('Size'(40 40))('Posn'(50 250))
+ 'F1.GRP'eWC'Group'('Picture' 'ICON')('Size'(55 55))('Posn'(100 250))
