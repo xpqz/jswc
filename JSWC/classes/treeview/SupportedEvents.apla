@@ -2,4 +2,5 @@
  'Expanding'
  'Retracting'
  'ItemDown'
+ 'ItemDblClick'
 )
