@@ -8,7 +8,7 @@
      r←⊃,/normaliseEvents¨events
      r←((¯1+≢events)⍴⊂⍬),⊂r
  :Else
-     ⎕←'Unsupported event setting at ',showCallStack
-     ⎕←'    'events
+     'U' Log 'Unsupported event setting at ',showCallStack
+     'U' Log '    'events
      r←⍬
  :EndIf

@@ -1,15 +1,15 @@
- {R}←∆DQ names;⎕TRAP;caller;class;Name;type;HR;timers;event;done;interrupt;conn;ID
+ {R}←∆DQ names;⎕TRAP;caller;class;Name;type;HR;timers;event;done;interrupt;conn;ID;tkn
 
  ⎕TRAP←0 'S'
 
  Name←1⊃names←,⊆names
  caller←⊃⎕RSI
  :If ~∧/names∊'.' '#'
- ⎕SIGNAL (2≠caller.⎕NC ⍕Name,'.Type')/11
+     ⎕SIGNAL(2≠caller.⎕NC⍕Name,'.Type')/11
  :EndIf
 
- (ID conn)←getConnection caller
- ⎕←'   JSWC DQ Session #',(⍕ID),': ',⍕names
+ (ID conn)←getConnection caller names
+ 'D'Log'   JSWC DQ Connection #',(⍕conn),': ',⍕names
 
  ⍝ :Hold 'JSWC DQ'
  ⍝    :If 0≠≢DEQUEUEING
@@ -21,17 +21,22 @@
 
  done←interrupt←0
  :Trap 1000
- :Repeat
-    :If 0≠≢R←2 ⎕TGET DQ_TOKENBASE+TOKENSTEP×ID
-    :If MODE=2
-        R.CodeLocation←⍕caller
-    :EndIf
-    done←processEvent R
-    :Else ⍝ Timeout
-        :If done←0=caller.⎕NC Name
-        :EndIf
-    :EndIf
- :Until done
+     tkn←DQ_TOKENBASE+TOKENSTEP×ID
+     'N'Log'DQ: ',⍕tkn
+     :Repeat
+         :If 0≠≢R←2 ⎕TGET tkn
+             :If 'N'∊LOGMODES
+                 'N' Log 1 ⎕JSON⍠'HighRank' 'Split'⊢R
+             :EndIf
+             :If MODE=2
+                 R.CodeLocation←⍕caller
+             :EndIf
+             done←processEvent R
+         :Else ⍝ Timeout
+             :If done←0=caller.⎕NC Name
+             :EndIf
+         :EndIf
+     :Until done
  :Else
      interrupt←1
  :EndTrap
@@ -43,4 +48,4 @@
  :If 0≠≢R
      R←R.Event.(ID EventName)
  :EndIf
- 'INTERRUPT' ⎕SIGNAL interrupt/999
+ 'INTERRUPT'⎕SIGNAL interrupt/999

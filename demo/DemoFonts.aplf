@@ -1,4 +1,4 @@
- DemoFonts connected;size;italic;uline;weight;rotate;f;fonts;t;cols;fs;row;col;fontobj
+ DemoFonts connected;size;italic;uline;weight;rotate;f;fonts;t;cols;fs;row;col;fontobj;p
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
@@ -14,7 +14,7 @@
  f∘.,←⊂¨↓(⊂'Underline'),⍪0 1
  f←(,f)∘.,⊂¨↓(⊂'PName'),⍪fonts
 
- t←(⍕¨10 15 20),¨⊂'px '
+ t←(⍕¨15 10 20),¨⊂'px '
  t∘.,←'' 'B'
  t∘.,←'' 'I'
  t∘.,←'' 'U'
@@ -23,7 +23,9 @@
  fs←'F1.FNT'∘,¨∊¨'ZI2'∘⎕FMT¨⍪⍳⍴f
  'F1' eWC'Form' 'Fonts'(50 50)(800 600)('Coord' 'Pixel')
  fs  eWC¨ (⊂'Font')∘,¨f
- 'F1.FNTS' eWC 'Text' fonts ('Points' (((≢fonts)/50)cols))('FontObj' (⊃fs[3;1])) ⍝ Italic
+ p←fonts⍳¨' '
+ 'F1.FNTS' eWC 'Text' (p↑¨fonts) ('Points' (((≢fonts)/40)cols))('FontObj' (⊃fs[3;1])) ⍝ Italic
+ 'F1.FNTS2' eWC 'Text' (p↓¨fonts) ('Points' (((≢fonts)/60)cols))('FontObj' (⊃fs[3;1])) ⍝ Italic
 
  :For (row col) :In ⍳⍴f
       fontobj←⊃fs[row;col]

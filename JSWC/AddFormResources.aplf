@@ -8,10 +8,8 @@
      class←classes⍎⎕C r.Type
      :Select r.Type
 
-     :CaseList 'BitMap' 'ImageList'
+     :CaseList 'BitMap' 'ImageList' 'Font'
          propnames←class.Supported
-     :Case 'Font'
-         ∘∘∘
      :EndSelect
 
      WC←⎕NS''
@@ -19,5 +17,5 @@
      res←((⍕caller),'.'){((≢⍺)×⍺≡(≢⍺)↑⍵)↓⍵}res
      WC.WC.(ID Properties)←res (⎕NS'')
      ⍎'WC.WC.Properties',expr←'.(',(⍕propnames),')←r.(',(⍕propnames),')'
-     sendObject WC
+     sendObject WC WC.WC.ID
  :EndFor

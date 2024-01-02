@@ -4,8 +4,8 @@
 AGAIN:
  j←WG_TIMEOUT ⎕TGET token
  :If 0=≢j
-     ⎕←'Client did not respond within ',(⍕WG_TIMEOUT),' seconds.'
-     ⎕←'Request was: ',msg
+     'W' Log 'Client did not respond within ',(⍕WG_TIMEOUT),' seconds.'
+     'W' Log 'Request was: ',msg
      ⎕SIGNAL 6
  :EndIf
 
@@ -21,7 +21,7 @@ AGAIN:
      :EndIf
  :Else
      :If ~seqok
-         ⎕←'Ignoring WGID ',j.WG.WGID,' while waiting for ',WGID
+         'E' Log 'Ignoring WGID ',j.WG.WGID,' while waiting for ',WGID
          →AGAIN
      :EndIf
      :If 2=⎕NC 'j.WG.NotSupported'

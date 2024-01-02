@@ -1,4 +1,5 @@
  {R}←Name ∆WS Props;WS;msg;ws;i;z;ref;expr;caller;⎕TRAP;proplist;pname;names;values;PropList;m;class;type;ix;HR
+ ⎕SIGNAL (2>|≡Props)/11
  ⎕TRAP←0 'S'
  :If (⊂,Name)∊,¨'⎕SE' '#' '.' ⍝ Pass WS of System properties through
      →0⊣R←Name ⎕WS Props
@@ -76,7 +77,13 @@
  :EndIf
 
  WS.WS.ID←{(2×'#.'≡2↑⍵)↓⍵}WS.WS.ID
+  :If (⊂WS.WS.ID)∊⊆1⊃BREAK
+     ⎕←'BREAK on WS of ',WS.WS.ID
+     ⎕←⎕JSON WS
+     ∘∘∘
+ :EndIf
+
  fixSendEvents WS.WS.Properties
  :If ~0=⍴WS.WS.Properties.⎕NL-2
-     sendObject WS
+     sendObject WS WS.WS.ID
  :EndIf

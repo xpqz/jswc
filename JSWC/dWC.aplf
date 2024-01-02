@@ -1,4 +1,4 @@
- {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn;i;ns;okprops;⎕TRAP;depth;valid;values;lcp;pi;ix;PropList;allprops;AllProps;n;cp;v;conn
+ {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn;i;ns;okprops;⎕TRAP;depth;valid;values;lcp;pi;ix;PropList;allprops;AllProps;n;cp;v;conn;folder
  ⎕TRAP←0 'S'
  deprecatedprops←,⊂'3D' ⍝ No longer appear in PropList
  n←≢cp←'.',⍨⍕caller←⊃⎕RSI
@@ -17,10 +17,11 @@
  :EndIf
 
  :If 9≠classes.⎕NC type
+     Warning 'WC ',Name,' - unsupported classe "',type,'"'
+     ⎕←⎕SE.UCMD 'disp ⍪Props'
      Warning'Unsupported class: ',type
      Name caller.⎕NS''
      (caller⍎Name).Type←type
-     ⎕←Props
      →0
  :EndIf
 
@@ -45,7 +46,7 @@
  WC.WC←⎕NS''
  WC.WC.(ID Properties)←Name(⎕NS'')
  ⍎'WC.WC.Properties',expr←'.(',(⍕propnames),')←',(1≠≢propnames)↓'⊃values'
-values[propnames⍳⊂'Type']←⊂WC.WC.Properties.Type←class.ClassName ⍝ Correct Case
+ values[propnames⍳⊂'Type']←⊂WC.WC.Properties.Type←class.ClassName ⍝ Correct Case
 
  :If USEWIN32
      :If 'ribbon'≢6↑type
@@ -63,9 +64,11 @@ values[propnames⍳⊂'Type']←⊂WC.WC.Properties.Type←class.ClassName ⍝ C
          :If 'imagelist'≡type
          :AndIf 2=⎕NC'WC.WC.Properties.Files' ⍝ Simulate the "Files" property in Win32
              :For f :In WC.WC.Properties.Files
-                 tn←(IMAGEFOLDER,1↓f)⎕NTIE 0
-                 (R,'.')(2032⌶)⎕NREAD tn 83(⎕NSIZE tn)0
-                 ⎕NUNTIE tn
+                 :If ⎕NEXISTS folder←⊃⎕NPARTS⊃1↓,RESOURCES
+                     tn←(folder,1↓f)⎕NTIE 0
+                     (R,'.')(2032⌶)⎕NREAD tn 83(⎕NSIZE tn)0
+                     ⎕NUNTIE tn
+                 :EndIf
              :EndFor
          :EndIf
      :EndIf
@@ -90,9 +93,9 @@ values[propnames⍳⊂'Type']←⊂WC.WC.Properties.Type←class.ClassName ⍝ C
 
  :If type≡'form'
      :If (caller⍎Name,'.Coord')≢'Pixel'
-         'Coord must be Pixel' ⎕SIGNAL 11
+         'Coord must be Pixel'⎕SIGNAL 11
      :EndIf
-     SendSettings 2⊃getConnection caller
+     SendSettings 2⊃getConnection caller Name
  :EndIf
 
  :If RECORD ⍝ Collecting lists
@@ -107,8 +110,14 @@ values[propnames⍳⊂'Type']←⊂WC.WC.Properties.Type←class.ClassName ⍝ C
      ref.Supported∪←propnames
  :EndIf
 
+ WC.WC.ID←{(2×'#.'≡2↑⍵)↓⍵}WC.WC.ID
+ :If (⊂WC.WC.ID)∊⊆1⊃BREAK
+     ⎕←'BREAK on WC of ',WC.WC.ID
+     ∘∘∘
+ :EndIf
+
  fixSendEvents WC.WC.Properties
- sendObject WC
+ sendObject WC WC.WC.ID
 
  :If USEHR∧type≡'form'
      AddFormResources caller

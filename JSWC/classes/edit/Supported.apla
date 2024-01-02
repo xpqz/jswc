@@ -9,6 +9,7 @@
  'Password'
  'Style'
  'Font'
+ 'FontObj'
  'Visible'
  'Decimals'
  'MaxLength'

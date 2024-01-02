@@ -1,4 +1,4 @@
- Run web;rc;msg;r;root
+ Run web;rc;msg;r;root;seps
  ⍝ Initialise the Demo application
  ⍝ web=1 for browser use, web=0 for desktop
 
@@ -6,6 +6,11 @@
  JSWC.PORT←22322
  root←{⊃⎕NPARTS ¯1↓⍵}⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
  JSWC.RESOURCES←1 2⍴'images'(root,'/demo/images')
+
+ ⎕USING←''
+ seps←System.Globalization.CultureInfo.CurrentCulture.NumberFormat.(NumberDecimalSeparator NumberGroupSeparator)
+ JSWC.settings.Locale.(Decimal Thousand)←seps
+
  :Trap 0
      'e'JSWC.Init web
  :Else

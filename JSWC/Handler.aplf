@@ -1,9 +1,9 @@
-r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn;info;sns;i;code
+r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;reqfn;info;sns;i;code;conn;coni;sock;z;m
  ⎕TRAP←0 'S'
- ⎕←(,'ZI2,<:>,ZI2,<.>,ZI3' ⎕FMT 1 3⍴¯3↑⎕TS),' Recv #',(⍕con),': ',payload
+ 'R' Log '#',(⍕con),': ',payload
  i←(2⊃SESSIONS)⍳con
  :If i>≢1⊃SESSIONS
-     ⎕←'Message received from closed session #',⍕con
+     'W' Log 'Message received from closed session #',⍕con
      →0
  :EndIf
  code←(2+i)⊃SESSIONS
@@ -19,28 +19,36 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;z;reqfn;info;sns;i;
      :If 3=code.⎕NC fn
          (code⍎fn)&CONNECTED
      :ElseIf 0≠≢reqfn ⍝ Explicit function requested
-         ⎕←'Function not found: ',(⍕code),'.',fn
+         'E' Log 'Initialise: Function not found: ',(⍕code),'.',fn
      :EndIf
  :Else
      :Trap 999
          sns←code._JSWC ⍝ Session Namespace
          ns←0 ⎕JSON payload
+
          :Select ,ns.⎕NL 9
          :Case 'Event'
-             ⍝ /// Maybe use a "proper" queue
-             ns ⎕TPUT DQ_TOKENBASE+TOKENSTEP×sns.ID
+             (ID conn)←getConnection sns ns.Event.ID
+       ⍝ /// Maybe use a "proper" queue
+             ns ⎕TPUT DQ_TOKENBASE+TOKENSTEP×ID
              ⍝ /// Need something better than this from JD
              :If '*'∊1↓⎕STACK[;2] ⍝ A suspension in the client app
              :AndIf 9=sns.⎕NC 'TIMER'
                   sns.⎕NQ 'TIMER' 1001 ⍝ Wake it up
              :EndIf
          :Case 'WG'
-             ns ⎕TPUT WG_TOKENBASE+TOKENSTEP×sns.ID
+             ns ⎕TPUT WG_TOKENBASE+TOKENSTEP×⊃getConnection sns ns.WG.ID
+         :Case 'Signal'
+             :If ns.Signal.Name≡'Close' ⍝ Client about to close the socket
+                 closeConnection con
+             :Else
+                 'E' Log 'Unknown signal received: ',payload
+             :EndIf
          :Else
-             ⎕←'Invalid message received: ',payload
+             'E' Log 'Invalid message received: ',payload
          :EndSelect
      :Else
-         ⎕←'Message processing failed:'
-         ⎕←↑⎕DMX.DM
+         'E' Log 'Message processing failed:'
+         'E' Log←↑⎕DMX.DM
      :EndTrap
  :EndIf

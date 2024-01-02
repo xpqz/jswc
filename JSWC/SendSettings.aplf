@@ -1,14 +1,16 @@
-SendSettings CONN;S;z
-⍝ Send contents of "settings" namespace
-⍝ For valid settings, see https://day.js.org/docs/en/display/format
+SendSettings CONN;S;z;msg
+⍝ Send various contents of "Options"
+⍝ For valid Locale settings, see https://day.js.org/docs/en/display/format
 
 S←⎕NS ''
 S.Options←⎕NS ''
 S.Options.ID←'Locale'
 S.Options.Properties←settings.Locale
-z←CONN WSS.Send ⎕←⎕JSON S
+z←CONN WSS.Send msg←⎕JSON S
+'T' Log msg
 
 S.Options.ID←'Colors'
 S.Options.Properties←⎕NS ''
 S.Options.Properties.Standard←↓{(⍵[;1]<0)⌿⍵}settings.Colors.Standard
-z←CONN WSS.Send ⎕←⎕JSON S
+z←CONN WSS.Send msg←⎕JSON S
+'T' Log msg

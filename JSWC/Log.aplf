@@ -1,0 +1,12 @@
+mode Log msg
+⍝ Log modes: Controlled by JSWC.LOGMODES
+⍝ D: Debug
+⍝ E: Error
+⍝ W: Warning
+⍝ T: Transmit on WebSocket
+⍝ R: Receive on WebSocket
+⍝ C: Connect or Disconnect
+⍝ U: Unsupported feature
+
+→(mode∊LOGMODES)↓0
+⎕←((,'ZI2,<:>,ZI2,<.>,ZI3' ⎕FMT 1 3⍴¯3↑⎕TS),' ',mode,':') msg

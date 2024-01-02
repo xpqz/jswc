@@ -3,6 +3,7 @@ ns←home⍎name
 home.⎕EX '_JSWC.conn'
 cb←(⍕⎕THIS),'.DestroyHR'
 'HR' ns.⎕WC 'HTMLRenderer' ('Caption' ns.Caption) ('URL' ('localhost:',⍕PORT)) ('Size' (63 17+ns.Size))('Coord' 'Pixel')('Posn' ns.Posn)('Event' 'Close' cb)
+'D' Log 'Created HTMLRenderer ',(⍕ns),'.HR'
 
 count←0 ⋄ maxtries←100
 :Repeat
@@ -13,3 +14,4 @@ err←(~ok)/'Unable to initialise HTMLRenderer'
 
 ns.HR.Caption←ns.Caption,(~ns.Visible)/' [Invisible]'
 ns.HR.ExecuteJavaScript 'document.body.style.overflow = "hidden"'
+'ns.HR._JSWC' ⎕NS home._JSWC ⍝ Give HR it's own copy

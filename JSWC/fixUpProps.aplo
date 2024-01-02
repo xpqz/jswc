@@ -2,7 +2,7 @@
 ⍝ Massage properties that can have multiple formats into regular structures for JS
 
  special←'Event' 'Points' 'Radius' 'LWidth' 'LStyle' 'FStyle' 'Visible' 'Active' 'Interval' 'File' 'FileNames' 'Picture'
- :If (⊂type)∊'rect' 'circle' 'ellipse' 'poly'
+ :If (⊂type)∊'rect' 'circle' 'ellipse' 'poly' 'font'
      special,←'FCol' 'BCol' 'FillCol' 'ArcMode' 'Start' 'End' 'Size'
  :EndIf
 
@@ -14,7 +14,9 @@
      :Case 'Event'
          values[ix]←normaliseEvents values[ix]
      :CaseList 'Points' 'Radius' 'Size'
-         :If 2=⍴⍴val←ix⊃values
+         :If type≡'font'
+             (ix⊃values)←⌊0.5+0.85×ix⊃values ⍝ Adjust font size down
+         :ElseIf 2=⍴⍴val←ix⊃values
              (ix⊃values)←↓val
          :Else
              (ix⊃values)←,,¨val

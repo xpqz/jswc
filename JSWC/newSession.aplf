@@ -1,14 +1,13 @@
- rc←newSession args;hdrs;event;obj;rc;msg;s;ns;code;CONN;conn;max
+ rc←newSession args;hdrs;event;obj;rc;msg;s;ns;code;CONN;conn;max;key
  rc←1 ⍝ Fail
  (rc obj event hdrs)←4↑args
  hdrs←WSS.ParseHeaders hdrs
 
- msg←(⍕CODELOCATION),'.Init not found'
  :Hold 'JSWCSESSIONS'
      SESSIONID←⊃(⍳1+≢s)~s←⊃SESSIONS
      max←MAXSESSIONS
      :If SESSIONID>max
-         ⎕←'Unable to create more than ',(⍕max),' session',(max≠1)/'s'
+         'E' Log 'Unable to create more than ',(⍕max),' session',(max≠1)/'s'
          →0
      :EndIf
      :If MODE=2 ⍝ Multi
@@ -29,9 +28,10 @@
  ns.cert←WSS.LDRC.GetProp obj'PeerCert' ⍝ /// We'll use this later
  ns.conn←conn
 
+ key←hdrs WSS.GetHeader'sec-websocket-key'
+ 'C' Log 'Session ',(⍕ns.ID),' created, socket ',(⍕ns.conn),', connected from ',(2 2⊃ns.addr), ', key: ',key
+
  :If 3=⎕NC'code.Init'
  :AndIf 0=≢msg←code.Init ns
-     ⎕←'Session ',(⍕ns.ID),' created, socket ',(⍕ns.conn),', connected from ',2 2⊃ns.addr
- :Else
-     ⎕←'Unable to Init session from ',ns.addr,': ',msg
+     'W' Log 'Unable to Init session from ',ns.addr,': ',msg
  :EndIf

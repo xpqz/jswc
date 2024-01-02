@@ -4,4 +4,6 @@
  'Points'
  'FCol'
  'Visible'
+ 'Font'
+ 'FontObj'
  )

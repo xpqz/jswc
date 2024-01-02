@@ -1,4 +1,4 @@
- {end}←processEvent ns;Info;ID;Event;event;events;fns;info;fn;z;async;class;e;code
+ {end}←processEvent ns;Info;ID;Event;event;events;fns;info;fn;z;async;class;e;code;res
 
  :If 2=ns.⎕NC 'CodeLocation'
      code←⍎ns.CodeLocation
@@ -12,18 +12,20 @@
  :Trap 6
      event←code⍎z←ID,'.Event'
  :Else
-     ⎕←'*** Unable to find ',z
+     'E' Log '*** Unable to find ',z,', cannot process ',⎕JSON ns
      →0
  :EndTrap
 
- :If Event≡'EndSplit' ''
-     ⎕←'*** Issue #65 is still not resolved'
-     Event←⊃Event
+ :If (⊂Event)∊⊆2⊃BREAK
+ :OrIf (⊂ID)∊⊆1⊃BREAK
+     ⎕←'BREAK on ',⎕JSON ns
+     ∘∘∘
  :EndIf
 
  (events fns)←↓⍉↑event
  :If ~(⊂Event)∊events
-     ⎕←'*** No callback defined for event ',Event,' on object ',ID
+     'E' Log '*** No callback defined for event ',Event,' on object ',ID
+     ∘∘∘
      →0
  :EndIf
 
@@ -31,24 +33,33 @@
  →(end←fn≡1)⍴0
 
  async←'&'=¯1↑fn
- fn←(-async)↓fn
+ fn←(⍕code),'.',(-async)↓fn
+ res←⍬
 
- :If 3≠code.⎕NC fn
-     ⎕←'Callback function not found: ',fn
+ :If 3≠⎕NC fn
+     'E' Log 'Callback function not found: ',fn
  :ElseIf 1=≢info
      :If async
-         (code⍎fn)&(ID Event),Info
+         (⍎fn)&(ID Event),Info
      :Else
-         (code⍎fn)(ID Event),Info
+         :Trap 85 ⍝ No result
+             res←0 (85⌶)fn,'(ID Event),Info'
+         :EndTrap
      :EndIf
  :ElseIf 2=≢info
      :If async
-         (2⊃info)(code⍎fn)&(ID Event),Info
+         (2⊃info)(⍎fn)&(ID Event),Info
      :Else
-         (2⊃info)(code⍎fn)(ID Event),Info
+         res←0 (85⌶)'(2⊃info)',fn,'(ID Event),Info'
      :EndIf
  :Else
-     ⎕←'*** Ill-formed event: ',⍕event
+     'E' Log '*** Ill-formed event: ',⍕event
+ :EndIf
+
+ :If res≢⍬
+ :AndIf res≢ID Event,Info
+     'D' Log 'Callback function ',fn,' returned modified event: ',⍕res
+    ⍝ end←res≡1
  :EndIf
 
  :If 1 ⍝ Recording events
@@ -57,7 +68,7 @@
      class←⍎class
      e←{0::⍵ ⋄ class.SupportedEvents}''
      :If ~(⊂Event)∊e
-        ⎕←'Adding event ',Event,,' to ',⍕class
+        'D' Log 'Adding event ',Event,,' to ',⍕class
         class.SupportedEvents←∪e,⊂Event
         ⎕SE.Link.Add (⍕class),'.SupportedEvents'
      :EndIf

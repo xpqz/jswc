@@ -1,13 +1,19 @@
-r←getConnection caller
+ r←getConnection(caller names);name;top;n
+ name←,⊃⊆names
+ top←(¯1+name⍳'.')↑name
 
-:If MODE=2 ⍝ Multi
-     :If 9=caller.⎕NC '_JSWC'
+ :If 9=caller.⎕NC n←top,'.HR._JSWC'
+     r←(caller⍎n).(ID conn)
+
+ :ElseIf MODE=2 ⍝ Multi
+     :If 9=caller.⎕NC'_JSWC'
          r←caller._JSWC.(ID conn)
      :Else
          ∘∘∘ ⍝ Unable to locate app session
      :EndIf
+
  :Else
-     :If 2=⎕NC 'CODELOCATION._JSWC.ID' ⍝ Check it has been initialised
+     :If 2=⎕NC'CODELOCATION._JSWC.ID' ⍝ Check it has been initialised
          r←CODELOCATION._JSWC.(ID conn)
      :Else
          r←0 0

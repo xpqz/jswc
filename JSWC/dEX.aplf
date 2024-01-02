@@ -3,7 +3,7 @@
  names←,⊆names
  n←≢cn←⍕caller←⊃⎕RSI~⎕THIS
  names←((1+n)×(n↑¨names)∊⊂cn)↓¨names
- (ID conn)←getConnection caller
+ (ID conn)←getConnection caller names
 
  EX←⎕NS''
  ex←EX.EX←⎕NS''
@@ -13,7 +13,8 @@
  msg←⎕JSON EX
 
  :If CONNECTED
-     z←conn WSS.Send ⎕←msg
+     z←conn WSS.Send msg
+     'T' Log msg
  :Else
-     ⎕←msg
+     'T' Log '(not connected): ',msg
  :EndIf

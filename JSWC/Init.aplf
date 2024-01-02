@@ -43,6 +43,9 @@
      :EndIf
  :EndIf
 
+ :If 0=⎕NC'LOGMODES'
+     LOGMODES←⎕A ⍝ Log everything (see Log)
+ :EndIf
  :If 0=⎕NC'RESOURCES'
      RESOURCES←1 2⍴⊂''
  :EndIf
@@ -51,6 +54,9 @@
  :EndIf
  :If 0=⎕NC'MAXSESSIONS'
      MAXSESSIONS←100
+ :EndIf
+ :If 0=⎕NC'BREAK'
+     BREAK←⍬ ⍬ ⍝ IDs Events
  :EndIf
 
 ⍝ Establish API in calling space unless prefix≡''

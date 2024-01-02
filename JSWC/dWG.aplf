@@ -6,7 +6,7 @@
  :EndIf
 
  caller←⊃⎕RSI
- (ID conn)←getConnection caller
+ (ID conn)←getConnection caller Name
  WG←⎕NS''
  wg←WG.WG←⎕NS''
  WGID+←1
@@ -27,10 +27,10 @@
      wg.(WGID ID Properties)←(⍕WGID) ((2×'#.'≡2↑Name)↓Name) (d←dynamic/p)
      msg←⎕JSON WG
      :If CONNECTED
-         ⎕←(,'ZI2,<:>,ZI2,<.>,ZI3' ⎕FMT 1 3⍴¯3↑⎕TS),' Send #',(⍕conn),': ',msg
+         'T' Log '#',(⍕conn),': ',msg
          z←conn WSS.Send msg
      :Else
-         ⎕←msg
+         'T' Log '(no connection): ',msg
      :EndIf
  :EndIf
 
@@ -39,7 +39,11 @@
  :Else
      R←(≢p)⍴⊂⍬
      :If 0≠≢i←⍸~dynamic
-        R[i]←caller⍎((1=≢i)/'⊂'),Name,'.(',(⍕p[i]),')'
+        :Trap 6
+            R[i]←caller⍎((1=≢i)/'⊂'),Name,'.(',(⍕p[i]),')'
+        :Else
+            ⎕DMX.Message ⎕SIGNAL 6
+        :EndTrap
      :EndIf
  :EndIf
 
@@ -48,7 +52,6 @@
      r←dynamic/R
      ⍎'wg.Properties.(',(⍕d),')←',(1≠≢r)↓'⊃r'
      msg←⎕JSON⍠'HighRank' 'Split'⊢WG
- ⍝   ⎕←'Faking client transmission: ',msg
      (⎕JSON msg)⎕TPUT WG_TOKENBASE+TOKENSTEP×ID
  :EndIf
 
