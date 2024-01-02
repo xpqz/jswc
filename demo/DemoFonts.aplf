@@ -8,8 +8,7 @@
  weight←400 700
  rotate←0 90 180 270
 
-
- f←⊂¨↓(⊂'Size'),⍪10 15 20
+ f←⊂¨↓(⊂'Size'),⍪15 10 20
  f∘.,←⊂¨↓(⊂'Weight'),⍪400 700
  f∘.,←⊂¨↓(⊂'Italic'),⍪0 1
  f∘.,←⊂¨↓(⊂'Underline'),⍪0 1
@@ -21,9 +20,10 @@
  t∘.,←'' 'U'
  t←(,t)∘.,0/¨fonts
 
- 'F1'eWC'Form' 'Fonts'(50 50)(800 600)('Coord' 'Pixel')
-  (fs←'F1.FNT'∘,¨∊¨'ZI2'∘⎕FMT¨⍪⍳⍴f) eWC¨ (⊂'Font')∘,¨f
- 'F1.FNTS' eWC 'Text' fonts ('Points' (((≢fonts)/50)cols))
+ fs←'F1.FNT'∘,¨∊¨'ZI2'∘⎕FMT¨⍪⍳⍴f
+ 'F1' eWC'Form' 'Fonts'(50 50)(800 600)('Coord' 'Pixel')
+ fs  eWC¨ (⊂'Font')∘,¨f
+ 'F1.FNTS' eWC 'Text' fonts ('Points' (((≢fonts)/50)cols))('FontObj' (⊃fs[3;1])) ⍝ Italic
 
  :For (row col) :In ⍳⍴f
       fontobj←⊃fs[row;col]
