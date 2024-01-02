@@ -1,4 +1,4 @@
-JSWCTimer args;state;f1
+CBTimer args;state;f1
 ⍝ Rotate the colours
 
 :Select ⊃args

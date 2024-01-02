@@ -6,7 +6,7 @@
  f←'×'
  allf←'+-×÷'
 
- sel←'Event' 'Select' 'JSWCUpdateRibbon'
+ sel←'Event' 'Select' 'CBUpdateRibbon'
 
  'F1'eWC'Form' 'Function Table'(50 50)(716 1190)('Coord' 'Pixel')
  'F1.Ribbon' eWC 'Ribbon'⍝ ('Size' (150 1190))

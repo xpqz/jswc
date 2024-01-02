@@ -1,4 +1,4 @@
- JSWCUpdateButtons args;obj;fruit;optstate;opts;txt
+ CBUpdateButtons args;obj;fruit;optstate;opts;txt
 
  obj←1⊃args
 

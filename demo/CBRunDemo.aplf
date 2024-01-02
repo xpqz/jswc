@@ -1,4 +1,4 @@
- JSWCRunDemo args;e;scores;cols;fcol;pass;ii;ids;target;demo;sf;f
+ CBRunDemo args;e;scores;cols;fcol;pass;ii;ids;target;demo;sf;f
  Event←⎕NS''
  e←Event.Event←⎕NS''
  e.(ID EventName Info)←(2↑args),⊂2↓args

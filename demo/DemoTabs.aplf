@@ -8,7 +8,7 @@
  'F1.TC'eWC'TABCONTROL'('Posn'(100 0))('Size' (500 600))('Attach' ('Top' 'Left' 'Bottom' 'Right'))('MultiLine' 1)
  :For i :In ⍳≢fonts
      f←i⊃fonts
-     (tb←'F1.TC.T',⍕i)eWC'TABBUTTON' ('Caption' f)('Event' 'Select' 'JSWCUpdateTabs')
+     (tb←'F1.TC.T',⍕i)eWC'TABBUTTON' ('Caption' f)('Event' 'Select' 'CBUpdateTabs')
      (sf←'F1.TC.SF',⍕i) eWC 'SubForm' ('TabObj' tb)
      (sf,'.TEXT') eWC 'Edit' ('Style' 'Multi') ('Text' (1000⍴'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ')) ('Posn' (10 10))('Size' (450 580))('Font' (f 16))('Attach' ('Top' 'Left' 'Bottom' 'Right'))
  :EndFor

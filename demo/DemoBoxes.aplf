@@ -12,11 +12,11 @@
  'F1.L1'eWC'Label' 'Rows'(10 10)
  'F1.L2'eWC'Label' 'Cols'(10 70)
 
- 'F1.ROWS'eWC'Edit'(⍕rows)(30 10)(23 50)('FieldType' 'Numeric') ('Event' 'GotFocus' 'JSWCEchoGotFocus')('FontObj' 'F1.FNT')
- 'F1.COLS'eWC'Edit'(⍕cols)(30 70)(23 50)('FieldType' 'Numeric') ('Event' 'GotFocus' 'JSWCEchoGotFocus')('FontObj' 'F1.FNT')
- 'F1.GO'eWC'Button' 'Draw Boxes' (30 140)(23 80)('Event' 'Select' 'JSWCUpdateLines')
- 'F1.CLR'eWC'Button' 'Clear' (30 225)(23 50)('Event' 'Select' 'JSWCUpdateLines')
- 'F1.HIDE' eWC 'Button' 'Hide Graphics' (55 130)(23 110)('Style' 'Check')('Event' 'Select' 'JSWCUpdateLines')
+ 'F1.ROWS'eWC'Edit'(⍕rows)(30 10)(23 50)('FieldType' 'Numeric') ('Event' 'GotFocus' 'CBEchoGotFocus')('FontObj' 'F1.FNT')
+ 'F1.COLS'eWC'Edit'(⍕cols)(30 70)(23 50)('FieldType' 'Numeric') ('Event' 'GotFocus' 'CBEchoGotFocus')('FontObj' 'F1.FNT')
+ 'F1.GO'eWC'Button' 'Draw Boxes' (30 140)(23 80)('Event' 'Select' 'CBUpdateLines')
+ 'F1.CLR'eWC'Button' 'Clear' (30 225)(23 50)('Event' 'Select' 'CBUpdateLines')
+ 'F1.HIDE' eWC 'Button' 'Hide Graphics' (55 130)(23 110)('Style' 'Check')('Event' 'Select' 'CBUpdateLines')
 
  BY←10 10 50 10
  BX←15 65 40 15
@@ -28,4 +28,4 @@
 
  eNQ 'F1.ROWS' 'GotFocus'
 
- JSWCUpdateLines ,⊂'F1.GO'
+ CBUpdateLines ,⊂'F1.GO'

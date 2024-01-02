@@ -1,4 +1,4 @@
- JSWCUpdateLines args;rows;cols;size;posn;viz;obs;form;ctl
+ CBUpdateLines args;rows;cols;size;posn;viz;obs;form;ctl
  (form ctl)←'.'(≠⊆⊢)⊃args
 
  :Select ctl

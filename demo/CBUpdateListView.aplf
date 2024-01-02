@@ -1,4 +1,4 @@
- JSWCUpdateListView args;e;view;sel;item;selok
+ CBUpdateListView args;e;view;sel;item;selok
  Event←⎕NS''
  e←Event.Event←⎕NS''
  e.(ID EventName Info)←(2↑args),⊂2↓args

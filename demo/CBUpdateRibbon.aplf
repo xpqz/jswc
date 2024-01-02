@@ -1,4 +1,4 @@
- JSWCUpdateRibbon args;cap;info
+ CBUpdateRibbon args;cap;info
 
  :Select (⊃args) eWG 'Type'
  :Case 'RibbonButton'

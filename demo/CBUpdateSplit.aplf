@@ -1,4 +1,4 @@
-JSWCUpdateSplit args;e;scores;cols;fcol;pass;X;Y;H;W;label;txt;rs;rp;sp;ss;ls;t;fs;ts;bp;bs
+CBUpdateSplit args;e;scores;cols;fcol;pass;X;Y;H;W;label;txt;rs;rp;sp;ss;ls;t;fs;ts;bp;bs
 Event←⎕NS ''
 e←Event.Event←⎕NS ''
 e.(ID EventName Info)←(2↑args),⊂2↓args

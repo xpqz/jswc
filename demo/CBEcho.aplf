@@ -1,2 +1,2 @@
-JSWCEchoCB args
+CBEcho args
 ⎕←'   Event received:' args
