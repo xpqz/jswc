@@ -11,8 +11,9 @@
 
  'F1.LEFT'eWC'SubForm'('Posn'(0 0))('Size'(800 400))
  'F1.LEFT.VIEW'eWC'Combo'('Items'('Icon' 'SmallIcon' 'List' 'Report'))('Size'(23 100))('Posn'(170 20))('Event' 'Select' 'CBUpdateListView')('SelItems' (1 0 0 0))
- 'F1.LEFT.LV'eWC'ListView'('View' 'Icon')('Border' 1)('Items'(,⍉'DK ' 'UK ' 'USA '∘.,⍕¨⍳10))('Size' (200 360))('Posn' 200 20)
- 'F1.LEFT.LV'eWS('ImageListObj' 'IL32' 'IL16') ('ImageIndex' (30⍴1 2 3))
+ 'F1.LEFT.LV'eWC'ListView'('View' 'Icon')('Border' 1)('Size' (200 360))('Posn' 200 20)
+ 'F1.LEFT.LV'eWS 'Items'(,⍉'DK ' 'UK ' 'USA '∘.,⍕¨⍳10)
+ 'F1.LEFT.LV'eWS ('ImageListObj' 'IL32' 'IL16') ('ImageIndex' (30⍴1 2 3))
  'F1.LEFT.LV'eWS ('ColTitles'('Flag' 'Country' 'Index'))('ReportInfo'(((30⍴'Denmark' 'United Kingdom' 'USA')),⍪⍳30))
  'F1.LEFT.LV'eWS 'Event' ('Select' 'ItemDown' 'ItemDblClick' 'KeyPress') 'CBUpdateListView'
 
