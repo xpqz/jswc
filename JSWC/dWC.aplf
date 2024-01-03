@@ -17,9 +17,8 @@
  :EndIf
 
  :If 9≠classes.⎕NC type
-     Warning 'WC ',Name,' - unsupported classe "',type,'"'
+     Warning 'WC ',Name,' - unsupported class "',type,'"'
      ⎕←⎕SE.UCMD 'disp ⍪Props'
-     Warning'Unsupported class: ',type
      Name caller.⎕NS''
      (caller⍎Name).Type←type
      →0
