@@ -28,9 +28,7 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;reqfn;info;sns;i;co
 
          :Select ,ns.⎕NL 9
          :Case 'Event'
-             (ID conn)←getConnection sns ns.Event.ID
-       ⍝ /// Maybe use a "proper" queue
-             ns ⎕TPUT DQ_TOKENBASE+TOKENSTEP×ID
+             ns ⎕TPUT DQ_TOKENBASE+TOKENSTEP×1
              ⍝ /// Need something better than this from JD
              :If '*'∊1↓⎕STACK[;2] ⍝ A suspension in the client app
              :AndIf 9=sns.⎕NC 'TIMER'

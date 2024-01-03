@@ -95,6 +95,7 @@
  WGID←0
  WG_TIMEOUT←5 ⍝ Seconds to wait for response
  SESSIONS←⍬ ⍬ ⍝ (IDs, Connections, SessionData)
+ QUEUEIDS←QUEUEDATA←⍬
 
  (EVENTNUMS EVENTNAMES)←↓⍉↑2031⌶0
  eventNames←⎕C EVENTNAMES

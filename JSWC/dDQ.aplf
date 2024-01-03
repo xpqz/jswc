@@ -1,41 +1,39 @@
- {R}←∆DQ names;⎕TRAP;caller;class;Name;type;HR;timers;event;done;interrupt;conn;ID;tkn
+ {R}←∆DQ names;⎕TRAP;caller;class;type;HR;timers;event;done;interrupt;tkn;m;i
 
  ⎕TRAP←0 'S'
-
- Name←1⊃names←,⊆names
+ names←,⊆names
  caller←⊃⎕RSI
  :If ~∧/names∊'.' '#'
-     ⎕SIGNAL(2≠caller.⎕NC⍕Name,'.Type')/11
+     ⎕SIGNAL(2.1∨.≠caller.⎕NC names,¨⊂'.Type')/11
  :EndIf
-
- (ID conn)←getConnection caller names
- 'D'Log'   JSWC DQ Connection #',(⍕conn),': ',⍕names
-
- ⍝ :Hold 'JSWC DQ'
- ⍝    :If 0≠≢DEQUEUEING
- ⍝        ('DQ already in progress on ',⍕DEQUEUEING) ⎕SIGNAL 11 ⍝ /// Need to support more
- ⍝    :Else
- ⍝        DEQUEUEING←names
- ⍝    :EndIf
- ⍝:EndHold
 
  done←interrupt←0
  :Trap 1000
-     tkn←DQ_TOKENBASE+TOKENSTEP×ID
-     'N'Log'DQ: ',⍕tkn
+     tkn←DQ_TOKENBASE+TOKENSTEP×1
+     'N'Log'DQ: ',(⍕names),' at ',⍕showCallStack
      :Repeat
-         :If 0≠≢R←2 ⎕TGET tkn
-             :If 'N'∊LOGMODES
-                 'N' Log 1 ⎕JSON⍠'HighRank' 'Split'⊢R
-             :EndIf
-             :If MODE=2
-                 R.CodeLocation←⍕caller
-             :EndIf
-             done←processEvent R
-         :Else ⍝ Timeout
-             :If done←0=caller.⎕NC Name
+         :If 0=≢QUEUEIDS
+         :OrIf ~∨/m←QUEUEIDS∊names
+             :If 0≠≢R←2 ⎕TGET tkn
+                 :If 'N'∊LOGMODES
+                     'N'Log 1 ⎕JSON⍠'HighRank' 'Split'⊢R
+                 :EndIf
+                 :If MODE=2
+                     R.CodeLocation←⍕caller
+                 :EndIf
+                 :If 0=caller.⎕NC R.Event.ID
+                     'W'Log'Ignoring event on non-existent object ',R.Event.ID
+                 :Else
+                     QUEUEIDS,←⊂{(¯1+⍵⍳'.')↑⍵}R.Event.ID ⋄ QUEUEDATA,←R
+                 :EndIf
              :EndIf
          :EndIf
+
+         :If (≢QUEUEIDS)≥i←⌊/QUEUEIDS⍳names
+             done←processEvent QUEUEDATA[i]
+             (QUEUEIDS QUEUEDATA)←(i≠⍳≢QUEUEIDS)∘/¨QUEUEIDS QUEUEDATA
+         :EndIf
+         done∨←0∊caller.⎕NC names
      :Until done
  :Else
      interrupt←1
@@ -46,6 +44,6 @@
  ⍝:EndHold
 
  :If 0≠≢R
-     R←R.Event.(ID EventName)
+     R←(⊢/R).Event.(ID EventName) ⍝ /// Need a proper queue
  :EndIf
  'INTERRUPT'⎕SIGNAL interrupt/999

@@ -24,9 +24,9 @@
     nq.EventName←2⊃Event
     nq.⎕EX 'Event'
     NQ.Event←nq
-    tkn←DQ_TOKENBASE+TOKENSTEP×ID
+    tkn←DQ_TOKENBASE+TOKENSTEP×1
     :If 'N'∊LOGMODES
-        'N' Log (⍕tkn),' - ',msg←1 ⎕JSON⍠'HighRank' 'Split'⊢NQ
+        'N' Log 'NQ: ',msg←1 ⎕JSON⍠'HighRank' 'Split'⊢NQ
     :EndIf
     →0 ⊣ NQ ⎕TPUT tkn
  :EndIf

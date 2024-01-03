@@ -1,6 +1,6 @@
  {end}←processEvent ns;Info;ID;Event;event;events;fns;info;fn;z;async;class;e;code;res
 
- :If 2=ns.⎕NC 'CodeLocation'
+ :If 2=ns.⎕NC'CodeLocation'
      code←⍎ns.CodeLocation
  :Else
      code←CODELOCATION
@@ -12,19 +12,13 @@
  :Trap 6
      event←code⍎z←ID,'.Event'
  :Else
-     'E' Log '*** Unable to find ',z,', cannot process ',⎕JSON ns
+     'E'Log'*** Unable to find ',z,', cannot process ',⎕JSON ns
      →0
  :EndTrap
 
- :If (⊂Event)∊⊆2⊃BREAK
- :OrIf (⊂ID)∊⊆1⊃BREAK
-     ⎕←'BREAK on ',⎕JSON ns
-     ∘∘∘
- :EndIf
-
  (events fns)←↓⍉↑event
  :If ~(⊂Event)∊events
-     'E' Log '*** No callback defined for event ',Event,' on object ',ID
+     'E'Log'*** No callback defined for event ',Event,' on object ',ID
      ∘∘∘
      →0
  :EndIf
@@ -36,40 +30,48 @@
  fn←(⍕code),'.',(-async)↓fn
  res←⍬
 
- :If 3≠⎕NC fn
-     'E' Log 'Callback function not found: ',fn
- :ElseIf 1=≢info
-     :If async
-         (⍎fn)&(ID Event),Info
-     :Else
-         :Trap 85 ⍝ No result
-             res←0 (85⌶)fn,'(ID Event),Info'
-         :EndTrap
+ :Hold 'JSWC.processEvent'
+     :If (⊂Event)∊⊆2⊃BREAK
+     :OrIf (⊂ID)∊⊆1⊃BREAK
+         ⎕←'BREAK on ',⎕JSON ns
+         ∘∘∘
      :EndIf
- :ElseIf 2=≢info
-     :If async
-         (2⊃info)(⍎fn)&(ID Event),Info
+
+     :If 3≠⎕NC fn
+         'E'Log'Callback function not found: ',fn
+     :ElseIf 1=≢info
+         :If async
+             (⍎fn)&(ID Event),Info
+         :Else
+             :Trap 85 ⍝ No result
+                 res←0(85⌶)fn,'(ID Event),Info'
+             :EndTrap
+         :EndIf
+     :ElseIf 2=≢info
+         :If async
+             (2⊃info)(⍎fn)&(ID Event),Info
+         :Else
+             res←0(85⌶)'(2⊃info)',fn,'(ID Event),Info'
+         :EndIf
      :Else
-         res←0 (85⌶)'(2⊃info)',fn,'(ID Event),Info'
+         'E'Log'*** Ill-formed event: ',⍕event
      :EndIf
- :Else
-     'E' Log '*** Ill-formed event: ',⍕event
- :EndIf
+ :EndHold
 
  :If res≢⍬
  :AndIf res≢ID Event,Info
-     'D' Log 'Callback function ',fn,' returned modified event: ',⍕res
+     'D'Log'Callback function ',fn,' returned modified event: ',⍕res
     ⍝ end←res≡1
  :EndIf
 
  :If 1 ⍝ Recording events
- :AndIf 9=⎕NC (⍕code),'.',ID
+ :AndIf 9=⎕NC(⍕code),'.',ID
  :AndIf 9=⎕NC class←'classes.',⎕C code⍎ID,'.Type'
      class←⍎class
      e←{0::⍵ ⋄ class.SupportedEvents}''
      :If ~(⊂Event)∊e
-        'D' Log 'Adding event ',Event,,' to ',⍕class
-        class.SupportedEvents←∪e,⊂Event
-        ⎕SE.Link.Add (⍕class),'.SupportedEvents'
+         'D'Log'Adding event ',Event,,' to ',⍕class
+         class.SupportedEvents←∪e,⊂Event
+         ⎕SE.Link.Add(⍕class),'.SupportedEvents'
      :EndIf
  :EndIf
