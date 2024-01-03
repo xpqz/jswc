@@ -41,7 +41,10 @@
  'F1.Table'eWC'Grid'(∘.×⍨⍳n)(240 10)(550 780)
 
  'F1.PasswordField'eWC'Edit' 'Password'(210 340)(23 100)('Password' '*')('Event' 'Change' 'JSWCUpdate')
+
  eNQ 'F1.TableSize' 'GotFocus'
+ eNQ 'F1.Months' 'GotFocus'
+ eNQ 'F1.Months' 'ItemDown' 1 1 0 4
 
  ⍝ Test eWG
 
