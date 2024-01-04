@@ -17,6 +17,8 @@
      (⊃⎕DMX.DM)⎕SIGNAL⊃⎕DMX.EN
  :EndTrap
 
+ JSWC.NOIDQ←0 ⍝ Allow interactive DQ
+
  :Select JSWC.MODE
  :Case 0 ⍝ Desktop
      ⎕SE.Posn←200 300

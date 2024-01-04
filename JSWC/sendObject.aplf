@@ -3,7 +3,7 @@
  msg←⎕JSON⍠'HighRank' 'Split'⊢obj
  (ID conn)←getConnection caller name
  :If conn≠0
-     'T' Log '#',(⍕conn),': ',((500⌊≢msg)↑msg),(500<≢msg)/'...'
+     'T' Log '#',(⍕conn),': ',((MAXLOG⌊≢msg)↑msg),(MAXLOG<≢msg)/'...'
      z←conn WSS.Send msg
  :EndIf
 

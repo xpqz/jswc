@@ -1,6 +1,6 @@
  R←msg WaitForWG(Props ID WGID);j;⎕TRAP;p;seqok;nl;nlc;m;t;token
 
- token←WG_TOKENBASE+TOKENSTEP×ID
+ token←WG_TOKENBASE+TOKENSTEP×1
 AGAIN:
  j←WG_TIMEOUT ⎕TGET token
  :If 0=≢j

@@ -24,6 +24,7 @@
     nq.EventName←2⊃Event
     nq.⎕EX 'Event'
     NQ.Event←nq
+    NQ.⎕EX 'NQ'
     tkn←DQ_TOKENBASE+TOKENSTEP×1
     :If 'N'∊LOGMODES
         'N' Log 'NQ: ',msg←1 ⎕JSON⍠'HighRank' 'Split'⊢NQ

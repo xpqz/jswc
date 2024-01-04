@@ -1,8 +1,21 @@
- fixSendEvents props;event;m
+ fixSendEvents props;event;m;names;values;one;i
 ⍝ props is an object about to be sent to the client
 ⍝ do not send numeric events or Close
 
  props.⎕EX 'Data' ⍝ Never send Data to JS client
+ :If 0≠≢names←props.⎕nl -9
+     values←,props⍎⍕names
+     values←(1+≢⍕caller)↓¨⍕¨values
+     ⍎'props.(',(⍕names),')←',(1≠≢names)↓'⊃values'
+ :EndIf
+
+ :If 0≠≢names←props.⎕nl -2
+ values←,⊂⍣(one←1=≢names)⊢props⍎⍕names
+ :AndIf 0≠≢i←⍸(2=≡¨values)∧0=≢∘⍴¨values ⍝ enclosed scalars
+     values[i]←⊃¨values[i]
+     ⍎'props.(',(⍕names[i]),')←',(1≠≢i)↓'⊃values[i]'
+ :EndIf
+
  →(0=props.⎕NC'Event')⍴0
  event←⊃¨props.Event
  :If ∨/m←~((10|⎕DR¨event)∊1 3)∨event∊⊂'Close'

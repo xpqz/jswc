@@ -43,6 +43,9 @@
      :EndIf
  :EndIf
 
+ :If 0=⎕NC'MAXLOG'
+     MAXLOG←2000
+ :EndIf
  :If 0=⎕NC'LOGMODES'
      LOGMODES←⎕A ⍝ Log everything (see Log)
  :EndIf
@@ -92,8 +95,9 @@
 
  allocateTokens
 
+ NOIDQ←1      ⍝ No interactive DQ
  WGID←0
- WG_TIMEOUT←5 ⍝ Seconds to wait for response
+ WG_TIMEOUT←3 ⍝ Seconds to wait for response
  SESSIONS←⍬ ⍬ ⍝ (IDs, Connections, SessionData)
  QUEUEIDS←QUEUEDATA←⍬
 

@@ -1,4 +1,4 @@
- {R}←Name ∆WS Props;WS;msg;ws;i;z;ref;expr;caller;⎕TRAP;proplist;pname;names;values;PropList;m;class;type;ix;HR
+ {R}←Name ∆WS Props;WS;msg;ws;i;z;ref;expr;caller;⎕TRAP;proplist;pname;names;values;PropList;m;class;type;ix;HR;e
  ⎕SIGNAL (2>|≡Props)/11
  ⎕TRAP←0 'S'
  :If (⊂,Name)∊,¨'⎕SE' '#' '.' ⍝ Pass WS of System properties through
@@ -56,6 +56,12 @@
  :EndIf
 
  values←names(type fixUpProps)values       ⍝ Regularise things for the poor JS code
+ :If 0≠i←(1+≢names)-(⌽names)⍳⊂'Event'      ⍝ Last Event
+ :AndIf 0 0≢i⊃values                       ⍝ Reset
+ :AndIf 0≢⍴e←caller⍎Name,'.Event'          ⍝ Event property is "additive"
+     e←((e≢0 0)/e),i⊃values
+     (i⊃values)←e[{⊢/⍵}⌸⊃¨e] ⍝ Pick last occurrence of each event
+ :EndIf
 
  WS←⎕NS''
  ws←WS.WS←⎕NS''

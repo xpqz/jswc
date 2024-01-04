@@ -206,13 +206,14 @@
           :If '/'≡⍥,url
               url←DefaultPage
           :EndIf
-          url↓⍨←+/∧\'/'=url ⍝ drop off leading '/'s
+          url↓⍨←+/∧\'/'=url ⍝ drop off leading '/'s   
           :If ~0∊⍴_mappings
           :AndIf (≢_mappings)≥ind←_mappings[;1]⍳⊂url↑⍨i←¯1+url⍳'/'
               file←((⊂ind 2)⊃_mappings),i↓url
           :Else
               file←HTMLFolder,url
-          :EndIf
+          :EndIf   
+          ⎕←'HTTP Request for ',file
           :If ⎕NEXISTS file
               respheaders⍪←'content-type'(ContentType file)
 ⍝              respheaders⍪←'content-encoding' 'gzip'

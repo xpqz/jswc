@@ -37,7 +37,7 @@
  propnames[ix]←AllProps[allprops⍳lcp[ix]] ⍝ Properly cased names
  valid[ix]←1
 
- m←(propnames∊⊂'event')∨{⌽(⍳≢⍵)=⍵⍳⍵}⌽propnames ⍝ Last occurrence of each name (except for Event)
+ m←(propnames∊⊂'Event')∨{⌽(⍳≢⍵)=⍵⍳⍵}⌽propnames ⍝ Last occurrence of each name (except for Event)
  (values propnames)←m∘/¨values propnames
  values←propnames(type fixUpProps)values       ⍝ Regularise things for the poor JS code
 
@@ -51,10 +51,10 @@
      :If 'ribbon'≢6↑type
          values←(m←(type≢'imagelist')∨~propnames∊⍥⎕C⊂'files')/values
          pn←m/propnames
-         :If type≡'bitmap'
+         :If (⊂type)∊'bitmap' 'icon'
          :AndIf (≢pn)≥i←(⎕C pn)⍳⊂'file'
-         :AndIf 2=⎕NC'IMAGEFOLDER'
-             (i⊃values)←IMAGEFOLDER,1↓i⊃values  ⍝ Adjust BitMap image file names
+         :AndIf ⎕NEXISTS folder←⊃⎕NPARTS⊃1↓,RESOURCES
+             (i⊃values)←folder,1↓i⊃values  ⍝ Adjust BitMap image file names
          :EndIf
          :If (≢pn)≥i←pn⍳⊂'Event'
              (i⊃values)←{⍵[1],⊃⍵[2]}¨i⊃values
@@ -115,6 +115,7 @@
      ∘∘∘
  :EndIf
 
+ 'D' Log 'Create ',WC.WC.Properties.Type,' ',WC.WC.ID,' at ',⍕3↑showCallStack
  fixSendEvents WC.WC.Properties
  sendObject WC WC.WC.ID
 

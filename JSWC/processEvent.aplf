@@ -42,6 +42,8 @@
      :ElseIf 1=≢info
          :If async
              (⍎fn)&(ID Event),Info
+         :ElseIf 0=1 2⊃⎕AT fn ⍝ Niladic fn
+             ⍎fn
          :Else
              :Trap 85 ⍝ No result
                  res←0(85⌶)fn,'(ID Event),Info'
@@ -51,7 +53,9 @@
          :If async
              (2⊃info)(⍎fn)&(ID Event),Info
          :Else
-             res←0(85⌶)'(2⊃info)',fn,'(ID Event),Info'
+             :Trap 85
+                res←0(85⌶)'(2⊃info)',fn,'(ID Event),Info'
+             :EndTrap
          :EndIf
      :Else
          'E'Log'*** Ill-formed event: ',⍕event
@@ -70,6 +74,7 @@
      class←⍎class
      e←{0::⍵ ⋄ class.SupportedEvents}''
      :If ~(⊂Event)∊e
+     :AndIf isChar Event
          'D'Log'Adding event ',Event,,' to ',⍕class
          class.SupportedEvents←∪e,⊂Event
          ⎕SE.Link.Add(⍕class),'.SupportedEvents'

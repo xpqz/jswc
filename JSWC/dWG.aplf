@@ -2,7 +2,7 @@
  ⎕TRAP←0 'S'
  Name←⍕Name
  :If (⊂,Name)∊,¨'⎕SE' '#' '.' ⍝ Pass WG of System properties through
-     →0 ⊣ R←Name ⎕WG Props
+     →0⊣R←Name ⎕WG Props
  :EndIf
 
  caller←⊃⎕RSI
@@ -19,18 +19,18 @@
 
  proplist←⎕C PropList←class.PropList,objProps
  :If ∨/m←(≢proplist)<i←proplist⍳⎕C p
-     Warning 'Unsupported on ',class,': ',⍕m/p
+     Warning'Unsupported on ',class,': ',⍕m/p
  :EndIf
  p[ix]←PropList[i[ix←⍸~m]]
 
  :If remote←∨/,dynamic←p∊⍥⎕C class.Dynamic,⊂'NoSuchProperty' ⍝ Any reason to ask remote client for values?
-     wg.(WGID ID Properties)←(⍕WGID) ((2×'#.'≡2↑Name)↓Name) (d←dynamic/p)
+     wg.(WGID ID Properties)←(⍕WGID)((2×'#.'≡2↑Name)↓Name)(d←dynamic/p)
      msg←⎕JSON WG
      :If CONNECTED
-         'T' Log '#',(⍕conn),': ',msg
+         'T'Log'#',(⍕conn),': ',msg
          z←conn WSS.Send msg
      :Else
-         'T' Log '(no connection): ',msg
+         'T'Log'(no connection): ',msg
      :EndIf
  :EndIf
 
@@ -39,11 +39,11 @@
  :Else
      R←(≢p)⍴⊂⍬
      :If 0≠≢i←⍸~dynamic
-        :Trap 6
-            R[i]←caller⍎((1=≢i)/'⊂'),Name,'.(',(⍕p[i]),')'
-        :Else
-            ⎕DMX.Message ⎕SIGNAL 6
-        :EndTrap
+         :Trap 6
+             R[i]←caller⍎((1=≢i)/'⊂'),Name,'.(',(⍕p[i]),')'
+         :Else
+             ⎕DMX.Message ⎕SIGNAL 6
+         :EndTrap
      :EndIf
  :EndIf
 
@@ -57,13 +57,22 @@
 
  :If remote
      :Trap 6 ⍝ Request for unsupported property
-        r←msg WaitForWG d ID (⍕WGID)
-        R[p⍳d]←r
+         r←msg WaitForWG d ID(⍕WGID)
+         R[p⍳d]←r
      :Else
-        ⎕DMX.EM ⎕SIGNAL ⎕DMX.EN
+         :Select (caller⍎Name,'.Type')Props
+         :Case 'SubForm' 'Size'
+             'W'Log'Working around failed WG Size on Subform ',Name
+             R←,⊂caller⍎Name,'.Size'
+         :Case 'Grid' 'CurCell'
+             'W'Log'Working around failed WG CurCell on grid ',Name
+             R←,⊂1 1
+         :Else
+             ⎕DMX.EM ⎕SIGNAL ⎕DMX.EN
+         :EndSelect
      :EndTrap
  :EndIf
 
  :If 1=≡Props
-    R←⊃R
+     R←⊃R
  :EndIf

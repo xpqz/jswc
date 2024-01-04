@@ -2,9 +2,11 @@ dqTimer args;R;done;code;sns
 ⍝ Handle one Timer event for interactive operation
 ⍝ /// Maybe check if a DQ is running?
 
+→NOIDQ⍴0
+→(∨/('∆NQ' '∆DQ')∊⎕SI)⍴0
 code←⍎sns←{(-(⌽⍵)⍳'.')↓⍵}⊃args
 
-:If 0≠≢R←5 ⎕TGET DQ_TOKENBASE+TOKENSTEP×code.ID
+:If 0≠≢R←5 ⎕TGET DQ_TOKENBASE+TOKENSTEP×1
     R.CodeLocation←{(-(⌽⍵)⍳'.')↓⍵}sns
     done←processEvent&R
 :EndIf
