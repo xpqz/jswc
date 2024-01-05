@@ -22,10 +22,10 @@
  comments←'' 'Cannot buy or sell any of these'
 
  titles←'Ticker' 'Fixed' 'Price' 'Quantity' 'Value' 'Comments'
- widths←30 30 50 60 100 200
+ widths←40 30 50 60 100 200
 
  e←'Event'('CellChanged' 'CellDown' 'CellDblClick' 'CellMove' 'KeyPress')'JSWCUpdate'
- (g←'F1.Holdings')eWC'Grid'('ColTitles'titles)('Posn'(40 10))('Size'(100,780⌈+/widths))('TitleWidth' 0)('ShowInput' 0)e ⍝ ('CellWidths' widths)
+ (g←'F1.Holdings')eWC'Grid'('ColTitles'titles)('Posn'(40 10))('Size'(100,780⌈+/widths))('TitleWidth' 0)('ShowInput' 0)e ('CellWidths' widths)
 
  (g,'.OUTPUT')eWC'Label'
  (g,'.TEXT')eWC'Edit'('Event' 'KeyPress' 'JSWCUpdate')
