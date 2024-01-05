@@ -1,4 +1,4 @@
- DemoGrids connected;inputs;scores;cc
+ DemoGrids connected;inputs;cc;e;fmts;fcol;ticker;fixed;value;price;quantity;comments;titles;g;values;types
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
@@ -6,7 +6,7 @@
  f←'×'
  allf←'+-×÷'
 
- 'F1'eWC'Form' 'Function Table'(50 50)(800 800)('Coord' 'Pixel')
+ 'F1'eWC'Form' 'Grids'(50 50)(800 800)('Coord' 'Pixel')
  'F1.MB'eWC'MenuBar'
  'F1.MB.File'eWC'Menu' '&File'
  'F1.MB.Col'eWC'Menu' '&Colours'
@@ -14,19 +14,39 @@
  'F1.MB.Col.Blue'eWC'MenuItem' '&Blue'('Event' 'Select' 'JSWCUpdate')
  'F1.MB.Col.Green'eWC'MenuItem' '&Green'('Event' 'Select' 'JSWCUpdate')
 
- 'F1.Players'eWC'Grid'('ColTitles'('Name' 'Gender' 'Score' 'Expert'))('Posn'(10 10))('Size'(100 480))('TitleWidth' 0)('ShowInput' 1)('Event' ('CellChanged' 'CellMove' 'KeyPress') 'JSWCUpdate')
- 'F1.Players.Name'eWC'Edit'('Size'(23 100))('Event' 'KeyPress' 'JSWCUpdate')
- 'F1.Players.Gender'eWC'Combo'('Items'('Male' 'Female'))('Size'(10 100))
- 'F1.Players.Score'eWC'Edit'('FieldType' 'Numeric')('Size'(23 50))
- 'F1.Players.Expert'eWC'Button'('Style' 'Check')('Size'(23 25))
- inputs←'F1.Players.'∘,¨'Name' 'Gender' 'Score' 'Expert'
- scores←12 13
- 'F1.Players'eWS('Values'('Amir' 'Fatima','Male' 'Female',scores,⍪0 1))('CellTypes'(2 4⍴1 2 3 4))('Input'inputs)
- 'F1.Players'eWS 'CurCell' (2 1)
- 'F1.Average'eWC'Label'('Average Score:',1⍕+/scores÷≢scores)(115 180)(23 200)
- 'F1.Home'eWC'Button' 'Home'(115 10)(23 100)('Event' 'Select' 'JSWCUpdate')
+ ticker←'ABCD' 'DEFG' 'HIJL'
+ fixed←0 1 0
+ quantity←5123 6750 11231
+ price←1.23 2.34 3.45
+ value←quantity×price
+ comments←'' 'Cannot buy or sell any of these'
 
- 'F1.Months'eWC'TreeView'('Q1' 'Jan' 'Feb' 'Mar' 'Q2' 'Apr' 'May' 'Jun')(10 500)(150 150)('Depth'(8⍴0 1 1 1))
+ titles←'Ticker' 'Fixed' 'Price' 'Quantity' 'Value' 'Comments'
+
+ e←'Event' ('CellChanged' 'CellDown' 'CellDblClick' 'CellMove' 'KeyPress') 'JSWCUpdate'
+ (g←'F1.Holdings') eWC'Grid'('ColTitles' titles)('Posn'(40 10))('Size'(100 780))('TitleWidth' 0)('ShowInput' 0)e
+
+ (g,'.OUTPUT')eWC'Label'
+ (g,'.TEXT')eWC'Edit'('Event' 'KeyPress' 'JSWCUpdate')
+
+ (g,'.INT') eWC'Edit'('FieldType' 'Numeric')('Decimals' 0)
+ (g,'.FLOAT') eWC'Edit'('FieldType' 'Numeric')('Decimals' 2)
+ (g,'.CHECK')eWC'Button'('Style' 'Check')
+
+ inputs←g∘,¨'OUTPUT' 'TEXT' 'INT' 'FLOAT' 'CHECK'
+
+ ⍝ 4 inputs × 3 FCol × 2 BCol × 2 CellFonts × 3 FormatStrings
+ fmts←'30A1' 'O0<No >O1<Yes>I3' 'O0<na>S<,..,>M<->CF10.2'
+ fcol←(0 0 0)(255 0 0)(0 255 0)
+
+ values←⍉↑ticker fixed price quantity value comments
+ types←(⍴values)⍴1 5 4 3 1 2
+
+ g eWS('Values' values)('Input'inputs)('CellTypes' types)
+ g eWS 'CurCell' (1 3)
+
+ 'F1.Average'eWC'Label'('Total value: ',1⍕+/value)(145 180)(23 200)
+ 'F1.Home'eWC'Button' 'Home'(145 10)(23 100)('Event' 'Select' 'JSWCUpdate')
 
  'F1.TableSize'eWC'Edit' '10'(210 10)(23 100)('FieldType' 'Numeric')('Event' 'Change' 'JSWCUpdate')
  'F1.Function'eWC'Combo'(,¨allf)f(210 120)(23 100)('SelItems'(allf=f))('Event' 'Select' 'JSWCUpdate')
@@ -35,7 +55,7 @@
 
  'F1.PasswordField'eWC'Edit' 'Password'(210 340)(23 100)('Password' '*')('Event' 'Change' 'JSWCUpdate')
 
- cc←'F1.Players' eWG 'CurCell'
- :If cc≢2 1
-     'F1.Average'eWS 'Caption' ('CurCell is ',(⍕cc),', should be 2 1')
+ cc←g eWG 'CurCell'
+ :If cc≢1 3
+     'F1.Average'eWS 'Caption' ('CurCell is ',(⍕cc),', should be 1 3')
  :EndIf

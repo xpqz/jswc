@@ -5,7 +5,7 @@
 
  :Select 1⊃args
  :Case 'F1.Home'
-     eNQ'F1.Players' 'CellMove' 1 1
+     eNQ'F1.Players' 'CellMove' 1 3
  :Case 'F1.PasswordField' ⍝ Edit
      pass←'F1.PasswordField'eWG'Value'
      'F1.Average'eWS'Caption'('Password is ',pass)
