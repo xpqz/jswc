@@ -115,7 +115,7 @@
      ∘∘∘
  :EndIf
 
- 'D' Log 'Create ',WC.WC.Properties.Type,' ',WC.WC.ID,' at ',⍕3↑showCallStack
+ 'D' Log '*** CREATE ',WC.WC.Properties.Type,' ',WC.WC.ID,' at ',⍕3↑showCallStack
  fixSendEvents WC.WC.Properties
  sendObject WC WC.WC.ID
 
