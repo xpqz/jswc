@@ -213,7 +213,6 @@
           :Else
               file←HTMLFolder,url
           :EndIf   
-          ⎕←'HTTP Request for ',file
           :If ⎕NEXISTS file
               respheaders⍪←'content-type'(ContentType file)
 ⍝              respheaders⍪←'content-encoding' 'gzip'

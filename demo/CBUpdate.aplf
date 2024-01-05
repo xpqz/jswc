@@ -4,8 +4,15 @@
  e.(ID EventName Info)←(2↑args),⊂2↓args
 
  :Select 1⊃args
+ :Case 'F1.Holdings'
+     →0 ⍝ To Come
  :Case 'F1.Home'
-     eNQ'F1.Players' 'CellMove' 1 3
+     :If 9=⎕NC 'F1.Players'
+          eNQ'F1.Players' 'CellMove' 1 1
+     :Else
+          eNQ'F1.Holdings' 'CellMove' 1 3
+     :EndIf
+
  :Case 'F1.PasswordField' ⍝ Edit
      pass←'F1.PasswordField'eWG'Value'
      'F1.Average'eWS'Caption'('Password is ',pass)
