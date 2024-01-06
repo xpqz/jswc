@@ -1,7 +1,7 @@
  DemoGrids connected;inputs;cc;e;fmts;ticker;fixed;value;price;quantity;comments;titles;g;values;widths;inputix;types;fmtix;ws;fcols;bcols;fcolix;bcolix;fontix;fonts
  JSWC.CONNECTED←connected
  :If ~connected
-    JSWC.(CONNECTED USEWIN32 LOGMODES)←0 1 '' ⍝ /// While debugging
+    JSWC.(CONNECTED USEWIN32 LOGMODES)←0 1 ⎕A  ⍝ /// While debugging
  :EndIf
  ⎕PW←1000
 
@@ -30,7 +30,7 @@
  titles←'Ticker' 'Fixed' 'Price' 'Quantity' 'Value' 'Comments'
  widths←     40      30      50         60     100        200
 
- e←'Event' ('CellChanged' 'CellDown' 'CellDblClick' 'CellMove' 'KeyPress') 'JSWCUpdate'
+ e←'Event' 'CellChanged' 'JSWCUpdate'
  (g←'F1.Holdings') eWC'Grid'('ColTitles' titles)('Posn'(40 10))('Size'(100,(1+≢widths)++/widths))('TitleWidth' 0)e('CellWidths' widths)
  g eWS 'ShowInput' 0
 

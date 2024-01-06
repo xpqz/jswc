@@ -1,15 +1,15 @@
-r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;reqfn;info;sns;i;code;conn;coni;sock;z;m
+ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;reqfn;info;sns;i;code;conn;coni;sock;z;m;msg
  ⎕TRAP←0 'S'
- 'R' Log '#',(⍕con),': ',payload
+ 'R'Log'#',(⍕con),': ',payload
  i←(2⊃SESSIONS)⍳con
  :If i>≢1⊃SESSIONS
-     'W' Log 'Message received from closed session #',⍕con
+     'W'Log'Message received from closed session #',⍕con
      →0
  :EndIf
  code←(2+i)⊃SESSIONS
 
  :If (⊂10↑payload)∊'Initialise' 'Initialize'
-     :If 2=⎕NC 'IGNORE1Init'
+     :If 2=⎕NC'IGNORE1Init'
      :AndIf IGNORE1Init≠0
          IGNORE1Init←0
          :Return
@@ -19,7 +19,7 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;reqfn;info;sns;i;co
      :If 3=code.⎕NC fn
          (code⍎fn)&CONNECTED
      :ElseIf 0≠≢reqfn ⍝ Explicit function requested
-         'E' Log 'Initialise: Function not found: ',(⍕code),'.',fn
+         'E'Log'Initialise: Function not found: ',(⍕code),'.',fn
      :EndIf
  :Else
      :Trap 999
@@ -31,22 +31,26 @@ r←con Handler payload;ns;Event;ID;Info;events;fns;fn;event;reqfn;info;sns;i;co
              ns ⎕TPUT DQ_TOKENBASE+TOKENSTEP×1
              ⍝ /// Need something better than this from JD
              :If '*'∊1↓⎕STACK[;2] ⍝ A suspension in the client app
-             :AndIf 9=sns.⎕NC 'TIMER'
-                  sns.⎕NQ 'TIMER' 1001 ⍝ Wake it up
+             :AndIf 9=sns.⎕NC'TIMER'
+                 sns.⎕NQ'TIMER' 1001 ⍝ Wake it up
              :EndIf
          :Case 'WG'
              ns ⎕TPUT WG_TOKENBASE+TOKENSTEP×1 ⍝ ⊃getConnection sns ns.WG.ID
+         :Case 'FormatCell'
+             :If 0≠≢msg←1 ⎕JSON code formatRequest ns
+                 con WSS.Send msg
+             :EndIf
          :Case 'Signal'
              :If ns.Signal.Name≡'Close' ⍝ Client about to close the socket
                  closeConnection con
              :Else
-                 'E' Log 'Unknown signal received: ',payload
+                 'E'Log'Unknown signal received: ',payload
              :EndIf
          :Else
-             'E' Log 'Invalid message received: ',payload
+             'E'Log'Invalid message received: ',payload
          :EndSelect
      :Else
-         'E' Log 'Message processing failed:'
-         'E' Log←↑⎕DMX.DM
+         'E'Log'Message processing failed:'
+         'E'Log←↑⎕DMX.DM
      :EndTrap
  :EndIf

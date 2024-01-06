@@ -2,6 +2,7 @@ mode Log msg
 ⍝ Log modes: Controlled by JSWC.LOGMODES
 ⍝ D: Debug
 ⍝ E: Error
+⍝ F: Format Request
 ⍝ W: Warning
 ⍝ T: Transmit on WebSocket
 ⍝ R: Receive on WebSocket

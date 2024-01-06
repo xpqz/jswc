@@ -1,16 +1,25 @@
- JSWCUpdate args;e;scores;cols;fcol;pass;ii;ids;target;row;col;scroll;sel;mouse;changed;newval;txt
+ JSWCUpdate args;e;scores;cols;fcol;pass;ii;ids;target;row;col;scroll;sel;mouse;changed;newval;txt;ns
  Event←⎕NS''
  e←Event.Event←⎕NS''
  e.(ID EventName Info)←(2↑args),⊂2↓args
 
  :Select 1⊃args
  :Case 'F1.Holdings'
-     →0 ⍝ To Come
+     :If ~#.JSWC.CONNECTED
+     :AndIf 'CellChanged'≡2⊃args
+         ns←⎕NS''
+         ns.FormatCell←⎕NS''
+         ns.FormatCell.(ID Cell Value)←(1⊃args) (args[3 4]) (5⊃args)
+         ⎕←'Testing formatCell:'
+         ⎕←'  In:  ',⎕JSON ns
+         ⎕←'  Out: ',⎕THIS #.JSWC.formatCell ns
+     :EndIf
+
  :Case 'F1.Home'
-     :If 9=⎕NC 'F1.Players'
-          eNQ'F1.Players' 'CellMove' 1 1
+     :If 9=⎕NC'F1.Players'
+         eNQ'F1.Players' 'CellMove' 1 1
      :Else
-          eNQ'F1.Holdings' 'CellMove' 1 3
+         eNQ'F1.Holdings' 'CellMove' 1 3
      :EndIf
 
  :Case 'F1.PasswordField' ⍝ Edit
@@ -46,7 +55,7 @@
      :Select 2⊃args
      :CaseList 'ItemDown' 'ItemDblClick'
          :Trap 6
-             sel←(1⊃args) eWG 'SelItems'
+             sel←(1⊃args)eWG'SelItems'
              txt,←' (WG SelItems OK)'
          :Else
              txt,←' (WG SelItems FAILED)'
@@ -54,14 +63,14 @@
 
          txt,←' node #',(⍕3⊃args),' ',((4⊃args)⊃'left' 'right' '' 'center'),' button ',((1 2 4⍳5⊃args)⊃'shift' 'ctrl' 'alt' 'no'),' key '
      :Case 'MouseUp'
-        txt,←,' ',⍕2↓args
+         txt,←,' ',⍕2↓args
      :CaseList 'Expanding' 'Retracting'
          txt,←' node #',⍕3⊃args
          ii←(1⊃args)eWG'ImageIndex'
          ii[3⊃args]←1+'Expanding'≡2⊃args ⍝ Set Image Index to open or closed
          (1⊃args)eWS'ImageIndex'ii
      :EndSelect
-     'F1.Average' eWS 'Caption' txt
+     'F1.Average'eWS'Caption'txt
  :CaseList cols←'F1.MB.Col.'∘,¨'Red' 'Blue' 'Green'
      fcol←(cols⍳args[1])⊃(255 0 0)(0 0 255)(0 255 0)
      'F1.Average'eWS'FCol'fcol

@@ -116,7 +116,7 @@
  :EndIf
 
  'D' Log '*** CREATE ',WC.WC.Properties.Type,' ',WC.WC.ID,' at ',⍕3↑showCallStack
- fixSendEvents WC.WC.Properties
+ fixSendEvents WC.WC.(ID Properties)
  sendObject WC WC.WC.ID
 
  :If USEHR∧type≡'form'

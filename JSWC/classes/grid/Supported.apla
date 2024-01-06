@@ -13,4 +13,8 @@
  'CurCell'
  'CellWidths'
  'RowTitles'
+ 'FormatString'
+ 'FCol'
+ 'BCol'
+ 'CellFonts'
 )

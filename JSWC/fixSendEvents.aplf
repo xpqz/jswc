@@ -1,26 +1,38 @@
- fixSendEvents props;event;m;names;values;one;i
+ fixSendEvents(id props);event;m;names;values;one;i;vcf;ns;vals;fs;ct
 ⍝ props is an object about to be sent to the client
 ⍝ do not send numeric events or Close
 
- props.⎕EX 'Data' ⍝ Never send Data to JS client
- :If 0≠≢names←props.⎕nl -9
+ props.⎕EX'Data' ⍝ Never send Data property to JS client
+
+ :If 0≠≢names←props.⎕NL-9              ⍝ Do not try to serialise namespaces
      values←,props⍎⍕names
      values←(1+≢⍕caller)↓¨⍕¨values
      ⍎'props.(',(⍕names),')←',(1≠≢names)↓'⊃values'
  :EndIf
 
- :If 0≠≢names←props.⎕nl -2
- values←,⊂⍣(one←1=≢names)⊢props⍎⍕names
- :AndIf 0≠≢i←⍸(2=≡¨values)∧0=≢∘⍴¨values ⍝ enclosed scalars
+ :If 0≠≢names←props.⎕NL-2
+     values←,⊂⍣(one←1=≢names)⊢props⍎⍕names
+ :AndIf 0≠≢i←⍸(2=≡¨values)∧0=≢∘⍴¨values ⍝ Cannot JSONify enclosed scalars
      values[i]←⊃¨values[i]
      ⍎'props.(',(⍕names[i]),')←',(1≠≢i)↓'⊃values[i]'
  :EndIf
 
- →(0=props.⎕NC'Event')⍴0
- event←⊃¨props.Event
- :If ∨/m←~((10|⎕DR¨event)∊1 3)∨event∊⊂'Close'
-     props.Event←m/props.Event
-     (2⊃¨props.Event)←⊂'' ⍝ blank out extra info - will soon delete this completely
- :Else
-     props.⎕EX'Event'
+ :If ∨/m←0≠props.⎕NC vcf←'Values' 'CellTypes' 'FormatString'
+ :AndIf 'Grid'≡caller⍎id,'.Type'
+     vals←(caller⍎id)⍎⍕vcf
+     (m/vals)←props⍎(1≠+/m)↓'⊂',⍕m/vcf
+     (vals ct fs)←vals
+     :If ~0∊∊⍴¨fs ct
+         props.FormattedValues←,¨fs[ct]⎕FMT¨⍉∘⍪¨vals
+     :EndIf
+ :EndIf
+
+ :If 0≠props.⎕NC'Event'
+     event←⊃¨props.Event
+     :If ∨/m←~((10|⎕DR¨event)∊1 3)∨event∊⊂'Close'
+         props.Event←m/props.Event
+         (2⊃¨props.Event)←⊂''               ⍝ Blank out extra info /// will soon send only the Event name
+     :Else
+         props.⎕EX'Event'
+     :EndIf
  :EndIf
