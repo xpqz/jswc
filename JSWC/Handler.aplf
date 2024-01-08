@@ -37,8 +37,9 @@
          :Case 'WG'
              ns ⎕TPUT WG_TOKENBASE+TOKENSTEP×1 ⍝ ⊃getConnection sns ns.WG.ID
          :Case 'FormatCell'
-             :If 0≠≢msg←1 ⎕JSON code formatCell ns
-                 con WSS.Send msg
+             :If 0≠≢msg←code formatCell ns
+                 'T' Log ('#',⍕con),' ',msg
+                 z←con WSS.Send msg
              :EndIf
          :Case 'Signal'
              :If ns.Signal.Name≡'Close' ⍝ Client about to close the socket
