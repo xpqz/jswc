@@ -1,4 +1,4 @@
- values←names(type fixUpProps)values;special;i;ixs;ns;n;ix;val
+ values←names(type fixUpProps)values;special;i;ixs;ns;n;ix;val;c
 ⍝ Massage properties that can have multiple formats into regular structures for JS
 
  special←'Event' 'Points' 'Radius' 'LWidth' 'LStyle' 'FStyle' 'Visible' 'Active' 'Interval' 'File' 'FileNames' 'Picture'
@@ -29,6 +29,8 @@
          (ix⊃values)←⊃ix⊃values ⍝ Must be scalar
      :Case 'Picture'
          (ix⊃values)←2↑(,⊆ix⊃values),3 ⍝ Default to Center
+         n←≢c←(⍕caller),'.'
+         (ix 1⊃values)←{(n×c≡n↑⍵)↓⍵}(ix 1⊃values)
      :CaseList 'File' 'FileNames'
          (ix⊃values)←(' ' ⎕R '_')ix⊃values
      :EndSelect

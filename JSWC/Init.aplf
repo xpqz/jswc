@@ -1,4 +1,6 @@
  {prefix}Init args;mode;z;i;t;fn;folder;⎕TRAP
+ ⎕IO←⎕ML←1
+
  ⎕TRAP←0 'S'
  :Select ≢args←,⊆args
  :Case 1 ⋄ mode←⊃args ⋄ CODELOCATION←⊃⎕RSI

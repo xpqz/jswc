@@ -4,6 +4,6 @@
 
  'LOGO'eWC'BitMap'('File' '/images/dyalog-logo.jpg')
  'F1'eWC'Form' 'JSWC Demos'('BCol'(255 255 255))('Coord' 'Pixel')('Size'(300 400))('Picture'('LOGO' 3))
- 'F1.L1' eWC 'Label' ('Welcome to EWC, Session #',⍕_JSWC.ID) (6 5)
+ 'F1.L1' eWC 'Label' ('Welcome to EWC, Session #',⍕_JSWC.ID) (6 5)('Size' (23 200))
 
  addDemoMenu ''

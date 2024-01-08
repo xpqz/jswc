@@ -8,8 +8,8 @@
  JSWC.RESOURCES←1 2⍴'images'(root,'/demo/images')
 
  ⎕USING←''
- seps←System.Globalization.CultureInfo.CurrentCulture.NumberFormat.(NumberDecimalSeparator NumberGroupSeparator)
- JSWC.settings.Locale.(Decimal Thousand)←seps
+ ⍝ seps←System.Globalization.CultureInfo.CurrentCulture.NumberFormat.(NumberDecimalSeparator NumberGroupSeparator)
+ ⍝ JSWC.settings.Locale.(Decimal Thousand)←seps
 
  :Trap 0
      'e'JSWC.Init web

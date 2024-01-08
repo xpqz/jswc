@@ -23,7 +23,8 @@
      (m/vals)←props⍎(1≠+/m)↓'⊂',⍕m/vcf
      (vals ct fs)←vals
      :If ~0∊∊⍴¨fs ct
-         props.FormattedValues←,¨fs[ct]⎕FMT¨⍉∘⍪¨vals
+⍝         props.FormattedValues←,¨fs[ct]⎕FMT¨⍉∘⍪¨vals
+         props.FormattedValues←fs[ct]format1Cell¨vals
      :EndIf
  :EndIf
 
