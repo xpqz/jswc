@@ -38,7 +38,7 @@
              ns ⎕TPUT WG_TOKENBASE+TOKENSTEP×1 ⍝ ⊃getConnection sns ns.WG.ID
          :Case 'FormatCell'
              :If 0≠≢msg←code formatCell ns
-                 'T' Log ('#',⍕con),' ',msg
+                 'T' Log ('#',⍕con),': ',msg
                  z←con WSS.Send msg
              :EndIf
          :Case 'Signal'

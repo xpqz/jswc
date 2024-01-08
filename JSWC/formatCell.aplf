@@ -8,8 +8,8 @@
          obj←caller⍎id
      :AndIf ∧/2=⌊|obj.⎕NC'Values' 'FormatString' 'CellTypes'
          (val fmts cts)←obj.(Values FormatString CellTypes)
-     :AndIf (cell←ns.FormatCell.Cell)∧.≤⍴val
-         ns.FormattedValue←,(fmts⊃⍨cell⌷cts)⎕FMT⍉⍪⊃cell⌷val
+     :AndIf (cell←ns.FormatCell.Cell)∧.≤⍴cts
+         ns.FormattedValue←,(fmts⊃⍨cell⌷cts)⎕FMT⍉⍪ns.FormatCell.Value
          r←1 ⎕JSON ns
      :Else
          'W'Log'Unable to process FormatRequest on ',id,'.'
