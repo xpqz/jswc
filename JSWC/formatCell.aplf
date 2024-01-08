@@ -9,9 +9,9 @@
      :AndIf ∧/2=⌊|obj.⎕NC'Values' 'FormatString' 'CellTypes'
          (val fmts cts)←obj.(Values FormatString CellTypes)
      :AndIf (cell←ns.FormatCell.Cell)∧.≤⍴cts
-         ns.FormattedValue←,(fmts⊃⍨cell⌷cts)⎕FMT⍉⍪ns.FormatCell.Value
+         ns.FormatCell.FormattedValue←,(fmts⊃⍨cell⌷cts)⎕FMT⍉⍪ns.FormatCell.Value
          r←1 ⎕JSON ns
      :Else
-         'W'Log'Unable to process FormatRequest on ',id,'.'
+         'W'Log'Unable to process FormatCell on ',id,'.'
      :EndIf
  :EndIf
