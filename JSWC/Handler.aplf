@@ -37,7 +37,7 @@
          :Case 'WG'
              ns ⎕TPUT WG_TOKENBASE+TOKENSTEP×1 ⍝ ⊃getConnection sns ns.WG.ID
          :Case 'FormatCell'
-             :If 0≠≢msg←1 ⎕JSON code formatRequest ns
+             :If 0≠≢msg←1 ⎕JSON code formatCell ns
                  con WSS.Send msg
              :EndIf
          :Case 'Signal'
