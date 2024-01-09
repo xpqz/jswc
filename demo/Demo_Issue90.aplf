@@ -9,7 +9,7 @@
  f←'×'
  allf←'+-×÷'
 
- 'F1'eWC'Form' 'Grids'(50 50)(800 800)('Coord' 'Pixel')
+ 'F1'eWC'Form' 'Grids'(50 50)(800 940)('Coord' 'Pixel')
  'F1.MB'eWC'MenuBar'
  'F1.MB.File'eWC'Menu' '&File'
  'F1.MB.Col'eWC'Menu' '&Colours'
@@ -31,16 +31,15 @@
  widths←40 30 50 60 100 200
 
  e←'Event' 'CellChanged' 'JSWCUpdate'
-
  'F1.Y0' eWC _issue90wc
 
  MName←'F1'
 
- (MName,'.Y0.C1') eWC'Edit'('Font'('sGrdFnt'))('FieldType' 'Char')('Event' 'KeyPress' '#.KeyPress')('BCol'(255 255 223))('Font' 'sGrdFnt')('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu') ⍝ ...MouseWheel added 15.05.15 - aim
- (MName,'.Y0.C2') eWC'Edit'('Font'('sGrdFnt'))('FieldType' 'Numeric')('Event' 'BadValue' ¯1)('Event' 'KeyPress' '#.KeyPress')('BCol'(255 255 223))('Font' 'sGrdFnt')('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
- (MName,'.Y0.C3') eWC'Edit'('Font'('sGrdFnt1'))('FieldType' 'Char')('Event' 'KeyPress' '#.KeyPress')('BCol'(255 255 223))('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
- (MName,'.Y0.C4') eWC'Button'('Style' 'Check')('Font'('sGrdFnt1'))('Event' 'KeyPress' '#.KeyPress')('Event' 'Select' 'onBtnSelect')('Align' 'Right')('BCol'(255 255 223))('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
- JSWC.format1Cell
+ (MName,'.Y0.C1') eWC'Edit'('Font'('sGrdFnt'))('FieldType' 'Char')⍝('Event' 'KeyPress' '#.KeyPress')('BCol'(255 255 223))('Font' 'sGrdFnt')('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu') ⍝ ...MouseWheel added 15.05.15 - aim
+ (MName,'.Y0.C2') eWC'Edit'('Font'('sGrdFnt'))('FieldType' 'Numeric')⍝ ('Event' 'BadValue' ¯1)('Event' 'KeyPress' '#.KeyPress')('BCol'(255 255 223))('Font' 'sGrdFnt')('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
+ (MName,'.Y0.C3') eWC'Edit'('Font'('sGrdFnt1'))('FieldType' 'Char')⍝ ('Event' 'KeyPress' '#.KeyPress')('BCol'(255 255 223))('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
+ (MName,'.Y0.C4') eWC'Button'('Style' 'Check')('Font'('sGrdFnt1'))⍝('Event' 'KeyPress' '#.KeyPress')('Event' 'Select' 'onBtnSelect')('Align' 'Right')('BCol'(255 255 223))('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
+
  'F1.Y0' eWS _issue90ws
  →0
 
