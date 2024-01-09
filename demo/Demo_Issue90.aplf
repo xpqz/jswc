@@ -1,10 +1,10 @@
- Demo_Issue90 connected;inputs;cc;e;fmts;ticker;fixed;value;price;quantity;comments;titles;g;values;widths;inputix;types;fmtix;ws;fcols;bcols;fcolix;bcolix;fontix;fonts;props
+ Demo_Issue90 connected;inputs;cc;e;fmts;ticker;fixed;value;price;quantity;comments;titles;g;values;widths;inputix;types;fmtix;ws;fcols;bcols;fcolix;bcolix;fontix;fonts;props;MName
  JSWC.CONNECTED←connected
  :If ~connected
      JSWC.(CONNECTED USEWIN32 LOGMODES)←0 1 ⎕A  ⍝ /// While debugging
  :EndIf
  ⎕PW←1000
-
+ #.JSWC.MAXLOG←50000
  n←10
  f←'×'
  allf←'+-×÷'
@@ -34,17 +34,14 @@
 
  'F1.Y0' eWC _issue90wc
 
-⍝ (MName,'.Y0.C1')#.xWC'Edit'('Font'('sGrdFnt'))('FieldType' 'Char')('Event' 'KeyPress' '#.KeyPress')('BCol'(SetBCol 255 255 223))('Font' 'sGrdFnt')('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu') ⍝ ...MouseWheel added 15.05.15 - aim
-⍝ (MName,'.Y0.C2')#.xWC'Edit'('Font'('sGrdFnt'))('FieldType' 'Numeric')('Event' 'BadValue' ¯1)('Event' 'KeyPress' '#.KeyPress')('BCol'(SetBCol 255 255 223))('Font' 'sGrdFnt')('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
-⍝ (MName,'.Y0.C3')#.xWC'Edit'('Font'('sGrdFnt1'))('FieldType' 'Char')('Event' 'KeyPress' '#.KeyPress')('BCol'(SetBCol 255 255 223))('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
-⍝ (MName,'.Y0.C4')#.xWC'Button'('Style' 'Check')('Font'('sGrdFnt1'))('Event' 'KeyPress' '#.KeyPress')('Event' 'Select' 'onBtnSelect')('Align' 'Right')('BCol'(SetBCol 255 255 223))('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
+ MName←'F1'
 
-⍝ 55:18.216 T:  #4: {"WC":{"ID":"F0000.App.⍙3S36.Y0.C1","Properties":{"BCol":[255,255,223],"Event":[["KeyPress",""],["MouseWheel",""],["ContextMenu",""]],"FieldType":"Char","Font":"sGrdFnt","Type":"Edit"}}}
-⍝ 55:18.499 T:  #4: {"WC":{"ID":"F0000.App.⍙3S36.Y0.C2","Properties":{"BCol":[255,255,223],"Event":[["BadValue",""],["KeyPress",""],["MouseWheel",""],["ContextMenu",""]],"FieldType":"Numeric","Font":"sGrdFnt","Type":"Edit"}}}
-⍝ 55:18.747 T:  #4: {"WC":{"ID":"F0000.App.⍙3S36.Y0.C3","Properties":{"BCol":[255,255,223],"Event":[["KeyPress",""],["MouseWheel",""],["ContextMenu",""]],"FieldType":"Char","Font":"sGrdFnt1","Type":"Edit"}}}
-⍝ 55:18.958 T:  #4: {"WC":{"ID":"F0000.App.⍙3S36.Y0.C4","Properties":{"Align":"Right","BCol":[255,255,223],"Event":[["KeyPress",""],["Select",""],["MouseWheel",""],["ContextMenu",""]],"Font":"sGrdFnt1","Style":"Check","Type":"Button"}}}
-
-⍝ 'F1.Y0' eWS _issue90ws
+ (MName,'.Y0.C1') eWC'Edit'('Font'('sGrdFnt'))('FieldType' 'Char')('Event' 'KeyPress' '#.KeyPress')('BCol'(255 255 223))('Font' 'sGrdFnt')('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu') ⍝ ...MouseWheel added 15.05.15 - aim
+ (MName,'.Y0.C2') eWC'Edit'('Font'('sGrdFnt'))('FieldType' 'Numeric')('Event' 'BadValue' ¯1)('Event' 'KeyPress' '#.KeyPress')('BCol'(255 255 223))('Font' 'sGrdFnt')('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
+ (MName,'.Y0.C3') eWC'Edit'('Font'('sGrdFnt1'))('FieldType' 'Char')('Event' 'KeyPress' '#.KeyPress')('BCol'(255 255 223))('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
+ (MName,'.Y0.C4') eWC'Button'('Style' 'Check')('Font'('sGrdFnt1'))('Event' 'KeyPress' '#.KeyPress')('Event' 'Select' 'onBtnSelect')('Align' 'Right')('BCol'(255 255 223))('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
+ JSWC.format1Cell
+ 'F1.Y0' eWS _issue90ws
  →0
 
  inputs←g∘,¨'.OUTPUT' '.TEXT' '.INT' '.FLOAT' '.CHECK' '.OUTPUTR'
