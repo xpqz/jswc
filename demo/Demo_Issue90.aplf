@@ -31,15 +31,6 @@
  widths←40 30 50 60 100 200
 
  e←'Event' 'CellChanged' 'JSWCUpdate'
- (g←'F1.Holdings')eWC'Grid'('ColTitles'(↓(⊂'Column'),⍪titles))('Posn'(40 10))('Size'(100,(1+≢widths)++/widths))('TitleWidth' 0)e('CellWidths'widths)
- g eWS'ShowInput' 0
-
- (g,'.OUTPUT')eWC'Label'
- (g,'.TEXT')eWC'Edit'('Event' 'KeyPress' 'JSWCUpdate')
- (g,'.INT')eWC'Edit'('FieldType' 'Numeric')('Decimals' 0)
- (g,'.FLOAT')eWC'Edit'('FieldType' 'Numeric')('Decimals' 2)
- (g,'.CHECK')eWC'Button'('Style' 'Check')
- (g,'.OUTPUTR')eWC'Label'('Justify' 'Right')
 
  'F1.Y0' eWC _issue90wc
 

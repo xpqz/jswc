@@ -70,15 +70,51 @@
  (                                                                                                             
   'ColTitles'                                                                                                  
   (                                                                                                            
-   'Quote list'                                                                                                
-   'Traded'                                                                                                    
-   'Quoted'                                                                                                    
-   '(ISIN)'                                                                                                    
-   'Code'                                                                                                      
-   '(Reuters)'                                                                                                 
-   'Code (A/N)'                                                                                                
-   'Code'                                                                                                      
-   '(A/N)'                                                                                                     
+   (                                                                                                           
+    ''                                                                                                         
+    ''                                                                                                         
+    'Quote list'                                                                                               
+   )                                                                                                           
+   (                                                                                                           
+    ''                                                                                                         
+    'Volume'                                                                                                   
+    'Traded'                                                                                                   
+   )                                                                                                           
+   (                                                                                                           
+    ''                                                                                                         
+    ''                                                                                                         
+    'Quoted'                                                                                                   
+   )                                                                                                           
+   (                                                                                                           
+    'Security'                                                                                                 
+    'Code'                                                                                                     
+    '(ISIN)'                                                                                                   
+   )                                                                                                           
+   (                                                                                                           
+    ''                                                                                                         
+    'Tick'                                                                                                     
+    'Code'                                                                                                     
+   )                                                                                                           
+   (                                                                                                           
+    'Security'                                                                                                 
+    'Code'                                                                                                     
+    '(Reuters)'                                                                                                
+   )                                                                                                           
+   (                                                                                                           
+    'Underlying'                                                                                               
+    'Security'                                                                                                 
+    'Code (A/N)'                                                                                               
+   )                                                                                                           
+   (                                                                                                           
+    'Underlying'                                                                                               
+    'Security'                                                                                                 
+    'Code'                                                                                                     
+   )                                                                                                           
+   (                                                                                                           
+    'Security'                                                                                                 
+    'Code'                                                                                                     
+    '(A/N)'                                                                                                    
+   )                                                                                                           
   )                                                                                                            
  )                                                                                                             
  (                                                                                                             
