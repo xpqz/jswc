@@ -20,6 +20,8 @@
  'F1.PROP'eWC'Font' 'Segoe UI' 18
 
  'F1.GR1' eWC 'Group' ('Caption' '')('Posn' (0 0))('Size' (800 10))
+ 'F1.T' eWC 'TabControl'('Posn' (0 0))('Size'(500 500))
+ 'F1.T.T1' eWC 'TabButton' ('Caption' '')
  'F1.SF1' eWC 'SubForm' ('Posn' (20 10))
  'F1.SF1.SF2' eWC 'SubForm'
  MName←'F1.SF1.SF2'
