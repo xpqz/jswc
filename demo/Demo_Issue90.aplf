@@ -4,7 +4,6 @@
      JSWC.(CONNECTED USEWIN32 LOGMODES)←0 1 ⎕A  ⍝ /// While debugging
  :EndIf
  ⎕PW←1000
- #.JSWC.MAXLOG←50000
  n←10
  f←'×'
  allf←'+-×÷'
@@ -20,6 +19,11 @@
  'F1.FIXED'eWC'Font' 'Courier New' 18
  'F1.PROP'eWC'Font' 'Segoe UI' 18
 
+ 'F1.GR1' eWC 'Group' ('Caption' '')('Posn' (0 0))('Size' (800 10))
+ 'F1.SF1' eWC 'SubForm' ('Posn' (20 10))
+ 'F1.SF1.SF2' eWC 'SubForm'
+ MName←'F1.SF1.SF2'
+
  ticker←'ABCD' 'DEFG' 'HIJL'
  fixed←0 1 0
  quantity←5123 6750 11231
@@ -31,16 +35,17 @@
  widths←40 30 50 60 100 200
 
  e←'Event' 'CellChanged' 'JSWCUpdate'
- 'F1.Y0' eWC _issue90wc
+ (MName,'.Y0') eWC _issue90wc
+ (MName,'.Y0') eWS ('Posn' 30 0)
+ (MName,'.too')eWC 'Label' ('Caption' ' ')('Posn' (0 0))('Font' 'Segue UI' 20 0 0 0 800)('Size' (28 940))
+ (MName,'.too')eWS 'Caption' 'List of Share and Option Prices -ММВБ- 27/07/23'
 
- MName←'F1'
+ (MName,'.Y0.C1') eWC'Edit'('Font'('sGrdFnt'))('FieldType' 'Char')('Event' 'KeyPress' '#.KeyPress')('BCol'(255 255 223))('Font' 'sGrdFnt')('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu') ⍝ ...MouseWheel added 15.05.15 - aim
+ (MName,'.Y0.C2') eWC'Edit'('Font'('sGrdFnt'))('FieldType' 'Numeric')('Event' 'BadValue' ¯1)('Event' 'KeyPress' '#.KeyPress')('BCol'(255 255 223))('Font' 'sGrdFnt')('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
+ (MName,'.Y0.C3') eWC'Edit'('Font'('sGrdFnt1'))('FieldType' 'Char')('Event' 'KeyPress' '#.KeyPress')('BCol'(255 255 223))('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
+ (MName,'.Y0.C4') eWC'Button'('Style' 'Check')('Font'('sGrdFnt1'))('Event' 'KeyPress' '#.KeyPress')('Event' 'Select' 'onBtnSelect')('Align' 'Right')('BCol'(255 255 223))('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
 
- (MName,'.Y0.C1') eWC'Edit'('Font'('sGrdFnt'))('FieldType' 'Char')⍝('Event' 'KeyPress' '#.KeyPress')('BCol'(255 255 223))('Font' 'sGrdFnt')('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu') ⍝ ...MouseWheel added 15.05.15 - aim
- (MName,'.Y0.C2') eWC'Edit'('Font'('sGrdFnt'))('FieldType' 'Numeric')⍝ ('Event' 'BadValue' ¯1)('Event' 'KeyPress' '#.KeyPress')('BCol'(255 255 223))('Font' 'sGrdFnt')('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
- (MName,'.Y0.C3') eWC'Edit'('Font'('sGrdFnt1'))('FieldType' 'Char')⍝ ('Event' 'KeyPress' '#.KeyPress')('BCol'(255 255 223))('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
- (MName,'.Y0.C4') eWC'Button'('Style' 'Check')('Font'('sGrdFnt1'))⍝('Event' 'KeyPress' '#.KeyPress')('Event' 'Select' 'onBtnSelect')('Align' 'Right')('BCol'(255 255 223))('Event' 'MouseWheel' '#.MouseWheelCb')('Event' 'ContextMenu' 'onContextMenu')
-
- 'F1.Y0' eWS _issue90ws
+ (MName,'.Y0') eWS _issue90ws
  →0
 
  inputs←g∘,¨'.OUTPUT' '.TEXT' '.INT' '.FLOAT' '.CHECK' '.OUTPUTR'
