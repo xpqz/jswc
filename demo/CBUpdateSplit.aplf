@@ -1,4 +1,4 @@
-CBUpdateSplit args;e;scores;cols;fcol;pass;X;Y;H;W;label;txt;rs;rp;sp;ss;ls;t;fs;ts;bp;bs
+CBUpdateSplit args;e;scores;cols;fcol;pass;X;Y;H;W;label;txt;rs;rp;sp;ss;ls;t;fs;ts;bp;bs;width;depth
 Event←⎕NS ''
 e←Event.Event←⎕NS ''
 e.(ID EventName Info)←(2↑args),⊂2↓args
@@ -9,6 +9,10 @@ label←'F1.RIGHT.TOP.Average'
 :Case 'F1.RIGHT.BOT.TABLE.Players' ⍝ CellChanged
      scores←('F1.RIGHT.BOT.TABLE.Players' eWG 'Values')[;3]
      label eWS 'Caption' ('Average score:',1⍕+/scores÷≢scores)
+:Case 'F1.RIGHT.TOP.RESIZE'
+     depth←'F1.RIGHT.TOP.DEPTH' eWG 'Value'
+     width←'F1.RIGHT.TOP.WIDTH' eWG 'Value'
+     eNQ 'F1' 'Configure',('F1' eWG 'Posn'),depth width
 :CaseList 'F1.SPLIT' 'F1.RIGHT.SPLIT'
      (X Y H W)←4↑e.Info
      txt←,⍕('XYHW',¨':'),¨⍕¨X Y H W
