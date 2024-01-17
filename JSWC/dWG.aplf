@@ -55,7 +55,7 @@
      (⎕JSON msg)⎕TPUT WG_TOKENBASE+TOKENSTEP×ID
  :EndIf
 
- :If remote
+ :If remote∧CONNECTED
      :Trap 6 ⍝ Request for unsupported property
          r←msg WaitForWG d ID(⍕WGID)
          R[p⍳d]←r

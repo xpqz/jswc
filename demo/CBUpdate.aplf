@@ -1,4 +1,4 @@
- JSWCUpdate args;e;scores;cols;fcol;pass;ii;ids;target;row;col;scroll;sel;mouse;changed;newval;txt;ns
+ JSWCUpdate args;e;scores;cols;fcol;pass;ii;ids;target;row;col;scroll;sel;mouse;changed;newval;txt;ns;split
  Event←⎕NS''
  e←Event.Event←⎕NS''
  e.(ID EventName Info)←(2↑args),⊂2↓args
@@ -70,7 +70,9 @@
          ii[3⊃args]←1+'Expanding'≡2⊃args ⍝ Set Image Index to open or closed
          (1⊃args)eWS'ImageIndex'ii
      :EndSelect
-     'F1.Average'eWS'Caption'txt
+     split←'F1.LEFT.Months'≡1⊃args ⍝ Demo Splitters
+     ('F1.',(split/'RIGHT.TOP.'),'Average')eWS'Caption'txt
+     →split⍴0
  :CaseList cols←'F1.MB.Col.'∘,¨'Red' 'Blue' 'Green'
      fcol←(cols⍳args[1])⊃(255 0 0)(0 0 255)(0 255 0)
      'F1.Average'eWS'FCol'fcol

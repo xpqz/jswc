@@ -1,21 +1,24 @@
- DemoSplitters connected;inputs;scores;TBL;GRID;z;colors;imagefiles;periods
+ DemoSplitters connected;inputs;scores;TBL;GRID;z;colors;imagefiles;periods;names;expert;type
  JSWC.CONNECTED←connected
+ :If ~connected
+    JSWC.(CONNECTED USEWIN32 LOGMODES)←0 1 ''  ⍝ /// While debugging
+ :EndIf
+
  ⎕PW←1000
 
-DemoTreeView
  n←10
  f←'×'
  allf←'+-×÷'
  colors←'Red' 'Blue' 'Green'
 
- 'F1'eWC'Form' 'Splitters and Groups'(50 50)(800 800)('Coord' 'Pixel')('BCol' (255 0 0)) ⍝ ('VScroll' ¯1)('HScroll' ¯1)
+ 'F1'eWC'Form' 'Splitters and Groups'(50 50)(800 800)('Coord' 'Pixel')
  imagefiles←'/images/'∘,¨'Folder-Closed.png' 'Folder-Open.png' 'Price-Ticket.png'
  'IL'eWC'ImageList'('Size'(16 16))('Masked' 2)('Files' imagefiles)
 
 'F1.LEFT'eWC'SubForm'('Posn' (0 0))('Size'(800 200))
- 'F1.LEFT.COLORS' eWC 'List' colors (10 10) (100 200)('Border' 1)('SelItems' (0 0 1))
+ 'F1.LEFT.COLORS' eWC 'List' colors (10 10) (100 150)('Border' 1)('SelItems' (0 0 1))('Attach' 'Top' 'Left' 'Top' 'Right')
  periods←'Q1' 'Jan' 'Feb' 'Mar' 'Q2' 'Apr' 'May' 'Jun'
- 'F1.LEFT.Months'eWC'TreeView' periods (150 10)(150 150)('Depth'(8⍴0 1 1 1))('ImageListObj' '#.IL')('ImageIndex' (8⍴1 3 3 3))('Event' ('Expanding' 'Retracting') 'JSWCUpdate')
+ 'F1.LEFT.Months'eWC'TreeView' periods (150 10)(150 150)('Depth'(8⍴0 1 1 1))('ImageListObj' '#.IL')('ImageIndex' (8⍴1 3 3 3))('Event' ('Expanding' 'Retracting') 'JSWCUpdate')('Attach' 'Top' 'Left' 'Top' 'Left')
 
  'F1.RIGHT'eWC'SubForm' ('Visible' 1)('Posn' (0 200))('Size'(800 600))('Attach'('Top' 'Left' 'Bottom' 'Right'))('BCol'(240 240 240))('EdgeStyle' 'None')
 
@@ -26,14 +29,17 @@ DemoTreeView
  (TBL←'F1.RIGHT.BOT.TABLE') eWC 'Group' 'Players'('Posn' (10 10))('Size' (450 550))
 
  GRID←TBL,'.Players'
- GRID eWC'Grid'('ColTitles'('Name' 'Gender' 'Score' 'Expert'))('Posn'(40 10))('Size'(100 480))('TitleWidth' 0)('ShowInput' 1)('Event' 'CellChanged' 'CBUpdateSplit')
+ GRID eWC'Grid'('ColTitles'('Name' 'Status' 'Score' 'Expert'))('Posn'(40 10))('Size'(400 480))('TitleWidth' 0)('ShowInput' 1)('Event' 'CellChanged' 'CBUpdateSplit')('VScroll' ¯1)('HScroll' ¯1)('Attach' 'Top' 'Left' 'Bottom' 'Right')
  (GRID,'.Name') eWC'Edit'('Size'(23 100))
- (GRID,'.Gender')eWC'Combo'('Items'('Male' 'Female'))('Size'(10 100))
+ (GRID,'.Class')eWC'Combo'('Items'('Pro' 'Amateur'))('Size'(10 100))
  (GRID,'.Score') eWC'Edit'('FieldType' 'Numeric')('Size'(23 50))
  (GRID,'.Expert') eWC'Button'('Style' 'Check')('Size'(23 25))
- inputs←GRID∘,¨'.Name' '.Gender' '.Score' '.Expert'
- scores←12 13
- GRID eWS('Values'('Amir' 'Fatima','Male' 'Female',scores,⍪0 1))('CellTypes'(2 4⍴1 2 3 4))('Input'inputs)
+ inputs←GRID∘,¨'.Name' '.Class' '.Score' '.Expert'
+ scores←100+?10⍴100
+ names←10⍴'Amir' 'Jack' 'Jill' 'Bill' 'Fatima' 'Judy'
+ type←'Pro' 'Amateur'[?10⍴2]
+ expert←¯1+?10⍴2
+ GRID eWS('Values'(names,type,scores,⍪expert))('CellTypes'(10 4⍴1 2 3 4))('Input'inputs)
  'F1.RIGHT.TOP.Average' eWC 'Label' ('Average Score:',1⍕+/scores÷≢scores) (115 20)(23 400)
  'F1.RIGHT'eWS'Visible' 1
 
@@ -48,3 +54,7 @@ DemoTreeView
       ⎕←'*** Unexpected return value for F1.SPLIT.Posn'
       ⎕←z
   :EndIf
+
+ :If ~connected
+     ⎕EX 'F1.HR'
+ :EndIf
