@@ -15,4 +15,5 @@
  'MaxLength'
  'FCol'
  'Attach'
+ 'Border'
 )
