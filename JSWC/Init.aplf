@@ -14,7 +14,7 @@
  :EndIf
 
  :If ~(⊂mode)∊0 1 2
-     mode←¯1+'desktop' 'browser' 'multi'⍳⊂⎕C mode
+     mode←¯1+'desktop' 'browser' 'multi'⍳⊂⎕C mode,(0=≢mode)/'desktop'
      'Mode argument should be one of Desktop/0, Browser/1 or Multi/2'⎕SIGNAL(mode=3)/11
  :EndIf
 
@@ -77,6 +77,12 @@
 
  :If MODE≠2 ⍝ Only going to have 1 instance of codelocation
      make_JSWC CODELOCATION ⍝ So create the timer here
+ :EndIf
+
+ :If 9=⎕NC 'WSS'
+     ⎕←'Closing existing Web Socket Server...'
+     WSS.Stop
+     ⎕DL 5
  :EndIf
 
  WSS←wss.New''

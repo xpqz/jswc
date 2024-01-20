@@ -1,6 +1,6 @@
  Run web;rc;msg;r;root;seps
  ⍝ Initialise the Demo application
- ⍝ web=1 for browser use, web=0 for desktop
+ ⍝ web: 'Desktop' (0), 'Browser' (1) or 'Multi' (2)
 
  JSWC←##.JSWC
  JSWC.PORT←22322
