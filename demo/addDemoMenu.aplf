@@ -6,7 +6,7 @@ size←form eWG 'Size'
 posn←0 (¯100+2⊃size)
 sf←form
 e←form eWG 'Event'
-form eWS 'Event' ((e~0),⊂'Close' 1)
+form eWS 'Event' ((e~0),⊂'Close' 'CBCloseDemo')
 (sf,'.MENU') eWC 'Combo' fns '' (posn+0 0)(23 90)('Event' 'Select' 'CBRunDemo')
 :If 0∧'Windows'≡7↑⊃'.' ⎕WG 'APLVersion'
    (sf,'.USEWIN32') eWC 'Button' 'Win32' (posn+22 0)(23 50)('State' JSWC.USEWIN32)('Style' 'Check')

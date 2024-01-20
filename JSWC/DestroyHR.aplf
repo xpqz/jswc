@@ -1,2 +1,28 @@
-{r}←DestroyHR args
-∆EX ¯3↓⊃args ⍝ Redirect to the Form
+ {r}←DestroyHR args;form;ref;event;i;fn;caller;ok
+⍝ Handle close of HR created to host a JSWC Form
+
+  r←0
+ :If 9=⎕NC form←¯3↓⊃args
+     ref←⍎form
+     caller←ref.##
+ :AndIf 2=ref.⎕NC'Type'
+ :AndIf 'Form'≡ref.Type
+     event←ref.Event
+     fn←ok←1 ⍝ Action not prohibited
+
+     :If (≢event)≥i←(⊃¨event)⍳⊂'Close'
+         fn←⊃(i,2)⊃event
+         :If isChar fn
+         :AndIf 3=caller.⎕NC fn
+             :Trap 85
+                 ok←0(85⌶) (⍕caller),'.',fn,'(⊂form),1↓args'
+             :EndTrap
+         :EndIf
+     :EndIf
+
+     :If ~(¯1≡⊃fn)∨ok≡0 ⍝ Not inhibited by event or callback
+         ∆EX form ⋄ r←1
+     :EndIf
+ :Else
+     'W'Log'Attempt to close ',,⍕args
+ :EndIf

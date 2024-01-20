@@ -26,6 +26,6 @@
  P←'Poly'((⊂35,formsize[2]-80)+(BY BX)(RY RX))((0 0 255)(255 0 0))
  'F1.LOGO'eWC P,('LWidth'(3 6))('FStyle'(¯1 0))('FillCol'(2⍴⊂0 255 0))
 
- eNQ 'F1.ROWS' 'GotFocus'
+ ⍝ eNQ 'F1.ROWS' 'GotFocus'
 
  CBUpdateLines ,⊂'F1.GO'
