@@ -8,21 +8,7 @@
  :AndIf 2=ref.⎕NC'Type'
  :AndIf 'Form'≡ref.Type
      event←ref.Event
-     fn←ok←1 ⍝ Action not prohibited
-
-     :If (≢event)≥i←(⊃¨event)⍳⊂'Close'
-         fn←⊃(i,2)⊃event
-         :If isChar fn
-         :AndIf 3=caller.⎕NC fn
-             :Trap 85
-                 ok←0(85⌶) (⍕caller),'.',fn,'(⊂form),1↓args'
-             :EndTrap
-         :EndIf
-     :EndIf
-
-     :If ~(¯1≡⊃fn)∨ok≡0 ⍝ Not inhibited by event or callback
-         ∆EX form ⋄ r←1
-     :EndIf
+     ∆NQ (⊂form),1↓args ⍝ Pass it on
  :Else
      'W'Log'Attempt to close ',,⍕args
  :EndIf

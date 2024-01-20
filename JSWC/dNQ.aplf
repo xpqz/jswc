@@ -1,4 +1,4 @@
- {R}←{Mode}∆NQ Event;caller;NQ;nq;msg;z;⎕TRAP;ID;conn;name;tkn
+ {R}←{Mode}∆NQ Event;caller;NQ;nq;msg;z;⎕TRAP;ID;conn;name;tkn;type;class;objref;event;i;fn;ok;hr;hdr;posn;size
  ⎕TRAP←0 'S'
  R←⍬
  caller←⊃⎕RSI
@@ -9,7 +9,42 @@
 
  :If 0=⎕NC'Mode' ⋄ Mode←0 ⋄ :EndIf
  :If (,¨1↑Event)∊,¨'.' '#' '⎕SE' ⍝ Pass NQ to system objects through
-     →0 ⊣ R←Mode ⎕NQ Event
+     →0⊣R←Mode ⎕NQ Event
+ :EndIf
+
+ (type class objref)←getObj name
+ ('Not a JSWC object: ',(⍕caller),'.',name)⎕SIGNAL(0=≢type)/11
+
+ event←objref.Event
+
+ :If (≢event)≥i←(⊃¨event)⍳Event[2] ⍝ Object has an event handler defined
+     fn←ok←1 ⍝ Action not prohibited
+     :If (≢event)≥i←(⊃¨event)⍳⊂'Close'
+         fn←⊃(i,2)⊃event
+         :If isChar fn
+         :AndIf 3=caller.⎕NC fn
+             :Trap 85
+                 ok←0(85⌶)(⍕caller),'.',fn,'(⊂form),1↓args'
+             :EndTrap
+         :EndIf
+     :EndIf
+
+     :If (¯1≡⊃fn)∨ok≡0 ⍝ Inhibited by property or refused by callback
+         →0
+     :EndIf
+ :EndIf
+
+ :If (MODE=0)∧type≡'Form' ⍝ Need special handling of some Form events when hosted in an HTMLRenderer
+     hr←objref.HR
+     :Select ⎕C 2⊃Event
+     :Case 'close'
+         ∆EX name
+         →0
+     :Case 'configure'
+         (hdr posn size)←1 0 1 0 1 0⊂6↑Event
+         objref.HR.(Posn Size)←0 (63 17)+posn size
+         Event[3 4]←0 0 ⍝ We always tell the client that Posn is (0,0)
+     :EndSelect
  :EndIf
 
  NQ←⎕NS''
@@ -21,22 +56,22 @@
  :EndIf
 
  :If (~isChar nq.Event)∨(⊂nq.Event)∊⊂'Close' ⍝ /// This needs to become a configurable list
-    nq.EventName←2⊃Event
-    nq.⎕EX 'Event'
-    NQ.Event←nq
-    NQ.⎕EX 'NQ'
-    tkn←DQ_TOKENBASE+TOKENSTEP×1
-    :If 'N'∊LOGMODES
-        'N' Log 'NQ: ',msg←1 ⎕JSON⍠'HighRank' 'Split'⊢NQ
-    :EndIf
-    →0 ⊣ NQ ⎕TPUT tkn
+     nq.EventName←2⊃Event
+     nq.⎕EX'Event'
+     NQ.Event←nq
+     NQ.⎕EX'NQ'
+     tkn←DQ_TOKENBASE+TOKENSTEP×1
+     :If 'N'∊LOGMODES
+         'N'Log'NQ: ',msg←1 ⎕JSON⍠'HighRank' 'Split'⊢NQ
+     :EndIf
+     →0⊣NQ ⎕TPUT tkn
  :EndIf
 
  msg←⎕JSON⍠'HighRank' 'Split'⊢NQ
 
  :If CONNECTED
      z←conn WSS.Send msg
-     'T' Log msg
+     'T'Log msg
  :Else
      ⎕←msg
  :EndIf

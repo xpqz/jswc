@@ -1,4 +1,4 @@
- {R}←Name ∆WS Props;WS;msg;ws;i;z;ref;expr;caller;⎕TRAP;proplist;pname;names;values;PropList;m;class;type;ix;HR;e
+ {R}←Name ∆WS Props;WS;msg;ws;i;z;ref;expr;caller;⎕TRAP;proplist;pname;names;values;PropList;m;class;type;ix;HR;e;objref
  ⎕SIGNAL (2>|≡Props)/11
  ⎕TRAP←0 'S'
  :If (⊂,Name)∊,¨'⎕SE' '#' '.' ⍝ Pass WS of System properties through
@@ -6,19 +6,9 @@
  :EndIf
 
  caller←⊃⎕RSI
+ (type class objref)←getObj Name
+ ('Not a JSWC object: ',(⍕caller),'.',Name)⎕SIGNAL (0=≢type)/11
 
- :Trap 0
-     type←caller⍎Name,'.Type'
-     :If 9≠classes.⎕NC ⎕C type
-         Warning'Unsupported class: ',type
-         ⎕←Props
-         →0
-     :EndIf
- :Else
-     ('Not a JSWC object: ',(⍕caller),'.',Name)⎕SIGNAL 11
- :EndTrap
-
- class←classes⍎⎕C type
  proplist←⎕C PropList←class.PropList,objProps
  :If (names←⎕C 1↑Props)∊proplist
      values←,⊂1↓Props
