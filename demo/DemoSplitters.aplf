@@ -23,7 +23,6 @@
 
  'F1.RIGHT'eWC'SubForm' ('Visible' 1)('Posn' (0 200))('Size'(800 600))('Attach'('Top' 'Left' 'Bottom' 'Right'))('BCol'(240 240 240))('EdgeStyle' 'None')
 
-
  'F1.SPLIT'eWC'Splitter' 'F1.LEFT' 'F1.RIGHT' ('Posn' (0 200))('Event' 'EndSplit' 'CBUpdateSplit')
  'F1.RIGHT.TOP'eWC'SubForm'
  'F1.RIGHT.BOT'eWC'SubForm'
@@ -37,7 +36,7 @@
 
  'F1.RIGHT.TOP.RESIZE'eWC'Button' 'Resize Form' (25 140)(23 90)('Event' 'Select' 'CBUpdateSplit')
 
- (TBL←'F1.RIGHT.BOT.TABLE') eWC 'Group' 'Players'('Posn' (10 10))('Size' (450 550))
+ (TBL←'F1.RIGHT.BOT.TABLE') eWC 'Group' 'Players'('Posn' (10 10))('Size' (450 550))('Attach' 'Top' 'Left' 'Bottom' 'Right')
 
  GRID←TBL,'.Players'
  GRID eWC'Grid'('ColTitles'('Name' 'Status' 'Score' 'Expert'))('Posn'(40 10))('Size'(400 480))('TitleWidth' 0)('ShowInput' 1)('Event' 'CellChanged' 'CBUpdateSplit')('VScroll' ¯1)('HScroll' ¯1)('Attach' 'Top' 'Left' 'Bottom' 'Right')
