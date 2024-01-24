@@ -1,11 +1,10 @@
  msg←Init sess;r
  msg←'' ⍝ Success
- ⎕←'Init delaying 2 seconds...'
- ⎕DL 2
+
  :Select JSWC.MODE
  :Case 0 ⍝ Desktop will Init itself
  :Case 1 ⍝ Single User Web
-     DemoMenu 1
+⍝     DemoMenu 1
  :Case 2 ⍝ Multi-User Web
      DemoMenu 1
      eDQ&'F1'

@@ -1,3 +1,4 @@
  Initialise connected;r
-⍝ Already done in Init
-⍝ DemoMenu connected
+
+ →(JSWC.MODE=0)⍴0 ⍝ Only in webby modes
+ DemoMenu connected
