@@ -1,11 +1,13 @@
- {R}←Name ∆WG Props;msg;WG;wg;z;caller;p;class;remote;dynamic;r;d;i;⎕TRAP;proplist;PropList;m;ix;ID;conn
+ {R}←Name ∆WG Props;msg;WG;wg;z;caller;p;class;remote;dynamic;r;d;i;⎕TRAP;proplist;PropList;m;ix;ID;conn;n;cp
  ⎕TRAP←0 'S'
  Name←⍕Name
  :If (⊂,Name)∊,¨'⎕SE' '#' '.' ⍝ Pass WG of System properties through
      →0⊣R←Name ⎕WG Props
  :EndIf
 
- caller←⊃⎕RSI
+ n←≢cp←'.',⍨⍕caller←⊃⎕RSI
+ Name←(n×cp≡n↑Name)↓Name
+
  (ID conn)←getConnection caller Name
  WG←⎕NS''
  wg←WG.WG←⎕NS''
