@@ -42,7 +42,7 @@
          →0
      :Case 'configure'
          (hdr posn size)←1 0 1 0 1 0⊂6↑Event
-         objref.HR.(Posn Size)←0 (63 17)+posn size
+         objref.HR.(Posn Size)←0 (HRBorder)+posn size
          Event[3 4]←0 0 ⍝ We always tell the client that Posn is (0,0)
      :EndSelect
  :EndIf

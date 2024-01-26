@@ -34,7 +34,6 @@
         ⎕DL 1
      :Until 2=⎕NC '_JSWC.ID'
      ⎕←''
-
      :If '''Browser'''≡¯5↑2 ⎕NQ'.' 'GetEnvironment' 'LX'
          ⎕←r←eDQ'.'
          :If r≡'F1' 'Close'

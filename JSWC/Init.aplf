@@ -103,6 +103,7 @@
 
  allocateTokens
 
+ HRBorder←63 17 ⍝ Additional space required for HR chrome
  NOIDQ←1      ⍝ No interactive DQ
  WGID←0
  WG_TIMEOUT←3 ⍝ Seconds to wait for response

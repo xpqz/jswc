@@ -1,14 +1,14 @@
- {r}←DestroyHR args;form;ref;event;i;fn;caller;ok
+ {r}←HRCallbacks args;form;ref;event;i;fn;caller;ok
 ⍝ Handle close of HR created to host a JSWC Form
 
-  r←0
+ r←0
  :If 9=⎕NC form←¯3↓⊃args
      ref←⍎form
      caller←ref.##
  :AndIf 2=ref.⎕NC'Type'
  :AndIf 'Form'≡ref.Type
      event←ref.Event
-     ∆NQ (⊂form),1↓args ⍝ Pass it on
+     ∆NQ(⊂form),1↓args ⍝ Pass it on
  :Else
      'W'Log'Attempt to close ',,⍕args
  :EndIf
