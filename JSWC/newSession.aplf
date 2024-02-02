@@ -1,4 +1,4 @@
- rc←newSession args;hdrs;event;obj;rc;msg;s;ns;code;CONN;conn;max;key
+ rc←newSession args;hdrs;event;obj;rc;msg;s;ns;code;CONN;conn;max;key;space
  rc←1 ⍝ Fail
  (rc obj event hdrs)←4↑args
  hdrs←WSS.ParseHeaders hdrs
@@ -18,7 +18,8 @@
      :EndIf
      (1⊃SESSIONS),←SESSIONID
      (2⊃SESSIONS),←conn←⊃2⊃⎕VFI ¯8↑obj
-     SESSIONS,←code
+     SESSIONS,←space←⎕NS ''
+     space.code←code
      rc←0
  :EndHold
 

@@ -1,10 +1,10 @@
- {r}←HRCallbacks args;form;ref;event;i;fn;caller;ok
+ {r}←HRCallbacks args;form;ref;event;i;fn;ok;CALLER
 ⍝ Handle close of HR created to host a JSWC Form
 
  r←0
  :If 9=⎕NC form←¯3↓⊃args
      ref←⍎form
-     caller←ref.##
+     CALLER←ref.##
  :AndIf 2=ref.⎕NC'Type'
  :AndIf 'Form'≡ref.Type
      event←ref.Event

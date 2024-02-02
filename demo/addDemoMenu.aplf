@@ -1,14 +1,20 @@
-addDemoMenu form;fns;size;posn;sf;e
+addDemoMenu form;fns;size;posn;sf;e;topright
 form←⊃'Form' eWN ⍕⎕THIS
 fns←(⊂'Pick a Demo'),4↓¨('D' ⎕NL ¯3)~'DemoMenu' 'DemoDefault'
-size←form eWG 'Size'
+
+:Trap 6
+   size←form eWG 'Size'
+:Else
+   ⎕←'*** UNABLE TO WG Size ***'
+   size←F1.Size
+:EndTrap
 
 posn←0 (¯100+2⊃size)
 sf←form
-⍝e←form eWG 'Event'
-⍝form eWS 'Event' ((e~0),⊂'Close' 'CBCloseDemo')
-(sf,'.MENU') eWC 'Combo' fns '' (posn+0 0)(23 90)('Event' 'Select' 'CBRunDemo')
+topright←'Attach' ('Top' 'Right' 'Top' 'Right')
+
+(sf,'.MENU') eWC 'Combo' fns '' (posn+0 0)(23 90)('Event' 'Select' 'CBRunDemo') topright
 :If 0∧'Windows'≡7↑⊃'.' ⎕WG 'APLVersion'
-   (sf,'.USEWIN32') eWC 'Button' 'Win32' (posn+22 0)(23 50)('State' JSWC.USEWIN32)('Style' 'Check')
+   (sf,'.USEWIN32') eWC 'Button' 'Win32' (posn+22 0)(23 50)('State' JSWC.USEWIN32)('Style' 'Check') topright
 :EndIf
-(sf,'.STOP')eWC 'Button' 'Stop' (posn+22 55)(18 28)('Event' 'Select' 'CBRunDemo')
+(sf,'.STOP')eWC 'Button' 'Stop' (posn+22 55)(18 28)('Event' 'Select' 'CBRunDemo') topright

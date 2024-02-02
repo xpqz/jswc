@@ -1,11 +1,13 @@
  {R}←{Mode}∆NQ Event;caller;NQ;nq;msg;z;⎕TRAP;ID;conn;name;tkn;type;class;objref;event;i;fn;ok;hr;hdr;posn;size
  ⎕TRAP←0 'S'
  R←⍬
- caller←⊃⎕RSI
+ :If ⎕THIS≡caller←⊃⎕RSI
+     caller←CALLER ⍝ // This is a hack to deal with ∆NQ from within Handler
+ :EndIf
  name←⊃Event
  (ID conn)←getConnection caller name
 
- (⊃Event)←(2×'#.'≡2↑⊃Event)↓⊃Event
+ (⊃Event)←caller removeCaller name ⍝ (2×'#.'≡2↑⊃Event)↓⊃Event
 
  :If 0=⎕NC'Mode' ⋄ Mode←0 ⋄ :EndIf
  :If (,¨1↑Event)∊,¨'.' '#' '⎕SE' ⍝ Pass NQ to system objects through
@@ -19,12 +21,12 @@
 
  :If (≢event)≥i←(⊃¨event)⍳Event[2] ⍝ Object has an event handler defined
      fn←ok←1 ⍝ Action not prohibited
-     :If (≢event)≥i←(⊃¨event)⍳⊂'Close'
+     :If (≢event)≥i←⌊/(⊃¨event)⍳'Close' 'Configure'
          fn←⊃(i,2)⊃event
          :If isChar fn
          :AndIf 3=caller.⎕NC fn
              :Trap 85
-                 ok←0(85⌶)(⍕caller),'.',fn,'(⊂form),1↓args'
+                 ok←0(85⌶)(⍕caller),'.',fn,'(⊂caller removeCaller ⊃Event),1↓Event'
              :EndTrap
          :EndIf
      :EndIf
@@ -43,7 +45,7 @@
      :Case 'configure'
          (hdr posn size)←1 0 1 0 1 0⊂6↑Event
          objref.HR.(Posn Size)←0 (HRBorder)+posn size
-         Event[3 4]←0 0 ⍝ We always tell the client that Posn is (0,0)
+         Event[3 4]←MENUOffset ⍝ We always tell the client that Posn is (0,0) + Offset for Menu
      :EndSelect
  :EndIf
 

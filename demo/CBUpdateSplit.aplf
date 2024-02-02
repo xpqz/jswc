@@ -6,6 +6,11 @@ e.(ID EventName Info)←(2↑args),⊂2↓args
 label←'F1.RIGHT.TOP.Average'
 
 :Select 1⊃args
+:Case 'F1' ⍝ Configure
+     :If 9=⎕NC 'F1.RIGHT.TOP.DEPTH'
+        'F1.RIGHT.TOP.DEPTH' eWS 'Value' (5⊃args)
+        'F1.RIGHT.TOP.WIDTH' eWS 'Value' (6⊃args)
+     :EndIf
 :Case 'F1.RIGHT.BOT.TABLE.Players' ⍝ CellChanged
      scores←('F1.RIGHT.BOT.TABLE.Players' eWG 'Values')[;3]
      label eWS 'Caption' ('Average score:',1⍕+/scores÷≢scores)

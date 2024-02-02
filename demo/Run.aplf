@@ -23,7 +23,9 @@
  :Case 0 ⍝ Desktop
      ⎕SE.Posn←200 300
      DemoMenu 1
-     ⍝ r←eDQ'F1'
+     :If JSWC.NOIDQ
+        r←eDQ'F1'
+     :EndIf
      ⍝ ⎕EX'F1'
      ⍝ JSWC.Stop
 
