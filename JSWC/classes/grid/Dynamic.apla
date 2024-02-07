@@ -1,4 +1,6 @@
 (
  'Values'
  'CurCell'
+ 'Size'
+ 'Posn'
 )
