@@ -15,7 +15,7 @@
  'F1.LEFT.LV'eWS 'Items'(,⍉'DK ' 'UK ' 'USA '∘.,⍕¨⍳10)
  'F1.LEFT.LV'eWS ('ImageListObj' 'IL32' 'IL16') ('ImageIndex' (30⍴1 2 3))
  'F1.LEFT.LV'eWS ('ColTitles'('Flag' 'Country' 'Index'))('ReportInfo'(((30⍴'Denmark' 'United Kingdom' 'USA')),⍪⍳30))
- 'F1.LEFT.LV'eWS 'Event' ('Select' 'ItemDown' 'ItemDblClick' 'KeyPress') 'CBUpdateListView'
+ 'F1.LEFT.LV'eWS 'Event' ('Select' 'ItemDown' 'ItemDblClick' 'KeyPress' 'GotFocus') 'CBUpdateListView'
 
  'F1.RIGHT'eWC'SubForm'('Visible' 1)('Posn'(0 400))('Size'(800 400))('Attach'('Top' 'Left' 'Bottom' 'Right'))('BCol'(240 240 240))('EdgeStyle' 'None')
 
