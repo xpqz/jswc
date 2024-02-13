@@ -1,4 +1,4 @@
-CBUpdateSplit args;e;scores;cols;fcol;pass;X;Y;H;W;label;txt;rs;rp;sp;ss;ls;t;fs;ts;bp;bs;width;depth
+CBUpdateSplit args;e;scores;cols;fcol;pass;X;Y;H;W;label;txt;rs;rp;sp;ss;ls;t;fs;ts;bp;bs;width;depth;menusize
 Event←⎕NS ''
 e←Event.Event←⎕NS ''
 e.(ID EventName Info)←(2↑args),⊂2↓args
@@ -18,6 +18,7 @@ label←'F1.RIGHT.TOP.Average'
      depth←'F1.RIGHT.TOP.DEPTH' eWG 'Value'
      width←'F1.RIGHT.TOP.WIDTH' eWG 'Value'
      eNQ 'F1' 'Configure',('F1' eWG 'Posn'),depth width
+     menusize←'F1.MENU' eWG 'Size'
 :CaseList 'F1.SPLIT' 'F1.RIGHT.SPLIT'
      (X Y H W)←4↑e.Info
      txt←,⍕('XYHW',¨':'),¨⍕¨X Y H W
