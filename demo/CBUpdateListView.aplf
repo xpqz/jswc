@@ -2,7 +2,6 @@
  Event←⎕NS''
  e←Event.Event←⎕NS''
  e.(ID EventName Info)←(2↑args),⊂2↓args
- ⎕←⎕JSON e
 
  :Select 1⊃args
  :Case 'F1.LEFT.VIEW'
@@ -13,7 +12,7 @@
      selok←'SelItems not OK'
      :Trap 6
          sel←'F1.LEFT.LV'eWG'SelItems'
-         :If item=sel⍳1
+         :If item≡sel⍳1
              selok←'SelItems OK'
          :EndIf
      :EndTrap
