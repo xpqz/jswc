@@ -6,4 +6,7 @@
  'Size'
  'Posn'
  'Border'
+ 'Display'
+ 'FlexDirection'
+ 'JustifyContent'
 )
