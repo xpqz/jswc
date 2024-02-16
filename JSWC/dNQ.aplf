@@ -21,7 +21,7 @@
 
  :If (≢event)≥i←(⊃¨event)⍳Event[2] ⍝ Object has an event handler defined
      fn←ok←1 ⍝ Action not prohibited
-     :If (≢event)≥i←⌊/(⊃¨event)⍳'Close' 'Configure'
+     :If (≢event)≥i←⌊/(⊃¨event)⍳'Close' 'Configure'∩Event[2] ⍝ Special events
          fn←⊃(i,2)⊃event
          :If isChar fn
          :AndIf 3=caller.⎕NC fn
