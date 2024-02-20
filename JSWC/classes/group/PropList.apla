@@ -36,4 +36,6 @@
  'ChildList'
  'EventList'
  'PropList'
+ 'Flex'
+ 'Styles'
 )

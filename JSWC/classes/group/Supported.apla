@@ -6,4 +6,6 @@
  'Visible'
  'Border'
  'Attach'
+ 'Flex'
+ 'Styles'
 )

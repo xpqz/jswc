@@ -1,9 +1,10 @@
- CBUpdateLines args;rows;cols;size;posn;viz;obs;form;ctl
+ CBUpdateLines args;rows;cols;size;posn;viz;obs;form;ctl;sf
  (form ctl)←'.'(≠⊆⊢)⊃args
 
  :Select ctl
  :Case 'GO'
-     (rows cols)←((form,'.FLEX')∘,¨'.ROWS' '.COLS')eWG¨⊂'Value'
+     sf←form,(0≠⎕NC form,'.FLEX')/'.FLEX'
+     (rows cols)←(sf∘,¨'.ROWS' '.COLS')eWG¨⊂'Value'
      (posn size)←(100 10)((form eWG'Size')-110 20)
      demoDrawBoxes form posn size rows cols
  :Case 'CLR'

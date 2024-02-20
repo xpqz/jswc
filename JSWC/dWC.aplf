@@ -72,6 +72,7 @@
          :EndIf
      :EndIf
  :Else
+     z←caller.⎕EX Name
      R←Name caller.⎕NS''
      okprops←PropList,objProps
      :If ∨/m←((≢class.Supported)<i←class.Supported⍳propnames)∧~propnames∊'Event' 'Data'

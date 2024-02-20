@@ -7,4 +7,6 @@
  'Visible'
  'Picture'
  'BCol'
+ 'Flex'
+ 'Styles'
 )

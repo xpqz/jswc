@@ -54,8 +54,7 @@
  'MethodList'
  'ChildList'
  'EventList'
- 'Display'
- 'FlexDirection'
- 'JustifyContent'
  'PropList'
+ 'Flex'
+ 'Styles'
 )
