@@ -1,5 +1,5 @@
- CBUpdateLinesFlex args;rows;cols;size;posn;viz;obs;form;ctl;n;sf
- (form sf ctl)←'.'(≠⊆⊢)⊃args
+ CBUpdateLinesFlex args;rows;cols;size;posn;viz;obs;form;ctl;n;sf;obj
+ (form sf ctl)←'.'(≠⊆⊢) obj←⊃args
 
  :Select ctl
  :Case 'GO'
@@ -9,13 +9,14 @@
      demoDrawBoxesFlex form size rows cols
 
  :Case 'CLR'
-     ∘∘∘
      n←eWN form,'.BX'
      eEX n
 
  :Case 'HIDE'
-     ∘∘∘
-     viz←~(form,'.HIDE')eWG'State'
-     obs←form∘,¨(0=⎕NC form,'.BX')↓'.BX' '.LOGO'
-     obs eWS¨⊂'Visible'viz
+     viz←~obj eWG'State'
+     :If 0≠⎕NC obs←form,'.BX'
+          obs eWS 'Visible'viz
+     :EndIf
+ :Else
+    ∘∘∘
  :EndSelect
