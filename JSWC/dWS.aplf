@@ -40,6 +40,9 @@
          (⊃HR)⎕WS'Posn'(i⊃values) ⍝ Move the HTMLRenderer instead
          (names values)←(i≠⍳≢names)∘/¨names values
      :EndIf
+     :If (≢names)≥i←names⍳⊂'Size'
+         (⊃HR)⎕WS'Size'(HRBorder+i⊃values) ⍝ Resize the HTMLRenderer
+     :EndIf
      :If (≢names)≥i←names⍳⊂'Caption'
          (⊃HR)⎕WS'Caption'(i⊃values)
      :EndIf
