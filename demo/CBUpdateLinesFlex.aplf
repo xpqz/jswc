@@ -17,6 +17,4 @@
      :If 0≠⎕NC obs←form,'.BX'
           obs eWS 'Visible'viz
      :EndIf
- :Else
-    ∘∘∘
  :EndSelect
