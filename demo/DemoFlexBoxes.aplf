@@ -6,7 +6,7 @@
  (rows cols)←3 2
 
  vert←'flex-direction: column, margin: 5px'
- horz←'flex-direction: row, flex-wrap: wrap, justify-content: space-between, gap: 5px'
+ horz←'flex-direction: row, flex-wrap: wrap, justify-content: space-between, gap: 5px, align-items: end'
 
  'F1'eWC'Form' 'Boxes and Lines'(50 50) formsize ('Coord' 'Pixel')('Flex' 2)('Styles' vert)('Event' 'Configure' 'CBUpdateLinesFlex')
  'F1.FNT' eWC 'Font' 'Segoe UI' ('Size' 20)
