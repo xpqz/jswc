@@ -1,4 +1,4 @@
- {R}←Name ∆WG Props;msg;WG;wg;z;caller;p;class;remote;dynamic;r;d;i;⎕TRAP;proplist;PropList;m;ix;ID;conn;n;cp;size
+ {R}←Name ∆WG Props;msg;WG;wg;z;caller;p;class;remote;dynamic;r;d;i;⎕TRAP;proplist;PropList;m;ix;ID;conn;n;cp;size;lp
  ⎕TRAP←0 'S'
  Name←⍕Name
 
@@ -27,8 +27,13 @@
      (⊃⎕DMX.DM)⎕SIGNAL ⎕DMX.EN
  :EndTrap
 
+ :If 'textsize'≡⊃⊃lp←⎕C p
+     Warning 'TextSize invoked'
+     →0 ⊣ R← 15 20×⍴⎕FMT 2⊃⊃p
+ :EndIf
+
  proplist←⎕C PropList←class.PropList,objProps
- :If ∨/m←(≢proplist)<i←proplist⍳⎕C p
+ :If ∨/m←(≢proplist)<i←proplist⍳lp
      Warning'Unsupported on ',class,': ',⍕m/p
  :EndIf
  p[ix]←PropList[i[ix←⍸~m]]
