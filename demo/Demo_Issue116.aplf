@@ -12,6 +12,6 @@
  'F1'eWS'BCol'(240,240,240)
  size←'F1'eWG⊂'TextSize'txt'FntSys'
 
-⍝ 'F1'eWS'Size'(95,745)
+ 'F1'eWS'Size'(95,745)
  'F1.P'eWC'SubForm'('Picture'('Info32Bmp' 0))('Posn'(31,25))('Size'(32,32))
  'F1.TEXT1'eWC'Text'('Text'txt)('HAlign' 1)('Points'(⍉↑(10 25 40)(190 190 190)))
