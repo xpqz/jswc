@@ -1,4 +1,6 @@
- R←msg WaitForWG(Props ID WGID);j;⎕TRAP;p;seqok;nl;nlc;m;t;token
+ R←msg WaitForWG(Props ID WGID);j;⎕TRAP;p;seqok;nl;nlc;m;t;token;wx;z;ref
+
+ wx←Props≡'WX' ⍝ A WX rather than a WG
 
  token←WG_TOKENBASE+TOKENSTEP×1
 AGAIN:
@@ -10,9 +12,18 @@ AGAIN:
  :EndIf
 
  nl←⍬
- :If 9=⎕NC'j.WG'
- :AndIf seqok←j.WG.{0=⎕NC'WGID':1 ⋄ WGID≡⍵}WGID
- :AndIf ∧/(p←⎕C ,⊆Props)∊nlc←⎕C nl←j.WG.Properties.⎕NL-2
+
+ :If wx
+     →0⊣R←j.WX.Info
+ :EndIf
+
+ :If 9=⎕NC z←(1+wx)⊃'j.WG' 'f.WX'
+     ref←⍎z
+ :AndIf seqok←ref.{0=⎕NC'WGID':1 ⋄ WGID≡⍵}WGID
+
+    →wx/0⊣R←{⍵:ref.Info ⋄ ⍬}wx ⍝ Early exit if WX
+
+ :AndIf ∧/(p←⎕C,⊆Props)∊nlc←⎕C nl←ref.Properties.⎕NL-2
      p←nl[nlc⍳p] ⍝ /// Should go when everything is lowercase
      R←j.WG.Properties⍎((1=≢p)/',⊂'),⍕p
      R←j.WG.ID MixTables p R

@@ -1,5 +1,4 @@
- {R}←{Mode}∆NQ Event;caller;NQ;nq;msg;z;⎕TRAP;ID;conn;name;tkn;type;class;objref;event;i;fn;ok;hr;hdr;posn;size
- ⎕TRAP←0 'S'
+ {R}←{Mode}∆NQ Event;caller;NQ;nq;msg;z;⎕TRAP;ID;conn;name;tkn;type;class;objref;event;i;fn;ok;hr;hdr;posn;size;methods;method
  R←⍬
  :If ⎕THIS≡caller←⊃⎕RSI
      caller←CALLER ⍝ // This is a hack to deal with ∆NQ from within Handler
@@ -16,6 +15,31 @@
 
  (type class objref)←getObj name
  ('Not a JSWC object: ',(⍕caller),'.',name)⎕SIGNAL(0=≢type)/11
+
+ method←(⎕C Event[2])∊class.methodlist ⍝ Method rather than property
+
+ :If 1001≡Event[2]
+     ∘∘∘
+ :EndIf
+
+ :If (Mode∊1 2)∧Event[2]∊supportedMethods
+     :Trap 6
+         →0⊣R←dWX Event
+     :Else
+        :Select ⎕C 2⊃Event
+        :Case 'gettextsize'
+           'W' Log '*** Faking GetFocus'
+           →0 ⊣ R←10×⍴⎕FMT 3⊃Event
+        :Case 'getfocus'
+           'W' Log '*** Faking GetFocus'
+           →0 ⊣ R←⊃Event ⍝ Just return form name
+        :EndSelect
+     :EndTrap
+ :EndIf
+
+ :If ~Mode∊0 2
+     'This NQ currently not supported' ⎕SIGNAL 11
+ :EndIf
 
  event←objref.Event
 
@@ -51,7 +75,7 @@
 
  NQ←⎕NS''
  nq←NQ.NQ←⎕NS''
- nq.(ID Event Info)←(2↑Event),⊂2↓Event
+ nq.(ID Event Info NoCallback)←(2↑Event),(2↓Event) (Mode=2)
 
  :If USEWIN32
      R←Mode caller.⎕NQ Event
