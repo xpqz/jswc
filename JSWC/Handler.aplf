@@ -48,13 +48,14 @@
                  'E'Log'Unknown signal received: ',payload
              :EndIf
          :Case 'DeviceCapabilities'
-             code.devCaps←sessionspace.devCaps←(0 ⎕JSON payload).DeviceCapabilities
+             devCaps←sessionspace.devCaps←(0 ⎕JSON payload).DeviceCapabilities
+             'code._JSWC' ⎕NS 'devCaps'
              :If MODE=0 ⍝ Desktop
                  :For form :In 'Form'∆WN code
                      :If 9=⎕NC form,'.HR'
                          hr←⍎form,'.HR'
                          CALLER←code
-                         ∆NQ form 'Configure', (hr.Posn,hr.Size-HRBorder)
+                         ∆NQ form 'Configure', hr.Posn,hr.Size-HRBorder
                      :EndIf
                  :EndFor
              :EndIf

@@ -15,9 +15,9 @@
      :EndIf
 
  :Else
-     :If 2=⎕NC'CODELOCATION._JSWC.ID' ⍝ Check it has been initialised
+     :Trap 0
          r←CODELOCATION._JSWC.(ID conn)
      :Else
          r←0 0
-     :EndIf
+     :EndTrap
  :EndIf

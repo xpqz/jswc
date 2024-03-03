@@ -1,4 +1,4 @@
- {prefix}Init args;mode;z;i;t;fn;folder;⎕TRAP
+ {prefix}Init args;mode;z;i;t;fn;folder;⎕TRAP;DPR_FORM;_JSWC
  ⎕IO←⎕ML←1
 
  ⎕TRAP←0 'S'
@@ -117,4 +117,10 @@
  z←WSS.Start 0
  :If 0≠⊃⊃z
      (⍕z)⎕SIGNAL 11
+ :EndIf
+
+ :If 4≥⍴devCaps←'.' ⎕WG 'DevCaps'
+     DPR←100÷⍨4⊃devCaps
+ :Else
+     DPR←1
  :EndIf

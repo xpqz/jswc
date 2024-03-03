@@ -62,9 +62,9 @@
  :EndHold
 
  :If res≢⍬
+ ⍝ :If ~(⊂res)∊⍬ 1 (,1)
  :AndIf res≢ID Event,Info
      'D'Log'Callback function ',fn,' returned modified event: ',⍕res
-    ⍝ end←res≡1
  :EndIf
 
  :If 1 ⍝ Recording events

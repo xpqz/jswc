@@ -1,8 +1,9 @@
-err←MakeHR (home name);ns;count;maxtries;ok;cb
+err←MakeHR (home name);ns;count;maxtries;ok;cb;dpr
 ns←home⍎name
 home.⎕EX '_JSWC.conn'
 cb←(⍕⎕THIS),'.HRCallbacks'
-'HR' ns.⎕WC 'HTMLRenderer' ('Caption' ns.Caption) ('URL' ('localhost:',⍕PORT)) ('Size' (HRBorder+ns.Size))('Coord' 'Pixel')('Posn' ns.Posn)('Event' ('Close' 'Configure') cb)
+dpr←DPR
+'HR' ns.⎕WC 'HTMLRenderer' ('Caption' ns.Caption) ('URL' ('localhost:',⍕PORT)) ('Size' (dpr×HRBorder+ns.Size))('Coord' 'Pixel')('Posn' (dpr×ns.Posn))('Event' ('Close' 'Configure') cb)
 'D' Log 'Created HTMLRenderer ',(⍕ns),'.HR'
 
 count←0 ⋄ maxtries←100
