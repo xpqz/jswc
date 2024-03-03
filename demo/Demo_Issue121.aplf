@@ -1,0 +1,20 @@
+ Demo_Issue121 connected;BY;BX;RY;RX;P;formsize;cols;rows;points;sizes;radii;colours;z
+ JSWC.CONNECTED←connected
+ ⎕PW←1000
+
+ formsize←600 400
+ (rows cols)←3 2
+ 'F1'eWC'Form' 'Boxes and Lines'(50 50)(600 400)('Coord' 'Pixel')
+ 'F1.FNT'eWC'Font' 'Segoe UI'('Size' 20)
+
+ 'F1.BX'eWC'SubForm'('Posn'(100 10))('Size'(formsize-110 20))('EdgeStyle' 'Groove') ⍝ To draw boxes in
+
+ 'F1.L1'eWC'Label' 'Rows'(5 10)
+ 'F1.L2'eWC'Label' 'Cols'(5 70)
+
+ 'F1.ROWS'eWC'Edit'(⍕rows)(30 10)(23 50)('FieldType' 'Numeric')('Event' 'GotFocus' 'CBEchoGotFocus')('FontObj' 'F1.FNT')('EdgeStyle' 'Ridge')
+ 'F1.COLS'eWC'Edit'(⍕cols)(30 70)(23 50)('FieldType' 'Numeric')('FontObj' 'F1.FNT')('EdgeStyle' 'Ridge')
+
+ 2 eNQ'F1.ROWS' 'GotFocus'
+ eNQ'F1.COLS' 'GotFocus'
+ eNQ'F1.ROWS' 'GotFocus'
