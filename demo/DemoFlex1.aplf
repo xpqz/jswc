@@ -2,12 +2,12 @@
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
- formsize←600 800
+ formsize←600 600
 
  formcss←'flex-direction: row, flex-wrap: wrap, gap: 16px'
- namecss←'flex-direction: column' ⍝ 'flex-grow: 1, flex-basis: 160px, gap: 5px'
- emailcss←'flex-direction: column' ⍝ 'flex-grow: 1, flex-basis: 160px, gap: 5px'
- buttoncss←'' ⍝ 'flex-grow: 1, flex-basis: 80px'
+ namecss←'flex-direction: column, flex-grow: 1, flex-basis: 160px, gap: 5px'
+ emailcss←'flex-direction: column, flex-grow: 1, flex-basis: 160px, gap: 5px'
+ buttoncss←'flex-grow: 1, flex-basis: 80px'
 
  'F1'eWC'Form' 'Flex Demo'(50 50)formsize('Flex' 2)('Styles' formcss)
 
