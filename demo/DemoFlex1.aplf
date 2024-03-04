@@ -7,7 +7,7 @@
  formcss←'flex-direction: row, flex-wrap: wrap, gap: 16px'
  namecss←'flex-direction: column, flex-grow: 1, flex-basis: 160px, gap: 5px'
  emailcss←'flex-direction: column, flex-grow: 1, flex-basis: 160px, gap: 5px'
- buttoncss←'flex-grow: 1, flex-basis: 80px'
+ buttoncss←'flex-grow: 1, flex-basis: 80px, height:20px'
 
  'F1'eWC'Form' 'Flex Demo'(50 50)formsize('Flex' 2)('Styles' formcss)
 
@@ -19,4 +19,4 @@
  'F1.MAIL.L'eWC'Label' 'E-Mail'
  'F1.MAIL.EDIT'eWC'Edit' ''
 
- 'F1.SUBMIT'eWC'Button' 'Submit' ⍝ ('Styles' buttoncss)
+ 'F1.SUBMIT'eWC'Button' 'Submit' ('Styles' buttoncss)
