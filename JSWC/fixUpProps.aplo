@@ -23,7 +23,7 @@
          :EndIf
      :Case 'Text'
          :If type≡'text'
-            (ix⊃values)←,⊆ix⊃values
+            (ix⊃values)←,⊆⍉⍪ix⊃values
          :EndIf
      :CaseList 'BCol' 'FCol' 'FillCol'
          (ix⊃values)←,⊆ix⊃values
