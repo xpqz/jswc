@@ -16,5 +16,6 @@
  'FCol'
  'Attach'
  'Border'
+ 'SelText'
  'Styles'
 )
