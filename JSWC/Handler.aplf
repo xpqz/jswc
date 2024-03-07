@@ -34,7 +34,7 @@
              :AndIf 9=sns.⎕NC'TIMER'
                  sns.⎕NQ'TIMER' 1001 ⍝ Wake it up
              :EndIf
-         :Case 'WG'
+         :CaseList 'WG' 'WX'
              ns ⎕TPUT WG_TOKENBASE+TOKENSTEP×1 ⍝ ⊃getConnection sns ns.WG.ID
          :Case 'FormatCell'
              :If 0≠≢msg←code formatCell ns

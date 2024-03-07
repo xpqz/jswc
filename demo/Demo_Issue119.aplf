@@ -47,7 +47,7 @@
      z←'No response'
  :EndTrap
 
- :If z≢26 28
+ :If z≢48 40
      ⎕←'*** GetTextSize did not return the expected result'
  :EndIf
 
@@ -57,6 +57,6 @@
      z←'No response'
  :EndTrap
 
- :If z≢20 40
+ :If z≢24 40
      ⎕←'*** GetTextSize did not return the expected result'
  :EndIf
