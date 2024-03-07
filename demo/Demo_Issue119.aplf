@@ -51,11 +51,17 @@
      ⎕←'*** GetTextSize did not return the expected result'
  :EndIf
 
+ 'F1.HW' eWC 'Text' (↑'Hello' 'World')(55 10)
+ 'F1.HWBX' eWC 'Rect' (55 10) z
+
  :Trap 6
      z←2 eNQ'F1' 'GetTextSize' 'World' 'F1.FNT'
  :Else
      z←'No response'
  :EndTrap
+
+ 'F1.H' eWC 'Text' ('Hello')(80 10)
+ 'F1.HBX' eWC 'Rect' (80 10) z
 
  :If z≢24 40
      ⎕←'*** GetTextSize did not return the expected result'
