@@ -1,5 +1,6 @@
  {R}←Name ∆WS Props;WS;msg;ws;i;z;ref;expr;caller;⎕TRAP;proplist;pname;names;values;PropList;m;class;type;ix;HR;e;objref
  ⎕SIGNAL (2>|≡Props)/11
+ Props←,Props
  ⎕TRAP←0 'S'
  :If (⊂,Name)∊,¨'⎕SE' '#' '.' ⍝ Pass WS of System properties through
      →0⊣R←Name ⎕WS Props

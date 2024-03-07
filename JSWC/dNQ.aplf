@@ -18,10 +18,6 @@
 
  method←(⎕C Event[2])∊class.methodlist ⍝ Method rather than property
 
- :If 1001≡Event[2]
-     ∘∘∘
- :EndIf
-
  :If (Mode∊1 2)∧Event[2]∊supportedMethods
      :Trap 6
          →0⊣R←dWX Event
@@ -45,7 +41,7 @@
 
  :If (≢event)≥i←(⊃¨event)⍳Event[2] ⍝ Object has an event handler defined
      fn←ok←1 ⍝ Action not prohibited
-     :If (≢event)≥i←⌊/(⊃¨event)⍳'Close' 'Configure'∩Event[2] ⍝ Special events
+     :If (Mode≠2)∧(≢event)≥i←⌊/(⊃¨event)⍳'Close' 'Configure'∩Event[2] ⍝ Special events
          fn←⊃(i,2)⊃event
          :If isChar fn
          :AndIf 3=caller.⎕NC fn
