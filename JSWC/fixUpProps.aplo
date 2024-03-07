@@ -1,7 +1,7 @@
  values←names(type fixUpProps)values;special;i;ixs;ns;n;ix;val;c;v;m
 ⍝ Massage properties that can have multiple formats into regular structures for JS
 
- special←'Event' 'Points' 'Radius' 'LWidth' 'LStyle' 'FStyle' 'Visible' 'Active' 'Interval' 'File' 'FileNames' 'Picture'  'TitleHeight' 'TitleWidth' 'Values' 'Input'
+ special←'Event' 'Points' 'Radius' 'LWidth' 'LStyle' 'FStyle' 'Visible' 'Active' 'Interval' 'File' 'FileNames' 'Picture'  'TitleHeight' 'TitleWidth' 'Values' 'Input' 'Text'
  :If (⊂type)∊'rect' 'circle' 'ellipse' 'poly' 'font'
      special,←'FCol' 'BCol' 'FillCol' 'ArcMode' 'Start' 'End' 'Size'
  :EndIf
@@ -20,6 +20,10 @@
              (ix⊃values)←↓[1]val
          :Else
              (ix⊃values)←,,¨val
+         :EndIf
+     :Case 'Text'
+         :If type≡'text'
+            (ix⊃values)←,⊆ix⊃values
          :EndIf
      :CaseList 'BCol' 'FCol' 'FillCol'
          (ix⊃values)←,⊆ix⊃values
