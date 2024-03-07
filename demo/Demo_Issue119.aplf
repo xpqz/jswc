@@ -60,7 +60,7 @@
      z←'No response'
  :EndTrap
 
- 'F1.H' eWC 'Text' ('Hello')(80 10)
+ 'F1.H' eWC 'Text' ('Hello')(80 10)('FontObj' 'F1.FNT')
  'F1.HBX' eWC 'Rect' (80 10) z
 
  :If z≢24 40
