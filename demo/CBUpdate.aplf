@@ -1,4 +1,4 @@
- JSWCUpdate args;e;scores;cols;fcol;pass;ii;ids;target;row;col;scroll;sel;mouse;changed;newval;txt;ns;split
+ JSWCUpdate args;e;scores;cols;fcol;pass;ii;ids;target;row;col;scroll;sel;mouse;changed;newval;txt;ns;split;z
  Event←⎕NS''
  e←Event.Event←⎕NS''
  e.(ID EventName Info)←(2↑args),⊂2↓args
@@ -17,10 +17,14 @@
 
  :Case 'F1.Home'
      :If 9=⎕NC'F1.Players'
-         eNQ'F1.Players' 'CellMove' 1 1
+         eNQ 'F1.Players' 'CellMove' 1 1
      :Else
-         eNQ'F1.Holdings' 'CellMove' 1 3
+         eNQ'F1.Holdings' 'CellMove' 1 1
      :EndIf
+
+ :Case 'F1.Where'
+     z←'F1.Holdings' eWG 'CurCell'
+     'F1.Average'eWS'Caption'('Current cell is ',⍕z)
 
  :Case 'F1.PasswordField' ⍝ Edit
      pass←'F1.PasswordField'eWG'Value'
