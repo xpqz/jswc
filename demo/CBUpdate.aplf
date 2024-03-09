@@ -15,6 +15,10 @@
          ⎕←'  Out: ',⎕THIS #.JSWC.formatCell ns
      :EndIf
 
+     :If 'CellMove'≡2⊃args
+         ⎕←'JSWCUpdate: CellMove to ',⍕2↓args
+     :EndIf
+
  :Case 'F1.Home'
      :If 9=⎕NC'F1.Players'
          eNQ'F1.Players' 'CellMove' 1 1
