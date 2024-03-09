@@ -17,6 +17,8 @@
 
      :If 'CellMove'≡2⊃args
          ⎕←'JSWCUpdate: CellMove to ',⍕2↓args
+     :ElseIf 'KeyPress'≡2⊃args
+         ⎕←args
      :EndIf
 
  :Case 'F1.Home'
