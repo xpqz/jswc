@@ -1,6 +1,7 @@
  {R}←Name ∆WG Props;msg;WG;wg;z;caller;p;class;remote;dynamic;r;d;i;⎕TRAP;proplist;PropList;m;ix;ID;conn;n;cp;size;lp
  ⎕TRAP←0 'S'
- Name←⍕Name
+
+ Name←⍕∊Name
 
  caller←⊃⎕RSI
  Name←caller removeCaller Name
