@@ -1,7 +1,17 @@
- JSWCUpdate args;e;scores;cols;fcol;pass;ii;ids;target;row;col;scroll;sel;mouse;changed;newval;txt;ns;split;z;ct;in;input;seltext
+ JSWCUpdate args;e;scores;cols;fcol;pass;ii;ids;target;row;col;scroll;sel;mouse;changed;newval;txt;ns;split;z;ct;in;input;seltext;move;curcell;values
  Event←⎕NS''
  e←Event.Event←⎕NS''
  e.(ID EventName Info)←(2↑args),⊂2↓args
+
+
+ :If 'KeyPress'≡2⊃args
+ :AndIf 'F1.Holdings.'≡12↑1⊃args ⍝ One of the INPUTs of the grid
+     move←('UC' 'DC' 'LC' 'RC'⍳args[3])⊃(¯1 0)(1 0)(0 ¯1)(0 1)(0 0)
+     (curcell values)←'F1.Holdings' eWG 'CurCell' 'Values'
+     curcell←1⌈(⍴values)⌊curcell+move
+     eNQ 'F1.Holdings' 'CellMove',curcell
+     →0
+ :EndIf
 
  :Select 1⊃args
  :Case 'F1.Holdings'
@@ -17,8 +27,6 @@
 
      :If 'CellMove'≡2⊃args
          ⎕←'JSWCUpdate: CellMove to ',⍕2↓args
-     :ElseIf 'KeyPress'≡2⊃args
-         ⎕←args
      :EndIf
 
  :Case 'F1.Home'

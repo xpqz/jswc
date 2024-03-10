@@ -1,4 +1,5 @@
 (
  'CellChanged'
+ 'CellMove'
  'KeyPress'
 )

@@ -114,6 +114,8 @@
  (EVENTNUMS EVENTNAMES)←↓⍉↑2031⌶0
  eventNames←⎕C EVENTNAMES
 
+ (JSKeys APLKeys)←↓⍉keyMap
+
  z←WSS.Start 0
  :If 0≠⊃⊃z
      (⍕z)⎕SIGNAL 11

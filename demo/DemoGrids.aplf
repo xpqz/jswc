@@ -34,12 +34,13 @@
  (g←'F1.Holdings') eWC'Grid'('ColTitles' titles)('Posn'(40 10))('Size'(100,(1+≢widths)++/widths))('TitleWidth' 0)e('CellWidths' widths)
  g eWS 'ShowInput' 0
 
+ e←'Event' 'KeyPress' 'JSWCUpdate'
  (g,'.OUTPUT')eWC'Label'
- (g,'.TEXT')eWC'Edit'('Event' 'KeyPress' 'JSWCUpdate')
- (g,'.INT') eWC'Edit'('FieldType' 'Numeric')('Decimals' 0)
- (g,'.FLOAT') eWC'Edit'('FieldType' 'Numeric')('Decimals' 2)
- (g,'.CHECK')eWC'Button'('Style' 'Check')
- (g,'.OUTPUTR')eWC'Label'('Justify' 'Right')
+ (g,'.TEXT')eWC'Edit'e
+ (g,'.INT') eWC'Edit'('FieldType' 'Numeric')('Decimals' 0)e
+ (g,'.FLOAT') eWC'Edit'('FieldType' 'Numeric')('Decimals' 2)e
+ (g,'.CHECK')eWC'Button'('Style' 'Check')e
+ (g,'.OUTPUTR')eWC'Label'('Justify' 'Right')e
 
  inputs←g∘,¨'.OUTPUT' '.TEXT' '.INT' '.FLOAT' '.CHECK' '.OUTPUTR'
  values←⍉↑ticker  fixed               price    quantity   value  comments

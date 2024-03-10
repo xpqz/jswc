@@ -9,6 +9,11 @@
  end←0
  (Event ID Info)←ns.Event.(EventName ID({0::⍵ ⋄ Info}⍬))
 
+ :If Event≡'KeyPress'
+ :AndIf (≢JSKeys)≥z←JSKeys⍳Info[1]
+     Info[1 2]←APLKeys[z],0
+ :EndIf
+
  :Trap 6
      event←code⍎z←ID,'.Event'
  :Else

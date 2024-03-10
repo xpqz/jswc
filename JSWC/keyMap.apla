@@ -1,0 +1,14 @@
+[
+ 'ArrowDown'  'DC'
+ 'ArrowUp'    'UC'
+ 'ArrowRight' 'RC'
+ 'ArrowLeft'  'LC'
+ 'Delete'     'DI'
+ 'End'        'RL'
+ 'PageUp'     'US'
+ 'PageDown'   'DS'
+ 'Insert'     'IN'
+ 'Home'       'LL'
+ 'Enter'      'ER'
+ 'Tab'        'HT'
+]
