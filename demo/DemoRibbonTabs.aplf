@@ -2,7 +2,7 @@
  JSWC.CONNECTED←connected
  ⎕PW←1000
  sel←'Event' 'Select' 'CBUpdateRibbon'
- ∘∘∘
+ 
  fonts←⍬
 
  'F1'eWC'Form' 'Tabbed Ribbon'(50 50)(600 600)('Coord' 'Pixel')
