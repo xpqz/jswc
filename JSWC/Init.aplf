@@ -121,7 +121,7 @@
      (⍕z)⎕SIGNAL 11
  :EndIf
 
- :If 4≥⍴devCaps←'.' ⎕WG 'DevCaps'
+ :If 4≤⍴devCaps←'.' ⎕WG 'DevCaps'
      DPR←100÷⍨4⊃devCaps
  :Else
      DPR←1
