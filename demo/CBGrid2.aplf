@@ -1,0 +1,10 @@
+ CBGrid2 msg
+
+ :Select ⊃msg
+ :Case 'F.G.E' ⍝ The input field
+     ∘∘∘
+ :CaseList 'F.SEL1' 'F.SEL2' ⍝ The SelText intputs
+     ∘∘∘
+ :Else
+     ⎕←'Grid2 unexpected message: ',⍕msg
+ :EndSelect
