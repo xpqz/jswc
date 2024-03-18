@@ -1,0 +1,53 @@
+ DemoRibbonTabs connected;tb;sf;rb;captions;icons;sel
+ JSWC.CONNECTED←connected
+ ⎕PW←1000
+ sel←'Event' 'Select' 'CBUpdateRibbon'
+ 
+ fonts←⍬
+
+ 'F1'eWC'Form' 'Tabbed Ribbon'(50 50)(600 600)('Coord' 'Pixel')
+ 'F1.L1'eWC 'Label' ('Selected: ',⊃⌽fonts) (10 10)(50 200)('Font' ((⊃fonts) 15))('Attach' ('Top' 'Left' 'Top' 'Left'))
+ 'F1.TC'eWC'TABCONTROL'('Posn'(100 0))('Size'(500 600))('Attach'('Top' 'Left' 'Bottom' 'Right'))('MultiLine' 1)
+
+ (tb←'F1.TC.T1')eWC'TABBUTTON'('Caption' 'Locks and Macros')('Event' 'Select' 'CBUpdateTabs')
+ (sf←'F1.TC.SF1')eWC'SubForm'('TabObj'tb)
+ (rb←sf,'.Ribbon')eWC'Ribbon'
+
+ (rb,'.Item1')eWC'RibbonGroup' 'Locks'
+ (rb,'.Item1.GroupItem1')eWC'RibbonGroupItem' 12
+ (rb,'.Item1.GroupItem1.LockButton')eWC'RibbonButton' 'Access' 'FcLock' 12 sel
+
+ (rb,'.Item2')eWC'RibbonGroup' 'Macros'
+ (rb,'.Item2.GroupItem1')eWC'RibbonGroupItem' 12
+ (rb,'.Item2.GroupItem1.MacrosButton')eWC'RibbonButton' 'Macros' 'FcPlanner' 12 sel
+
+ (tb←'F1.TC.T2')eWC'TABBUTTON'('Caption' 'Dashboard and Quality')('Event' 'Select' 'CBUpdateTabs')
+ (sf←'F1.TC.SF2')eWC'SubForm'('TabObj'tb)
+ (rb←sf,'.Ribbon')eWC'Ribbon'
+
+ (rb,'.Item3')eWC'RibbonGroup' 'Dashboard'
+ (rb,'.Item3.GroupItem1')eWC'RibbonGroupItem' 12
+ (rb,'.Item3.GroupItem1.DashboardButton')eWC'RibbonButton' 'Macros' 'FcHome' 12 sel
+
+ (rb,'.Item5')eWC'RibbonGroup' 'Data Quality'('Size' 2)
+ (rb,'.Item5.GroupItem1')eWC'RibbonGroupItem' 12
+ (rb,'.Item5.GroupItem1.ButtonGroup1')eWC'RibbonButtonGroup'('Local Data Quality' 'Overall Data Quality')('FcHighPriority' 'FcHighPriority')sel
+
+ (tb←'F1.TC.T3')eWC'TABBUTTON'('Caption' 'Application')('Event' 'Select' 'CBUpdateTabs')
+ (sf←'F1.TC.SF3')eWC'SubForm'('TabObj'tb)
+ (rb←sf,'.Ribbon')eWC'Ribbon'
+
+ (rb,'.Item4')eWC'RibbonGroup' 'Application'('Size' 7)
+ (rb,'.Item4.GroupItem1')eWC'RibbonGroupItem' 1
+ (rb,'.Item4.GroupItem2')eWC'RibbonGroupItem' 1
+ (rb,'.Item4.GroupItem3')eWC'RibbonGroupItem' 1
+ (rb,'.Item4.GroupItem4')eWC'RibbonGroupItem' 3
+ (rb,'.Item4.GroupItem5')eWC'RibbonGroupItem' 6
+
+ (rb,'.Item4.GroupItem1.ArchiveButton')eWC'RibbonButton' 'Archive' 'FcKindle' 12 sel
+ (rb,'.Item4.GroupItem2.DateButton')eWC'RibbonButton' 'Date' 'FcCalendar' 12 sel
+ (rb,'.Item4.GroupItem3.StockExchangeButton')eWC'RibbonButton' 'Stock Exchange' 'FcLibrary' 12 sel
+ (rb,'.Item4.GroupItem4.ButtonGroup1')eWC'RibbonButtonGroup'('Share/option' 'Cooperative Dynamics')('FcShare' 'FcTreeStructure')sel
+ captions←'Black and Scholes' 'Checking prices' 'VAR Analysis' 'Calculate Option Prices'
+ icons←'FcPodiumWithSpeaker' 'FcMoneyTransfer' 'FcSearch' 'FcTreeStructure'
+ (rb,'.Item4.GroupItem5.ButtonGroup1')eWC'RibbonButtonGroup'captions icons sel

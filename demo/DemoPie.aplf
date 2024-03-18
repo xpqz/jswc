@@ -1,0 +1,13 @@
+ DemoPie connected;Data;ANGLES;COLS;PATS
+ JSWC.CONNECTED←connected
+ ⎕PW←1000
+ 
+ 'F1'eWC'Form' 'Pies'(50 50)(620 420)('Coord' 'Pixel')
+
+ Data←12 27 21 40
+ ANGLES←0,¯1↓((○2)÷+/Data)×+\Data
+ COLS←(255 0 0)(0 255 0)(255 255 0)(0 0 255)
+ PATS←0×1 2 3 4
+
+ 'F1.P1'eWC'Ellipse'(10 10)(300 400)('Start'ANGLES)('ArcMode' 2)('FCol'(⊂0 0 0))('FStyle'PATS)('FillCol'COLS)
+ 'F1.P2'eWC'Circle'(450 210)120('Start'ANGLES)('ArcMode' 2)('FCol' COLS)('FStyle' ¯1)
