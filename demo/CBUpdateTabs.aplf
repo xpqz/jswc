@@ -1,15 +1,15 @@
- CBUpdateTabs args;e;f
+ CBUpdateTabs args;e;f;font
  Event←⎕NS''
  e←Event.Event←⎕NS''
  e.(ID EventName Info)←(2↑args),⊂2↓args
  ⎕←⎕JSON e
 
  :If 'F1.TC.T'≡7↑1⊃args
-     f←⍬
+     f←font←⍬
      :If 0≠≢fonts
-         f←⊂'Font' (((⊃2⊃⎕VFI 7↓1⊃args)⊃fonts) 5)
+         f←⊂'Font' ((font←(⊃2⊃⎕VFI 7↓1⊃args)⊃fonts) 15)
      :EndIf
-     'F1.L1' eWS (⊂'Caption' ('Caption: ',f)),f
+     'F1.L1' eWS (⊂'Caption' ('Caption: ',font)),f
  :Else
      ⎕←'Unexpected message: ',args
  :EndIf
