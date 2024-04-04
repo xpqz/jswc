@@ -1,5 +1,6 @@
  {R}←Name ∆WC Props;p;m;WC;msg;length;m2;m3;z;type;class;ref;propnames;temp;proplist;expr;caller;deprecatedprops;props;pn;f;tn;i;ns;okprops;⎕TRAP;depth;valid;values;lcp;pi;ix;PropList;allprops;AllProps;n;cp;v;conn;folder
  ⎕TRAP←0 'S'
+ R←⍬
  deprecatedprops←,⊂'3D' ⍝ No longer appear in PropList
 
  caller←⊃⎕RSI

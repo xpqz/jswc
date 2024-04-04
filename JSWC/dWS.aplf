@@ -1,4 +1,5 @@
  {R}←Name ∆WS Props;WS;msg;ws;i;z;ref;expr;caller;⎕TRAP;proplist;pname;names;values;PropList;m;class;type;ix;HR;e;objref
+ R←⍬
  ⎕SIGNAL (2>|≡Props)/11
  Props←,Props
  Name←⍕∊Name
