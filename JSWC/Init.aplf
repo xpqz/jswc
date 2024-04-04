@@ -2,7 +2,8 @@
  ⎕IO←⎕ML←1
 
  ⎕TRAP←0 'S'
- :Select ≢args←,⊆args
+ :If 80=⎕DR args ⋄ args←⊆args ⋄ :EndIf
+ :Select ≢args←,args
  :Case 1 ⋄ mode←⊃args ⋄ CODELOCATION←⊃⎕RSI
  :Case 2 ⋄ (mode CODELOCATION)←args
  :Else
