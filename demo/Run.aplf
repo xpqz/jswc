@@ -4,6 +4,7 @@
 
  JSWC←##.JSWC
  JSWC.PORT←22322
+ JSWC.SHOWDEVTOOLS←0
  root←{⊃⎕NPARTS ¯1↓⍵}⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
  JSWC.RESOURCES←1 2⍴'images'(root,'/demo/images')
 

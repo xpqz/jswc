@@ -63,6 +63,9 @@
  :If 0=⎕NC'BREAK'
      BREAK←⍬ ⍬ ⍝ IDs Events
  :EndIf
+ :If 0=⎕NC'SHOWDEVTOOLS'
+     SHOWDEVTOOLS←0
+ :EndIf
 
 ⍝ Establish API in calling space unless prefix≡''
  :If 0≠≢prefix
