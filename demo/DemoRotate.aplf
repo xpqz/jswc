@@ -1,0 +1,15 @@
+ DemoRotate connected;formsize;fnt;angle;rad
+ JSWC.CONNECTED←connected
+ ⎕PW←1000
+
+ eWC←⎕WC ⋄ eWS←⎕WS
+
+ 'F1'eWC'Form' 'Rotating Fonts'(50 50)(400 400)('Coord' 'Pixel')('Event' 'MouseUp' 'CBRotate')
+
+ :For angle :In 45×¯1+⍳8
+     rad←○angle÷180
+     (fnt←'F1.FNT',⍕angle)eWC'Font' 'Segoe UI'('Size' 20)('Rotate' rad)
+     ('F1.TXT',⍕angle)eWC'Text'('     Rotated ',⍕angle)(200 200)('FontObj'fnt)
+ :EndFor
+
+ 'F1.Status' eWC 'Text' 'Click with the mouse...' (370 20)('FontObj' 'F1.FNT0')

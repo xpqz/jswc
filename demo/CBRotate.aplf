@@ -1,0 +1,4 @@
+ CBRotate args
+⍝ Rotate the colours
+
+ 'F1.Status' eWS 'Text' ('MouseUp: ',⍕2↓args)
