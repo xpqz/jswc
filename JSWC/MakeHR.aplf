@@ -3,7 +3,7 @@ ns←home⍎name
 home.⎕EX '_JSWC.conn'
 cb←(⍕⎕THIS),'.HRCallbacks'
 dpr←DPR
-'HR' ns.⎕WC 'HTMLRenderer' ('Caption' ns.Caption) ('URL' ('localhost:',⍕PORT)) ('Size' (dpr×ns.Size))('Coord' 'Pixel')('Posn' (dpr×ns.Posn))('Event' ('Close' 'Configure') cb)
+'HR' ns.⎕WC 'HTMLRenderer' ('Caption' ns.Caption) ('URL' ('localhost:',⍕PORT)) ('Size' (dpr×ns.Size+HRBorder))('Coord' 'Pixel')('Posn' (dpr×ns.Posn))('Event' ('Close' 'Configure') cb)
 'D' Log 'Created HTMLRenderer ',(⍕ns),'.HR'
 
 :If SHOWDEVTOOLS

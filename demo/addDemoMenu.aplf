@@ -9,7 +9,7 @@ fns←(⊂'Pick a Demo'),4↓¨('D' ⎕NL ¯3)~'DemoMenu' 'DemoDefault'
    size←F1.Size
 :EndTrap
 
-posn←0 (¯110+2⊃size)
+posn←0 (¯100+2⊃size)
 topright←⍬
 
 :If noflex←0=⎕NC sf←form,'.INPUT.DEMO' ⍝ Use demo subform if Form has created a space for it

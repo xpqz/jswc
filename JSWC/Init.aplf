@@ -107,7 +107,7 @@
 
  allocateTokens
 
- HRBorder←63 17  ⍝ Additional space required for HR chrome
+ HRBorder←40 17  ⍝ Additional space required for HR chrome
  MENUOffset←23 0 ⍝ Space to allow for menu
  NOIDQ←1      ⍝ No interactive DQ
  WGID←0
