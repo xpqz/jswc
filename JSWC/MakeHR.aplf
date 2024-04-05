@@ -1,16 +1,20 @@
-err←MakeHR (home name);ns;count;maxtries;ok;cb;dpr
+err←MakeHR (home name);ns;count;maxtries;ok;cb;dpr;conn
 ns←home⍎name
 home.⎕EX '_JSWC.conn'
 cb←(⍕⎕THIS),'.HRCallbacks'
 dpr←DPR
-'HR' ns.⎕WC 'HTMLRenderer' ('Caption' ns.Caption) ('URL' ('localhost:',⍕PORT)) ('Size' (dpr×HRBorder+ns.Size))('Coord' 'Pixel')('Posn' (dpr×ns.Posn))('Event' ('Close' 'Configure') cb)
+'HR' ns.⎕WC 'HTMLRenderer' ('Caption' ns.Caption) ('URL' ('localhost:',⍕PORT)) ('Size' (dpr×ns.Size))('Coord' 'Pixel')('Posn' (dpr×ns.Posn))('Event' ('Close' 'Configure') cb)
 'D' Log 'Created HTMLRenderer ',(⍕ns),'.HR'
 
 :If SHOWDEVTOOLS
     ns.HR.ShowDevTools 1
 :EndIf
 
+:If 2=home.⎕NC '_JSWC_CODELOCATION'
+     home←home⍎'⍎_JSWC_CODELOCATION'
+:Else
 
+:EndIf
 count←ok←0 ⋄ maxtries←200
 :Repeat
     count+←1
