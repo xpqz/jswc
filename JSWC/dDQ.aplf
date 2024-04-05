@@ -46,6 +46,6 @@
  ⍝:EndHold
 
  :If 0≠≢R
-     R←(⊢/R).Event.((ID EventName),Info) ⍝ /// Need a proper queue
+     R←(⊢/R).Event.((ID EventName),{6::⍵ ⋄ Info}⍬) ⍝ /// Need a proper queue
  :EndIf
  'INTERRUPT'⎕SIGNAL interrupt/999
