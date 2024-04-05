@@ -2,8 +2,8 @@
 ⍝ Rotate the colours
 
  :Select 2⊃args
- :Case 'MouseUp'
-     'F1.Status' eWS 'Text' ('MouseUp: ',⍕2↓args)
+ :CaseList 'MouseUp' 'MouseDown'
+     'F1.Status' eWS 'Text' (⍕1↓args)
  :Case 'Select'
      item←{(1-(⌽⍵)⍳'.')↑⍵}1⊃args
      rot←(○5÷180)×¯1*item≡'LEFT'
