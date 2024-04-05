@@ -2,8 +2,6 @@
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
- eWC←⎕WC ⋄ eWS←⎕WS
-
  'F1'eWC'Form' 'Rotating Fonts'(50 50)(400 400)('Coord' 'Pixel')('Event' 'MouseUp' 'CBRotate')
 
  :For angle :In 45×¯1+⍳8

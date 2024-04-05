@@ -11,11 +11,16 @@ dpr←DPR
 :EndIf
 
 
+count←ok←0 ⋄ maxtries←200
 :Repeat
     count+←1
+    :If (~ok)∧count=100 ⍝ /// After 3 seconds, try reloading the page
+         ns.HR.ExecuteJavaScript 'window.location.reload()'
+    :EndIf
     ⎕Dl 0.1 ⍝ Allow Handler to process connection
 :Until (count>maxtries)∨ok←2=home.⎕NC '_JSWC.conn'
 err←(~ok)/'Unable to initialise HTMLRenderer'
+:If ~ok ⋄ ∘∘∘ ⋄ :EndIf
 
 ns.HR.Caption←ns.Caption,(~ns.Visible)/' [Invisible]'
 ns.HR.ExecuteJavaScript 'document.body.style.overflow = "hidden"'
