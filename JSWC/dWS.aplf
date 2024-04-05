@@ -9,7 +9,7 @@
      →0⊣R←Name ⎕WS Props
  :EndIf
 
- caller←⊃⎕RSI
+ caller←findCaller
  (type class objref)←getObj Name
  ('Not a JSWC object: ',(⍕caller),'.',Name)⎕SIGNAL (0=≢type)/11
 

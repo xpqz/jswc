@@ -3,7 +3,7 @@
  R←⍬
  deprecatedprops←,⊂'3D' ⍝ No longer appear in PropList
 
- caller←⊃⎕RSI
+ caller←findCaller
  Name←caller removeCaller Name
 
  Props←,⊆Props

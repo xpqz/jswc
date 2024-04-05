@@ -2,7 +2,9 @@
 
  ⎕TRAP←0 'S'
  names←,⊆names
- caller←⊃⎕RSI
+ caller←findCaller
+ names←caller removeCaller¨names
+
  :If ~∧/names∊'.' '#'
      ⎕SIGNAL(2.1∨.≠caller.⎕NC names,¨⊂'.Type')/11
  :EndIf
