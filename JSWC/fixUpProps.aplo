@@ -17,9 +17,13 @@
          :If type≡'font'
              (ix⊃values)←⌊0.5+0.85×ix⊃values ⍝ Adjust font size down
          :ElseIf 2=⍴⍴val←ix⊃values
-             (ix⊃values)←↓[1]val
+             (ix⊃values)←,⊂↓[1]val
          :Else
-             (ix⊃values)←,,¨val
+             val←ix⊃values
+             :If (type≡'poly')∧2=≡val←,¨val
+                 val←,⊂val
+             :EndIf
+             (ix⊃values)←val
          :EndIf
      :Case 'Text'
          :If type≡'text'
@@ -29,7 +33,7 @@
      :CaseList 'BCol' 'FCol' 'FillCol'
          (ix⊃values)←,⊆ix⊃values
      :CaseList 'LStyle' 'FStyle' 'LWidth'
-         ⍝ Do nothing?
+         (ix⊃values)←,ix⊃values ⍝ Always make a list
      :CaseList 'Visible' 'Active' 'Interval' 'TitleHeight' 'TitleWidth'
          (ix⊃values)←⊃ix⊃values ⍝ Must be scalar
      :Case 'Picture'
