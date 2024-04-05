@@ -52,7 +52,7 @@
      :EndIf
  :EndIf
 
- values←names(type fixUpProps)values       ⍝ Regularise things for the poor JS code
+ values←names((⎕C type) fixUpProps)values       ⍝ Regularise things for the poor JS code
  :If 0≠i←(1+≢names)-(⌽names)⍳⊂'Event'      ⍝ Last Event
  :AndIf 0 0≢i⊃values                       ⍝ Reset
  :AndIf 0≢⍴e←caller⍎Name,'.Event'          ⍝ Event property is "additive"

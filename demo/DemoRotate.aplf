@@ -3,6 +3,10 @@
  ⎕PW←1000
 
  'F1'eWC'Form' 'Rotating Fonts'(50 50)(400 400)('Coord' 'Pixel')('Event' 'MouseUp' 'CBRotate')
+ 'F1.MB' eWC 'MenuBar'
+ 'F1.MB.ROT' eWC 'Menu' 'Rotate'
+ 'F1.MB.ROT.RIGHT' eWC 'MenuItem' 'Right' ('Event' 'Select' 'CBRotate')
+ 'F1.MB.ROT.LEFT' eWC 'MenuItem' 'Left' ('Event' 'Select' 'CBRotate')
 
  :For angle :In 45×¯1+⍳8
      rad←○angle÷180
