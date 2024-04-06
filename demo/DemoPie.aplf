@@ -2,8 +2,7 @@
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
- eWC←⎕WC
- 'F1'eWC'Form' 'Pies'(50 50)(520 620)('Coord' 'Pixel')('BCol' 255 255 255)
+ 'F1'eWC'Form' 'Pies'(50 50)(480 620)('Coord' 'Pixel')('BCol' 255 255 255)
 
  Data←12 27 21 40
  ANGLES←0,¯1↓((○2)÷+/Data)×+\Data
@@ -11,9 +10,9 @@
  PATS←0×1 2 3 4
 
  'F1.P1'eWC'Ellipse'(10 10)(200 280)('Start'ANGLES)('ArcMode' 2)('FCol'(⊂0 0 0))('FStyle'PATS)('FillCol'COLS)
- 'F1.P2'eWC'Circle'(360 310)120('Start'ANGLES)('ArcMode' 2)('FCol' COLS)('FStyle' ¯1)
+ 'F1.P2'eWC'Circle'(150 450)120('Start'ANGLES)('ArcMode' 2)('FCol' COLS)('FStyle' ¯1)
 
- ps←('Points' 10 310)('Size' 200 280)('FCol' (0,0,0))('FStyle' 0)
+ ps←('Points' 250 10)('Size' 200 280)('FCol' (0,0,0))('FStyle' 0)
  'F1.E1'eWC 'Ellipse' ('ArcMode' 2)('DrawMode' 13)('Start' 0)    ('End' 1.167)('FillCol' (173,190,133)),ps
  'F1.E2'eWC 'Ellipse' ('ArcMode' 2)('DrawMode' 13)('Start' 1.167)('End' 1.613)('FillCol' (205,136,135)),ps
  'F1.E3'eWC 'Ellipse' ('ArcMode' 2)('DrawMode' 13)('Start' 1.613)('End' 2.492)('FillCol' ( 69, 89,187)),ps
