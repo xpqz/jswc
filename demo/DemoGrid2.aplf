@@ -1,10 +1,11 @@
- DemoGrid2 connected
+ DemoGrid2 connected;cols
  JSWC.CONNECTED←connected
  ⎕PW←1000
 
- 'F1'eWC'Form' 'Grid Movement'(50 50)(600 800)('Coord' 'Pixel')
+ 'F1'eWC'Form' 'Grid Movement'(50 50)(450 600)('Coord' 'Pixel')
 
- 'F1.G'eWC'Grid'(10 10⍴10/¨⎕A)(70 10)(480 780)
+ cols←(⊂⊂'Column'),¨⊂∘⍕¨⍳10
+ 'F1.G'eWC'Grid'(10 10⍴5/¨⎕A)(70 10)(370 580)('TitleHeight' 50)('TitleWidth' 30)('CellWidths' 50)('CellHeights' (10⍴20 40))('ColTitles' cols)
  'F1.G.E'eWC'Edit'('BCol' 200 200 200)
  'F1.G'eWS'Input' 'F.G.E'('Event' 'KeyPress' 'CBGrid2')
 
