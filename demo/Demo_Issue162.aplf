@@ -1,4 +1,4 @@
- Demo_Issue162 connected;folder;tn;cn;name;op;parms
+ Demo_Issue162 connected;folder;tn;cn;name;op;parms;ids;ix
  JSWC.CONNECTED←connected
 
  folder←⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
@@ -11,6 +11,10 @@
      (name op parms)←⎕FREAD tn cn
      name←'F1.',(2⍳⍨+\'.'=name)↓name
      :If name≢'F1.'
+         :If (≢parms)≥ix←(⊃¨parms)⍳⊂'Input'
+             ids←ix 2⊃parms
+             ((ix 2)⊃parms)←('#.F0000.' ⎕R 'F1.') ids
+         :End
          name (⍎'e',op) parms
      :EndIf
  :EndFor
