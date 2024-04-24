@@ -49,3 +49,5 @@
  captions←'Black and Scholes' 'Checking prices' 'VAR Analysis' 'Calculate Option Prices'
  icons←'FcPodiumWithSpeaker' 'FcMoneyTransfer' 'FcSearch' 'FcTreeStructure'
  (rb,'.Item4.GroupItem5.ButtonGroup1')eWC'RibbonButtonGroup'captions icons sel
+
+ eNQ 'F1.TC.T1' 'Select'
