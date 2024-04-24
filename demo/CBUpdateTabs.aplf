@@ -6,11 +6,12 @@
 
  :If 'F1.TC.T'≡7↑1⊃args
      f←font←⍬
-     :If 0≠≢fonts
+     :If 2=⎕NC 'fonts'
+     :AndIf 0≠≢fonts
          f←⊂'Font' ((font←(⊃2⊃⎕VFI 7↓1⊃args)⊃fonts) 15)
          'F1.L1' eWS (⊂'Caption' ('Caption: ',font)),f
      :Else
-         'F1.Average' eWS 'Caption' ('You selected ',((⊃args) eWG 'Type'),' "',(⍕2↓args),'"')
+         'F1.Average' eWS 'Caption' ('You selected ',((⊃args) eWG 'Type'),' "',((⊃args)eWG 'Caption'),'"')
      :EndIf
 
  :Else
