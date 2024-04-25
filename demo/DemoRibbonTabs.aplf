@@ -1,13 +1,17 @@
- DemoRibbonTabs connected;tb;sf;rb;captions;icons;sel;bcol;fcol;titlebcol;bordercol
+ DemoRibbonTabs connected;tb;sf;rb;captions;icons;sel;bcol;fcol;titlebcol;bordercol;activebcol;passivebcol
  JSWC.CONNECTED←connected
  ⎕PW←1000
+ ⎕ex 'fonts' ⍝ In case left over by DemoTabs
+
  sel←'Event' 'Select' 'CBUpdateRibbon'
  (fcol bcol titlebcol)←('FCol' (255 255 255))('BCol' (134 171 220))('TitleBCol'(0 0 0)) ⍝ For Ribbon
  bordercol←'BorderCol' (192 192 192) ⍝ For borders between Ribbon Groups
+ activebcol←'ActiveBCol' (134 171 220) ⍝ For the active Tab
+ passivebcol←'BCol' (⌊0.5×134 171 220)
 
  'F1'eWC'Form' 'Tabbed Ribbon'(50 50)(600 800)('Coord' 'Pixel')
  'F1.Average'eWC 'Label' 'Click on something!' (210 10)(50 400)
- 'F1.TC'eWC'TabControl'('Posn'(0 0))('Size'(200 800))('Attach'('Top' 'Left' 'Bottom' 'Right'))('MultiLine' 1)
+ 'F1.TC'eWC'TabControl'('Posn'(0 0))('Size'(200 800))('Attach'('Top' 'Left' 'Bottom' 'Right'))('MultiLine' 1)activebcol passivebcol fcol
 
  (tb←'F1.TC.T1')eWC'TabButton'('Caption' 'Locks and Macros')('Event' 'Select' 'CBUpdateTabs')
  (sf←'F1.TC.SF1')eWC'SubForm'('TabObj'tb),⊂bcol
