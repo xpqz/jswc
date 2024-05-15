@@ -17,7 +17,7 @@
          values[ix]←⊂,⊆⊃values[ix]
      :CaseList 'Points' 'Radius' 'Size'
          :If type≡'font'
-             (ix⊃values)←⌊0.5+0.85×ix⊃values ⍝ Adjust font size down
+             (ix⊃values)←⌊0.5+ix⊃values ⍝ Adjust font size down
          :ElseIf 2=⍴⍴val←ix⊃values
              (ix⊃values)←,⊂↓[1]val
          :Else
