@@ -9,8 +9,8 @@
  activebcol←'ActiveBCol'(134 171 220) ⍝ For the active Tab
  passivebcol←'BCol'(⌊0.5×134 171 220)
 
- imagefiles←'/images/logos'∘,¨'GAMA_R.ICO' 'GAMA_G.ICO' 'GAMA_B.ICO'
- 'IL'eWC'ImageList'('Size'(128 128))('Masked' 2)('Files'imagefiles)
+ imagefiles←'/images/logos/'∘,¨'GAMA_R.ICO' 'GAMA_G.ICO' 'GAMA_B.ICO'
+ 'IL'eWC'ImageList'('Size'(32 32))('Masked' 2)('Files'imagefiles)
 
  'F1'eWC'Form' 'Tabbed Ribbon'(50 50)(600 800)('Coord' 'Pixel')
  'F1.Average'eWC'Label' 'Click on something!'(210 10)(50 400)
