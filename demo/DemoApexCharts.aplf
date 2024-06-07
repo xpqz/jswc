@@ -15,7 +15,7 @@
  o,←'xaxis:{categories:["1","2","3"]},'
  o,←'yaxis:{min:0,max:20,tickAmount:5}}'
 
- s←'[ { x: 1, y: 10 },{ x: 2, y: 10 },{ x: 3, y: 10 }]'
+ s←'[{data:[{ x: 1, y: 10 },{ x: 2, y: 10 },{ x: 3, y: 10 }]}]'
 
  options←⎕JSON⍠'Dialect' 'JSON5'⊢o
  series←⎕JSON⍠'Dialect' 'JSON5'⊢s
@@ -25,4 +25,4 @@
 ⍝series.data←400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380
 
  'F1'eWC'Form' 'Charts'(50 50)(600 800)('Coord' 'Pixel')
- 'F1.BAR'eWC'ApexChart'(50 10)(540 780) ('Series' (,series)) ('Options' options)
+ 'F1.BAR'eWC'ApexChart'(50 10)(540 780) ('Series' series) ('Options' options)
