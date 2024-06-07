@@ -1,0 +1,7 @@
+ DemoApexSimpleBar connected;series
+ JSWC.CONNECTED←connected
+ ⎕PW←1000
+
+ series←+\?2 10⍴2
+ 'F1'eWC'Form' 'Charts'(50 50)(600 800)('Coord' 'Pixel')
+ 'F1.BAR'eWC'ApexChart'(50 10)(540 780)series'bar'

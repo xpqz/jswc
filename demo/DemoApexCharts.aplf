@@ -20,6 +20,7 @@
 
  series←⎕NS¨2⍴⊂''
  series.data←↓+\?2 10⍴2
+ series.labels←'blueish' 'greenish'
 
  'F1'eWC'Form' 'Charts'(50 50)(600 800)('Coord' 'Pixel')
- 'F1.BAR'eWC'ApexChart'(50 10)(540 780) ('Series' series)'Bar'⍝('Options' options)
+ 'F1.BAR'eWC'ApexChart'(50 10)(540 780) ('Series' series) 'Bar' ('Options' options)
