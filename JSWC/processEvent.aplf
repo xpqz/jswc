@@ -1,4 +1,4 @@
- {end}←processEvent ns;Info;ID;Event;event;events;fns;info;fn;z;async;class;e;code;res;gui
+ {end}←processEvent ns;Info;ID;Event;event;events;fns;info;fn;z;async;class;e;code;res;gui;shift;k
 
  :If 2=ns.⎕NC'CodeLocation'
      code←⍎ns.CodeLocation
@@ -17,7 +17,9 @@
 
  :If Event≡'KeyPress'
  :AndIf (≢JSKeys)≥z←JSKeys⍳Info[1]
-     Info[1 2]←APLKeys[z],0
+     shift←4⊃Info
+     Info[1 2]←((shift≤2)/k←⊃APLKeys[z;1+2⌊4⊃Info]) 0
+     →(0≡k)⍴0 ⍝ Ignore KeyPress with 0 in APLKeys (Shift/Ctrl & friends)
  :EndIf
 
  :Trap 6
