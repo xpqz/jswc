@@ -11,6 +11,8 @@
  'Insert'     'IN'   'PT'   'CP'
  'Delete'     'DI'   'CT'   'DK'
  'Enter'      'ER'   ''     ''
+ 'Backspace'  'DB'   'DB'   ''
+ 'Process'      0     0     ''
  'Tab'        'HT'   ''     'TB'
  'Control'      0     0     0
  'Shift'        0     0     0
