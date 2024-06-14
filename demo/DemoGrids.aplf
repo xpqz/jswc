@@ -35,7 +35,7 @@
  g eWS 'ShowInput' 0
 
  e←'Event' 'KeyPress' 'JSWCUpdate'
- (g,'.OUTPUT')eWC'Label'
+ (g,'.OUTPUT')eWC'Label'e
  (g,'.TEXT')eWC'Edit'e
  (g,'.INT') eWC'Edit'('FieldType' 'Numeric')('Decimals' 0)e
  (g,'.FLOAT') eWC'Edit'('FieldType' 'Numeric')('Decimals' 2)e
