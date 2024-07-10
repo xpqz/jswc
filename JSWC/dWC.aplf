@@ -106,7 +106,8 @@
  :EndIf
 
  :If (type≡'form')∨modal
-     :If (caller⍎Name,'.Coord')≢'Pixel'
+     :If 2=caller.⎕NC Name,'.Coord'
+     :AndIf (caller⍎Name,'.Coord')≢'Pixel'
          'Coord must be Pixel'⎕SIGNAL 11
      :EndIf
      SendSettings 2⊃getConnection caller Name
