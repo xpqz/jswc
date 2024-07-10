@@ -6,7 +6,7 @@ S←⎕NS ''
 S.Options←⎕NS ''
 S.Options.ID←'Mode'
 S.Options.Properties←⎕NS ''
-S.Options.Properties.Desktop←1∨USEHR
+S.Options.Properties.Desktop←USEHR
 z←CONN WSS.Send msg←⎕JSON S
 'T' Log msg
 
@@ -22,4 +22,3 @@ S.Options.Properties←⎕NS ''
 S.Options.Properties.Standard←↓{(⍵[;1]<0)⌿⍵}settings.Colors.Standard
 z←CONN WSS.Send msg←⎕JSON S
 'T' Log msg
-
