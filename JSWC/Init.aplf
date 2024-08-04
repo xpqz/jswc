@@ -107,6 +107,7 @@
  WSS.OnTimeout←(⍕⎕THIS),'.onTimeout'
  WSS.Handler←'Handler'
  WSS.Port←PORT
+ WSS.WaitTimeout←500
 
  allocateTokens
 
