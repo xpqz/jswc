@@ -2,6 +2,7 @@
  ⍝ Initialise the Demo application
  ⍝ web: 'Desktop' (0), 'Browser' (1) or 'Multi' (2)
 
+ COORD←'Pixel'
  JSWC←##.JSWC
  JSWC.PORT←22322
  JSWC.SHOWDEVTOOLS←0
