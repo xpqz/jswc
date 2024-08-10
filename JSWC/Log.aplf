@@ -8,6 +8,8 @@ mode Log msg
 ⍝ R: Receive on WebSocket
 ⍝ C: Connect or Disconnect
 ⍝ U: Unsupported feature
+⍝ N: Explicit NQ
+⍝ P: ProcessEvent
 
 →(mode∊LOGMODES)↓0
 ⎕←((,'ZI2,<:>,ZI2,<.>,ZI3' ⎕FMT 1 3⍴¯3↑⎕TS),' ',mode,':') msg
