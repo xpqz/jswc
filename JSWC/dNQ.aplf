@@ -27,8 +27,7 @@
 
  method←(⎕C Event[2])∊class.methodlist ⍝ Method rather than property
 
- :If (Mode∊1 2)∧Event[2]∊supportedMethods
-     :Trap 6
+ :If (Mode∊2)∧Event[2]∊supportedMethods
          →0⊣R←dWX Event
      :Else
         :Select ⎕C 2⊃Event
