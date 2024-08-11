@@ -61,7 +61,7 @@
      :If 3≠⎕NC fn
          'E'Log'Callback function not found: ',fn
      :ElseIf 1=≢info
-         'P'Log'    Monadic ',(async/' async'),' call to ',fn
+         'P'Log'    Monadic',(async/' async'),' call to ',fn
          :If async
              (⍎fn)&(ID Event),Info
          :ElseIf 0=1 2⊃⎕AT fn ⍝ Niladic fn
@@ -72,7 +72,7 @@
              :EndTrap
          :EndIf
      :ElseIf 2=≢info
-         'P'Log'    Dyadic ',(async/' async'),' call to ',fn
+         'P'Log'    Dyadic',(async/' async'),' call to ',fn
          :If async
              (2⊃info)(⍎fn)&(ID Event),Info
          :Else
