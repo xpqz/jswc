@@ -1,3 +1,4 @@
+ {R}←{Mode}∆NQ Event;caller;NQ;nq;msg;z;⎕TRAP;ID;conn;name;tkn;type;class;objref;event;i;fn;ok;hr;hdr;posn;size;methods;method;immediate;j
 ⍝ Modes:
 ⍝ 0: Add to event queue (default). Result = ''.
 ⍝ 1: Invoke callback function immediately. Enqueue result if relevant. Result = Event (possibly modified).
