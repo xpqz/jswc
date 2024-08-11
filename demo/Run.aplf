@@ -8,7 +8,6 @@
  JSWC.SHOWDEVTOOLS←0
  root←{⊃⎕NPARTS ¯1↓⍵}⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
  JSWC.RESOURCES←1 2⍴'images'(root,'/demo/images')
- JSWC.NOIDQ←0 ⍝ Allow interactive DQ while running demo
 
  ⎕USING←''
  ⍝ seps←System.Globalization.CultureInfo.CurrentCulture.NumberFormat.(NumberDecimalSeparator NumberGroupSeparator)
@@ -19,6 +18,7 @@
  :Else
      (⊃⎕DMX.DM)⎕SIGNAL⊃⎕DMX.EN
  :EndTrap
+ JSWC.NOIDQ←0 ⍝ Allow interactive DQ while running demo
 
  :Select JSWC.MODE
  :Case 0 ⍝ Desktop
