@@ -1,4 +1,10 @@
- {R}←{Mode}∆NQ Event;caller;NQ;nq;msg;z;⎕TRAP;ID;conn;name;tkn;type;class;objref;event;i;fn;ok;hr;hdr;posn;size;methods;method
+⍝ Modes:
+⍝ 0: Add to event queue (default). Result = ''.
+⍝ 1: Invoke callback function immediately. Enqueue result if relevant. Result = Event (possibly modified).
+⍝ 2: Do not invoke callback function. Perform default processing immediately. Return 1.
+⍝     If argument is a Dyalog-supplied method on #, result comes from method.
+⍝ 3,4: Not supported (3=OLE Control, 4=ActiveX)
+
  R←⍬
  :If ⎕THIS≡caller←findCaller
      caller←CALLER ⍝ // This is a hack to deal with ∆NQ from within Handler
