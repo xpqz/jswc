@@ -24,16 +24,14 @@
  'N' Log 'Mode ',(⍕Mode),', ',⍕Event
  (type class objref)←getObj name
  ('Not a JSWC object: ',(⍕caller),'.',name)⎕SIGNAL(0=≢type)/11
+ 'This NQ Mode currently not supported' ⎕SIGNAL (Mode∊0 1 2)↓11
 
  method←(⎕C Event[2])∊class.methodlist ⍝ Method rather than property
 
- :If (Mode∊2)∧Event[2]∊supportedMethods
+ :If (Mode∊2)∧Event[2]∊supportedMethods ⍝ 2 ⎕NQ 'obj' 'Methodname' [args]
          →0⊣R←dWX Event
  :EndIf
 
- :If ~Mode∊0 2
-     'This NQ currently not supported' ⎕SIGNAL 11
- :EndIf
 
  event←objref.Event
 
