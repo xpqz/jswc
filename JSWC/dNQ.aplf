@@ -14,6 +14,7 @@
      →0⊣R←Mode ⎕NQ Event
  :EndIf
 
+ 'N' Log 'Mode ',(⍕Mode),', ',⍕Event
  (type class objref)←getObj name
  ('Not a JSWC object: ',(⍕caller),'.',name)⎕SIGNAL(0=≢type)/11
 
@@ -93,8 +94,8 @@
  msg←⎕JSON⍠'HighRank' 'Split'⊢NQ
 
  :If CONNECTED
+     'T' Log '#',(⍕conn),': ',msg
      z←conn WSS.Send msg
-     'T'Log msg
  :Else
      ⎕←msg
  :EndIf
