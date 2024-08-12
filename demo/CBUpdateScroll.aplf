@@ -50,16 +50,16 @@
                  top←max⌊top+n          ⍝ Move a page
              :Else
                  eNQ 'F1.VGRID' 'CellMove',n,cc[2],1 ⍝ Move to bottom row
+                 cc[1]←n
              :EndIf
          :ElseIf 'US'≡3⊃args            ⍝ Page down
              :If cc[1]=1                ⍝ On top row
-                 top←1⌈top-n          ⍝ Move a page
+                 top←1⌈top-n            ⍝ Move a page
              :Else
                  eNQ 'F1.VGRID' 'CellMove',1,cc[2],1 ⍝ Move to top row
+                 cc[1]←1
              :EndIf
 
-         :ElseIf 3≠i←'DS' 'US'⍳args[3]
-             top←1⌈1+max⌊top+i⊃10 ¯10
          :Else
              →0
          :EndIf
