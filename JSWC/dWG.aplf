@@ -16,7 +16,7 @@
              size←⊂(1+MODE≠0)⊃z.(ScreenSize ViewPort) ⍝ Browser Size or Screen Size
              →0⊣R←(⌊0.5+size÷1(z.PPI÷25.4)),¯1 100
          :Else ⍝ No relevant browser session
-             :If 'Win'≡3↑'.'⎕WG'APLVersion'
+             :If 'Win'≡3↑⊃'.'⎕WG'APLVersion'
                  →0⊣R←Name ⎕WG Props
              :Else
                  m←⎕D∊⍨z←⊃⎕SH'xdpyinfo | grep dimensions'
@@ -79,7 +79,7 @@
      r←dynamic/R
      ⍎'wg.Properties.(',(⍕d),')←',(1≠≢r)↓'⊃r'
      msg←⎕JSON⍠'HighRank' 'Split'⊢WG
-     (⎕JSON msg)⎕TPUT WG_TOKENBASE+TOKENSTEP×ID
+     (⎕JSON msg)⎕TPUT WG_TOKENBASE+TOKENSTEP×1⌈ID×MODE=2
  :EndIf
 
  :If remote∧CONNECTED
