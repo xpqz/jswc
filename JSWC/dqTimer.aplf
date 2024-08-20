@@ -1,6 +1,7 @@
 dqTimer args;R;done;code;sns;token
 ⍝ Handle one Timer event for interactive operation
-⍝ /// Maybe check if a DQ is running?
+
+→(NOIDQ∨MODE=2)⍴0
 
 →NOIDQ⍴0
 token←DQ_TOKENBASE+TOKENSTEP×1
