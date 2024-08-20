@@ -3,8 +3,7 @@ dqTimer args;R;done;code;sns;token
 
 →(NOIDQ∨MODE=2)⍴0
 
-→NOIDQ⍴0
-token←DQ_TOKENBASE+TOKENSTEP×1
+token←DQ_TOKENBASE+TOKENSTEP×1⌈⊃⊃SESSIONS
 :Hold 'JSWC_DQTOKENS'
     →(token∊DQTOKENS)⍴0
 :EndHold

@@ -51,7 +51,7 @@
  fn←(⍕code),'.',(-async)↓fn
  res←⍬
 
- :Hold 'JSWC.processEvent'
+ :Hold 'JSWC.processEvent',⍕code
      :If (⊂Event)∊⊆2⊃BREAK
      :OrIf (⊂ID)∊⊆1⊃BREAK
          ⎕←'BREAK on ',⎕JSON ns
