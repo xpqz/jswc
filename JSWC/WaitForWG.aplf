@@ -4,11 +4,8 @@
 
  token←WG_TOKENBASE+TOKENSTEP×1
 AGAIN:
-⍝ :If 'DQ'≡(⎕JSON msg).WX.Method
-⍝     j←⎕TGET token
-⍝ :Else
+ 'G' Log 'WaitForWG waiting on token ',(⍕token),' for ',,⍕Props
      j←WG_TIMEOUT ⎕TGET token
-⍝ :EndIf
  :If 0=≢j
      'W' Log 'Client did not respond within ',(⍕WG_TIMEOUT),' seconds.'
      'W' Log 'Request was: ',msg

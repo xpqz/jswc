@@ -31,7 +31,7 @@
      :EndIf
 
  :Case 1 ⍝ Browser
-     ⎕←'Connect Browser now...'
+     ⎕←'Connect Browser to port ',(⍕JSWC.PORT),' ...'
      :Repeat
         ⍞←'.'
         ⎕DL 1
@@ -48,5 +48,5 @@
      :EndIf
 
   :Case 2 ⍝ Multi
-     ⎕←'Running in Multi mode'
+     ⎕←'Running in Multi mode on port ',(⍕JSWC.PORT)
   :EndSelect

@@ -3,6 +3,7 @@
  ⎕TRAP←0 'S'
  names←,⊆names
  caller←findCaller
+ 'N' Log 'findCaller returned ',⍕caller
  names←caller removeCaller¨names
  modal←0
 
