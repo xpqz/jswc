@@ -1,7 +1,7 @@
-# EWC User Guide
+# Introduction
 
-EWC stands for "Everywhere WC". EWC is a cross-platform implementation of the ⎕WC
-family of system functions (⎕WC/⎕WS/⎕WG/⎕NQ/⎕DQ) that are available in Dyalog APL
+EWC stands for "Everywhere WC". EWC is a cross-platform implementation of the `⎕WC`
+family of system functions (`⎕WC/⎕WS/⎕WG/⎕NQ/⎕DQ`) that are available in Dyalog APL
 for Microsoft Windows.
 
 !!!Note
