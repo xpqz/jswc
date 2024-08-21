@@ -1,6 +1,6 @@
 # Introduction
 
-EWC stands for "Everywhere WC". EWC is a cross-platform implementation of the `⎕WC`
+EWC stands for "Everywhere Window Create". EWC is a cross-platform implementation of the `⎕WC`
 family of system functions (`⎕WC/⎕WS/⎕WG/⎕NQ/⎕DQ`) that are available in Dyalog APL
 for Microsoft Windows.
 
