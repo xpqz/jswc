@@ -10,7 +10,7 @@
  :If (⊂,Name)∊,¨'⎕SE' '#' '.' ⍝ Pass WG of System properties through
      :If (⊃Name)≠'⎕'
      :AndIf (⎕C Props)≡'devcaps'
-        :If MODE>0
+        :If (MODE>0)∨'Mac'≡3↑⊃'.' ⎕WG 'APLVersion'
         :AndIf 0<≢⊃SESSIONS
            z←((2+ID⍳⍨⊃SESSIONS)⊃SESSIONS).devCaps
            size←⊂(1+MODE≠0)⊃z.(ScreenSize ViewPort) ⍝ Browser Size or Screen Size
