@@ -42,7 +42,9 @@
  JSWCFolder←⊃⎕NPARTS 4⊃5179⌶⊃⎕SI
 
  :If 0=⎕NC'JSClientFolder'
-     :If ⎕NEXISTS folder←'jswc-client/dist/',⍨{⊃⎕NPARTS ¯1↓⍵}⍣2⊢JSWCFolder
+     :If ⎕NEXISTS folder←'jswc-client/dist/',⍨{⊃⎕NPARTS ¯1↓⍵}⍣2⊢JSWCFolder      ⍝ Is there a separate checkout of client?
+         JSClientFolder←folder
+     :ElseIf ⎕NEXISTS folder←(⊃⎕NPARTS ¯1↓JSWCFolder),'/client/dist/'
          JSClientFolder←folder
      :Else
          'Unable to locate JSWC Client'⎕SIGNAL 11
