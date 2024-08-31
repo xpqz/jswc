@@ -2,4 +2,6 @@
 
 The EWC implementation of Menu has some degree of support for:
 
- |   Caption  |            |            |           |
+| Properties|  |  |  |
+|--|--|--|--|
+ |  Caption  |           |           |          |

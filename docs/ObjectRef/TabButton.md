@@ -2,8 +2,11 @@
 
 The EWC implementation of TabButton has some degree of support for:
 
- |   Caption  |   Event  |            |           |
+| Properties|  |  |  |
+|--|--|--|--|
+ |  Caption  |  Event  |           |          |
 
-Supported events:
 
+| Events|  |  |  |
+|--|--|--|--|
  |  Select  |          |          |         |

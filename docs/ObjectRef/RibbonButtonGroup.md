@@ -1,10 +1,13 @@
 # RibbonButtonGroup
 
-The EWC implementation of RibbonButtonGroup supports the following properties:
+The EWC implementation of RibbonButtonGroup supports:
 
- |   Border    |   Data   |   Icons       |   ImageListObj |
- |   Captions  |   Event  |   ImageIndex  |                |
+| Properties|  |  |  |
+|--|--|--|--|
+ |  Border    |  Data   |  Icons       |  ImageListObj |
+ |  Captions  |  Event  |  ImageIndex  |               |
 
-Supported events:
 
+| Events|  |  |  |
+|--|--|--|--|
  |  Select  |          |          |         |

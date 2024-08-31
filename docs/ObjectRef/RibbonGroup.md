@@ -1,5 +1,7 @@
 # RibbonGroup
 
-The EWC implementation of RibbonGroup supports the following properties:
+The EWC implementation of RibbonGroup supports:
 
- |   BorderCol  |   Data  |   Size  |   Title |
+| Properties|  |  |  |
+|--|--|--|--|
+ |  BorderCol  |  Data  |  Size  |  Title |

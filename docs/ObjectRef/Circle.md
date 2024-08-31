@@ -2,6 +2,8 @@
 
 The EWC implementation of Circle has some degree of support for:
 
- |   ArcMode  |   FStyle   |   Radius   |           |
- |   End      |   FillCol  |   Start    |           |
- |   FCol     |   Points   |   Visible  |           |
+| Properties|  |  |  |
+|--|--|--|--|
+ |  ArcMode  |  FStyle   |  Radius   |          |
+ |  End      |  FillCol  |  Start    |          |
+ |  FCol     |  Points   |  Visible  |          |

@@ -2,14 +2,15 @@
 
 The EWC implementation of Form has some degree of support for:
 
- |   BCol     |   Flex     |  *Size     |        |
- |   Caption  |   Picture  |   Styles   |        |
- |   Coord    |  *Posn     |   Visible  |        |
+| Properties|  |  |  |
+|--|--|--|--|
+ |  BCol     |  Flex     |  Size     |       |
+ |  Caption  |  Picture  |  Styles   |       |
+ |  Coord    |  Posn     |  Visible  |       |
 
-* indicates that the property can change after it has been set.
 
-Supported events:
-
+| Events|  |  |  |
+|--|--|--|--|
  |  Configure  |  MouseDown  |  MouseUp  |            |
 
 Known limitations of the Form implementation:

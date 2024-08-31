@@ -2,7 +2,7 @@ Make;folder;r;classes;class;root;yml;p;f;t;i;e
 ⍝ Generate Class documentation
 
 folder←(root←{⊃⎕NPARTS ¯1↓⍵}⍣3⊢4⊃5179⌶⊃⎕SI),'docs/ObjectRef'
-r←'# Supported Features' '',,Classes
+r←'# Classes' '',,Classes
 r Put folder,'/Classes.md'
 
 classes←##.classes.(⍎¨⎕NL -9).ClassName

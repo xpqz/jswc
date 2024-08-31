@@ -5,17 +5,17 @@ r←Details classname;class;n;m;nonWC;t
 
 class←##.classes⍎⎕C classname
 nonWC←(⊂6↑classname)∊'Ribbon' 'ApexCh'
-t←(1+nonWC)⊃'has some degree of support for' 'supports the following properties'
+t←(1+nonWC)⊃'has some degree of support for' 'supports'
 
 r←('The EWC implementation of ',class.ClassName,' ',t,':') ''
 n←{⍵[⍋⍵]}class.Supported~⊂'Type'
-n←' *'[1+m←n∊class.Dynamic],¨n
-r,←4 foldCols '  '∘,¨n
-r,←(∨/m)/'' '* indicates that the property can change after it has been set.'
+⍝ n←' *'[1+m←n∊class.Dynamic],¨n
+r,←4 'Properties' foldCols '  '∘,¨n
+⍝ r,←(∨/m)/'' '* indicates that the property can change after it has been set.'
 
 :If 2=⎕NC 'class.SupportedEvents'
     n←{⍵[⍋⍵]}class.SupportedEvents
-    r,←'' 'Supported events:' '',4 foldCols '  '∘,¨n
+    r,←'' '', 4 'Events' foldCols '  '∘,¨n
 :EndIf
 
 :If 2=⎕NC 'class.Limitations'

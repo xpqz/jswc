@@ -2,12 +2,13 @@
 
 The EWC implementation of TreeView has some degree of support for:
 
- |   Attach  |   ImageIndex    |   Posn      |   Visible |
- |   Depth   |   ImageListObj  |  *SelItems  |           |
- |   Event   |   Items         |   Size      |           |
+| Properties|  |  |  |
+|--|--|--|--|
+ |  Attach  |  ImageIndex    |  Posn      |  Visible |
+ |  Depth   |  ImageListObj  |  SelItems  |          |
+ |  Event   |  Items         |  Size      |          |
 
-* indicates that the property can change after it has been set.
 
-Supported events:
-
+| Events|  |  |  |
+|--|--|--|--|
  |  Expanding  |  ItemDblClick  |  ItemDown  |  Retracting |

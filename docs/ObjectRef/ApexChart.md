@@ -1,10 +1,13 @@
 # ApexChart
 
-The EWC implementation of ApexChart supports the following properties:
+The EWC implementation of ApexChart supports:
 
- |   ChartType  |   Options  |   Series  |             |
- |   Event      |   Posn     |   Size    |             |
+| Properties|  |  |  |
+|--|--|--|--|
+ |  ChartType  |  Options  |  Series  |            |
+ |  Event      |  Posn     |  Size    |            |
 
-Supported events:
 
+| Events|  |  |  |
+|--|--|--|--|
  |  click  |  legendclick  |         |        |

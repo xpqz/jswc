@@ -1,4 +1,4 @@
-# Differences between `EWC` and `⎕WC`
+# `EWC` versus `⎕WC`
 
 Most importantly, `EWC` only supports a subset of the objects supported by
 `⎕WC` - and for each of the supported classes, only a subset of the features of

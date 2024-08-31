@@ -1,10 +1,13 @@
 # RibbonButton
 
-The EWC implementation of RibbonButton supports the following properties:
+The EWC implementation of RibbonButton supports:
 
- |   Border   |   Data   |   Icon        |   ImageListObj |
- |   Caption  |   Event  |   ImageIndex  |   Size         |
+| Properties|  |  |  |
+|--|--|--|--|
+ |  Border   |  Data   |  Icon        |  ImageListObj |
+ |  Caption  |  Event  |  ImageIndex  |  Size         |
 
-Supported events:
 
+| Events|  |  |  |
+|--|--|--|--|
  |  Select  |          |          |         |

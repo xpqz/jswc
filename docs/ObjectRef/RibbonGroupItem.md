@@ -1,5 +1,7 @@
 # RibbonGroupItem
 
-The EWC implementation of RibbonGroupItem supports the following properties:
+The EWC implementation of RibbonGroupItem supports:
 
- |   Data  |   Size  |         |        |
+| Properties|  |  |  |
+|--|--|--|--|
+ |  Data  |  Size  |        |       |
