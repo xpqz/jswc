@@ -2,18 +2,18 @@
 
 EWC has some degree of support for the following ⎕WC classes:
 
- |   [BitMap](ObjectRef/BitMap.md)    |   [Grid](ObjectRef/Grid.md)            |   [Menu](ObjectRef/Menu.md)          |   [SubForm](ObjectRef/SubForm.md)       |
- |   [Button](ObjectRef/Button.md)    |   [Group](ObjectRef/Group.md)          |   [MenuBar](ObjectRef/MenuBar.md)    |   [TabButton](ObjectRef/TabButton.md)   |
- |   [Circle](ObjectRef/Circle.md)    |   [Icon](ObjectRef/Icon.md)            |   [MenuItem](ObjectRef/MenuItem.md)  |   [TabControl](ObjectRef/TabControl.md) |
- |   [Combo](ObjectRef/Combo.md)      |   [Image](ObjectRef/Image.md)          |   [MsgBox](ObjectRef/MsgBox.md)      |   [Text](ObjectRef/Text.md)             |
- |   [Edit](ObjectRef/Edit.md)        |   [ImageList](ObjectRef/ImageList.md)  |   [Poly](ObjectRef/Poly.md)          |   [Timer](ObjectRef/Timer.md)           |
- |   [Ellipse](ObjectRef/Ellipse.md)  |   [Label](ObjectRef/Label.md)          |   [Rect](ObjectRef/Rect.md)          |   [TreeView](ObjectRef/TreeView.md)     |
- |   [Font](ObjectRef/Font.md)        |   [List](ObjectRef/List.md)            |   [Scroll](ObjectRef/Scroll.md)      |                                         |
- |   [Form](ObjectRef/Form.md)        |   [ListView](ObjectRef/ListView.md)    |   [Splitter](ObjectRef/Splitter.md)  |                                         |
+ |   [BitMap](BitMap.md)    |   [Grid](Grid.md)            |   [Menu](Menu.md)          |   [SubForm](SubForm.md)       |
+ |   [Button](Button.md)    |   [Group](Group.md)          |   [MenuBar](MenuBar.md)    |   [TabButton](TabButton.md)   |
+ |   [Circle](Circle.md)    |   [Icon](Icon.md)            |   [MenuItem](MenuItem.md)  |   [TabControl](TabControl.md) |
+ |   [Combo](Combo.md)      |   [Image](Image.md)          |   [MsgBox](MsgBox.md)      |   [Text](Text.md)             |
+ |   [Edit](Edit.md)        |   [ImageList](ImageList.md)  |   [Poly](Poly.md)          |   [Timer](Timer.md)           |
+ |   [Ellipse](Ellipse.md)  |   [Label](Label.md)          |   [Rect](Rect.md)          |   [TreeView](TreeView.md)     |
+ |   [Font](Font.md)        |   [List](List.md)            |   [Scroll](Scroll.md)      |                               |
+ |   [Form](Form.md)        |   [ListView](ListView.md)    |   [Splitter](Splitter.md)  |                               |
 
 In addition, EWC adds the following classes not supported by ⎕WC:
 
- |   [ApexChart](ObjectRef/ApexChart.md)  |   [RibbonButton](ObjectRef/RibbonButton.md)            |   [RibbonGroup](ObjectRef/RibbonGroup.md)          |                                       |
- |   [Ribbon](ObjectRef/Ribbon.md)        |   [RibbonButtonGroup](ObjectRef/RibbonButtonGroup.md)  |   [RibbonGroupItem](ObjectRef/RibbonGroupItem.md)  |                                       |
+ |   [ApexChart](ApexChart.md)  |   [RibbonButton](RibbonButton.md)            |   [RibbonGroup](RibbonGroup.md)          |                             |
+ |   [Ribbon](Ribbon.md)        |   [RibbonButtonGroup](RibbonButtonGroup.md)  |   [RibbonGroupItem](RibbonGroupItem.md)  |                             |
 
 See EWC.Doc.Details 'classname' for more details
