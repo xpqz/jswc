@@ -23,7 +23,7 @@ Alternatively, after linking ewc, you can create a form as follows:
 `'F1' eWC 'Form' 'Hello World' (10 10) (400 600)`
 
 This should create an HTMLRenderer window with the caption "Hello World". For more
-information on getting started, see [initialisation](Usage/Initialisation.md).
+information on getting started, see [initialisation](Initialisation.md).
 
 ## EWC Development
 

@@ -4,7 +4,7 @@ Once you have a folder on your machine containing EWC, you can load it into a Dy
 
 `]link.import # /path/to/ewc`
 
-Where `/path/to/ewc` is the name of the folder that you created during [installation](Usage/Installation.md).
+Where `/path/to/ewc` is the name of the folder that you created during [installation](Installation.md).
 
 # EWC.Init
 

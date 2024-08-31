@@ -12,7 +12,7 @@ code that used the unsupported feature. For example:
 `59:15.169 W:   *** Warning: at  Make[16]  wMakeSubForm[8] - Unsupported on button:  FCol  BCol  Accelerator`
 
 You can decide to ignore the warning, work around it, or request support for the 
-missing feature from Dyalog. For more information, see the documentation of [supported classes](ObjectRef/Classes.md).
+missing feature from Dyalog. For more information, see the documentation of [supported classes](../ObjectRef/Classes.md).
 
 # Validation and Error Messages
 
@@ -29,7 +29,7 @@ Timer object called _EWC.EWCTIMER within the application namespace.
 # Images and ImageLists
 
 Images are handled differently - all images must be made available as image files
-that can be loaded by a web browser. See [Images](Discussion/Images.md) for details.
+that can be loaded by a web browser. See [Images](Images.md) for details.
 
 # Temporary Limitations
 

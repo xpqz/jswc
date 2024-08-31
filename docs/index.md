@@ -6,7 +6,7 @@ for Microsoft Windows.
 
 EWC only supports a subset of the functionality provided by `⎕WC`.
 This subset is growing, driven by the requirements of early adopters.
-The supported subset is [documented here](Classes)
+The supported subset is [documented in the object reference](ObjectRef/Classes.md).
 
 !!!Note
      At this time, EWC is work in progress, and not supported via 
@@ -28,7 +28,7 @@ available - currently Linux, MacOS and Windows.
 
 # Getting Started
 
-Check out the [installation instructions](Usage/Installatiom.md), the section on
+Check out the [installation instructions](Usage/Installation.md), the section on
 [initialisation](Usage/Initialisation.md), or the [implementation details](Discussion/TechDetails.md).
 
 If you are not familiar with `⎕WC`, you may want to start with the standard Dyalog
