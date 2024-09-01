@@ -39,3 +39,5 @@ return until a browser is connected.
 However, in Multi mode, your application namespace must contain a 
 function called `Init` which will be called when each new browser session starts,
 to create the GUI for the new session.
+
+Also, in multi mode, the only permitted prefix is 'e'.
