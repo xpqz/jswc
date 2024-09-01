@@ -1,6 +1,12 @@
 addDemoMenu form;fns;size;posn;sf;e;topright;noflex;selitems
 form←⊃'Form' eWN ⍕⎕THIS
-fns←(⊂'Pick a Demo'),4↓¨('D' ⎕NL ¯3)~'DemoMenu' 'DemoDefault'
+:If 'demo'≡⎕C MODE
+    fns←DEMOS
+:Else
+    fns←4↓¨('D' ⎕NL ¯3)~'DemoMenu' 'DemoDefault'
+:EndIf
+
+fns←(⊂'Pick a Demo'),fns
 
 :Trap 6
    size←form eWG 'Size'
