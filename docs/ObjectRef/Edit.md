@@ -17,7 +17,7 @@ The EWC implementation of [`⎕WC` class Edit](https://help.dyalog.com/19.0/inde
 
 NB: Links above are to the complete `⎕WC` documentation
 
-Known limitations of the Edit implementation:
+## Known Limitations
 
 There is limited support for FieldType, but Numeric and Date should work.
 

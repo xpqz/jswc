@@ -15,6 +15,9 @@ The EWC implementation of [`⎕WC` class Form](https://help.dyalog.com/19.0/inde
 
 NB: Links above are to the complete `⎕WC` documentation
 
-Known limitations of the Form implementation:
+## Known Limitations
 
-Coord defaults to Pixel, Size to 400 600 and Posn to 100 100
+Coord defaults to Pixel, Size to 400 600 and Posn to 100 100.
+The `Picture` property must refer to a file which resides in one of the folders
+defined in the EWC.RESOURCES array. See [Images](../Usage/Configuration.md)
+for more information.

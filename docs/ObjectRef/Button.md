@@ -14,3 +14,9 @@ The EWC implementation of [`⎕WC` class Button](https://help.dyalog.com/19.0/in
  |  [KeyPress](https://help.dyalog.com/19.0/index.htm#GUI/MethodOrEvents/KeyPress.htm)  |  [Select](https://help.dyalog.com/19.0/index.htm#GUI/MethodOrEvents/Select.htm)  |                                                                                      |                                                                                     |
 
 NB: Links above are to the complete `⎕WC` documentation
+
+## Known Limitations
+
+The `Picture` property must refer to a file which resides in one of the folders
+defined in the EWC.RESOURCES array. See [Images](../Usage/Configuration.md)
+for more information.

@@ -28,7 +28,7 @@ Timer object called _EWC.EWCTIMER within the application namespace.
 
 # Images and ImageLists
 
-Images are handled differently - all images must be made available as image files
+Images are handled differently - all images must be made defined by image files
 that can be loaded by a web browser. See [Images](Images.md) for details.
 
 # Temporary Limitations

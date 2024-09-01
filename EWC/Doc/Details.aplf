@@ -28,7 +28,7 @@ r,←4 'Properties' foldCols '  '∘,¨('prop'∘(AddDocLink⍣WC)¨n)
 :EndIf
 
 :If 2=⎕NC 'class.Limitations'
-    r,←'' ('Known limitations of the ',class.ClassName,' implementation:') '',class.Limitations
+    r,←'' '## Known Limitations' '',class.Limitations
 :EndIf
 
 r←⍪r
