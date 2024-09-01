@@ -1,17 +1,19 @@
 # Form
 
-The EWC implementation of Form has some degree of support for:
+The EWC implementation of [`⎕WC` class Form](https://help.dyalog.com/19.0/index.htm#GUI/Objects/Form.htm) has some degree of support for:
 
 | Properties|  |  |  |
 |--|--|--|--|
- |  BCol     |  Flex     |  Size     |       |
- |  Caption  |  Picture  |  Styles   |       |
- |  Coord    |  Posn     |  Visible  |       |
+ |  [BCol](https://help.dyalog.com/19.0/index.htm#GUI/Properties/BCol.htm)        |  [Flex](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Flex.htm)        |  [Size](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Size.htm)        |                                                                         |
+ |  [Caption](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Caption.htm)  |  [Picture](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Picture.htm)  |  [Styles](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Styles.htm)    |                                                                         |
+ |  [Coord](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Coord.htm)      |  [Posn](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Posn.htm)        |  [Visible](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Visible.htm)  |                                                                         |
 
 
 | Events|  |  |  |
 |--|--|--|--|
- |  Configure  |  MouseDown  |  MouseUp  |            |
+ |  [Configure](https://help.dyalog.com/19.0/index.htm#GUI/MethodOrEvents/Configure.htm)  |  [MouseDown](https://help.dyalog.com/19.0/index.htm#GUI/MethodOrEvents/MouseDown.htm)  |  [MouseUp](https://help.dyalog.com/19.0/index.htm#GUI/MethodOrEvents/MouseUp.htm)  |                                                                                       |
+
+NB: Links above are to the complete `⎕WC` documentation
 
 Known limitations of the Form implementation:
 

@@ -1,14 +1,16 @@
 # Button
 
-The EWC implementation of Button has some degree of support for:
+The EWC implementation of [`⎕WC` class Button](https://help.dyalog.com/19.0/index.htm#GUI/Objects/Button.htm) has some degree of support for:
 
 | Properties|  |  |  |
 |--|--|--|--|
- |  Align    |  Event    |  Size   |  Styles  |
- |  Attach   |  Picture  |  State  |  Visible |
- |  Caption  |  Posn     |  Style  |          |
+ |  [Align](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Align.htm)      |  [Event](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Event.htm)      |  [Size](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Size.htm)    |  [Styles](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Styles.htm)   |
+ |  [Attach](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Attach.htm)    |  [Picture](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Picture.htm)  |  [State](https://help.dyalog.com/19.0/index.htm#GUI/Properties/State.htm)  |  [Visible](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Visible.htm) |
+ |  [Caption](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Caption.htm)  |  [Posn](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Posn.htm)        |  [Style](https://help.dyalog.com/19.0/index.htm#GUI/Properties/Style.htm)  |                                                                               |
 
 
 | Events|  |  |  |
 |--|--|--|--|
- |  KeyPress  |  Select  |            |           |
+ |  [KeyPress](https://help.dyalog.com/19.0/index.htm#GUI/MethodOrEvents/KeyPress.htm)  |  [Select](https://help.dyalog.com/19.0/index.htm#GUI/MethodOrEvents/Select.htm)  |                                                                                      |                                                                                     |
+
+NB: Links above are to the complete `⎕WC` documentation

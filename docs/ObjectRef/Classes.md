@@ -1,6 +1,6 @@
 # Classes
 
-EWC has some degree of support for the following ⎕WC classes:
+EWC has some degree of support for the following `⎕WC` classes:
 
 | `⎕WC` Classes|  |  |  |
 |--|--|--|--|
@@ -13,7 +13,7 @@ EWC has some degree of support for the following ⎕WC classes:
  |   [Font](Font.md)        |   [List](List.md)            |   [Scroll](Scroll.md)      |                               |
  |   [Form](Form.md)        |   [ListView](ListView.md)    |   [Splitter](Splitter.md)  |                               |
 
-EWC adds the following classes not supported by ⎕WC:
+EWC adds the following classes not supported by `⎕WC`:
 
 | Additional|  |  |  |
 |--|--|--|--|
