@@ -30,14 +30,17 @@ provide a left argument to change the names. For example,
 
 Will create functions `xWC`, `xWS` etc, and start EWC in Browser mode.
 
-# Multi Modes
+# 'Multi' Mode
 
 In Desktop and Browser mode, your application can call EWC.Init and then immediately
 continue to create GUI components using `eWC`. In browser mode, EWC.Init will not
 return until a browser is connected.
 
 However, in Multi mode, your application namespace must contain a 
-function called `Init` which will be called when each new browser session starts,
+function called `Initialise` which will be called when each new browser session starts,
 to create the GUI for the new session.
 
-Also, in multi mode, the only permitted prefix is 'e'.
+If your application namespace contains a function called `onClose`, then it will be 
+called when the browser session is terminated.
+
+Note that in Multi mode, the only permitted prefix is 'e'.

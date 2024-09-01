@@ -11,13 +11,21 @@
 The simplest way to verify installtion is to run the demo application:
 
 `]link.create # /path/to/ewc`
-`demo.Run ''`
+`demo.Run 'Desktop'`
 
 This will pop up a form with a Dyalog logo and a dropdown on the right which allows
 you to select a variety of simple test applications that have been used to test
 EWC during development.
 
-Alternatively, after linking ewc, you can create a form as follows:
+## The Demo Application
+
+The [demo application](Demo.md) provides several examples that illustrate the use of
+EWC. It supports Desktop, Browser and Multi modes - and will run in the mode that you
+select using the right argument.
+
+## Building your Own Application
+
+After linking ewc, you can create a form as follows:
 
 `EWC.Init 'Desktop'`
 `'F1' eWC 'Form' 'Hello World' (10 10) (400 600)`

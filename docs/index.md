@@ -18,7 +18,8 @@ Alternatively, EWC can be initialised in "Browser" mode, in which case it starts
 popped up if required.
 
 Finally, there is an experimental "Multi" mode, intended to support 
-multi-user applications. In this mode, EWC must also be used via browsers. For each connection, the application namespace is cloned.
+multi-user applications. In this mode, EWC must also be used via browsers. 
+For each connection, the application namespace is cloned.
 If the application namespace is called `demo`, then clones will be named
 `demo_1`, `demo_2` etc. This allows each session to have separate state.
 
