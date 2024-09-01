@@ -20,6 +20,10 @@
      'Mode argument should be one of Desktop/0, Browser/1 or Multi/2'⎕SIGNAL(mode=3)/11
  :EndIf
 
+ :If (mode=2)∧prefix≠'e'
+     'e is the only permitted prefix in Multi mode' ⎕SIGNAL 11
+ :EndIf
+
  USEHR←mode=0
  MODE←mode
 
@@ -74,12 +78,7 @@
      SHOWDEVTOOLS←0
  :EndIf
 
-⍝ Establish API in calling space unless prefix≡''
- :If 0≠≢prefix
-     :For fn :In 'WC' 'WS' 'WG' 'WN' 'NQ' 'EX' 'DQ'
-         ⍎(⍕CODELOCATION),'.',prefix,fn,'←',(⍕⎕THIS),'.∆',fn
-     :EndFor
- :EndIf
+ establishCovers CODELOCATION prefix
 
  CONNECTED←1 ⍝ /// This should go
  RECORD←0
