@@ -57,27 +57,7 @@
  :EndIf
  ⎕←'Using client found at ',JSClientFolder
 
- :If 0=⎕NC'MAXLOG'
-     MAXLOG←2000
- :EndIf
- :If 0=⎕NC'LOGMODES'
-     LOGMODES←⎕A ⍝ Log everything (see Log)
- :EndIf
- :If 0=⎕NC'RESOURCES'
-     RESOURCES←1 2⍴⊂''
- :EndIf
- :If 0=⎕NC'PORT'
-     PORT←22322
- :EndIf
- :If 0=⎕NC'MAXSESSIONS'
-     MAXSESSIONS←100
- :EndIf
- :If 0=⎕NC'BREAK'
-     BREAK←⍬ ⍬ ⍝ IDs Events
- :EndIf
- :If 0=⎕NC'SHOWDEVTOOLS'
-     SHOWDEVTOOLS←0
- :EndIf
+ setDefaults
 
  establishCovers CODELOCATION prefix
 
