@@ -20,6 +20,21 @@ ImageLists and other objects created from image files.
 
 You can define as many resources as you like, one per row.
 
+## FONTMAP
+
+EWC includes a number of free fonts. FONTMAP is a font substitution table, which can
+be used to map Windows font names used in existing applications to the free alternatives.
+If FONTMAP is not specified, FONTMAP is initialised from FontMap. At the time this
+text was written, FontMap was a 2-column matrix containing the following fonts:
+
+|Legacy Font     | Free Font Substitute |
+|----------------|----------------------|
+|Segoe UI        | Merriweather         |                     
+|Times New Roman | Noto Sans            |
+|Courier New     | Nimbus Mono          | 
+
+You can set
+
 ## LOGMODES
 
 This variable allows you to control the log messages that are output to the session
