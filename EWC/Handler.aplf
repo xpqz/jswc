@@ -8,13 +8,20 @@
  :EndIf
  code←(sessionspace←(2+i)⊃SESSIONS).code
 
- :If (⊂10↑payload)∊'Initialise' 'Initialize'
+ :If (⊂10↑payload)∊'Initialise' 'Initialize' '{"Initiali'
      :If 2=⎕NC'IGNORE1Init'
      :AndIf IGNORE1Init≠0
          IGNORE1Init←0
          :Return
      :EndIf
-     fn←reqfn←(10↓payload)~'()'
+
+     :If '{'=⊃payload
+     :AndIf 0≠≢ns←{0::⍬ ⋄ (⎕JSON ⍵).Initialise}payload
+         :If 2=ns.⎕NC 'Version' ⋄ CLIENTVERSION←ns.Version ⋄ :EndIf
+         :If 2=ns.⎕NC 'Function' ⋄ fn←reqfn←ns.Function ⋄ :Else ⋄ fn←'' ⋄ :EndIf
+     :Else
+         fn←reqfn←(10↓payload)~'()'
+     :EndIf
      fn,←(0=≢fn)/'Initialise'
      app←code
      :If 0≠app.⎕NC 'workNamespace' ⍝ /// change this name in DWI

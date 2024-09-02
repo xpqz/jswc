@@ -2,6 +2,7 @@
  ⎕IO←⎕ML←1
 
  ⎕TRAP←0 'S'
+ CLIENTVERSION←'0.0.0' ⍝ Until we know better
 
  :If 80=⎕DR args ⋄ args←⊆args ⋄ :EndIf
  :Select ≢args←,args
