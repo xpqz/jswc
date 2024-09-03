@@ -56,7 +56,10 @@ At the time that this text was written, the following modes existed:
 
 An up-to-date list can be found in the function `EWC.Log`.
 
-# For Developers
+## For Developers
+
+The following configuration settings are intended for use during development of EWC
+itself:
 
 ## SHOWDEVTOOLS
 
