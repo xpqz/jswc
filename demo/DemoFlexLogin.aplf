@@ -1,9 +1,11 @@
- DemoFlexLogin connected;formsize
+ DemoFlexLogin connected;formsize;rows
 
  formsize←340 200
  USERID←'' ⍝ Global state
 
- 'F1'eWC'Form' 'Please Login'(50 50)formsize('Coord' 'Pixel')('Flex' 'fill')
+ rows←'flex-direction: row, flex-wrap: wrap, justify-content: space-between, gap: 5px, align-items: end'
+
+ 'F1'eWC'Form' 'Please Login'(50 50)formsize('Coord' 'Pixel')('Flex' 'fill')('Style' rows)
 
  'F1.INPUT'eWC'SubForm'('Size'(100,1↓formsize))('Border' 1)('Flex' 'column')
 
