@@ -27,6 +27,6 @@
 
  'F1.INPUT.DEMO'eWC'SubForm'('Flex' 'column')
 
- 'F1.BX'eWC'SubForm'('Size'(formsize-100 0)) ⍝ To draw boxes in
+ 'F1.BX'eWC'SubForm' ('Flex' 'Column') ⍝ To draw boxes in
 
  CBUpdateLinesFlex,⊂'F1.INPUT.GO'
