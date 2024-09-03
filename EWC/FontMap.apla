@@ -1,5 +1,5 @@
 [
- 'Times New Roman' 'NotoSans-Italic-VariableFont_wdth,wght'
- 'Segoe UI'        'Merriweather-Black'
- 'Courier New'     'nimbusmono-regular'
-]
+ 'Segoe UI'        'Noto Sans'
+ 'Courier New'     'Nimbus Mono'
+ 'Times New Roman' 'Merriweather'
+ ]
