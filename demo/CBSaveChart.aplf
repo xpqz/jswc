@@ -1,0 +1,5 @@
+ctls CBSaveChart args;file;svg
+→(' '∨.≠⊃ctls)↓0
+(file svg)←ctls eWG¨'Text' 'SVG'
+(⊂svg) ⎕NPUT file 1
+⎕←'SVG saved to "',file,'"'

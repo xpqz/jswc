@@ -18,7 +18,10 @@
 
  options←'{title: { text: "Searches for APL on Google", align: "center"},'
  options,←'yaxis:{type:"numeric",stepSize:25, decimalsInFloat: 0},'
- options,←'xaxis: { type: "datetime"}}'
+ options,←'xaxis: { type: "datetime"},'
+ options,←'animations:{enabled: false}}'
 
  'F1'eWC'Form' 'Charts'(50 50)(600 800)('Coord' 'Pixel')
+ 'F1.FILE' eWC 'Edit' '' (10 10)(23 300)
+ 'F1.SAVE' eWC 'Button' 'Save' (10 320)(23 30)('Event' 'Select' 'CBSaveChart' ('F1.FILE' 'F1.MOVAVG'))
  'F1.MOVAVG'eWC'ApexChart'(50 10)(540 780)('Series'series)('Options'options)
