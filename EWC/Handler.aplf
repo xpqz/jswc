@@ -39,7 +39,15 @@
              →0
          :EndIf
          sns←code._EWC ⍝ Session Namespace
-         ns←0 ⎕JSON payload
+         :Trap 11 ⍝ DOMAIN ERROR
+             ns←0 ⎕JSON sns.buffer,payload
+             sns.buffer←''
+         :Else
+             :If 1=⎕DMX.ENX ⍝ unexpected end of input
+                 sns.buffer,←payload
+                 →0         ⍝ fight another day
+             :EndIf
+         :EndTrap
 
          :Select ,ns.⎕NL 9
          :Case 'Event'
