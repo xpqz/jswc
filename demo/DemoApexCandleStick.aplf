@@ -9,8 +9,5 @@
  options,←'yaxis: { tooltip: { enabled: true}}}'
 
  'F1'eWC'Form' 'Charts'(50 50)(600 800)('Coord' 'Pixel')
- 'F1.BAR'eWC'ApexChart'(50 10)(540 780) ('Series' series) 'candlestick' ('Options' options)
- svg←'F1.BAR' eWG 'SVG'
-
- ⎕←'Length of SVG property: ',⍕≢svg
- ⎕←'First 50 characters   : ',50↑svg
+ addSaveChartButton 'F1.CHART'
+ 'F1.CHART'eWC'ApexChart'(50 10)(540 780) ('Series' series) 'candlestick' ('Options' options)
