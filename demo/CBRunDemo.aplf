@@ -1,4 +1,8 @@
- CBRunDemo args;e;scores;cols;fcol;pass;ii;ids;target;demo;sf;f;name
+ {presel} CBRunDemo args;e;scores;cols;fcol;pass;ii;ids;target;demo;sf;f;name
+ :If 2=⎕NC 'presel'
+     →RUN ⊣ demo←presel
+ :EndIf
+
  Event←⎕NS''
  e←Event.Event←⎕NS''
  e.(ID EventName Info)←(2↑args),⊂2↓args
@@ -23,6 +27,7 @@
 
  demo←'Demo',(3⊃args)⊃(⊃args)eWG'Items'
 
+RUN:
  :If 3=⎕NC demo
      ⎕←''
      ⎕←'Running "',demo,'" with',((~EWC.USEWIN32)/'out'),' Win32'
