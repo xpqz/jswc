@@ -9,10 +9,13 @@
 
  'F1.INPUT'eWC'SubForm'('Size'(100,1↓formsize))('Border' 1)('Flex' 'row')
 
- 'F1.INPUT.DEMO' eWC 'SubForm' ('Flex' 'column')    ⍝ Make container for Demo Menu
- 'F1.INPUT.USERID' 'User ID'  LabelAbove 'Edit' ''
- 'F1.INPUT.PWD'    'Password' LabelAbove 'Edit' '' ('Password' '*')
- 'F1.INPUT.DATA'   'Data'     LabelAbove 'Edit' (⍕?12⍴100) ('Size' (23 200))
+ 'F1.INPUT.DEMO' eWC 'SubForm' ('Flex' 'column')('BCol' (127 127 127))   ⍝ Make container for Demo Menu
+
+ 'F1.INPUT.CREDS' eWC 'SubForm' ('Flex' 'column')                        ⍝ Credentials box - UserID above Password
+ 'F1.INPUT.CREDS.USERID' 'User ID'  LabelAbove 'Edit' ''
+ 'F1.INPUT.CREDS.PWD'    'Password' LabelAbove 'Edit' '' ('Password' '*')
+
+ 'F1.INPUT.DATA'         'Data'     LabelAbove 'Edit' (⍕?12⍴100) ('Size' (23 200))
 
  'F1.INPUT.LOGIN'eWC'Button' 'Login'('Size'(23 80))('Event' 'Select' 'CBLogin')
  'F1.INPUT.CHART'eWC'Button' 'Chart'('Size'(23 80))('Event' 'Select' 'CBLogin')
