@@ -6,5 +6,4 @@ links←'[',¨names,¨']('∘,¨names,¨⊂'.md)'
 r,←4 '`⎕WC` Classes' foldCols '   '∘,¨(~m)/links
 r,←'' 'EWC adds the following classes not supported by `⎕WC`:' ''
 r,←4 'Additional' foldCols '   '∘,¨m/links
-r,←'' 'See EWC.Doc.Details ''classname'' for more details'
 r←⍪r
