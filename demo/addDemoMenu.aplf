@@ -30,6 +30,6 @@ selitems←⍬ ⋄ topright←⍬
 :If 0∧'Windows'≡7↑⊃'.' ⎕WG 'APLVersion'
    (sf,'.USEWIN32') eWC 'Button' 'Win32' ('Size'(23 50))('State' EWC.USEWIN32)('Style' 'Check'),topright,noflex/⊂'Posn' (posn+25 0)
 :EndIf
-(sf,'.SCALE')eWC 'Button' 'Scale' ('Style' 'Check')('State' (COORD≡'ScaledPixel'))('Size'(18 35))('Event' 'Select' 'CBRunDemo'),topright,noflex/⊂'Posn' (posn+25 0)
-(sf,'.STOP')eWC 'Button' 'Stop' ('Size'(18 28))('Event' 'Select' 'CBRunDemo'),topright,noflex/⊂'Posn' (posn+25 89)
-(sf,'.DEVT')eWC 'Button' 'Inspect' ('Size'(18 42))('Event' 'Select' 'CBRunDemo'),topright,noflex/⊂'Posn' (posn+25 47)
+(sf,'.SCALE')eWC 'Button' 'Scale' ('Style' 'Check')('State' (COORD≡'ScaledPixel'))('Size'(18 35))('Event' 'Select' 'CBRunDemo'),topright,noflex/⊂'Posn' (posn+26 0)
+(sf,'.STOP')eWC 'Button' 'Stop' ('Size'(18 28))('Event' 'Select' 'CBRunDemo'),topright,noflex/⊂'Posn' (posn+26 89)
+(sf,'.DEVT')eWC 'Button' 'Inspect' ('Size'(18 42))('Event' 'Select' 'CBRunDemo'),topright,noflex/⊂'Posn' (posn+26 47)

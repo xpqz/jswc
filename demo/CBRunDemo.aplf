@@ -7,7 +7,7 @@
  e←Event.Event←⎕NS''
  e.(ID EventName Info)←(2↑args),⊂2↓args
  sf←{(1-(⌽⍵)⍳'.')↓⍵}⊃args
- f←{(-(⌽⍵)⍳'.')↓⍵}sf
+ f←{(¯1+⍵⍳'.')↑⍵}⊃args
  EWC.USEWIN32←0 ⍝ ×(sf,'USEWIN32') eWG 'State'
 
  :Select ¯4↑1⊃args
@@ -32,5 +32,5 @@ RUN:
      ⎕←''
      ⎕←'Running "',demo,'" with',((~EWC.USEWIN32)/'out'),' Win32'
      (⍎demo)EWC.CONNECTED
-     addDemoMenu'F1'
+     addDemoMenu f
  :EndIf

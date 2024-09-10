@@ -1,10 +1,10 @@
 ctls CBSaveChart args;file;svg;MB1;msg;z;size;tmp
 →(' '∨.≠⊃ctls)↓0
 tmp←EWC.LOGMODES
-⍝ EWC.LOGMODES~←'R' ⍝ Suppress display of incoming data
+EWC.LOGMODES~←'R' ⍝ Suppress display of incoming data
 file←(1⊃ctls) eWG 'Text'
 EWC.LOGMODES←tmp
-:If 0∧⎕NEXISTS file
+:If ⎕NEXISTS file
     msg←'File "',file,'" already exists. Overwrite?'
     'MB1' eWC 'MsgBox' 'Save Chart' msg 'Warn' ('OK' 'CANCEL') ('Event' ('MsgBtn1' 'MsgBtn2') 1)
     z←eDQ 'MB1'
